@@ -1,0 +1,11 @@
+<!--
+ - Created by Mateusz Wiorek on 19.02.2020.
+ -->
+
+<aura:component description="WDL_DetailsInfo">
+    <div>tab</div>
+    <div>tab</div>
+    <div>tab</div>
+    <div>tab</div>
+    <div>tab</div>
+</aura:component>

@@ -1,0 +1,25 @@
+
+
+<aura:component description="WDL_SearchForm" Controller="WDL_SearchFormController"
+                implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="searchName" type="String" access="public"/>
+    <aura:attribute name="searchShippingAddress" type="String" access="public"/>
+
+    <label class="slds-form-element__label" for="text-input-id-1">
+        <abbr class="slds-required" title="required">* </abbr>Account Name</label>
+    <div class="slds-form-element__control">
+        <lightning:input type="text" placeholder="Account Name" value="{! v.searchName}"/>
+    </div>
+
+    <label class="slds-form-element__label" style="margin-bottom: 0;" for="text-input-id-1">
+        <abbr class="slds-required" title="required">* </abbr>Shipping Address</label>
+        <lightning:input style="margin-top:0;" type="text" placeholder="Shipping Address" value="{! v.searchShippingAddress}"/>
+    <center>
+        <div class="slds-col slds-size_1-of-3" style="margin-top:20px;">
+                <lightning:button class="slds-button slds-button_brand" onclick="{!c.findAccounts}">{!$Label.c.Search}</lightning:button>
+                <lightning:button class="slds-button slds-button_destructive">{!$Label.c.Clear}</lightning:button>
+        </div>
+        </center>
+
+</aura:component>

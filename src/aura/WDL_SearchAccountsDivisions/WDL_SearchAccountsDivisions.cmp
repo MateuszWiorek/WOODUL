@@ -1,0 +1,21 @@
+
+
+<aura:component description="WDL_SearchAccountsDivisions" implements="flexipage:availableForAllPageTypes">
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+            <c:WDL_SearchForm />
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <c:WDL_Map/>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+            <c:WDL_Results/>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <c:WDL_DetailsInfo/>
+        </div>
+    </div>
+</aura:component>

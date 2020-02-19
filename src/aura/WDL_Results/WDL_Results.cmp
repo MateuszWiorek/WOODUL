@@ -1,0 +1,30 @@
+<!--
+ - Created by Mateusz Wiorek on 19.02.2020.
+ -->
+
+<aura:component description="WDL_Results" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="accountRows" type="Object[]"/>
+    <div class="container">
+        <p>
+            <b> List of Accounts </b>
+        </p>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th><strong> Account Name </strong></th>
+                <th> <strong>  Division </strong> </th>
+                <th> <strong>  Description </strong> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <aura:iteration var="cell" items="{!v.accountRows}">
+                <tr>
+                    <td> {!cell.Name}</td>
+                    <td> {!cell.ShippingAddress} </td>
+                    <td> {!cell.Description} </td>
+                </tr>
+            </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+</aura:component>
