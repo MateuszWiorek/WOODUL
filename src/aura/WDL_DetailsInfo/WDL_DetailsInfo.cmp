@@ -2,10 +2,39 @@
  - Created by Mateusz Wiorek on 19.02.2020.
  -->
 
-<aura:component description="WDL_DetailsInfo">
-    <div>tab</div>
-    <div>tab</div>
-    <div>tab</div>
-    <div>tab</div>
-    <div>tab</div>
+<aura:component description="WDL_DetailsInfo" controller="WDL_DetailsInfoController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+    <aura:attribute name="accountDetail" type="Account" access="public"/>
+
+    <aura:handler event="c:WDL_DetailsInfoValues" action="{!c.handleAccountSending}"/>
+    <lightning:card iconName="standard:account">
+        <aura:if isTrue="{!v.accountDetail != null}">
+            <lightning:recordViewForm recordId="{!v.accountDetail.Id}" objectApiName="Account">
+                <div class="slds-box">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning:outputField fieldName="Name"/>
+                            <lightning:outputField fieldName="ShippingStreet"/>
+                            <lightning:outputField fieldName="ShippingCity"/>
+                            <lightning:outputField fieldName="Industry"/>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning:outputField fieldName="Type"/>
+                            <lightning:outputField fieldName="SLA__c"/>
+                            <lightning:outputField fieldName="Website"/>
+                            <lightning:outputField fieldName="Description"/>
+                        </div>
+                    </div>
+                </div>
+                <center>
+                    <div class="slds-col slds-size_1-of-3" style="margin-top:20px;">
+                        <lightning:button class="slds-button slds-button_brand" onclick="{!c.editRecord}">
+                                {!$Label.c.Edit}
+                        </lightning:button>
+                        <lightning:button label="{!$Label.c.Delete}" class="slds-button slds-button_destructive"
+                                          onclick="{!c.handleDeleteRecord}"/>
+                    </div>
+                </center>
+            </lightning:recordViewForm>
+        </aura:if>
+    </lightning:card>
 </aura:component>

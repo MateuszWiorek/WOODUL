@@ -3,22 +3,23 @@
  -->
 
 <aura:component description="WDL_Map" implements="flexipage:availableForAllPageTypes">
-    <!-- attributes -->
-    <aura:attribute name="mapMarkers" type="Object"/>
-    <aura:attribute name="center" type="Object" />
-    <aura:attribute name="zoomLevel" type="Integer" />
-    <aura:attribute name="markersTitle" type="String" />
-    <aura:attribute name="showFooter" type="Boolean" />
 
-    <!-- handlers-->
+    <aura:attribute name="center" type="Object" access="public"/>
+    <aura:attribute name="zoomLevel" type="Integer" access="public"/>
+    <aura:attribute name="markersTitle" type="String" access="public"/>
+    <aura:attribute name="resultsList" type="Account[]" access="public"/>
+    <aura:attribute name="mapMarkers" type="List" access="private"/>
+
+    <aura:registerEvent name="WDL_DetailsInfoValues" type="c:WDL_DetailsInfoValues"/>
+
     <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <aura:handler event="c:WDL_SendAccountListToMap" action="{!c.handleMapDetails}"/>
 
-    <!-- the map component -->
     <lightning:map
             mapMarkers="{! v.mapMarkers }"
             center="{! v.center }"
+            onmarkerselect = "{! c.handleMarkerSelect }"
             zoomLevel="{! v.zoomLevel }"
-            markersTitle="{! v.markersTitle }"
-            showFooter="{! v.showFooter }" >
+            listView="hidden">
     </lightning:map>
 </aura:component>

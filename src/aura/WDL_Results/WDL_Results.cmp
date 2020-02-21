@@ -2,29 +2,43 @@
  - Created by Mateusz Wiorek on 19.02.2020.
  -->
 
-<aura:component description="WDL_Results" implements="flexipage:availableForAllPageTypes">
-    <aura:attribute name="accountRows" type="Object[]"/>
+<aura:component description="WDL_Results" Controller="WDL_SearchFormController" implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="accountRows" type="Account[]" access="public"/>
+    <aura:attribute name="addressFromEvent" type="String" access="public"/>
+    <aura:attribute name="nameFromEvent" type="String" access="public"/>
+    <aura:attribute name="accountDetail" type="Account" access="public"/>
+
+    <aura:registerEvent name="WDL_DetailsInfoValues" type="c:WDL_DetailsInfoValues"/>
+    <aura:registerEvent name="WDL_SendAccountListToMap" type="c:WDL_SendAccountListToMap"/>
+
+    <aura:handler event="c:WDL_SendValues" action="{!c.handleApplicationEvent}"/>
+
+    <lightning:card>
     <div class="container">
         <p>
-            <b> List of Accounts </b>
+            <h2> List of Accounts </h2>
         </p>
-        <table class="table table-bordered table-hover">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
             <thead>
-            <tr>
-                <th><strong> Account Name </strong></th>
-                <th> <strong>  Division </strong> </th>
-                <th> <strong>  Description </strong> </th>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col"><strong> <div class="slds-truncate" title="Account Name">{!$Label.c.Account_Name}</div> </strong></th>
+                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10" title="ShippingAddress">{!$Label.c.ShippingAddress}</div></strong></th>
+                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10" title="ShippingAddress">{!$Label.c.Description}</div></strong></th>
             </tr>
             </thead>
             <tbody>
-            <aura:iteration var="cell" items="{!v.accountRows}">
-                <tr>
-                    <td> {!cell.Name}</td>
-                    <td> {!cell.ShippingAddress} </td>
-                    <td> {!cell.Description} </td>
+            <aura:iteration var="cell" items="{!v.accountRows}" indexVar="index">
+                <tr class="slds-hint-parent "  aura:id="resultItem" data-index="{!index}" onclick="{!c.getRecord}">
+                    <td data-label="{!$Label.c.Account_Name}" > {!cell.Name}</td>
+                    <td data-label="{!$Label.c.ShippingAddress}"> {!cell.ShippingCity}</td>
+                    <td class = "slds-truncate_container_25"  data-label="{!$Label.c.Description}"> {!cell.Description} </td>
                 </tr>
             </aura:iteration>
+
             </tbody>
         </table>
     </div>
+    </lightning:card>
+
 </aura:component>
