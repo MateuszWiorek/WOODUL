@@ -6,6 +6,8 @@
     <aura:attribute name="accountDetail" type="Account" access="public"/>
 
     <aura:handler event="c:WDL_DetailsInfoValues" action="{!c.handleAccountSending}"/>
+    <aura:registerEvent name="WDL_RefreshAfterDeleteRecord" type="c:WDL_RefreshAfterDeleteRecord"/>
+
     <lightning:card iconName="standard:account">
         <aura:if isTrue="{!v.accountDetail != null}">
             <lightning:recordViewForm recordId="{!v.accountDetail.Id}" objectApiName="Account">

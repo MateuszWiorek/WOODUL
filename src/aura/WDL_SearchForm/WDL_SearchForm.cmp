@@ -3,18 +3,18 @@
 
     <aura:registerEvent name="WDL_SendValues" type="c:WDL_SendValues"/>
 
+    <aura:handler event="c:WDL_RefreshAfterDeleteRecord" action="{!c.handleRefresh}"/>
+
     <aura:attribute name="searchName" type="String" access="public"/>
     <aura:attribute name="searchShippingAddress" type="String" access="public"/>
 
     <lightning:card>
-    <label class="slds-form-element__label" for="text-input-id-1">
-        <abbr class="slds-required" title="required">* </abbr>Account Name</label>
+    <label class="slds-form-element__label" for="text-input-id-1">{!$Label.c.Account_Name}</label>
     <div class="slds-form-element__control">
         <lightning:input class="dataInput" type="text" placeholder="{!$Label.c.Account_Name}" value="{! v.searchName}"/>
     </div>
 
-    <label class="slds-form-element__label" style="margin-bottom: 0;" for="text-input-id-1">
-        <abbr class="slds-required" title="required">* </abbr>Shipping Address</label>
+    <label class="slds-form-element__label" style="margin-bottom: 0;" for="text-input-id-1">{!$Label.c.ShippingAddress}</label>
         <lightning:input class="dataInput" style="margin-top:0;" type="text" placeholder="{!$Label.c.ShippingAddress}"
                          value="{! v.searchShippingAddress}"/>
     <center>

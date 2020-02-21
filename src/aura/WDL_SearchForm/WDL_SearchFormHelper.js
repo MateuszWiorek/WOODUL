@@ -7,7 +7,7 @@
                 });
                 appEvent.fire();
     },
-     doClear:function(component, event){
+    doClear:function(component, event){
             component.set("v.searchName", '');
             component.set("v.searchShippingAddress", '');
 

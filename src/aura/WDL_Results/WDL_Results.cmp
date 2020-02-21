@@ -23,7 +23,7 @@
             <thead>
             <tr class="slds-line-height_reset">
                 <th class="" scope="col"><strong> <div class="slds-truncate" title="Account Name">{!$Label.c.Account_Name}</div> </strong></th>
-                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10" title="ShippingAddress">{!$Label.c.ShippingAddress}</div></strong></th>
+                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10" title="ShippingAddress">{!$Label.c.ShippingCity}</div></strong></th>
                 <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10" title="ShippingAddress">{!$Label.c.Description}</div></strong></th>
             </tr>
             </thead>
@@ -32,7 +32,7 @@
                 <tr class="slds-hint-parent "  aura:id="resultItem" data-index="{!index}" onclick="{!c.getRecord}">
                     <td data-label="{!$Label.c.Account_Name}" > {!cell.Name}</td>
                     <td data-label="{!$Label.c.ShippingAddress}"> {!cell.ShippingCity}</td>
-                    <td class = "slds-truncate_container_25"  data-label="{!$Label.c.Description}"> {!cell.Description} </td>
+                    <td data-label="{!$Label.c.Description}"> {!cell.Description} </td>
                 </tr>
             </aura:iteration>
 
