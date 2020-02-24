@@ -8,11 +8,14 @@
     <aura:attribute name="addressFromEvent" type="String" access="public"/>
     <aura:attribute name="nameFromEvent" type="String" access="public"/>
     <aura:attribute name="accountDetail" type="Account" access="public"/>
+    <aura:attribute name="Spinner" type="boolean" default="false"/>
 
     <aura:registerEvent name="WDL_DetailsInfoValues" type="c:WDL_DetailsInfoValues"/>
     <aura:registerEvent name="WDL_SendAccountListToMap" type="c:WDL_SendAccountListToMap"/>
 
     <aura:handler event="c:WDL_SendValues" action="{!c.handleApplicationEvent}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
 
     <lightning:card>
     <div class="container">
@@ -23,8 +26,10 @@
             <thead>
             <tr class="slds-line-height_reset">
                 <th class="" scope="col"><strong> <div class="slds-truncate" title="Account Name">{!$Label.c.Account_Name}</div> </strong></th>
-                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10" title="ShippingAddress">{!$Label.c.ShippingCity}</div></strong></th>
-                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10" title="ShippingAddress">{!$Label.c.Description}</div></strong></th>
+                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10"
+                                                       title="ShippingAddress">{!$Label.c.ShippingCity}</div></strong></th>
+                <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10"
+                                                       title="ShippingAddress">{!$Label.c.Description}</div></strong></th>
             </tr>
             </thead>
             <tbody>
@@ -40,5 +45,18 @@
         </table>
     </div>
     </lightning:card>
+
+    <aura:if isTrue="{!v.Spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+
+    <c:WDL_ShowErrorComponent aura:id="errorChildComponent">
+    </c:WDL_ShowErrorComponent>
 
 </aura:component>

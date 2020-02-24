@@ -12,8 +12,11 @@ public with sharing class WDL_SearchFormController {
             return accounts;
         }
         accounts = new List<Account>();
-        accounts = Database.query(WDL_Utils.createQuery(name, division, 'Account'));
-        System.debug(accounts);
+        try {
+            accounts = Database.query(WDL_Utils.createQuery(name, division, 'Account'));
+        }catch (Exception e ){
+            throw new AuraHandledException(e.getMessage().substring(0,80));
+        }
         return accounts;
     }
 

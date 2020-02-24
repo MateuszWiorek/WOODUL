@@ -12,27 +12,25 @@
                 let state = response.getState();
                 if(state === "SUCCESS"){
                     let accountsArray = response.getReturnValue();
-                    console.log(accountsArray);
-                    console.log(accountsArray.length);
 
                     for( let i = 0; i<accountsArray.length; i++){
                         if(accountsArray[i].Description != null){
                         let stringDescription = accountsArray[i].Description
                         stringDescription = stringDescription.length>60 ?
-                         stringDescription.substring(0,60) + '...' :
-                         stringDescription
-                         ;
+                                            stringDescription.substring(0,60) + $A.get("$Label.c.WDL_ReadMore") :
+                                            stringDescription;
                          accountsArray[i].Description = stringDescription;
                          }
                     }
 
-                console.log(accountsArray);
                 component.set("v.accountRows", accountsArray);
                 let mapEvent = $A.get("e.c:WDL_SendAccountListToMap");
                 mapEvent.setParams({
                         "accountsList" : component.get("v.accountRows")
                 });
-                    mapEvent.fire();
+                mapEvent.fire();
+                   }else if(state === 'ERROR'){
+        childComponent.openToast(response.getError()[0].message, $A.get("$Label.c.WDL_Error"), $A.get("$Label.c.WDL_Error"));
                    }
               });
 

@@ -521,6 +521,10 @@
                             <option name="name" value="WDL_RefreshAfterDeleteRecord" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDL_ShowErrorComponent" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="AuraDefinitionBundle" />

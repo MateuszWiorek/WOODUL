@@ -4,7 +4,7 @@
 
                 component.set('v.center', {
                     location: {
-                        City: 'Kielce'
+                        City: $A.get("$Label.c.WDL_DefaultCity")
                     }
                 });
                 component.set('v.zoomLevel', 4);
@@ -24,7 +24,7 @@
                            },
                             'value' : i,
                             'label' : {
-                                color : 'white',
+                                color : $A.get("$Label.c.WDL_DefaultMapLabelColor"),
                                 fontWeight : 'bold',
                                 text : account.Name
                             },
@@ -46,7 +46,7 @@
                       cmp.set('v.mapMarkers', mapMarkers);
                               cmp.set('v.center', {
                                   location: {
-                                      City: 'Kielce'
+                                      City: $A.get("$Label.c.WDL_DefaultCity")
                                   }
                               });
                       }
@@ -54,9 +54,7 @@
 
     doHandleMarkerSelect : function(component, event){
         let marker = event.getParam("selectedMarkerValue");
-        console.log(marker);
         let accounts = component.get("v.resultsList");
-        console.log(accounts);
                 let detailsEvent2 = $A.get("e.c:WDL_DetailsInfoValues");
                 detailsEvent2.setParams({
                     "accountDetailInfo" : accounts[marker]

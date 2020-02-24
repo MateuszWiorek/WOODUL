@@ -1,12 +1,12 @@
 <aura:component description="WDL_SearchForm"
                 implements="flexipage:availableForAllPageTypes">
 
+    <aura:attribute name="searchName" type="String" access="public"/>
+    <aura:attribute name="searchShippingAddress" type="String" access="public"/>
+
     <aura:registerEvent name="WDL_SendValues" type="c:WDL_SendValues"/>
 
     <aura:handler event="c:WDL_RefreshAfterDeleteRecord" action="{!c.handleRefresh}"/>
-
-    <aura:attribute name="searchName" type="String" access="public"/>
-    <aura:attribute name="searchShippingAddress" type="String" access="public"/>
 
     <lightning:card>
     <label class="slds-form-element__label" for="text-input-id-1">{!$Label.c.Account_Name}</label>
@@ -28,5 +28,7 @@
         </div>
         </center>
     </lightning:card>
+    <c:WDL_ShowErrorComponent aura:id="errorChildComponent">
+    </c:WDL_ShowErrorComponent>
 
 </aura:component>
