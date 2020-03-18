@@ -11,5 +11,10 @@
     },
     doClear : function(component, event){
         component.set("v.itemSearch", "");
+        let eventAction =  $A.get("e.c:WDLC_SednItemToSearch");
+        eventAction.setParams({
+            "searchItem" : ""
+        });
+        eventAction.fire();
     }
 })
