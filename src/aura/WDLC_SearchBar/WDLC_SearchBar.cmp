@@ -4,6 +4,9 @@
 
 <aura:component description="WDLC_SearchBar" implements="flexipage:availableForAllPageTypes">
     <aura:attribute name="itemSearch" type="String" access="global"/>
+
+    <aura:registerEvent name="WDLC_SednItemToSearch" type="c:WDLC_SednItemToSearch"/>
+
     <lightning:card>
         <label class="slds-form-element__label" for="text-input-id-1">{!$Label.c.Account_Name}</label>
         <div class="slds-form-element__control">
@@ -11,7 +14,7 @@
         </div>
         <center>
             <div class="slds-col slds-size_1-of-3" style="margin-top:20px;">
-                <lightning:button class="slds-button slds-button_brand" onclick="{!c.findAccounts}">
+                <lightning:button class="slds-button slds-button_brand" onclick="{!c.sendData}">
                         {!$Label.c.Search}
                 </lightning:button>
                 <lightning:button class="slds-button slds-button_destructive" onclick="{!c.clear}">
