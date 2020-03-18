@@ -20,7 +20,7 @@
         <div class="slds-grid" style="display: flex; flex-wrap: wrap; padding: 10px 20px;">
     <aura:iteration items="{!v.results}" var="result">
                     <div class="slds-col">
-                        <c:WDLC_ProductTile productName="{!result.productName}" productPhoto="{!result.productPhotoUrl}"/>
+                        <c:WDLC_ProductTile product = "{!result}"/>
                     </div>
     </aura:iteration>
         </div>
