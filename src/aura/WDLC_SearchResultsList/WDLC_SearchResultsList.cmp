@@ -5,11 +5,18 @@
 <aura:component description="WDLC_SearchResultsList" controller="WDLC_SearchProductsController"
                 implements="flexipage:availableForAllPageTypes, forceCommunity:availableForAllPageTypes">
     <aura:attribute name="results" type="Object[]" access="global"/>
+    <aura:attribute name="searchResult" type="String" access="global" default=""/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:WDLC_SednItemToSearch" action="{!c.handleApplicationEvent}"/>
 
     <lightning:card>
+        <aura:if isTrue="{!not(empty(v.searchResult))}">
+            <center>
+                <h2>Results for: {!v.searchResult}
+                </h2>
+            </center>
+        </aura:if>
         <div class="slds-grid" style="display: flex; flex-wrap: wrap; padding: 10px 20px;">
     <aura:iteration items="{!v.results}" var="result">
                     <div class="slds-col">

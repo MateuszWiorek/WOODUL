@@ -7,6 +7,7 @@
         let findAction = component.get("c.findProducts");
         if(eventSearchItem === ""){
             component.set("v.results", []);
+            component.set("v.searchResult","");
         }else{
             findAction.setParams({
                 "name" : eventSearchItem
@@ -16,6 +17,7 @@
                 let state = response.getState();
                 if(state === "SUCCESS"){
                     component.set("v.results", response.getReturnValue());
+                    component.set("v.searchResult", eventSearchItem);
                 }
             });
             $A.enqueueAction(findAction);
