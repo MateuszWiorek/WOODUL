@@ -337,6 +337,18 @@
                             <option name="name" value="PostToChatterAction" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SearchProductsController" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SearchProductsHelper" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_ProductWrapper" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />
@@ -481,6 +493,10 @@
                           <MetadataEntry>
                             <option name="name" value="HRHM_DoctorIntegrationToMariusz" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDL_CaseTrigger" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexTrigger" />
@@ -589,6 +605,22 @@
                             <option name="name" value="WDL_ProductTile" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SearchBar" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SednItemToSearch" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_ProductTile" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SearchResultsList" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="AuraDefinitionBundle" />
@@ -664,6 +696,7 @@
                         <list>
                           <MetadataEntry>
                             <option name="name" value="Internal Zone" />
+                            <option name="selected" value="true" />
                           </MetadataEntry>
                         </list>
                       </option>
@@ -756,6 +789,10 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="standard__Sites" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WOOD_U_L" />
+                            <option name="selected" value="true" />
                           </MetadataEntry>
                         </list>
                       </option>
