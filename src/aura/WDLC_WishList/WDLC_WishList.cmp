@@ -1,0 +1,23 @@
+<!--
+ - Created by Mateusz Wiorek on 19.03.2020.
+ -->
+
+<aura:component description="WDLC_WishList" controller="WDLC_WishlistController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="wishlist" type="Object" access="global"/>
+    <aura:attribute name="emptyInformation" type="String" access="global" default=""/>
+
+    <aura:handler name="doInit" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card>
+        <aura:if isTrue="{!not(empty(v.emptyInformation))}">
+            <h2> {!v.emptyInformation}</h2>
+        </aura:if>
+        <div class="slds-grid" style="display: flex; flex-wrap: wrap;">
+            <aura:iteration items="{!v.wishlist}" var="element">
+                <div class="slds-col">
+<!--                ProductTile component will be here-->
+                </div>
+            </aura:iteration>
+        </div>
+    </lightning:card>
+</aura:component>
