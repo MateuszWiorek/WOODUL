@@ -5,7 +5,7 @@
     doComment: function(component, event){
         let commentAction = component.get("c.addComment")
         commentAction.setParams({
-           "rating" : 0,
+           "rating" : component.get("v.rating"),
            "commentMessage" : component.get("v.richComment"),
            "productId" : component.get("v.product.Id")
         });
