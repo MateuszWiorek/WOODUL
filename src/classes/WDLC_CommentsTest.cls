@@ -8,6 +8,14 @@ public with sharing class WDLC_CommentsTest {
     public static void setup() {
         Product2 prod = new Product2(Name = 'testProd');
         Database.insert(prod);
+        List<WDLC_Comment__c> comments = new List<WDLC_Comment__c>();
+        WDLC_Comment__c com = new WDLC_Comment__c();
+        com.Product__c = prod.Id;
+        WDLC_Comment__c com2 = new WDLC_Comment__c();
+        com2.Product__c = prod.Id;
+        comments.add(com);
+        comments.add(com2);
+        insert comments;
     }
 
     @IsTest
@@ -29,17 +37,11 @@ public with sharing class WDLC_CommentsTest {
     @IsTest
     public static void shouldReturnComments() {
         Product2 prod = [SELECT Id, Name FROM Product2 WHERE Name = 'testProd'];
-        List<WDLC_Comment__c> comments = new List<WDLC_Comment__c>();
-        WDLC_Comment__c com = new WDLC_Comment__c();
-        com.Product__c = prod.Id;
-        WDLC_Comment__c com2 = new WDLC_Comment__c();
-        com2.Product__c = prod.Id;
-        comments.add(com);
-        comments.add(com2);
-        insert comments;
+
         Test.startTest();
         List<WDLC_Comment__c> results = WDLC_FurnitureProductComments.getComments(String.valueOf(prod.Id));
         Test.stopTest();
+
         System.assertEquals(2, results.size());
     }
 }
