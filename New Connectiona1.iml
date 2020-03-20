@@ -337,6 +337,14 @@
                             <option name="name" value="PostToChatterAction" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SimilarProductsController" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SimilarProductsHelper" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />
@@ -587,6 +595,10 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="WDL_ProductTile" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_SimilarFurnitureProducts" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                         </list>
