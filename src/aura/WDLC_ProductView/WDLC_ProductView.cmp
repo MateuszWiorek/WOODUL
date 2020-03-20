@@ -3,7 +3,7 @@
  -->
 
 <aura:component description="WDLC_ProductView"
-                implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes">
+                implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes">
     <aura:attribute name="product" type="Object" access="global"/>
     <lightning:card>
 <!--        <aura:if isTrue="{!not(empty(v.product))}">-->

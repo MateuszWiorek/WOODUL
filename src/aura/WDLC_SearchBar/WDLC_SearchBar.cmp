@@ -3,7 +3,7 @@
  -->
 
 <aura:component description="WDLC_SearchBar"
-                implements="flexipage:availableForAllPageTypes, forceCommunity:availableForAllPageTypes">
+                implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
     <aura:attribute name="itemSearch" type="String" access="global"/>
 
     <aura:registerEvent name="WDLC_SednItemToSearch" type="c:WDLC_SednItemToSearch"/>

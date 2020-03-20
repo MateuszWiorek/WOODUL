@@ -3,7 +3,7 @@
  -->
 
 <aura:component description="WDLC_SearchResultsList" controller="WDLC_SearchProductsController"
-                implements="flexipage:availableForAllPageTypes, forceCommunity:availableForAllPageTypes">
+                implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
     <aura:attribute name="results" type="Object[]" access="global"/>
     <aura:attribute name="searchResult" type="String" access="global" default=""/>
 
