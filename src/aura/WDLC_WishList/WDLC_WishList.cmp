@@ -19,8 +19,7 @@
                 <div class="slds-grid" style="display: flex; flex-wrap: wrap;">
                     <aura:iteration items="{!v.wishlist}" var="element">
                         <div class="slds-col">
-                            <!--                ProductTile component will be here-->
-                            {!element.Name}
+                            <c:WDL_ProductTile product="{!element}"/>
                         </div>
                     </aura:iteration>
                 </div>
