@@ -22,7 +22,7 @@ public with sharing class WDLC_CommentsTest {
     public static void shouldAddCommentToProduct() {
         Product2 prod = [SELECT Id, Name FROM Product2 WHERE Name = 'testProd'];
         Test.startTest();
-        WDLC_FurnitureProductComments.addComment(5, 'The best product ever', String.valueOf(prod.Id));
+        WDLC_FurnitureProductCommentsController.addComment(5, 'The best product ever', String.valueOf(prod.Id));
         Test.stopTest();
         List<WDLC_Comment__c> results = [
                 SELECT Id, Product__c, Rating__c, CommentMessage__c
@@ -39,7 +39,7 @@ public with sharing class WDLC_CommentsTest {
         Product2 prod = [SELECT Id, Name FROM Product2 WHERE Name = 'testProd'];
 
         Test.startTest();
-        List<WDLC_Comment__c> results = WDLC_FurnitureProductComments.getComments(String.valueOf(prod.Id));
+        List<WDLC_Comment__c> results = WDLC_FurnitureProductCommentsController.getComments(String.valueOf(prod.Id));
         Test.stopTest();
 
         System.assertEquals(2, results.size());
