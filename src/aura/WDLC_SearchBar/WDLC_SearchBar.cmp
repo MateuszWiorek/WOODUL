@@ -1,0 +1,31 @@
+<!--
+ - Created by Mateusz Wiorek on 18.03.2020.
+ -->
+
+<aura:component description="WDLC_SearchBar"
+                implements="flexipage:availableForAllPageTypes, forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="itemSearch" type="String" access="global"/>
+
+    <aura:registerEvent name="WDLC_SednItemToSearch" type="c:WDLC_SednItemToSearch"/>
+
+    <lightning:card>
+        <div class="wrapper">
+            <label class="slds-form-element__label" for="text-input-id-1">{!$Label.c.WDLC_Name}</label>
+            <div class="slds-form-element__control">
+                <lightning:input class="dataInput" type="text" placeholder="{!$Label.c.WDLC_Name}"
+                                 value="{! v.itemSearch}"/>
+            </div>
+            <center>
+                <div class="slds-col slds-size_1-of-3" style="margin-top:20px;">
+                    <lightning:button class="slds-button slds-button_brand" onclick="{!c.sendData}">
+                            {!$Label.c.Search}
+                    </lightning:button>
+                    <lightning:button class="slds-button slds-button_destructive" onclick="{!c.clear}">
+                            {!$Label.c.Clear}
+                    </lightning:button>
+                </div>
+            </center>
+        </div>
+    </lightning:card>
+    <c:WDL_ShowErrorComponent aura:id="errorChildComponent"/>
+</aura:component>
