@@ -1,0 +1,225 @@
+<!--
+ - Created by Mateusz Wiorek on 26.02.2020.
+ -->
+
+<apex:page id="WebLeadOrSurvey" showHeader="false">
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 30px;
+  background-color: #BEBEBE;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.webToLeadForm{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 600px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.container {
+  max-width: 500px;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  top:13%;
+}
+
+.inputForm {
+  width: 80%;
+  border: 1px solid black;
+  background: white;
+  margin: 0 0 5px;
+  margin-left:10%;
+  padding: 10px;
+}
+
+.inputForm:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid white;
+}
+
+
+input[type="submit"] {
+  cursor: pointer;
+  width: 60%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 0 0 5px;
+  margin-top: 10px;
+  margin-left: 20%;
+  padding: 10px;
+  font-size: 15px;
+}
+
+input[type="submit"]:hover {
+  background: #43A047;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+input[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+input{
+    background: #BEBEBE;
+}
+input:focus,
+textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+label{
+    color: black;
+}
+.survey{
+    display: none;
+    position:fixed;
+    height:50%;
+    width:100%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.webToLeadForm{
+    display: none;
+}
+h2{
+    font-size:15px;
+    color: black;
+    text-align: center;
+    margin-left: 20px;
+}
+
+    </style>
+
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/>
+    <div class="webToLeadForm" id="webToLead">
+        <div class="container">
+            <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+
+                <input type="hidden" name="oid" value="00D5J000000lyQf"/>
+                <input type="hidden" name="retURL"
+                       value="https://hrhm-developer-edition.eu32.force.com/leadConversion?type=success"/>
+                <h2>Hi. Fill in your information and we'll contact with You. </h2><br/>
+                <label for="first_name">First Name</label><br/><input class="inputForm" id="first_name" maxlength="40"
+                                                                      name="first_name" size="20"
+                                                                      type="text" placeholder="First Name"/><br/>
+
+                <label for="last_name">Last Name</label><br/><input class="inputForm" id="last_name" maxlength="80"
+                                                                    name="last_name" size="20"
+                                                                    type="text" placeholder="Last Name"/><br/>
+
+                <label for="email">Email</label><br/><input class="inputForm" id="email" maxlength="80" name="email"
+                                                            size="20"
+                                                            type="text" placeholder="Email"/><br/>
+
+                <label for="phone">Phone</label><br/><input class="inputForm" id="phone" maxlength="40" name="phone"
+                                                            size="20"
+                                                            type="text" placeholder="Phone"/><br/>
+
+                <label for="company">Company</label><br/><input class="inputForm" id="company" maxlength="40"
+                                                                name="company"
+                                                                size="20"
+                                                                type="text" placeholder="Company"/><br/>
+
+                <input type="submit" name="submit"/>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="survey" id="surveyDiv">
+        <center>
+            <iframe id="leadSurveyURL" src="https://woodu-dev-ed--c.visualforce.com/apex/takesurvey?id=a0G5J000000B7tMUAS&cId=none&caId=none&lId="
+                    height="400px" width="50%" style="background-color: white; border: none;"/>
+        </center>
+    </div>
+
+    <div id="thanksDiv"
+         style="display:none; width:100vw; height:100vh; background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">
+
+        <div style="position: absolute; top:50%; left: 32%">
+            <p style="text-align: center; font-size=55px;">We will contact you soon.</p>
+        </div>
+    </div>
+
+    <script>
+        let webToLeadDiv = document.getElementById("webToLead");
+        let survey = document.getElementById("surveyDiv");
+        let thanksDiv =document.getElementById("thanksDiv");
+        let iframeWithLeadSurvey = document.getElementById("leadSurveyURL").src;
+
+        let urlString = window.location.href;
+        let url = new URL(urlString);
+        let typeParam = url.searchParams.get("type");
+        let leadId = url.searchParams.get("leadId");
+        console.log(leadId);
+        if(typeParam =='survey'){
+            let ifrm = document.createElement('iframe');
+            ifrm.setAttribute('id', 'ifrm');
+            ifrm.setAttribute('style','background-color: white; border: none;');
+            ifrm.setAttribute('height', '350px');
+            ifrm.setAttribute('width', '50%');
+            ifrm.setAttribute('src','https://hrhm-developer-edition.eu32.force.com/leadConversion/TakeSurvey?id=a0G5J000000B7tMUAS&cId=none&caId=none&lId='+leadId);
+            survey.style.display="block";
+            document.getElementById("leadSurveyURL").replaceWith(ifrm);
+        }else if(typeParam =='webToLead'){
+            webToLeadDiv.style.display="block";
+        }else if(typeParam =='success'){
+            thanksDiv.style.display ='block';
+            thanksDiv.style.fontSize ='55px';
+        }
+
+    </script>
+</apex:page>
