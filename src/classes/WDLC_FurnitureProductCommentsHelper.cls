@@ -13,7 +13,7 @@ public with sharing class WDLC_FurnitureProductCommentsHelper {
     }
     public static List<WDLC_Comment__c> getComments(String productId) {
         List<WDLC_Comment__c> comments = [
-                SELECT Name, CommentMessage__c, Rating__c, Product__c
+                SELECT Name, CommentMessage__c, Rating__c, Product__c, createdByUser__c, createdDate__c
                 FROM WDLC_Comment__c
                 WHERE Product__c = :productId
         ];
