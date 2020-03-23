@@ -1,0 +1,43 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureProductView" controller="WDLC_ProductViewController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute type="String" name="productId" access="global" default="01t5J000000FuOoQAK"/>
+    <aura:attribute type="Object" name="product" access="global" default="null"/>
+
+    <aura:handler name="retrieveProductId" action="{!c.handleProductId}" event="c:WDLC_SendFurnitureId"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue="{!not(empty(v.product))}">
+        <lightning:card>
+            <div class="slds-grid">
+                <div class="slds-size--1-of-12 slds-col_bump-left">
+                    <img src="{!v.product.productPhotoUrl}"/>
+                    <img src="{!v.product.productPhotoUrl}"/>
+                </div>
+                <div class="slds-col slds-size--5-of-12">
+                    <img src="{!v.product.productPhotoUrl}"/>
+                </div>
+                <div class="slds-col slds-size--1-of-12"/>
+                <div class="slds-col slds-size--5-of-12 slds-align-middle productInfo">
+                    <h2>{!v.product.productName}</h2>
+                    <span>{!v.product.productDescription}</span>
+                    <p>
+                        <lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
+                                                   currencyCode="EUR" currencyDisplayAs="symbol"/>
+                    </p>
+                    <lightning:button class="slds-button slds-button_outline-brand">Add to cart</lightning:button>
+                    <lightning:button class="slds-button slds-button_outline-brand">Add to List</lightning:button>
+
+                </div>
+            </div>
+            <div >
+                <c:WDLC_FurnitureCommentsSection product="{!v.product}"/>
+            </div>
+            <div class="carousel">
+                <c:WDLC_SimilarFurnitureProducts product="{!v.product}"/>
+            </div>
+        </lightning:card>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,34 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureComment" implements="forceCommunity:availableForAllPageTypes"
+                extensible="true">
+    <aura:attribute type="Object" name="comment" access="global"/>
+
+    <aura:if isTrue="{!not(empty(v.comment))}">
+    <article class="slds-post">
+        <header class="slds-post__header slds-media">
+            <div class="slds-media__figure">
+                <a href="javascript:void(0);"
+                   class="slds-avatar slds-avatar--circle slds-avatar--large">
+                    <img src="{!v.comment.CreatedById.FullPhotoUrl}"
+                         alt="{!v.comment.createdByUser__c}"/>
+                </a>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+                    <p><a href="javascript:void(0);"
+                          title="{!v.comment.createdByUser__c}">{!v.comment.createdByUser__c}</a></p>
+                </div>
+                <p class="slds-text-body_small">
+                    <ui:outputDateTime value="{!v.comment.createdDate__c}"/>
+                </p>
+            </div>
+        </header>
+        <div class="slds-post__content slds-text-longform">
+            <p>{!v.comment.CommentMessage__c}</p>
+        </div>
+    </article>
+    </aura:if>
+</aura:component>

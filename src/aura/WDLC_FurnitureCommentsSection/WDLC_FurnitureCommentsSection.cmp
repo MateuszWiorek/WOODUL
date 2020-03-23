@@ -1,0 +1,38 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureCommentsSection" controller="WDLC_FurnitureProductCommentsController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute type="Object[]" name="comments" access="global"/>
+    <aura:attribute type="String" name="richComment" access="global"/>
+    <aura:attribute type="Object" name="product" access="global"/>
+    <aura:attribute type="Boolean" name="canBeShown" access="global" default="false"/>
+    <aura:attribute type="Integer" name="rating" access="global" default="0"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <lightning:card>
+        <div class="slds-feed">
+            <div class="slds-form-element" style="padding-left:10px; padding-right: 10px">
+                <div class="slds-form-element__control">
+                    <div style="max-width: 10rem;">
+                        <c:Rating/>
+                    </div>
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <ui:inputTextArea value="{!v.richComment}" placeholder="Leave comment"/>
+                            <div style="slds-float--right">
+                                <lightning:buttonIcon iconName="utility:engage" alternativeText="Share"
+                                                      size="large" onclick="{!c.comment}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aura:if isTrue="{!v.canBeShown}">
+                <c:WDLC_FurnitureCommentsList comments="{!v.comments}"/>
+            </aura:if>
+        </div>
+    </lightning:card>
+</aura:component>
