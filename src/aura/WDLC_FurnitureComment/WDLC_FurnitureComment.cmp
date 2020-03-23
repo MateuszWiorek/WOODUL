@@ -5,28 +5,21 @@
 <aura:component description="WDLC_FurnitureComment" implements="forceCommunity:availableForAllPageTypes"
                 extensible="true">
     <aura:attribute type="Object" name="comment" access="global"/>
-
-    <article class="slds-post">
-        <header class="slds-post__header slds-media">
-            <div class="slds-media__figure">
-                <a href="javascript:void(0);"
-                   class="slds-avatar slds-avatar--circle slds-avatar--large">
-                    <img src="{!v.comment.CreatedById.FullPhotoUrl}"
-                         alt="{!v.comment.CreatedById.Name}"/>
-                </a>
-            </div>
-            <div class="slds-media__body">
-                <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
-                    <p><a href="javascript:void(0);"
-                          title="{!v.comment.CreatedById.Name}">{!v.comment.CreatedById.Name}</a></p>
+    <lightning:card>
+        <article class="slds-post comment">
+            <header class="slds-post__header slds-media">
+                <div class="slds-media__figure">
+                    <h2>{!v.comment.createdByUser__c} </h2>
+                    <p><ui:outputDateTime value="{!v.comment.createdDate__c}"/></p>
                 </div>
-                <p class="slds-text-body_small">
-                    <ui:outputDateTime value="{!comment.createdDate__c}"/>
-                </p>
+                <div class="slds-media__body">
+                        <lightning:buttonIcon iconName="utility:favorite" variant="bare" alternativeText="Rating"
+                                              size="large" disabled="true" class="favoriteIcon"/>{!v.comment.Rating__c} / 5
+                </div>
+            </header>
+            <div class="slds-post__content slds-text-longform">
+                <p>{!v.comment.CommentMessage__c}</p>
             </div>
-        </header>
-        <div class="slds-post__content slds-text-longform">
-            <p>{!comment.CommentMessage__c}</p>
-        </div>
-    </article>
+        </article>
+    </lightning:card>
 </aura:component>
