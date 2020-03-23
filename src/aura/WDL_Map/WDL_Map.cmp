@@ -1,0 +1,27 @@
+<!--
+ - Created by Mateusz Wiorek on 19.02.2020.
+ -->
+
+<aura:component description="WDL_Map" implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="center" type="Object" access="public"/>
+    <aura:attribute name="zoomLevel" type="Integer" access="public"/>
+    <aura:attribute name="markersTitle" type="String" access="public"/>
+    <aura:attribute name="resultsList" type="Account[]" access="public"/>
+    <aura:attribute name="mapMarkers" type="List" access="private"/>
+
+    <aura:registerEvent name="WDL_DetailsInfoValues" type="c:WDL_DetailsInfoValues"/>
+
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <aura:handler event="c:WDL_SendAccountListToMap" action="{!c.handleMapDetails}"/>
+
+    <lightning:card>
+        <lightning:map
+                mapMarkers="{! v.mapMarkers }"
+                center="{! v.center }"
+                onmarkerselect="{! c.handleMarkerSelect }"
+                zoomLevel="{! v.zoomLevel }"
+                listView="hidden">
+        </lightning:map>
+    </lightning:card>
+</aura:component>

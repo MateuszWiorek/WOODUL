@@ -1,0 +1,10 @@
+<!--
+ - Created by Mateusz Wiorek on 19.02.2020.
+ -->
+
+<aura:component description="WDL_HeaderSearchForm" implements="flexipage:availableForAllPageTypes">
+    <div>
+        <p>{!c.getMessage}</p>
+    </div>
+    <button class="slds-button" id="buttonNew" onclick="{!c.newAccount}">NEW</button>
+</aura:component>

@@ -75,6 +75,7 @@
         <members>svg</members>
         <members>ticker</members>
         <members>toast</members>
+        <members>WDLC_SendFurnitureId</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
