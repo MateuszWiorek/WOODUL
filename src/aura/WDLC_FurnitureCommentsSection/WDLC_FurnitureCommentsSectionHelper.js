@@ -7,7 +7,7 @@
         commentAction.setParams({
            "rating" : component.get("v.rating"),
            "commentMessage" : component.get("v.richComment"),
-           "productId" : component.get("v.product.Id")
+           "productId" : "01t5J000000FuOoQAK"
         });
 
         commentAction.setCallback(this, function(response){
@@ -23,7 +23,7 @@
     doInit : function(component, event){
         let getCommentAction = component.get("c.getComments");
         getCommentAction.setParams({
-            "productId" : component.get("v.product.Id")
+            "productId" : "01t5J000000FuOoQAK"
         });
         getCommentAction.setCallback(this, function(response){
             let state = response.getState();

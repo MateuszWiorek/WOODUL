@@ -30,7 +30,7 @@
                 </div>
             </div>
             <aura:if isTrue="{!not(empty(v.comments))}">
-                <c:WDLC_FurnitureCommentsSection comments="{!v.comments}"/>
+                <c:WDLC_FurnitureCommentsList comments="{!v.comments}"/>
             </aura:if>
         </div>
     </lightning:card>
