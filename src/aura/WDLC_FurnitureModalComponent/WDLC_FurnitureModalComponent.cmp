@@ -1,0 +1,7 @@
+<!--
+ - Created by Mateusz Wiorek on 24.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureModalComponent">
+    <aura:attribute name="typeOfModal" type="String" access="global"/>
+</aura:component>

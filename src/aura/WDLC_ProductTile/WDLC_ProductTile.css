@@ -1,0 +1,21 @@
+/**
+ * Created by Mateusz Wiorek on 18.03.2020.
+ */
+ .THIS .movieImage {
+     width: 80%;
+     height: auto;
+     overflow: hidden;
+     border-radius: 5px;
+ }
+  .THIS .fullName{
+        font-size: 18px;
+        color: black;
+        font-weight:bold;
+        text-align: center;
+}
+.THIS .movieImage:hover{
+     opacity: 0.8;
+}
+.THIS .movieImage:hover .fullName{
+    text-decoration: underline;
+}
