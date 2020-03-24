@@ -3,19 +3,19 @@
  */
 ({
     doComment: function(component, event){
-        let commentAction = component.get("c.addComment")
+        let commentAction = component.get("c.addComment");
+        let richText = component.get("v.richComment");
+        console.log(richText);
         commentAction.setParams({
-           "rating" : component.get("v.rating"),
-           "commentMessage" : component.get("v.richComment"),
-           "productId" : "01t5J000000FuOoQAK"
+           "rating" : component.get("v.ratingGrade"),
+           "content" : component.get("v.richComment"),
+           "productId" : component.get("v.product").productId
         });
 
         commentAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
-
             }else{
-
             }
         });
         $A.enqueueAction(commentAction);
@@ -23,7 +23,7 @@
     doInit : function(component, event){
         let getCommentAction = component.get("c.getComments");
         getCommentAction.setParams({
-            "productId" : "01t5J000000FuOoQAK"
+            "productId" : component.get("v.product").productId
         });
         getCommentAction.setCallback(this, function(response){
             let state = response.getState();

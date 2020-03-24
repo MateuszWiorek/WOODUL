@@ -15,8 +15,8 @@
 			el = el.nextElementSibling;    		        
         }
         component.set("v.rating", rating);
-        var myEvent = component.getEvent("change");
-        myEvent.setParams({"rating": rating});
+        let myEvent = component.getEvent("changeEvent");
+        myEvent.setParams({"ratingProduct": rating});
         myEvent.fire();
 
 	}

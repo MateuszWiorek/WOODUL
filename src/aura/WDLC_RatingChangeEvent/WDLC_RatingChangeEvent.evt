@@ -3,5 +3,5 @@
  -->
 
 <aura:event type="COMPONENT" description="WDLC_RatingChangeEvent">
-        <aura:attribute name="ratingProduct" type="integer"/>
+        <aura:attribute name="ratingProduct" type="Integer" access="global"/>
 </aura:event>
