@@ -7,13 +7,17 @@
     },
     doInit : function(component, event, helper){
         let initAction = component.get("c.getProduct");
+        let productUrl = decodeURIComponent(window.location.pathname.substring(1));
+        let variables = productUrl.split("/");
+        let productToShowId = variables[variables.length-1];
         initAction.setParams({
-            "productId" : component.get("v.productId")
+            "productId" : productToShowId
         });
         initAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
                 component.set("v.product", response.getReturnValue());
+                component.set("v.productId", productToShowId);
             }
         });
         $A.enqueueAction(initAction);

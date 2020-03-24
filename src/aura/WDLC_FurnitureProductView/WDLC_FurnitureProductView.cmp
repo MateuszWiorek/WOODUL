@@ -4,7 +4,7 @@
 
 <aura:component description="WDLC_FurnitureProductView" controller="WDLC_ProductViewController"
                 implements="forceCommunity:availableForAllPageTypes">
-    <aura:attribute type="String" name="productId" access="global" default="01t5J000000FuOoQAK"/>
+    <aura:attribute type="String" name="productId" access="global" />
     <aura:attribute type="Object" name="product" access="global" default="null"/>
 
     <aura:handler name="retrieveProductId" action="{!c.handleProductId}" event="c:WDLC_SendFurnitureId"/>
