@@ -7,6 +7,8 @@
     <aura:attribute type="Object" name="accountInfo" access="global"/>
     <aura:attribute type="Boolean" name="canBeShown" access="global"/>
 
+    <aura:registerEvent name="WDL_RefreshAfterDeleteRecord" type="c:WDL_RefreshAfterDeleteRecord"/>
+
     <aura:if isTrue="{!v.canBeShown}">
     <section id="newClientSectionId" role="dialog" tabindex="-1" class="slds-modal slds-modal_small slds-fade-in-open"
              aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
