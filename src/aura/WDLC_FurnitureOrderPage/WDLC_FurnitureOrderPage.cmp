@@ -1,0 +1,74 @@
+<!--
+ - Created by Mateusz Wiorek on 24.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureOrderPage" controller="WDLC_FurnitureOrderController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="productsToOrder" type="Object[]" access="global"/>
+    <aura:attribute type="String" name="totalPrice"/>
+    <aura:attribute type="String" name="billingStreet"/>
+    <aura:attribute type="String" name="billingPostalCode"/>
+    <aura:attribute type="String" name="billingState"/>
+    <aura:attribute type="String" name="billingCountry"/>
+    <aura:attribute type="String" name="billingCity"/>
+
+
+    <!--    <aura:registerEvent type="".-->
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card>
+        <div class="slds-grid">
+            <div class="slds-col slds-size--5-of-12">
+                <lightning:card>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate" title="Product">Product</div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="Quantity">Quantity
+                                </div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="Total price">Total price
+                                </div>
+                            </strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <aura:iteration var="cell" items="{!v.productsToOrder}" indexVar="index">
+                            <tr class="slds-hint-parent " aura:id="resultItem" data-index="{!index}">
+                                <td data-label="{!$Label.c.Account_Name}">
+                                    <div style="max-width:70px;">
+                                        <c:WDLC_ProductTile product="{!cell.product}"/>
+                                    </div>
+                                </td>
+                                <td data-label="{!$Label.c.Description}">
+                                    <ui:inputNumber value="{!cell.quantity}"/>
+                                </td>
+                                <td data-label="Total price"></td>
+                            </tr>
+                        </aura:iteration>
+
+                        </tbody>
+                    </table>
+                </lightning:card>
+            </div>
+            <div class="slds-col slds-size-1-of-12"/>
+            <div class="slds-col slds-size--1-of-2" style="padding-right:10px;">
+                <lightning:input label="Billing Street" value="{!v.billingStreet}"/>
+                <lightning:input label="Postal Code" value="{!v.billingPostalCode}"/>
+                <lightning:input label="State" value="{!v.billingState}"/>
+                <lightning:input label="Country" value="{!v.billingCountry}"/>
+                <lightning:input label="City" value="{!v.billingCity}"/>
+                <center class="productInfo" style="margin-top: 15px;">
+                    <lightning:button class="slds-button slds-button_outline-brand"
+                                  onclick="{!c.makeOrderr}">Order</lightning:button>
+                </center>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>
