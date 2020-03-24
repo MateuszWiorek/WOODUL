@@ -7,4 +7,12 @@ public with sharing class WDLC_ProductViewController {
     public static WDLC_ProductWrapper getProduct(String productId){
         return WDLC_ProductViewHelper.getProduct(productId);
     }
+    @AuraEnabled
+    public static void addProductToBasket(String productId){
+        WDLC_BasketController.addProductToBasket(productId);
+    }
+    @AuraEnabled
+    public static void addProductToWishList(String productId){
+        WDLC_WishlistController.addToWishList(productId);
+    }
 }

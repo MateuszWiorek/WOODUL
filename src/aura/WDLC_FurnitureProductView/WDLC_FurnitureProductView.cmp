@@ -28,7 +28,8 @@
                     </p>
                     <lightning:button class="slds-button slds-button_outline-brand"
                                       onclick="{!c.addToCart}">Add to cart</lightning:button>
-                    <lightning:button class="slds-button slds-button_outline-brand">Add to List</lightning:button>
+                    <lightning:button class="slds-button slds-button_outline-brand"
+                    onclick="{!c.addToWishList}">Add to List</lightning:button>
 
                 </div>
             </div>
@@ -52,4 +53,5 @@
 
         </lightning:card>
     </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
 </aura:component>

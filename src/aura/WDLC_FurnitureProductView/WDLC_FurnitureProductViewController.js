@@ -20,5 +20,8 @@
     },
     addToCart : function(component, event, helper){
         helper.doAddToCart(component,event);
+    },
+    addToWishList : function(component, event, helper){
+        helper.doAddToWishList(component, event);
     }
 })
