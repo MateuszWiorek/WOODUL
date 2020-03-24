@@ -17,5 +17,8 @@
             }
         });
         $A.enqueueAction(initAction);
+    },
+    addToCart : function(component, event, helper){
+        helper.doAddToCart(component,event);
     }
 })

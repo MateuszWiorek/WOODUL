@@ -4,6 +4,8 @@
 ({
     doHandleProductId : function(component, event){
         let productId = event.getParam("productId");
-
+    },
+    doAddToCart : function(component,event){
+        let productToBuyId = component.get("v.productId");
     }
 })

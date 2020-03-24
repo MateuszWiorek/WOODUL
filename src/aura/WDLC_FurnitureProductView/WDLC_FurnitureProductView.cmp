@@ -26,7 +26,8 @@
                         <lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
                                                    currencyCode="EUR" currencyDisplayAs="symbol"/>
                     </p>
-                    <lightning:button class="slds-button slds-button_outline-brand">Add to cart</lightning:button>
+                    <lightning:button class="slds-button slds-button_outline-brand"
+                                      onclick="{!c.addToCart}">Add to cart</lightning:button>
                     <lightning:button class="slds-button slds-button_outline-brand">Add to List</lightning:button>
 
                 </div>
