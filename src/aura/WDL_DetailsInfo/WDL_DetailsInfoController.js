@@ -9,13 +9,10 @@
     },
 
     editRecord : function(component, event, helper) {
-          helper.doEditRecord(component, event);
+        helper.doEditRecord(component, event);
     },
 
     showModal : function(component, event, helper) {
        helper.doShowModal(component, event)
-    },
-    hideModal : function(component,event, helper){
-        helper.doHideModal(component, event);
     }
 })
