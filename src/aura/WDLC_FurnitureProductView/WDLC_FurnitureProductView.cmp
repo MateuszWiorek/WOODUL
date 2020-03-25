@@ -26,9 +26,9 @@
                                                    currencyCode="EUR" currencyDisplayAs="symbol"/>
                     </p>
                     <lightning:button class="slds-button slds-button_outline-brand"
-                                      onclick="{!c.addToCart}">Add to cart</lightning:button>
+                                      onclick="{!c.addToCart}">{!$Label.c.WDLC_AddToCart}</lightning:button>
                     <lightning:button class="slds-button slds-button_outline-brand"
-                    onclick="{!c.addToWishList}">Add to List</lightning:button>
+                    onclick="{!c.addToWishList}">{!$Label.c.WDLC_AddToList}</lightning:button>
 
                 </div>
             </div>
