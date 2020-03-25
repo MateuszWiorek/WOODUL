@@ -20,7 +20,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
     public static Order addOrder(String addressOrder) {
         WDLC_OrderAddressWrapper address = (WDLC_OrderAddressWrapper) JSON.deserialize(addressOrder, WDLC_OrderAddressWrapper.class);
         if(!isAddressCorrect(address)){
-            throw new WDLC_CustomException('Please fill address fields correct.');
+            throw new WDLC_CustomException(Label.WDLC_AddressOrderError);
         }
         List<WDLC_ProductToOrderWrapper> productsToOrder = getProductToOrder();
         Order newOrder = new Order();
@@ -46,7 +46,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
                 orderId = saveResults.Id;
             }
         } catch (DmlException e) {
-            throw new WDLC_CustomException('We cannot process Your order. Sorry');
+            throw new WDLC_CustomException(Label.WDLC_OrderError);
         }
         List<OrderItem> itemsToOrder = new List<OrderItem>();
         for (WDLC_ProductToOrderWrapper wrappedProduct : productsToOrder) {
@@ -61,7 +61,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
             insert itemsToOrder;
             removeFromBasket();
         } catch (DmlException e) {
-            throw new WDLC_CustomException('We cannot process Your order. Sorry');
+            throw new WDLC_CustomException(Label.WDLC_OrderError);
         }
         return newOrder;
     }
