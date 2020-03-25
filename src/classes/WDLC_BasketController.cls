@@ -8,7 +8,19 @@ public with sharing class WDLC_BasketController {
         WDLC_BasketHelper.addProductToBasket(id);
     }
     @AuraEnabled
-    public static List<WDLC_ProductWrapper> getProductsInBasket(){
+    public static List<WDLC_ProductToOrderWrapper> getProductsInBasket(){
         return WDLC_BasketHelper.getProductsInBasket();
+    }
+    @AuraEnabled
+    public static List<WDLC_ProductToOrderWrapper> increaseProductCounter(String id){
+        return WDLC_BasketHelper.increaseProductCounter(id);
+    }
+    @AuraEnabled
+    public static List<WDLC_ProductToOrderWrapper> decreaseProductCounter(String id){
+        return WDLC_BasketHelper.decreaseProductCounter(id);
+    }
+    @AuraEnabled
+    public static List<WDLC_ProductToOrderWrapper> removeProduct(String id){
+        return WDLC_BasketHelper.removeProduct(id);
     }
 }
