@@ -1,0 +1,112 @@
+<!--
+ - Created by Mateusz Wiorek on 24.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureOrderPage" controller="WDLC_FurnitureOrderController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="productsToOrder" type="Object[]" access="global"/>
+    <aura:attribute type="String" name="totalPrice"/>
+    <aura:attribute type="User" name="userInfo" access="global"/>
+    <aura:attribute type="String" name="billingStreet"/>
+    <aura:attribute type="String" name="billingPostalCode"/>
+    <aura:attribute type="String" name="billingState"/>
+    <aura:attribute type="String" name="billingCountry"/>
+    <aura:attribute type="String" name="billingCity"/>
+    <aura:attribute type="Object" name="orderSummary"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card>
+        <div class="slds-grid">
+            <div class="slds-col slds-size--5-of-12">
+                <lightning:card>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate" style="width:70px;"
+                                     title="{!$Label.c.WDLC_Product}">{!$Label.c.WDLC_Product}</div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_Quantity}">{!$Label.c.WDLC_Quantity}
+                                </div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_TotalPrice}">Price
+                                </div>
+                            </strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <aura:iteration var="cell" items="{!v.productsToOrder}" indexVar="index">
+                            <tr class="slds-hint-parent " aura:id="resultItem" data-index="{!index}">
+                                <td data-label="{!$Label.c.WDLC_ProductName}">
+                                    <div style="height:70px; overflow:hidden;">
+                                        <c:WDLC_ProductTile product="{!cell.product}"/>
+                                    </div>
+                                </td>
+                                <td data-label="{!$Label.c.Description}">
+                                    <ui:inputNumber value="{!cell.quantity}" />
+                                </td>
+                                <td data-label="Price">
+                                    <lightning:formattedNumber value="{!cell.totalCost}" style="currency"
+                                                               currencyCode="EUR" currencyDisplayAs="symbol"/>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+
+                        </tbody>
+                    </table>
+                    <h2>Total price: <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
+                                                                currencyCode="EUR" currencyDisplayAs="symbol"/></h2>
+                </lightning:card>
+            </div>
+            <div class="slds-col slds-size-1-of-12"/>
+            <aura:if isTrue="{!not(empty(v.billingCountry))}">
+                <div class="slds-col slds-size--1-of-2" style="padding-right:10px;">
+                    <lightning:input label="{!$Label.c.WDLC_City}" value="{!v.billingCity}"/>
+                    <lightning:input label="{!$Label.c.WDLC_Street}" value="{!v.billingStreet}"/>
+                    <lightning:input label="{!$Label.c.WDLC_PostalCode}" value="{!v.billingPostalCode}"/>
+                    <lightning:input label="{!$Label.c.WDLC_State}" value="{!v.billingState}"/>
+                    <lightning:input label="{!$Label.c.WDLC_Country}" value="{!v.billingCountry}"/>
+                    <center class="productInfo" style="margin-top: 15px;">
+                        <lightning:button class="slds-button slds-button_outline-brand"
+                                          onclick="{!c.makeOrderr}">{!$Label.c.WDLC_Order}</lightning:button>
+                    </center>
+                </div>
+            </aura:if>
+        </div>
+    </lightning:card>
+    <aura:if isTrue="{!not(empty(v.orderSummary))}">
+        <lightning:card>
+            <lightning:recordViewForm recordId="{!v.orderSummary.Id}" objectApiName="Order">
+                <lightning:outputField fieldName="Status"/>
+                <lightning:outputField fieldName="BillingStreet"/>
+                <lightning:outputField fieldName="BillingCity"/>
+                <lightning:outputField fieldName="BillingPostalCode"/>
+                <lightning:outputField fieldName="BillingState"/>
+                <lightning:outputField fieldName="BillingCountry"/>
+                <lightning:outputField fieldName="TotalAmount"/>
+                <aura:iteration items="{!v.orderSummary.OrderItems}" var="item">
+                    <article>
+                        <div class="slds-media__figure">
+                            <h2>
+                                <ui:outputText value="{!item.Quantity}"/>
+                            </h2>
+                            <p>
+                                <ui:outputText value="{!item.PricebookEntry.Product2.Name}"/>
+                            </p>
+                        </div>
+                        <div class="slds-post__content slds-text-longform">
+                            <p>
+                                <ui:outputText value="{!item.UnitPrice}"/>
+                            </p>
+                        </div>
+                    </article>
+                </aura:iteration>
+            </lightning:recordViewForm>
+        </lightning:card>
+    </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+</aura:component>
