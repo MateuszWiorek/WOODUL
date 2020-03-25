@@ -8,4 +8,8 @@ public with sharing class WDLC_FurnitureOrdersHistoryController {
     public static List<Order> getOrders(){
         return WDLC_FurnitureOrdersHistoryHelper.getOrders();
     }
+    @AuraEnabled
+    public static Boolean addComplaint(String productName, String subject, String description){
+        return true;
+    }
 }

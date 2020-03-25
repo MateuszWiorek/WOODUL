@@ -19,7 +19,16 @@ public with sharing class WDLC_FurnitureOrdersHistoryHelper {
                         OrderNumber,
                         Status,
                         TotalAmount,
-                        Type
+                        Type, (
+                        SELECT Id,
+                                OrderId,
+                                OrderItemNumber,
+                                PricebookEntry.Product2.Name,
+                                PricebookEntry.Product2.id,
+                                Quantity,
+                                UnitPrice
+                        FROM OrderItems
+                )
                 FROM Order
                 WHERE CreatedById = :UserInfo.getUserId()
         ];

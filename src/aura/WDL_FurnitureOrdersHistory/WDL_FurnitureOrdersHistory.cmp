@@ -16,7 +16,7 @@
                 <tr class="slds-line-height_reset">
                     <th class="" scope="col"><strong>
                         <div class="slds-truncate slds-truncate_container_10"
-                             title="ShippingAddress">Order Id
+                             title="ShippingAddress">Products
                         </div>
                     </strong></th>
                     <th class="" scope="col"><strong>
@@ -32,20 +32,14 @@
                     <th scope="col"><strong>
                         <div class="slds-truncate slds-truncate_container--10" title="Status">Status</div>
                     </strong></th>
+                    <th scope="col"><strong>
+                        <div class="slds-truncate slds-truncate_container--10" title="Action">Action</div>
+                    </strong></th>
                 </tr>
                 </thead>
                 <tbody>
                 <aura:iteration var="cell" items="{!v.orders}" indexVar="index">
-                    <tr class="slds-hint-parent " aura:id="resultItem" data-index="{!index}">
-                        <td data-label="orderId">{!cell.Id}</td>
-                        <td data-label="{!$Label.c.ShippingAddress}">
-                                {!cell.BillingStreet + ', ' + cell.BillingCity + ', ' + cell.BillingCountry}</td>
-                        <td data-label="{!$Label.c.Description}">
-                            <lightning:formattedNumber value="{!cell.TotalAmount}" style="currency"
-                                                       currencyCode="EUR" currencyDisplayAs="symbol"/>
-                        </td>
-                        <td data-label="{!$Label.c.Description}"> {!cell.Status} </td>
-                    </tr>
+                    <c:WDLC_OrderHistoryRow cell="{!cell}"/>
                 </aura:iteration>
                 </tbody>
             </table>
