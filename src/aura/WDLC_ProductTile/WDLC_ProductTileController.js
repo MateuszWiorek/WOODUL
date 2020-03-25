@@ -11,5 +11,8 @@
      },
      sendFurnitureIdToProductView : function(component, event, helper){
          helper.doSendFurnitureIdToProductView(component, event);
+     },
+     addToFavorite : function(component, event, helper){
+         helper.doAddToFavorite(component, event);
      }
 })
