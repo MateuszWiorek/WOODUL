@@ -7,7 +7,6 @@
     <aura:attribute type="String" name="productId" access="global" />
     <aura:attribute type="Object" name="product" access="global" default="null"/>
 
-    <aura:handler name="retrieveProductId" action="{!c.handleProductId}" event="c:WDLC_SendFurnitureId"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!not(empty(v.product))}">
         <lightning:card>
@@ -40,14 +39,14 @@
                         <span>{!v.product.productDescription}</span>
                     </div>
                 </lightning:tab>
-                <lightning:tab label="Comments">
+                <lightning:tab label="{!$Label.c.WDLC_Comments}">
                     <div>
                         <c:WDLC_FurnitureCommentsSection product="{!v.product}"/>
                     </div>
                 </lightning:tab>
             </lightning:tabset>
             <div class="carousel">
-                <center><h3>Buy similar</h3></center>
+                <center><h3>{!$Label.c.WDLC_BuySimilar}</h3></center>
                 <c:WDLC_SimilarFurnitureProducts product="{!v.product}"/>
             </div>
 
