@@ -14,8 +14,12 @@
 
         commentAction.setCallback(this, function(response){
             let state = response.getState();
+            let toast = component.find("toastComponent");
             if(state === "SUCCESS"){
+                toast.openInformationToast($A.get("$Label.c.WDLC_AddedComment"), "success", "Success");
             }else{
+                toast.openInformationToast($A.get("$Label.c.WDLC_ErrorComment"),$A.get("$Label.c.WDL_Error"),
+                $A.get("$Label.c.WDL_Error"));
             }
         });
         $A.enqueueAction(commentAction);
@@ -29,6 +33,10 @@
             let state = response.getState();
             if(state === "SUCCESS"){
                 component.set("v.comments", response.getReturnValue());
+            }else{
+                let toast = component.find("toastComponent");
+                toast.openInformationToast($A.get("$Label.c.WDLC_ErrorComment"),$A.get("$Label.c.WDL_Error"),
+                $A.get("$Label.c.WDL_Error"));
             }
         });
         $A.enqueueAction(getCommentAction);

@@ -20,9 +20,9 @@
                     </div>
                     <div class="slds-form-element">
                         <div class="slds-form-element__control">
-                            <ui:inputTextArea value="{!v.richComment}" placeholder="Leave comment"/>
+                            <ui:inputTextArea value="{!v.richComment}" placeholder="{!$Label.c.WDLC_LeaveComment}"/>
                             <div style="slds-float--right">
-                                <lightning:buttonIcon iconName="utility:engage" alternativeText="Share"
+                                <lightning:buttonIcon iconName="utility:engage" alternativeText="{!$Label.c.WDLC_Share}"
                                                       size="large" onclick="{!c.comment}"/>
                             </div>
                         </div>
@@ -34,5 +34,6 @@
             </aura:if>
         </div>
     </lightning:card>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
 </aura:component>
 

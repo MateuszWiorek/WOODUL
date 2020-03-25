@@ -10,11 +10,15 @@
             <header class="slds-post__header slds-media">
                 <div class="slds-media__figure">
                     <h2>{!v.comment.createdByUser__c} </h2>
-                    <p><ui:outputDateTime value="{!v.comment.createdDate__c}"/></p>
+                    <p>
+                        <ui:outputDateTime value="{!v.comment.createdDate__c}"/>
+                    </p>
                 </div>
                 <div class="slds-media__body">
-                        <lightning:buttonIcon iconName="utility:favorite" variant="bare" alternativeText="Rating"
-                                              size="large" disabled="true" class="favoriteIcon"/>{!v.comment.Rating__c} / 5
+                    <lightning:buttonIcon iconName="utility:favorite" variant="bare"
+                                          alternativeText="{!$Label.c.WDLC_Rating}"
+                                          size="large" disabled="true"
+                                          class="favoriteIcon"/>{!v.comment.Rating__c} / 5
                 </div>
             </header>
             <div class="slds-post__content slds-text-longform">
