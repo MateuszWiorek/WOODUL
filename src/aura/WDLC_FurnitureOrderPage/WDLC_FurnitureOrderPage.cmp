@@ -24,16 +24,17 @@
                         <thead>
                         <tr class="slds-line-height_reset">
                             <th class="" scope="col"><strong>
-                                <div class="slds-truncate" title="Product">Product</div>
+                                <div class="slds-truncate"
+                                     title="{!$Label.c.WDLC_Product}">{!$Label.c.WDLC_Product}</div>
                             </strong></th>
                             <th class="" scope="col"><strong>
                                 <div class="slds-truncate slds-truncate_container_10"
-                                     title="Quantity">Quantity
+                                     title="{!$Label.c.WDLC_Quantity}">{!$Label.c.WDLC_Quantity}
                                 </div>
                             </strong></th>
                             <th class="" scope="col"><strong>
                                 <div class="slds-truncate slds-truncate_container_10"
-                                     title="Total price">Total price
+                                     title="{!$Label.c.WDLC_TotalPrice}">{!$Label.c.WDLC_TotalPrice}
                                 </div>
                             </strong></th>
                         </tr>
@@ -41,7 +42,7 @@
                         <tbody>
                         <aura:iteration var="cell" items="{!v.productsToOrder}" indexVar="index">
                             <tr class="slds-hint-parent " aura:id="resultItem" data-index="{!index}">
-                                <td data-label="{!$Label.c.Account_Name}">
+                                <td data-label="{!$Label.c.WDLC_ProductName}">
                                     <div style="max-width:70px;">
                                         <c:WDLC_ProductTile product="{!cell.product}"/>
                                     </div>
@@ -49,7 +50,8 @@
                                 <td data-label="{!$Label.c.Description}">
                                     <ui:inputNumber value="{!cell.quantity}"/>
                                 </td>
-                                <td data-label="Total price"></td>
+                                <td data-label="{!$Label.c.WDLC_TotalPrice}">
+                                </td>
                             </tr>
                         </aura:iteration>
 
@@ -59,14 +61,14 @@
             </div>
             <div class="slds-col slds-size-1-of-12"/>
             <div class="slds-col slds-size--1-of-2" style="padding-right:10px;">
-                <lightning:input label="Billing Street" value="{!v.billingStreet}"/>
-                <lightning:input label="Postal Code" value="{!v.billingPostalCode}"/>
-                <lightning:input label="State" value="{!v.billingState}"/>
-                <lightning:input label="Country" value="{!v.billingCountry}"/>
-                <lightning:input label="City" value="{!v.billingCity}"/>
+                <lightning:input label="{!$Label.c.WDLC_City}" value="{!v.billingCity}"/>
+                <lightning:input label="{!$Label.c.WDLC_Street}" value="{!v.billingStreet}"/>
+                <lightning:input label="{!$Label.c.WDLC_PostalCode}" value="{!v.billingPostalCode}"/>
+                <lightning:input label="{!$Label.c.WDLC_State}" value="{!v.billingState}"/>
+                <lightning:input label="{!$Label.c.WDLC_Country}" value="{!v.billingCountry}"/>
                 <center class="productInfo" style="margin-top: 15px;">
                     <lightning:button class="slds-button slds-button_outline-brand"
-                                  onclick="{!c.makeOrderr}">Order</lightning:button>
+                                      onclick="{!c.makeOrderr}">{!$Label.c.WDLC_City}</lightning:button>
                 </center>
             </div>
         </div>
