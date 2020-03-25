@@ -8,6 +8,7 @@
          meta.setAttribute("http-equiv", "Content-Security-Policy")
          meta.setAttribute("content", "date=no;img-src 'self' data:");
          document.getElementsByTagName('head')[0].appendChild(meta);
+        helper.doOnInit(component,event);
      },
      handleApplicationEvent : function(component, event, helper){
          helper.doHandleApplicationEvent(component, event);
