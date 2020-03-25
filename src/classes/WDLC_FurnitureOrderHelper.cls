@@ -3,16 +3,25 @@
  */
 
 public with sharing class WDLC_FurnitureOrderHelper {
-    public static List<WDLC_ProductToOrderWrapper> getProductToOrder(){
+    public static List<WDLC_ProductToOrderWrapper> getProductToOrder() {
         List<WDLC_ProductToOrderWrapper> wrappedProductsToOrder = new List<WDLC_ProductToOrderWrapper>();
         List<WDLC_ProductWrapper> wrappedProducts = WDLC_BasketController.getProductsInBasket();
-        for(WDLC_ProductWrapper prod : wrappedProducts){
+        for (WDLC_ProductWrapper prod : wrappedProducts) {
             wrappedProductsToOrder.add(new WDLC_ProductToOrderWrapper(prod, 1));
         }
         return wrappedProductsToOrder;
     }
-    public static Order addOrder(String addressOrder){
+    public static void removeFromBasket() {
+        Cache.SessionPartition sessionPartition = Cache.Session.getPartition('TMDBUser');
+        if (sessionPartition.contains('productsInBasket')) {
+            sessionPartition.remove('productsInBasket');
+        }
+    }
+    public static Order addOrder(String addressOrder) {
         WDLC_OrderAddressWrapper address = (WDLC_OrderAddressWrapper) JSON.deserialize(addressOrder, WDLC_OrderAddressWrapper.class);
+        if(!isAddressCorrect(address)){
+            throw new WDLC_CustomException('Please fill address fields correct.');
+        }
         List<WDLC_ProductToOrderWrapper> productsToOrder = getProductToOrder();
         Order newOrder = new Order();
         Order__c orderCustomSetting = Order__c.getInstance('WDLCOrder');
@@ -31,28 +40,39 @@ public with sharing class WDLC_FurnitureOrderHelper {
         newOrder.EffectiveDate = Date.today();
         newOrder.Pricebook2Id = pricebook.Id;
 
-        try{
+        try {
             Database.SaveResult saveResults = Database.insert(newOrder);
-            if(saveResults.isSuccess()){
+            if (saveResults.isSuccess()) {
                 orderId = saveResults.Id;
             }
-        }catch (DmlException e){
+        } catch (DmlException e) {
             throw new WDLC_CustomException('We cannot process Your order. Sorry');
         }
         List<OrderItem> itemsToOrder = new List<OrderItem>();
-            for(WDLC_ProductToOrderWrapper wrappedProduct : productsToOrder){
-                OrderItem item = new OrderItem(OrderId = orderId);
-                item.UnitPrice = Decimal.valueOf(wrappedProduct.product.productPrice);
-                item.Quantity = wrappedProduct.quantity;
-                item.PricebookEntryId = wrappedProduct.product.productPriceBookEntryId;
-                item.Product2Id = wrappedProduct.product.productId;
-                itemsToOrder.add(item);
-            }
-        try{
+        for (WDLC_ProductToOrderWrapper wrappedProduct : productsToOrder) {
+            OrderItem item = new OrderItem(OrderId = orderId);
+            item.UnitPrice = Decimal.valueOf(wrappedProduct.product.productPrice);
+            item.Quantity = wrappedProduct.quantity;
+            item.PricebookEntryId = wrappedProduct.product.productPriceBookEntryId;
+            item.Product2Id = wrappedProduct.product.productId;
+            itemsToOrder.add(item);
+        }
+        try {
             insert itemsToOrder;
-        }catch (DmlException e){
+            removeFromBasket();
+        } catch (DmlException e) {
             throw new WDLC_CustomException('We cannot process Your order. Sorry');
         }
         return newOrder;
+    }
+    private static Boolean isAddressCorrect(WDLC_OrderAddressWrapper address) {
+        if (String.isNotEmpty(address.billingCountry)
+                && String.isNotEmpty(address.billingPostalCode)
+                && String.isNotEmpty(address.billingCity)
+                && String.isNotEmpty(address.billingStreet)
+                && String.isNotEmpty(address.billingState)) {
+            return true;
+        }
+        return false;
     }
 }

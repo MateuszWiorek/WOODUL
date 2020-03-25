@@ -71,4 +71,5 @@
             </div>
         </div>
     </lightning:card>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
 </aura:component>

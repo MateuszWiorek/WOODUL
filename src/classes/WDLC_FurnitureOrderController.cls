@@ -9,6 +9,10 @@ public with sharing class WDLC_FurnitureOrderController {
     }
     @AuraEnabled
     public static Order makeOrder(String addressOrder){
-        return WDLC_FurnitureOrderHelper.addOrder(addressOrder);
+        try {
+            return WDLC_FurnitureOrderHelper.addOrder(addressOrder);
+        }catch (Exception e){
+            throw new WDLC_CustomException(e.getMessage());
+        }
     }
 }

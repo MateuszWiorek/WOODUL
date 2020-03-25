@@ -35,10 +35,13 @@
         });
         orderAction.setCallback(this, function(response){
             let state = response.getState();
+            let toast = component.find("toastComponent")
             if(state === "SUCCESS"){
-                alert('toast');
+                toast.openInformationToast($A.get("$Label.c.WDLC_OrderSuccess"),"success","Success");
             }else{
                 console.log(response.getError()[0]);
+                toast.openInformationToast(response.getError()[0].message, $A.get("$Label.c.WDL_Error"),
+                 $A.get("$Label.c.WDL_Error"));
             }
         });
         $A.enqueueAction(orderAction);
