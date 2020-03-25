@@ -15,9 +15,9 @@
                     console.log(i.totalCost);
                 }
                 component.set("v.totalPrice", total);
-                console.log(user);
             }else{
                 //toast will be here
+                console.log(response.getError()[0]);
             }
         });
         let getUserInfoAction = component.get("c.getCurrentUserInfo");
@@ -60,6 +60,7 @@
             let toast = component.find("toastComponent")
             if(state === "SUCCESS"){
                 component.set("v.orderSummary", response.getReturnValue());
+                component.set("v.showModal",true);
                 console.log(response.getReturnValue());
                 toast.openInformationToast($A.get("$Label.c.WDLC_OrderSuccess"),"success","Success");
             }else{
@@ -69,5 +70,31 @@
             }
         });
         $A.enqueueAction(orderAction);
+    },
+    doIncrementCounter : function(component, event){
+        let indexOfItem = event.currentTarget.dataset.record;
+        console.log('1'+indexOfItem);
+        let items = component.get("v.productsToOrder")[indexOfItem];
+        console.log(items);
+        let incrementAction = component.get("c.increaseProductCounter");
+        incrementAction.setParams({
+            "productId" : idOfProduct
+        });
+    },
+    doRefreshTable : function(component, event){
+        console.log('hi');
+        let getItemsAction = component.get("c.getProductsToOrder");
+        getItemsAction.setCallback(this,function(response){
+            let state = response.getState();
+            if(state==="SUCCESS"){
+                 let total = 0;
+                 component.set("v.productsToOrder", response.getReturnValue());
+                 for(let i of response.getReturnValue()){
+                    total += i.totalCost;
+                 }
+                 component.set("v.totalPrice", total);
+            }
+        });
+        $A.enqueueAction(getItemsAction);
     }
 })

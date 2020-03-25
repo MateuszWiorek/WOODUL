@@ -4,12 +4,6 @@
 
 public with sharing class WDLC_FurnitureOrderHelper {
     public static List<WDLC_ProductToOrderWrapper> getProductToOrder() {
-//        List<WDLC_ProductToOrderWrapper> wrappedProductsToOrder = new List<WDLC_ProductToOrderWrapper>();
-//        List<WDLC_ProductWrapper> wrappedProducts = WDLC_BasketController.getProductsInBasket();
-//        for (WDLC_ProductWrapper prod : wrappedProducts) {
-//            wrappedProductsToOrder.add(new WDLC_ProductToOrderWrapper(prod, 1));
-//        }
-//        return wrappedProductsToOrder;
         System.debug(WDLC_BasketController.getProductsInBasket());
         return WDLC_BasketController.getProductsInBasket();
     }
@@ -65,7 +59,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
             insert itemsToOrder;
             removeFromBasket();
         } catch (DmlException e) {
-            throw new WDLC_CustomException(Label.WDLC_OrderError);
+            throw new WDLC_CustomException(Label.WDLC_OrderError + 'items' + e.getMessage());
         }
         return [
                 SELECT BillingCountry, BillingState, BillingPostalCode, BillingCity, BillingStreet,

@@ -8,6 +8,18 @@ public with sharing class WDLC_FurnitureOrderController {
         return WDLC_FurnitureOrderHelper.getProductToOrder();
     }
     @AuraEnabled
+    public static WDLC_ProductToOrderWrapper increaseProductCounter(String productId){
+        return WDLC_BasketController.increaseProductCounter(productId);
+    }
+    @AuraEnabled
+    public static WDLC_ProductToOrderWrapper decreaseProductCounter(String productId){
+        return WDLC_BasketController.decreaseProductCounter(productId);
+    }
+    @AuraEnabled
+    public static void removeProductFromBasket(String productId){
+        WDLC_BasketController.removeProduct(productId);
+    }
+    @AuraEnabled
     public static Order makeOrder(String addressOrder) {
         try {
             return WDLC_FurnitureOrderHelper.addOrder(addressOrder);
