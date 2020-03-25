@@ -4,25 +4,39 @@
 
 public with sharing class WDLC_BasketHelper {
 
-    public static void addProductToBasket(String productId) {
+    public static void addProductToBasket(String id) {
         String cachedProducts;
         Cache.SessionPartition sessionPartition = Cache.Session.getPartition('local.TMDBUser');
         if (sessionPartition.contains('productsInBasket')) {
             cachedProducts = (String) sessionPartition.get('productsInBasket');
-            if(!cachedProducts.contains(productId)) {
-                cachedProducts += ',' + productId;
+            if (!cachedProducts.contains(id)) {
+                cachedProducts += ',' + id + ':1';
+            } else {
+                Integer indexOfProduct = cachedProducts.indexOf(id);
+                Integer counter = Integer.valueOf(cachedProducts.split('').get(indexOfProduct + 19));
+                counter+=1;
+                String newCachedProducts = cachedProducts.substring(0, indexOfProduct + 19) + counter +
+                        cachedProducts.substring(indexOfProduct + 20);
+                cachedProducts = newCachedProducts;
             }
         } else {
-            cachedProducts = productId;
+                    cachedProducts = id + ':1';
         }
         sessionPartition.put('productsInBasket', cachedProducts);
     }
-    public static List<WDLC_ProductWrapper> getProductsInBasket() {
-        List<WDLC_ProductWrapper> wrappedProducts = new List<WDLC_ProductWrapper>();
+    public static List<WDLC_ProductToOrderWrapper> getProductsInBasket() {
+        List<String> listOfCachedProducts = new List<String>();
+        List<WDLC_ProductToOrderWrapper> wrappedProductsToOrder = new List<WDLC_ProductToOrderWrapper>();
+
         Cache.SessionPartition sessionPartition = Cache.Session.getPartition('local.TMDBUser');
         if (sessionPartition.contains('productsInBasket')) {
             String cachedProducts = (String) sessionPartition.get('productsInBasket');
-            List<String> listOfCachedProducts = cachedProducts.split(',');
+            Map<String,Integer> mapCachedProducts = new Map<String, Integer>();
+            List<String> cachedProductsList = cachedProducts.split(',');
+            for(String s : cachedProductsList){
+                mapCachedProducts.put(s.split(':')[0],Integer.valueOf(s.split(':')[1]));
+                listOfCachedProducts.add(s.split(':')[0]);
+            }
             List<Product2> products = [
                     SELECT
                             Description,
@@ -35,24 +49,23 @@ public with sharing class WDLC_BasketHelper {
                     WHERE Id IN :listOfCachedProducts
             ];
             List<PricebookEntry> pricebookEntries = [
-                    SELECT Name, Pricebook2Id, Product2Id, UnitPrice, Id
+                    SELECT Name, Pricebook2Id, Product2Id, UnitPrice
                     FROM PricebookEntry
                     WHERE Product2Id IN
-                            :listOfCachedProducts AND Pricebook2Id = '01s5J0000003TMAQA2'
+                            :listOfCachedProducts
             ];
             for (Product2 prod : products) {
                 for (PricebookEntry entry : pricebookEntries) {
                     if (prod.Id == entry.Product2Id) {
-                        WDLC_ProductWrapper wrapper =new WDLC_ProductWrapper(String.valueOf(prod.Id), prod.Name, prod.Description,
+                        WDLC_ProductWrapper wrap = new WDLC_ProductWrapper(String.valueOf(prod.Id), prod.Name, prod.Description,
                                 prod.ProductCode, prod.photoUrl__c, String.valueOf(entry.UnitPrice));
-                        wrapper.productPriceBookEntryId = entry.Id;
-                        wrappedProducts.add(wrapper);
+                        wrappedProductsToOrder.add(new WDLC_ProductToOrderWrapper(wrap,mapCachedProducts.get(wrap.productId)));
                     }
                 }
             }
-            return wrappedProducts;
+            return wrappedProductsToOrder;
         } else {
-            return wrappedProducts;
+            return wrappedProductsToOrder;
         }
     }
 }

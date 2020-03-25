@@ -8,7 +8,7 @@ public with sharing class WDLC_BasketController {
         WDLC_BasketHelper.addProductToBasket(id);
     }
     @AuraEnabled
-    public static List<WDLC_ProductWrapper> getProductsInBasket(){
+    public static List<WDLC_ProductToOrderWrapper> getProductsInBasket(){
         return WDLC_BasketHelper.getProductsInBasket();
     }
 }

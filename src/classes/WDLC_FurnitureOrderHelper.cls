@@ -4,12 +4,14 @@
 
 public with sharing class WDLC_FurnitureOrderHelper {
     public static List<WDLC_ProductToOrderWrapper> getProductToOrder() {
-        List<WDLC_ProductToOrderWrapper> wrappedProductsToOrder = new List<WDLC_ProductToOrderWrapper>();
-        List<WDLC_ProductWrapper> wrappedProducts = WDLC_BasketController.getProductsInBasket();
-        for (WDLC_ProductWrapper prod : wrappedProducts) {
-            wrappedProductsToOrder.add(new WDLC_ProductToOrderWrapper(prod, 1));
-        }
-        return wrappedProductsToOrder;
+//        List<WDLC_ProductToOrderWrapper> wrappedProductsToOrder = new List<WDLC_ProductToOrderWrapper>();
+//        List<WDLC_ProductWrapper> wrappedProducts = WDLC_BasketController.getProductsInBasket();
+//        for (WDLC_ProductWrapper prod : wrappedProducts) {
+//            wrappedProductsToOrder.add(new WDLC_ProductToOrderWrapper(prod, 1));
+//        }
+//        return wrappedProductsToOrder;
+        System.debug(WDLC_BasketController.getProductsInBasket());
+        return WDLC_BasketController.getProductsInBasket();
     }
     public static void removeFromBasket() {
         Cache.SessionPartition sessionPartition = Cache.Session.getPartition('TMDBUser');
@@ -17,9 +19,11 @@ public with sharing class WDLC_FurnitureOrderHelper {
             sessionPartition.remove('productsInBasket');
         }
     }
+    
+
     public static Order addOrder(String addressOrder) {
         WDLC_OrderAddressWrapper address = (WDLC_OrderAddressWrapper) JSON.deserialize(addressOrder, WDLC_OrderAddressWrapper.class);
-        if(!isAddressCorrect(address)){
+        if (!isAddressCorrect(address)) {
             throw new WDLC_CustomException(Label.WDLC_AddressOrderError);
         }
         List<WDLC_ProductToOrderWrapper> productsToOrder = getProductToOrder();
@@ -63,7 +67,21 @@ public with sharing class WDLC_FurnitureOrderHelper {
         } catch (DmlException e) {
             throw new WDLC_CustomException(Label.WDLC_OrderError);
         }
-        return newOrder;
+        return [
+                SELECT BillingCountry, BillingState, BillingPostalCode, BillingCity, BillingStreet,
+                        Status, TotalAmount, (
+                        SELECT Id,
+                                OrderId,
+                                OrderItemNumber,
+                                PricebookEntry.Product2.Name,
+                                PricebookEntry.Product2.id,
+                                Quantity,
+                                UnitPrice
+                        FROM OrderItems
+                )
+                FROM Order
+                WHERE Id = :orderId
+        ];
     }
     private static Boolean isAddressCorrect(WDLC_OrderAddressWrapper address) {
         if (String.isNotEmpty(address.billingCountry)
