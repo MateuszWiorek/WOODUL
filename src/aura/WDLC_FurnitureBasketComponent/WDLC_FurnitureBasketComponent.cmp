@@ -9,6 +9,7 @@
     <aura:attribute name="itemsInBasket" type="String" access="global" default="0"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:WDLC_RefreshBasketComponent" action="{!c.refreshTable}"/>
     <div class="wrapper">
         <div class="cart">
             <lightning:buttonIcon iconName="utility:cart"

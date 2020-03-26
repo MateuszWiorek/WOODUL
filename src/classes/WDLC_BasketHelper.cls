@@ -10,19 +10,19 @@ public with sharing class WDLC_BasketHelper {
         if (sessionPartition.contains('productsInBasket')) {
             cachedProducts = (String) sessionPartition.get('productsInBasket');
             if (!cachedProducts.contains(id)) {
-                cachedProducts += ',' + id + ':1';
+                cachedProducts += id + ':1,';
                 sessionPartition.put('productsInBasket', cachedProducts);
             } else {
                 Integer indexOfProduct = cachedProducts.indexOf(id);
-                Integer counter = Integer.valueOf(cachedProducts.split('').get(indexOfProduct + 20));
+                Integer counter = Integer.valueOf(cachedProducts.split('').get(indexOfProduct + 19));
                 counter += 1;
-                String newCachedProducts = cachedProducts.substring(0, indexOfProduct + 20) + counter +
-                        cachedProducts.substring(indexOfProduct + 21);
+                String newCachedProducts = cachedProducts.substring(0, indexOfProduct + 19) + counter +
+                        cachedProducts.substring(indexOfProduct + 20);
                 cachedProducts = newCachedProducts;
                 sessionPartition.put('productsInBasket', newCachedProducts);
             }
         } else {
-            cachedProducts = id + ':1';
+            cachedProducts = id + ':1,';
             sessionPartition.put('productsInBasket', cachedProducts);
         }
     }
@@ -66,10 +66,11 @@ public with sharing class WDLC_BasketHelper {
         if (sessionPartition.contains('productsInBasket')) {
             cachedProducts = (String) sessionPartition.get('productsInBasket');
             if (cachedProducts.contains(productId)) {
+                sessionPartition.remove('productsInBasket');
                 Integer indexOfProduct = cachedProducts.indexOf(productId);
                 Integer counter = Integer.valueOf(cachedProducts.split('').get(indexOfProduct + 19));
                 String newCachedProducts = cachedProducts.substring(0, indexOfProduct) +
-                        cachedProducts.substring(indexOfProduct + 20);
+                        cachedProducts.substring(indexOfProduct + 21);
                 cachedProducts = newCachedProducts;
                 sessionPartition.put('productsInBasket', newCachedProducts);
             }
