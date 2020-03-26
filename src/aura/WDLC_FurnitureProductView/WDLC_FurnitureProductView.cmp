@@ -7,6 +7,8 @@
     <aura:attribute type="String" name="productId" access="global"/>
     <aura:attribute type="Object" name="product" access="global" default="null"/>
 
+    <aura:registerEvent type="c:WDLC_RefreshBasketComponent" name="refreshBasket"/>
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!not(empty(v.product))}">
         <lightning:card>

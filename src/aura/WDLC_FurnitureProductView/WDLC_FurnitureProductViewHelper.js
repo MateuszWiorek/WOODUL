@@ -16,6 +16,8 @@
             if(state === "SUCCESS"){
                 let toastComp = component.find("toastComponent");
                 toastComp.openInformationToast('Added to cart','success', 'success');
+                let basketEvent = $A.get("e:c:WDLC_RefreshBasketComponent");
+                basketEvent.fire();
             }
         });
         $A.enqueueAction(addToCartAction);
