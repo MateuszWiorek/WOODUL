@@ -4,6 +4,8 @@
 ({
     doSendDataToCase : function(component, event){
         let createCaseAction = component.get("c.addComplaint");
+        let prodName = component.get("v.product");
+        console.log(prodName);
         createCaseAction.setParams({
             "productName" : component.get("v.product"),
             "subject" : component.get("v.subject"),
@@ -12,7 +14,15 @@
         createCaseAction.setCallback(this, function(response){
             let state = response.getState();
             if(state=== "SUCCESS"){
-                console.log('todo');
+                let toast = component.find("toastComponent");
+                if(response.getReturnValue() == true){
+                toast.openInformationToast("Success", "success", "success");
+                }else{
+                toast.openInformationToast("error", "error", "error");
+                }
+            }else{
+                let toast = component.find("toastComponent");
+                toast.openInformationToast(response.getError()[0], "error", "error");
             }
         });
         $A.enqueueAction(createCaseAction);

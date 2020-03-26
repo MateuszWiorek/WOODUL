@@ -7,7 +7,7 @@
                 extensible="true">
     <aura:attribute name="cell" type="Object" access="global"/>
     <aura:attribute name="showModal" type="Boolean" access="global" default="false"/>
-    <aura:attribute name="product" type="Object" access="global"/>
+    <aura:attribute name="product" type="String" access="global"/>
     <aura:attribute name="subject" type="String" access="global"/>
     <aura:attribute name="description" type="String" access="global"/>
     <tr class="slds-hint-parent ">
@@ -43,7 +43,8 @@
                     <label class="slds-form-element__label" style="margin-bottom: 0;" for="text-input-id-1">Subject</label>
                 <ui:inputText value="{!v.subject}"/>
                     <label class="slds-form-element__label" style="margin-bottom: 0;" for="text-input-id-1">Description</label>
-                <ui:inputRichText value="{!v.description}"/>
+<!--                <ui:inputRichText value="{!v.description}" disabled="false"/>-->
+                    <lightning:inputRichText value="{!v.description}"/>
                     <lightning:select name="select1" label="Select product" required="true" value="{!v.product}">
                         <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
                             <option text="{!itemOrder.PricebookEntry.Product2.Name}"/>
@@ -52,10 +53,11 @@
                 </div>
                 <footer class="slds-modal__footer">
                     <button class="slds-button slds-button_neutral" onclick="{!c.closeModalCase}">Cancel</button>
-                    <button class="slds-button slds-button_brand">Send</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.sendDataToCase}">Send</button>
                 </footer>
             </div>
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
 </aura:component>
