@@ -10,6 +10,10 @@ public with sharing class WDLC_FurnitureOrdersHistoryController {
     }
     @AuraEnabled
     public static Boolean addComplaint(String productName, String subject, String description){
-        return true;
+        try {
+            return WDLC_FurnitureComplaintsController.createComplaint(productName, subject, description);
+        }catch (Exception e){
+            throw new WDLC_CustomException(e.getMessage());
+        }
     }
 }
