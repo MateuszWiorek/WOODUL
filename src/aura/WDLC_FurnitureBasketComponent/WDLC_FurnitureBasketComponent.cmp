@@ -1,0 +1,66 @@
+<!--
+ - Created by Mateusz Wiorek on 26.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureBasketComponent" controller="WDLC_BasketController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="productsToOrder" type="Object[]" access="global"/>
+    <aura:attribute name="totalPrice" type="String" access="global"/>
+    <aura:attribute name="itemsInBasket" type="String" access="global" default="0"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="wrapper">
+        <div class="cart">
+            <lightning:buttonIcon iconName="utility:cart"
+                                  variant="bare" onclick=""
+                                  size="large"
+                                  iconClass="slds-size_large"
+                                  alternativeText="Cart"
+                                  disabled="true"
+                                  title="Cart"
+                                  class="cartIcon"/>
+            <span style="color:white; font-size:25px;">{!v.itemsInBasket}</span>
+        </div>
+        <div class="cartItems">
+            <aura:if isTrue="{!not(empty(v.productsToOrder))}">
+                <lightning:card>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate" style="width:70px;"
+                                     title="{!$Label.c.WDLC_Product}">{!$Label.c.WDLC_Product}</div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_Quantity}">{!$Label.c.WDLC_Quantity}
+                                </div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_TotalPrice}">Price
+                                </div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_TotalPrice}">Action
+                                </div>
+                            </strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <aura:iteration var="cell1" items="{!v.productsToOrder}" indexVar="index">
+                            <c:WDLC_OrderTableRow changeEvent="{!c.refreshTable}" cell="{!cell1}"/>
+                        </aura:iteration>
+
+                        </tbody>
+                    </table>
+                    <h2>Total price:
+                        <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
+                                                   currencyCode="EUR" currencyDisplayAs="symbol"/>
+                    </h2>
+                </lightning:card>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>
