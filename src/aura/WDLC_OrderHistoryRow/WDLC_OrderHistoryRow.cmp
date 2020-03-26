@@ -18,13 +18,21 @@
         </td>
         <td data-label="{!$Label.c.ShippingAddress}">
                 {!v.cell.BillingStreet + ', ' + v.cell.BillingCity + ', ' + v.cell.BillingCountry}</td>
+        <td data-label="{!$Label.c.WDLC_CreatedDate}">
+            <p>
+                <lightning:formattedDateTime value="{!v.cell.CreatedDate}" year="numeric" month="numeric"
+                                             day="numeric" hour="2-digit"
+                                             minute="2-digit" timeZone="UTC" timeZoneName="short" hour12="false"/>
+            </p>
+        </td>
         <td data-label="{!$Label.c.Description}">
             <lightning:formattedNumber value="{!v.cell.TotalAmount}" style="currency"
                                        currencyCode="EUR" currencyDisplayAs="symbol"/>
         </td>
         <td data-label="{!$Label.c.Description}"> {!v.cell.Status} </td>
         <td data-label="Action">
-            <lightning:buttonIcon iconName="utility:case" alternativeText="Make a complaint." variant="border-filled"
+            <lightning:buttonIcon iconName="utility:work_order_type" alternativeText="{!$Label.c.WDLC_MakeComplaint}"
+                                  variant="border-filled"
                                   onclick="{!c.openModalCase}"/>
         </td>
     </tr>
@@ -34,26 +42,30 @@
             <div class="slds-modal__container">
                 <header class="slds-modal__header">
                     <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
-                            title="Close">
-                        <span class="slds-assistive-text">Close</span>
+                            title="{!$Label.c.WDLC_Close}">
+                        <span class="slds-assistive-text">{!$Label.c.WDLC_Close}</span>
                     </button>
-                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Make a complaint</h2>
+                    <h2 id="modal-heading-01"
+                        class="slds-modal__title slds-hyphenate">{!$Label.c.WDLC_MakeComplaint}</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <label class="slds-form-element__label" style="margin-bottom: 0;" for="text-input-id-1">Subject</label>
-                <ui:inputText value="{!v.subject}"/>
-                    <label class="slds-form-element__label" style="margin-bottom: 0;" for="text-input-id-1">Description</label>
-<!--                <ui:inputRichText value="{!v.description}" disabled="false"/>-->
+                    <label class="slds-form-element__label" style="margin-bottom: 0;"
+                           for="text-input-id-1">{!$Label.c.WDLC_Subject}</label>
+                    <ui:inputText value="{!v.subject}"/>
+                    <label class="slds-form-element__label" style="margin-bottom: 0;"
+                           for="text-input-id-1">{!$Label.c.WDLC_Description}</label>
                     <lightning:inputRichText value="{!v.description}"/>
-                    <lightning:select name="select1" label="Select product" required="true" value="{!v.product}">
+                    <lightning:select name="select1" label="{!$Label.c.WDLC_SelectProduct}" required="true" value="{!v.product}">
                         <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
                             <option text="{!itemOrder.PricebookEntry.Product2.Name}"/>
                         </aura:iteration>
                     </lightning:select>
                 </div>
                 <footer class="slds-modal__footer">
-                    <button class="slds-button slds-button_neutral" onclick="{!c.closeModalCase}">Cancel</button>
-                    <button class="slds-button slds-button_brand" onclick="{!c.sendDataToCase}">Send</button>
+                    <button class="slds-button slds-button_neutral"
+                            onclick="{!c.closeModalCase}">{!$Label.c.WDLC_Cancel}</button>
+                    <button class="slds-button slds-button_brand"
+                            onclick="{!c.sendDataToCase}">{!$Label.c.WDLC_Send}</button>
                 </footer>
             </div>
         </section>

@@ -16,10 +16,12 @@
             if(state=== "SUCCESS"){
                 let toast = component.find("toastComponent");
                 if(response.getReturnValue() == true){
-                toast.openInformationToast("Success", "success", "success");
+                toast.openInformationToast("Your complaint has been sent to our support", "success", "success");
                 }else{
-                toast.openInformationToast("error", "error", "error");
+                toast.openInformationToast("We encountered an error while we was creating your complaint. Please try later."
+                , "error", "error");
                 }
+                component.set("v.showModal", false);
             }else{
                 let toast = component.find("toastComponent");
                 toast.openInformationToast(response.getError()[0], "error", "error");
