@@ -59,6 +59,10 @@
                         <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
                                                    currencyCode="EUR" currencyDisplayAs="symbol"/>
                     </h2>
+                    <center class="productInfo" style="margin-top: 15px;">
+                        <lightning:button class="slds-button slds-button_outline-brand"
+                                          onclick="{!c.goToOrder}">{!$Label.c.WDLC_Order}</lightning:button>
+                    </center>
                 </lightning:card>
             </aura:if>
         </div>
