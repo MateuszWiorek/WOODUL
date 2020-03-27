@@ -11,7 +11,6 @@
     <aura:handler event="c:WDLC_SednItemToSearch" action="{!c.handleApplicationEvent}"/>
 
     <aura:if isTrue="{!not(empty(v.searchResult))}">
-        <lightning:card>
             <center>
                 <h2>Results for: {!v.searchResult}
                 </h2>
@@ -23,7 +22,6 @@
                     </div>
                 </aura:iteration>
             </div>
-        </lightning:card>
     </aura:if>
     <c:WDLC_ErrorComponent aura:id="toastComponent"/>
 </aura:component>

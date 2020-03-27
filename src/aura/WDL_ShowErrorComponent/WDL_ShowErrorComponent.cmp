@@ -2,7 +2,8 @@
  - Created by Mateusz Wiorek on 21.02.2020.
  -->
 
-<aura:component access="global" description="WDL_ShowErrorComponent" implements="flexipage:availableForAllPageTypes">
+<aura:component access="global" description="WDL_ShowErrorComponent"
+                implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
     <aura:method name="openInformationToast" action="{!c.openToast}" access="global">
         <aura:attribute name="errorMessage" type="String" default="" access="global"/>
         <aura:attribute name="errorType" type="String" default="{!$Label.c.WDL_Error}" access="global"/>

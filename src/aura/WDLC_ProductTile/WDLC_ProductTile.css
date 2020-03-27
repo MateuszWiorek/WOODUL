@@ -6,6 +6,7 @@
      height: auto;
      overflow: hidden;
      border-radius: 5px;
+     position:relative;
  }
   .THIS .fullName{
         font-size: 18px;
@@ -24,4 +25,21 @@
 }
 .THIS .movieImage:hover .rateHover{
     display:block;
+}
+.THIS .favButton{
+    width:30px;
+}
+.THIS img{
+    width:100%;
+    height:auto;
+    object-fit:cover;
+}
+.THIS .buyNowButton{
+    border: none;
+    background-color:transparent;
+    color:black;
+}
+.THIS .buyNowButton:hover{
+    border:1px solid black;
+    background-color:transparent;
 }

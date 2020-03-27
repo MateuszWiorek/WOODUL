@@ -11,19 +11,22 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <lightning:card>
-        <div class="movieImage" style=" margin-left: 7px; width:15rem; height:auto;">
-            <div class="slds-m-around_medium rateHover">
-                <lightning:buttonIconStateful iconName="utility:favorite" selected="{! v.product.isWishlisted }"
-                                              onclick="{!c.addToFavorite}" alternativeText="Like" />
-            </div>
-            <div style="height:auto;">
+        <div class="movieImage" style=" margin-left: 7px; width:15rem; height:auto;" >
+            <div style="height:auto;" onclick="{!c.sendFurnitureIdToProductView}">
                 <figure style="position: relative;">
+                    <div class="slds-m-around_small rateHover">
+                        <lightning:buttonIconStateful iconName="utility:favorite" selected="{! v.product.isWishlisted }"
+                                                      onclick="{!c.addToFavorite}" alternativeText="Like" class="favButton" />
+                    </div>
                     <img src="{!v.product.productPhotoUrl}" alt="{!v.product.productName}"/>
                     <span class="fullName">{!v.product.productName}</span>
                     <p><lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
                                                   currencyCode="EUR" currencyDisplayAs="symbol"/></p>
                 </figure>
             </div>
+            <center>
+                <lightning:button onclick="{!c.addToOrder}" class="buyNowButton" value="Buy now"> Buy now </lightning:button>
+            </center>
         </div>
     </lightning:card>
     <c:WDL_ShowErrorComponent aura:id="toastComponent"/>

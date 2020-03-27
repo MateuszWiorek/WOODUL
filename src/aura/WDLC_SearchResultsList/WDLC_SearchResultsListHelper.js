@@ -28,8 +28,7 @@
                     component.set("v.results", response.getReturnValue());
                     component.set("v.searchResult", searchQuery);
                 }else{
-                    let childComponent = component.find("toastComponent");
-                    toastComponent.openErrorToast(response);
+                    component.find("toastComponent").openErrorToast(response);
                 }
             });
             $A.enqueueAction(findAction);

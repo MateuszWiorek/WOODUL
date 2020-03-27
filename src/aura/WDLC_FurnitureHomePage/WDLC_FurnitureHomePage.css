@@ -1,0 +1,102 @@
+/**
+ * Created by Mateusz Wiorek on 27.03.2020.
+ */
+.THIS .mainDiv{
+        width:1920px;
+        height:1080px;
+}
+.THIS .paddingZero{
+    padding:0px;
+}
+.THIS .bodyClass{
+    overflow:hidden;
+    max-width:100%;
+}
+.THIS .apartment{
+    height: 100vh;
+    width: 1920px;
+    background-position: top;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+    background-size: auto;
+}
+.THIS .table{
+    height: 100vh;
+    width: 1920px;
+    background-position: center;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.THIS .apartment span{
+    font-weight:bolder;
+    font-size:70px;
+    color:white;
+    position:absolute;
+    font-family: 'IBM Plex Mono';
+    text-transform: uppercase;
+}
+.THIS .apartment span:nth-of-type(1){
+    top:2%;
+    left:20%;
+}
+.THIS .apartment span:nth-of-type(2){
+    bottom:5%;
+    right:30%;
+}
+.THIS .table span{
+    font-weight:bolder;
+    font-family : 'Economica';
+    font-size:80px;
+    color:black;
+    position:absolute;
+}
+.THIS .table span:nth-of-type(1){
+    left: 40%;
+    bottom: 5%;
+}
+.THIS .goRawButton{
+    position:absolute;
+    left:27%;
+    bottom:30%;
+    background-color:transparent;
+    border: 1px solid black;
+    border-radius: 5%;
+    font-size: 32px;
+    color: black;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono';
+    transition: all 0.3s ease 0s;
+}
+.THIS .goRawButton:hover{
+    background-color:black;
+    color:white;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-7px);
+}
+.THIS .goRawButton:focus{
+    border: 1px solid black;
+}
+.THIS .goRawButton:active{
+    border: 1px solid black;
+}
+.THIS .goCozyButton{
+    position:absolute;
+    left:47%;
+    top:37%;
+    background-color:transparent;
+    border: 1px solid white;
+    border-radius: 5%;
+    font-size: 32px;
+    color: white;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+    font-family : 'Economica';
+}
+.THIS .goCozyButton:hover{
+    background-color:white;
+    color:black;
+    box-shadow: 0px 15px 20px rgba(255, 255, 255, 0.4);
+    transform: translateY(-7px);
+}

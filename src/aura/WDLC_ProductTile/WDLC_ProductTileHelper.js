@@ -5,11 +5,12 @@
     doSendFurnitureIdToProductView : function(component, event){
         let productToSend = component.get("v.product");
         let productToSendId = productToSend.productId;
-        let idEvent = component.get("e.c:WDLC_SendFurnitureId");
-        idEvent.setParams({
-            "productId" : productToSendId
-        });
-        idEvent.fire();
+        let eUrl = $A.get("e.force:navigateToURL");
+        let productNameToUrl = productToSend.productName.toLowerCase().replace(' ','-');
+        let urlToProduct = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/product/'
+        + productNameToUrl +'/'+productToSendId;
+        console.log(urlToProduct);
+        window.open(urlToProduct, '_top');
     },
     doAddToFavorite : function(component, event){
         let addAction = component.get("c.addToFavorite");
@@ -29,5 +30,19 @@
             }
         });
         $A.enqueueAction(addAction);
+    },
+    doAddToOrder : function(component, event){
+        let addToOrderAction = component.get("c.addToBasket");
+        let productToAddId = component.get("v.product").productId;
+
+        addToOrderAction.setParams({
+            "productId" : productToAddId
+        });
+        addToOrderAction.setCallback(this, function(response){
+            let state = response.getState();
+            if(state === "SUCCESS"){
+                component.find("toastComponent").openInformationToast('suc','success','succcess');
+            }
+        })
     }
 })
