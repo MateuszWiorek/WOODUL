@@ -36,4 +36,5 @@
 
     <c:WDL_ShowErrorComponent aura:id="errorChildComponent">
     </c:WDL_ShowErrorComponent>
+    <c:WDLC_ErrorToast aura:id="errorToastComponent"/>
 </aura:component>
