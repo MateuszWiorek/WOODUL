@@ -27,7 +27,8 @@ public with sharing class WDLC_SearchProductsHelper {
         for (Product2 prod : products) {
             for (PricebookEntry entry : pricebookEntries) {
                 if (prod.Id == entry.Product2Id) {
-                    wrappedProducts.add(new WDLC_ProductWrapper(String.valueOf(prod.Id), prod.Name, prod.Description, prod.ProductCode, prod.photoUrl__c, String.valueOf(entry.UnitPrice)));
+                    wrappedProducts.add(new WDLC_ProductWrapper(String.valueOf(prod.Id), prod.Name, prod.Description,
+                            prod.ProductCode, prod.photoUrl__c, String.valueOf(entry.UnitPrice)));
                 }
             }
         }
