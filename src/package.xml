@@ -141,16 +141,8 @@
         <name>Group</name>
     </types>
     <types>
-        <members>*</members>
-        <name>MilestoneType</name>
-    </types>
-    <types>
         <members>Furniture_Sale</members>
         <name>PathAssistant</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>PermissionSet</name>
     </types>
     <types>
         <members>WooDUL%3A Support Profile</members>
@@ -169,10 +161,6 @@
         <members>Account.Master</members>
         <members>Product2.Furniture</members>
         <name>RecordType</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Role</name>
     </types>
     <types>
         <members>TMDB_Slick</members>
