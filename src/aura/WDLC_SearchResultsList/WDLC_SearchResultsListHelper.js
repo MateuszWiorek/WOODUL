@@ -26,7 +26,6 @@
                 let state = response.getState();
                 if(state === "SUCCESS"){
                     component.set("v.results", response.getReturnValue());
-                    console.log(component.get("v.results"));
                     component.set("v.searchResult", searchQuery);
                 }else{
                     let childComponent = component.find("toastComponent");
