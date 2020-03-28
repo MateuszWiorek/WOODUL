@@ -51,5 +51,23 @@
             }
         });
         $A.enqueueAction(removeAction);
+    },
+    doChangeProductCounter : function(component,event){
+        let changeCounterAction = component.get("c.changeCounter");
+        changeCounterAction.setParams({
+            "id" : component.get("v.cell").product.productId,
+            "newValue" : component.get("v.cell").quantity
+        });
+        changeCounterAction.setCallback(this, function(response){
+            let state = response.getState();
+            if(state === "SUCCESS"){
+                let refreshEvent = component.getEvent("changeEvent");
+                refreshEvent.fire();
+            }else{
+                console.log('error');
+                console.log(response.getError()[0]);
+            }
+        });
+        $A.enqueueAction(changeCounterAction);
     }
 })

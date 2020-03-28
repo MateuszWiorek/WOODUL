@@ -11,5 +11,8 @@
     removeProduct : function(component, event, helper){
         console.log('ha');
         helper.doRemoveProduct(component, event);
+    },
+    changeProductCounter : function(component, event, helper){
+        helper.doChangeProductCounter(component, event);
     }
 })

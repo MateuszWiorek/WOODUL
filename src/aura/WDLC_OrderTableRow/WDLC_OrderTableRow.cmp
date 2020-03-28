@@ -21,7 +21,7 @@
                                       onclick="{!c.decrementCounter}"
                                       alternativeText="Remove"
                                       title="Remove"/>
-                <ui:inputNumber value="{!v.cell.quantity}"/>
+                <ui:inputNumber value="{!v.cell.quantity}" updateOn="{!changeProductCounter}"/>
                 <lightning:buttonIcon iconName="utility:add" variant="bare"
                                       onclick="{!c.incrementCounter}" alternativeText="Add"
                                       title="Add"/>
