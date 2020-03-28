@@ -21,7 +21,7 @@
     <lightning:card>
         <div class="container">
             <p>
-            <h2> List of Accounts </h2>
+            <h2>{!$Label.c.WDLC_AccountsList}</h2>
             </p>
             <table class="slds-table slds-table_cell-buffer slds-table_bordered">
                 <thead>
@@ -66,5 +66,5 @@
 
     <c:WDL_ShowErrorComponent aura:id="errorChildComponent">
     </c:WDL_ShowErrorComponent>
-
 </aura:component>
+

@@ -1,3 +1,6 @@
+/**
+ * Created by Mateusz Wiorek on 25.03.2020.
+ */
 ({
     handleAccountSending: function(component, event){
         let accountFromEvent = event.getParam("accountDetailInfo");
