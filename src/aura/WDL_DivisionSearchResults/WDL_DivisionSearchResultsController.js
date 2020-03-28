@@ -1,3 +1,6 @@
+/**
+ * Created by Mateusz Wiorek on 25.03.2020.
+ */
 ({
     handleApplicationEvent : function(cmp, event, helper) {
             let nameFromEv = event.getParam("searchItemName");

@@ -1,8 +1,8 @@
 <!--
- - Created by Mateusz Wiorek on 19.02.2020.
+ - Created by Mateusz Wiorek on 25.03.2020.
  -->
 
-<aura:component description="WDL_DetailsInfo" controller="WDL_DetailsInfoController"
+<aura:component description="WDL_DivisionDetailsInfo" controller="WDL_DetailsInfoController"
                 implements="flexipage:availableForAllPageTypes,force:hasRecordId">
     <aura:attribute name="accountDetail" type="Account" access="public"/>
     <aura:attribute name="showModal" type="Boolean" access="public" default="false"/>
@@ -46,5 +46,6 @@
 
     <c:WDL_ShowErrorComponent aura:id="errorChildComponent">
     </c:WDL_ShowErrorComponent>
+    <c:WDLC_ErrorToast aura:id="errorToastComponent"/>
 
 </aura:component>

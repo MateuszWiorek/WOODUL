@@ -16,10 +16,6 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
         <members>AnswersHome</members>
         <members>BandwidthExceeded</members>
         <members>ChangePassword</members>
@@ -42,11 +38,11 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>*</members>
+        <members>woodulCase</members>
         <name>AssignmentRule</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Case</members>
         <name>AssignmentRules</name>
     </types>
     <types>
@@ -75,27 +71,13 @@
         <members>svg</members>
         <members>ticker</members>
         <members>toast</members>
+        <members>WDLC_SendFurnitureId</members>
+        <members>WDLC_SearchFurnitureProductsBar</members>
         <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AutoResponseRules</name>
     </types>
     <types>
         <members>Opportunity.Furniture Sales</members>
         <name>BusinessProcess</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Community</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CommunityTemplateDefinition</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CommunityThemeDefinition</name>
     </types>
     <types>
         <members>WOOD_U_L</members>
@@ -202,6 +184,79 @@
     </types>
     <types>
         <members>*</members>
+        <name>EntitlementTemplate</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>EscalationRule</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>EscalationRules</name>
+    </types>
+    <types>
+        <members>Account_Record_Page</members>
+        <members>Case_Record_Page</members>
+        <members>Case_Record_Page1</members>
+        <members>Divisions</members>
+        <members>Knowledge_Record_Page</members>
+        <members>LightningSalesConsole_UtilityBar</members>
+        <members>LightningService_UtilityBar</members>
+        <members>Service_Contract_Record_Page</members>
+        <members>WOOD_U_L</members>
+        <members>WOOD_U_UtilityBar</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>ConvertLeadFromOpenToMeeting</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>ConvertLeadFromOpenToMeeting</members>
+        <name>FlowDefinition</name>
+    </types>
+    <types>
+        <members>Admins</members>
+        <name>Group</name>
+    </types>
+    <types>
+        <members>Furniture_Sale</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>WooDUL%3A Support Profile</members>
+        <members>WoodUL Store Profile</members>
+        <members>WoodUL%3A SalesProfile</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>Complaints</members>
+        <members>Multiskill</members>
+        <members>Tech_support</members>
+        <name>Queue</name>
+    </types>
+    <types>
+        <members>Account.Division</members>
+        <members>Account.Master</members>
+        <members>Product2.Furniture</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>TMDB_Slick</members>
+        <members>SurveyForce_UserGuide</members>
+        <members>SurveyForce_svg4everybody</members>
+        <members>SurveyForce_SLDS</members>
+        <members>SurveyForce_jquery_ui</members>
+        <members>SurveyForce_jquery</members>
+        <members>SurveyForce</members>
+        <members>Slick</members>
+        <members>slds</members>
+        <members>SiteSamples</members>
+        <members>jqueryui</members>
+        <members>jquerypackage</members>
+        <members>jQuery341</members>
+        <members>jQuery</members>
+        <members>jQuery</members>
         <name>StaticResource</name>
     </types>
     <types>
