@@ -36,4 +36,8 @@ public with sharing class WDLC_FurnitureOrderController {
         ];
         return u;
     }
+    @AuraEnabled
+    public static WDLC_ProductToOrderWrapper changeCounter(String id, Integer newValue){
+        return WDLC_BasketController.changeProductCounter(id, newValue);
+    }
 }
