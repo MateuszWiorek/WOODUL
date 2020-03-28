@@ -1,0 +1,35 @@
+/**
+ * Created by Mateusz Wiorek on 23.03.2020.
+ */
+ .THIS {
+     padding: 5px;
+ }
+.THIS .productInfo h2{
+    font-size: 36px;
+    font-weight: bold;
+}
+.THIS .productInfo span{
+    font-size: 21px;
+    font-weight: normal;
+}
+.THIS .productInfo button{
+    height:50px;
+    font-size: 20px;
+    margin: 10px 5px;
+}
+.THIS .productInfo p{
+    font-size: 24px;
+}
+.THIS .productInfo button:hover{
+    background-color: #005fb2;
+    color: white;
+    border: 1px solid white;
+}
+.THIS .productInfo .iconButton{
+    width:50px;
+    height:50px;
+    font-size:20px;
+}
+.THIS img:hover{
+    opacity: 0.8;
+}
