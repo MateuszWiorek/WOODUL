@@ -20,5 +20,8 @@
     closeModal : function(component, event,helper){
         helper.doRefreshTable(component,event);
         component.set("v.showModal",false);
+    },
+    openModal : function(component){
+        component.set("v.showModal", true);
     }
 })

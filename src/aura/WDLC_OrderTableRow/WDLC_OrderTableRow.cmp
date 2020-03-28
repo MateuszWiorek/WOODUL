@@ -4,7 +4,8 @@
 
 <aura:component description="WDLC_OrderTableRow" controller="WDLC_FurnitureOrderController"
                 implements="forceCommunity:availableForAllPageTypes" extensible="true">
-    <aura:attribute name="cell" type="Map" access="global"/>
+    <aura:attribute name="cell" type="Object" access="global"/>
+    <aura:attribute name="productQuantity" type="Decimal" access="global" default="{!v.cell.quantity}"/>
 
     <aura:registerEvent name="changeEvent" type="c:WDLC_RefreshOrderList"/>
     <tr>
@@ -21,7 +22,7 @@
                                       onclick="{!c.decrementCounter}"
                                       alternativeText="Remove"
                                       title="Remove"/>
-                <ui:inputNumber value="{!v.cell.quantity}" updateOn="{!changeProductCounter}"/>
+                <ui:inputNumber value="{!v.productQuantity}" change="{!c.changeProductCounter}"/>
                 <lightning:buttonIcon iconName="utility:add" variant="bare"
                                       onclick="{!c.incrementCounter}" alternativeText="Add"
                                       title="Add"/>

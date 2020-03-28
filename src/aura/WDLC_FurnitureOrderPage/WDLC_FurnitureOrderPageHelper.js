@@ -4,38 +4,35 @@
 ({
     doOnInit : function(component, event){
         let getListAction = component.get("c.getProductsToOrder");
-        getListAction.setCallback(this,function(response){
-            let state = response.getState();
-            if(state === "SUCCESS"){
-                let total = 0;
-                component.set("v.productsToOrder", response.getReturnValue());
-                for(let i of response.getReturnValue()){
-                    total += i.totalCost;
-                    console.log(total);
-                    console.log(i.totalCost);
-                }
-                component.set("v.totalPrice", total);
-            }else{
-                //toast will be here
-                console.log(response.getError()[0]);
-            }
-        });
-        let getUserInfoAction = component.get("c.getCurrentUserInfo");
-        getUserInfoAction.setCallback(this, function(response){
-            let state = response.getState();
-            console.log(state);
-            if(state === "SUCCESS"){
-                let userI = response.getReturnValue();
-                console.log(userI);
-                component.set("v.billingCountry", userI.Country);
-                component.set("v.billingCity", userI.City);
-                component.set("v.billingState", userI.State);
-                component.set("v.billingPostalCode", userI.PostalCode);
-                component.set("v.billingStreet", userI.Street);
-            }
-        });
-        $A.enqueueAction(getUserInfoAction);
-        $A.enqueueAction(getListAction);
+               getListAction.setCallback(this,function(response){
+                   let state = response.getState();
+                   if(state === "SUCCESS"){
+                       let total = 0;
+                       let products = response.getReturnValue();
+                       for(let i = 0; i<products.length; i++){
+                           total +=products[i].totalCost;
+                       }
+                       component.set("v.totalPrice", total);
+                       component.set("v.productsToOrder", products);
+                   }else{
+                   }
+               });
+               let getUserInfoAction = component.get("c.getCurrentUserInfo");
+               getUserInfoAction.setCallback(this, function(response){
+                   let state = response.getState();
+                   console.log(state);
+                   if(state === "SUCCESS"){
+                       let userI = response.getReturnValue();
+                       console.log(userI);
+                       component.set("v.billingCountry", userI.Country);
+                       component.set("v.billingCity", userI.City);
+                       component.set("v.billingState", userI.State);
+                       component.set("v.billingPostalCode", userI.PostalCode);
+                       component.set("v.billingStreet", userI.Street);
+                   }
+               });
+               $A.enqueueAction(getUserInfoAction);
+               $A.enqueueAction(getListAction);
     },
     doMakeOrder : function(component, event){
         let street = component.get("v.billingStreet");

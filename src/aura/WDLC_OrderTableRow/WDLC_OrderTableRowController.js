@@ -14,5 +14,8 @@
     },
     changeProductCounter : function(component, event, helper){
         helper.doChangeProductCounter(component, event);
+    },
+    onInit : function(component){
+        console.log(component.get("v.cell"));
     }
 })

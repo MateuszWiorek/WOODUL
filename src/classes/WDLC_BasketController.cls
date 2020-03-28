@@ -23,4 +23,8 @@ public with sharing class WDLC_BasketController {
     public static void removeProduct(String id){
         WDLC_BasketHelper.removeProduct(id);
     }
+    @AuraEnabled
+    public static WDLC_ProductToOrderWrapper changeProductCounter(String id, Integer newValue){
+        return WDLC_BasketHelper.changeProductCounter(id, newValue);
+    }
 }
