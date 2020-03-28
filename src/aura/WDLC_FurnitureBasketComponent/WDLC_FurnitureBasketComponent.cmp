@@ -12,14 +12,12 @@
     <aura:handler event="c:WDLC_RefreshBasketComponent" action="{!c.refreshTable}"/>
     <div class="wrapper">
         <div class="cart">
-            <lightning:buttonIcon iconName="utility:cart"
-                                  variant="bare" onclick=""
-                                  size="large"
-                                  iconClass="slds-size_large"
-                                  alternativeText="Cart"
-                                  disabled="true"
-                                  title="Cart"
-                                  class="cartIcon"/>
+            <div class="icon-cart" style="float: left">
+                <div class="cart-line-1" style="background-color: #02A7D7"></div>
+                <div class="cart-line-2" style="background-color: #02A7D7"></div>
+                <div class="cart-line-3" style="background-color: #02A7D7"></div>
+                <div class="cart-wheel" style="background-color: #02A7D7"></div>
+            </div>
             <span style="color:white; font-size:25px;">{!v.itemsInBasket}</span>
         </div>
         <div class="cartItems">
