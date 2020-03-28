@@ -59,4 +59,5 @@
                        $A.util.addClass(arr[i], "selectedRow");
                   }
              }
+    }
 })
