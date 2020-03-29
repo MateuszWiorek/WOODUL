@@ -19,11 +19,11 @@
                              title="{!$Label.c.WDLC_Products}">{!$Label.c.WDLC_Products}
                         </div>
                     </strong></th>
-                    <th class="" scope="col"><strong>
-                        <div class="slds-truncate slds-truncate_container_10"
-                             title="{!$Label.c.WDLC_BillingAddress}">{!$Label.c.WDLC_BillingAddress}
-                        </div>
-                    </strong></th>
+<!--                    <th class="" scope="col"><strong>-->
+<!--                        <div class="slds-truncate slds-truncate_container_10"-->
+<!--                             title="{!$Label.c.WDLC_BillingAddress}">{!$Label.c.WDLC_BillingAddress}-->
+<!--                        </div>-->
+<!--                    </strong></th>-->
                     <th class="" scope="col"><strong>
                         <div class="slds-truncate slds-truncate_container_10"
                              title="{!$Label.c.WDLC_CreatedDate}">{!$Label.c.WDLC_CreatedDate}
@@ -34,10 +34,10 @@
                              title="{!$Label.c.WDLC_TotalAmount}">{!$Label.c.WDLC_TotalAmount}
                         </div>
                     </strong></th>
-                    <th scope="col"><strong>
-                        <div class="slds-truncate slds-truncate_container--10" title="{!$Label.c.WDLC_Status}">
-                                {!$Label.c.WDLC_Status}</div>
-                    </strong></th>
+<!--                    <th scope="col"><strong>-->
+<!--                        <div class="slds-truncate slds-truncate_container&#45;&#45;10" title="{!$Label.c.WDLC_Status}">-->
+<!--                                {!$Label.c.WDLC_Status}</div>-->
+<!--                    </strong></th>-->
                     <th scope="col"><strong>
                         <div class="slds-truncate slds-truncate_container--10" title="{!$Label.c.WDLC_Action}">
                                 {!$Label.c.WDLC_Action}</div>

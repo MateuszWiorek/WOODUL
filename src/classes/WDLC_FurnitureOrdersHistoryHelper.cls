@@ -14,6 +14,7 @@ public with sharing class WDLC_FurnitureOrdersHistoryHelper {
                         BillingState,
                         CreatedById,
                         BillingStreet,
+                        CreatedDate,
                         Id,
                         Name,
                         OrderNumber,
@@ -31,6 +32,7 @@ public with sharing class WDLC_FurnitureOrdersHistoryHelper {
                 )
                 FROM Order
                 WHERE CreatedById = :UserInfo.getUserId()
+                ORDER BY CreatedDate DESC
         ];
     }
 }

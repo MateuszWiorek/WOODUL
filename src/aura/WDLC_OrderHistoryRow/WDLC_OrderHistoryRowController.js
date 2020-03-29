@@ -3,6 +3,7 @@
  */
 ({
     openModalCase : function(component, event, helper){
+        component.set("v.showDetailsModal", false);
         component.set("v.showModal", true);
     },
     sendDataToCase : function(component, event, helper){
@@ -10,5 +11,11 @@
     },
     closeModalCase : function(component, event){
         component.set("v.showModal", false);
-    }
+    },
+    openOrderDetails : function(component){
+        component.set("v.showDetailsModal", true);
+    },
+    closeOrderDetails : function(component){
+        component.set("v.showDetailsModal", false);
+    },
 })
