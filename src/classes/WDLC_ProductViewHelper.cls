@@ -18,10 +18,16 @@ public with sharing class WDLC_ProductViewHelper {
                 WHERE Product2Id = :product.Id
                 LIMIT 1
         ];
+        List<WDLC_Wishlist__c> wishlistedProducts = [
+                SELECT ProductId__c
+                FROM WDLC_Wishlist__c
+                WHERE ProductId__c = :productId
+        ];
 
         if (product != null && pricebookEntry != null) {
             wrappedProduct = new WDLC_ProductWrapper(String.valueOf(product.Id), product.Name, product.Description,
                     product.ProductCode, product.photoUrl__c, String.valueOf(pricebookEntry.UnitPrice));
+            wrappedProduct.isWishlisted = (wishlistedProducts.size() > 0 ? true : false);
         }
 
         return wrappedProduct;
