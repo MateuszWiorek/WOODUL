@@ -8,11 +8,11 @@
     <aura:if isTrue="{!not(empty(v.comments))}">
         <lightning:card>
             <ul class="slds-feed__list">
-                <aura:iteration items="{!v.comments}" var="comment">
-                    <li class="slds-feed__item comment">
-                        <c:WDLC_FurnitureComment comment="{!comment}"/>
-                    </li>
-                </aura:iteration>
+            <aura:iteration items="{!v.comments}" var="comment">
+                <li class="slds-feed__item comment">
+                    <c:WDLC_FurnitureComment comment="{!comment}"/>
+                </li>
+            </aura:iteration>
             </ul>
         </lightning:card>
     </aura:if>

@@ -4,6 +4,12 @@
 
 public with sharing class WDLC_FurnitureProductCommentsHelper {
     public static Boolean addComment(Integer rating, String commentMessage, String productId) {
+        if(checkIfUserAlreadyCommentProduct(productId)){
+            throw new WDLC_CustomException(Label.WDLC_CommentDuplicate);
+        }
+        if(String.isEmpty(commentMessage) || (rating == 0 || rating == null)){
+            throw new WDLC_CustomException(Label.WDLC_RateAndComment);
+        }
         WDLC_Comment__c comment = new WDLC_Comment__c();
         comment.CommentMessage__c = commentMessage;
         comment.Rating__c = rating;
@@ -13,10 +19,19 @@ public with sharing class WDLC_FurnitureProductCommentsHelper {
     }
     public static List<WDLC_Comment__c> getComments(String productId) {
         List<WDLC_Comment__c> comments = [
-                SELECT Name, CommentMessage__c, Rating__c, Product__c, createdByUser__c, createdDate__c
+                SELECT Name, CommentMessage__c, Rating__c, Product__c, createdByUser__c, createdDate__c, CreatedById
                 FROM WDLC_Comment__c
                 WHERE Product__c = :productId
         ];
         return comments;
+    }
+    private static Boolean checkIfUserAlreadyCommentProduct(String productId) {
+        List<WDLC_Comment__c> comments = getComments(productId);
+        for (WDLC_Comment__c com : comments) {
+            if (com.CreatedById == UserInfo.getUserId()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -4,8 +4,6 @@
 ({
     doComment: function(component, event){
         let commentAction = component.get("c.addComment");
-        let richText = component.get("v.richComment");
-        console.log(richText);
         commentAction.setParams({
            "rating" : component.get("v.ratingGrade"),
            "content" : component.get("v.richComment"),
@@ -14,12 +12,13 @@
 
         commentAction.setCallback(this, function(response){
             let state = response.getState();
-            let toast = component.find("toastComponent");
             if(state === "SUCCESS"){
-                toast.openInformationToast($A.get("$Label.c.WDLC_AddedComment"), "success", "Success");
+                component.find("toastComponent").openInformationToast($A.get("$Label.c.WDLC_AddedComment"),
+                 $A.get("$Label.c.Success"), $A.get("$Label.c.Success"));
+                 component.set("v.ratingGrade", 0);
+                 component.set("v.richComment", '');
             }else{
-                toast.openInformationToast($A.get("$Label.c.WDLC_ErrorComment"),$A.get("$Label.c.WDL_Error"),
-                $A.get("$Label.c.WDL_Error"));
+                component.find("errorComponent").openErrorToast(response);
             }
         });
         $A.enqueueAction(commentAction);
@@ -35,8 +34,7 @@
                 component.set("v.comments", response.getReturnValue());
             }else{
                 let toast = component.find("toastComponent");
-                toast.openInformationToast($A.get("$Label.c.WDLC_ErrorComment"),$A.get("$Label.c.WDL_Error"),
-                $A.get("$Label.c.WDL_Error"));
+                component.find("errorComponent").openErrorToast(response);
             }
         });
         $A.enqueueAction(getCommentAction);
