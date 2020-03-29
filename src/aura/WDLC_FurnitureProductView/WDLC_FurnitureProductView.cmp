@@ -35,7 +35,7 @@
                     </aura:if>
                     <aura:if isTrue="{!v.product.isWishlisted}">
                         <lightning:button class="slds-button slds-button_outline-brand"
-                                          onclick="{!c.addToWishList}">Remove from List
+                                          onclick="{!c.removeFromList}">{!$Label.c.WDLC_RemoveFromList}
                         </lightning:button>
                     </aura:if>
 

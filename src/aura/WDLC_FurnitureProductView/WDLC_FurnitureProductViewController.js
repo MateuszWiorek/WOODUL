@@ -27,5 +27,8 @@
     },
     addToWishList : function(component, event, helper){
         helper.doAddToWishList(component, event);
+    },
+    removeFromList : function(component, event, helper){
+        helper.doRemoveFromList(component, event);
     }
 })
