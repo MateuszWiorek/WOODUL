@@ -8,48 +8,10 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
 
-    <lightning:card>
-        <center><h2>Orders</h2></center>
-        <aura:if isTrue="{!not(empty(v.orders))}">
-            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
-                <thead>
-                <tr class="slds-line-height_reset">
-                    <th class="" scope="col"><strong>
-                        <div class="slds-truncate slds-truncate_container_10"
-                             title="{!$Label.c.WDLC_Products}">{!$Label.c.WDLC_Products}
-                        </div>
-                    </strong></th>
-<!--                    <th class="" scope="col"><strong>-->
-<!--                        <div class="slds-truncate slds-truncate_container_10"-->
-<!--                             title="{!$Label.c.WDLC_BillingAddress}">{!$Label.c.WDLC_BillingAddress}-->
-<!--                        </div>-->
-<!--                    </strong></th>-->
-                    <th class="" scope="col"><strong>
-                        <div class="slds-truncate slds-truncate_container_10"
-                             title="{!$Label.c.WDLC_CreatedDate}">{!$Label.c.WDLC_CreatedDate}
-                        </div>
-                    </strong></th>
-                    <th class="" scope="col"><strong>
-                        <div class="slds-truncate slds-truncate_container_10"
-                             title="{!$Label.c.WDLC_TotalAmount}">{!$Label.c.WDLC_TotalAmount}
-                        </div>
-                    </strong></th>
-<!--                    <th scope="col"><strong>-->
-<!--                        <div class="slds-truncate slds-truncate_container&#45;&#45;10" title="{!$Label.c.WDLC_Status}">-->
-<!--                                {!$Label.c.WDLC_Status}</div>-->
-<!--                    </strong></th>-->
-                    <th scope="col"><strong>
-                        <div class="slds-truncate slds-truncate_container--10" title="{!$Label.c.WDLC_Action}">
-                                {!$Label.c.WDLC_Action}</div>
-                    </strong></th>
-                </tr>
-                </thead>
-                <tbody>
-                <aura:iteration var="cell" items="{!v.orders}" indexVar="index">
-                    <c:WDLC_OrderHistoryRow cell="{!cell}"/>
-                </aura:iteration>
-                </tbody>
-            </table>
-        </aura:if>
-    </lightning:card>
+    <center><h2>{!$Label.c.WDLC_Order}</h2></center>
+    <aura:if isTrue="{!not(empty(v.orders))}">
+        <aura:iteration var="cell" items="{!v.orders}" indexVar="index">
+                <c:WDLC_OrderHistoryRow cell="{!cell}"/>
+        </aura:iteration>
+    </aura:if>
 </aura:component>

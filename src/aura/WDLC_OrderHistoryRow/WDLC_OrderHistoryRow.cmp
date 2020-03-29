@@ -11,32 +11,47 @@
     <aura:attribute name="product" type="String" access="global"/>
     <aura:attribute name="subject" type="String" access="global"/>
     <aura:attribute name="description" type="String" access="global"/>
-    <tr class="slds-hint-parent ">
-        <td data-label="orderId">
-            <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
-                <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity}</h2>
-            </aura:iteration>
-        </td>
-        <!--        <td data-label="{!$Label.c.ShippingAddress}">-->
-        <!--                {!v.cell.BillingStreet + ', ' + v.cell.BillingCity + ', ' + v.cell.BillingCountry}</td>-->
-        <td data-label="{!$Label.c.WDLC_CreatedDate}">
-            <p>
-                <lightning:formattedDateTime value="{!v.cell.CreatedDate}" year="numeric" month="numeric"
-                                             day="numeric" hour="2-digit"
-                                             minute="2-digit" timeZone="UTC" timeZoneName="short" hour12="false"/>
-            </p>
-        </td>
-        <td data-label="{!$Label.c.Description}">
-            <lightning:formattedNumber value="{!v.cell.TotalAmount}" style="currency"
-                                       currencyCode="EUR" currencyDisplayAs="symbol"/>
-        </td>
-        <!--        <td data-label="{!$Label.c.Description}"> {!v.cell.Status} </td>-->
-        <td data-label="Action">
-            <lightning:buttonIcon iconName="utility:work_order_type" alternativeText="{!$Label.c.WDLC_MakeComplaint}"
-                                  variant="border-filled"
-                                  onclick="{!c.openOrderDetails}"/>
-        </td>
-    </tr>
+
+    <lightning:card>
+        <div class="slds-grid">
+            <div class="slds-col slds-size--2-of-12">
+                <aura:if isTrue="{!v.cell.Status == 'Activated'}">
+                    <div style="padding-left:5px;">
+                        <lightning:icon iconName="action:approval" alternativeText="{!$Label.c.WDLC_Closed}"
+                                        class="iconClass"/>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.cell.Status =='Draft'}">
+                    <div style="padding-left:5px;">
+                        <lightning:icon iconName="action:change_record_type" alternativeText="{!$Label.c.WDLC_Working}"
+                                        class="iconClass"/>
+                    </div>
+                </aura:if>
+            </div>
+            <div class="slds-col slds-size--3-of-12">
+                <p>
+                    <lightning:formattedDateTime value="{!v.cell.CreatedDate}" year="numeric" month="numeric"
+                                                 day="numeric" hour="2-digit"
+                                                 minute="2-digit" timeZone="UTC" timeZoneName="short" hour12="false"/>
+                </p>
+            </div>
+            <div class="slds-col slds-size--4-of-12">
+                <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
+                    <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity}</h2>
+                </aura:iteration>
+            </div>
+            <div class="slds-col slds-size--1-of-12">
+                <lightning:formattedNumber value="{!v.cell.TotalAmount}" style="currency"
+                                           currencyCode="EUR" currencyDisplayAs="symbol"/>
+            </div>
+            <div class="slds-col slds-size--2-of-12 ">
+                <lightning:buttonIcon iconName="utility:threedots" alternativeText="{!$Label.c.WDLC_MakeComplaint}"
+                                      variant="border-filled"
+                                      onclick="{!c.openOrderDetails}"
+                                      class="more slds-float_right"/>
+            </div>
+        </div>
+    </lightning:card>
     <aura:if isTrue="{!v.showModal}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -55,7 +70,7 @@
                     <ui:inputText value="{!v.subject}"/>
                     <label class="slds-form-element__label" style="margin-bottom: 0;"
                            for="text-input-id-1">{!$Label.c.WDLC_Description}</label>
-                    <lightning:inputRichText value="{!v.description}"/>
+                    <ui:inputTextArea rows="8" value="{!v.description}"/>
                     <lightning:select name="select1" label="{!$Label.c.WDLC_SelectProduct}" required="true"
                                       value="{!v.product}">
                         <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
@@ -88,17 +103,26 @@
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <lightning:recordViewForm recordId="{!v.cell.Id}" objectApiName="Order">
-                        <lightning:outputField fieldName="BillingAddress"/>
-                        <lightning:outputField fieldName="OrderItems"/>
-                        <lightning:outputField fieldName="Status"/>
-                        <lightning:outputField fieldName="CreatedDate"/>
+                        <div class="slds-grid">
+                            <div class="slds-col">
+                                <lightning:outputField fieldName="BillingAddress"/>
+                            </div>
+                            <div class="slds-col">
+                                <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
+                                    <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity}</h2>
+                                </aura:iteration>
+                                <lightning:outputField fieldName="Status"/>
+                                <lightning:outputField fieldName="CreatedDate"/>
+                            </div>
+                        </div>
                     </lightning:recordViewForm>
                 </div>
                 <footer class="slds-modal__footer">
                     <button class="slds-button slds-button_neutral"
                             onclick="{!c.closeOrderDetails}">{!$Label.c.WDLC_Cancel}</button>
                     <button class="slds-button slds-button_brand"
-                            onclick="{!c.openModalCase}">Make a complaint.</button>
+                            onclick="{!c.openModalCase}">{!$Label.c.WDLC_MakeComplaint}
+                    </button>
                 </footer>
             </div>
         </section>
