@@ -12,4 +12,8 @@ public with sharing class WDLC_WishlistController {
     public static List<WDLC_ProductWrapper> getWishlistedProducts(){
         return WDLC_WishlistHelper.getWishlistedProducts();
     }
+    @AuraEnabled
+    public static Boolean removeFromWishList(String productId){
+        return WDLC_WishlistHelper.removeProductFromWishList(productId);
+    }
 }

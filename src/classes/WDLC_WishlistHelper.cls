@@ -12,7 +12,12 @@ public with sharing class WDLC_WishlistHelper {
 
     public static List<WDLC_ProductWrapper> getWishlistedProducts() {
         List<WDLC_ProductWrapper> wrappedProducts = new List<WDLC_ProductWrapper>();
-        List<WDLC_Wishlist__c> wishlist = [SELECT ProductId__c FROM WDLC_Wishlist__c];
+        List<WDLC_Wishlist__c> wishlist = [
+                SELECT ProductId__c, CreatedById
+                FROM WDLC_Wishlist__c
+                WHERE
+                        CreatedById = :UserInfo.getUserId()
+        ];
         Set<Id> wishlistedIds = new Set<Id>();
         for (WDLC_Wishlist__c element : wishlist) {
             wishlistedIds.add(element.ProductId__c);
@@ -37,5 +42,24 @@ public with sharing class WDLC_WishlistHelper {
             }
         }
         return wrappedProducts;
+    }
+    public static Boolean removeProductFromWishList(String productId) {
+        WDLC_Wishlist__c element = [
+                SELECT ProductId__c, CreatedById
+                FROM WDLC_Wishlist__c
+                WHERE
+                CreatedById = :UserInfo.getUserId() AND ProductId__c = :productId
+                LIMIT 1
+        ];
+        if (element != null) {
+            try {
+                delete element;
+                return true;
+            } catch (DmlException e) {
+                throw new WDLC_CustomException(Label.WDLC_DeleteError);
+            }
+        } else {
+            throw new WDLC_CustomException(Label.WDLC_DeleteError);
+        }
     }
 }
