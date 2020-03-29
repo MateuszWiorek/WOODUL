@@ -6,7 +6,6 @@ public with sharing class WDLC_FurnitureComplaintsController {
     @AuraEnabled
     public static Boolean createComplaint(String productName, String subject, String description) {
         Product2 prod = [SELECT Id, Name FROM Product2 WHERE Name = :productName];
-        System.debug(prod.Id);
         try {
             return WDLC_FurnitureComplaintsHelper.makeComplaint(prod.Id, subject, description);
         } catch (Exception e) {
@@ -19,21 +18,27 @@ public with sharing class WDLC_FurnitureComplaintsController {
                 SELECT Id, CommentBody, CreatedDate, CreatedById, ParentId
                 FROM CaseComment
                 WHERE ParentId = :caseId
-                ORDER BY CreatedDate DESC
+                ORDER BY CreatedDate ASC
         ];
     }
     @AuraEnabled
     public static void postCommentToCase(String caseId, String bodyComment) {
-        System.debug(caseId);
-        System.debug(bodyComment);
-
         CaseComment cc = new CaseComment();
         cc.ParentId = caseId;
+        cc.IsPublished = true;
         cc.CommentBody = bodyComment;
         try {
             insert cc;
         } catch (DmlException e) {
-            throw new WDLC_CustomException('We have problems with your comment');
+            throw new WDLC_CustomException(Label.WDLC_ErrorComment);
         }
+    }
+    @AuraEnabled
+    public static List<Case> getCases() {
+        return [
+                SELECT Status, CreatedDate, CreatedById, ProductCase__c, Reason, SuppliedEmail, Subject, Description
+                FROM Case
+                WHERE Reason = 'Complaint' AND CreatedById = :UserInfo.getUserId()
+        ];
     }
 }

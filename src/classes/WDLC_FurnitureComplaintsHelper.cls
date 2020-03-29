@@ -6,7 +6,7 @@ public without sharing class WDLC_FurnitureComplaintsHelper {
 
     public static Boolean makeComplaint(String productId, String subject, String description) {
         AssignmentRule AR = new AssignmentRule();
-        AR = [select id from AssignmentRule where SobjectType = 'Case' and Active = true limit 1];
+        AR = [SELECT Id FROM AssignmentRule WHERE SobjectType = 'Case' AND Active = true LIMIT 1];
         Database.DMLOptions dmlOpts = new Database.DMLOptions();
         dmlOpts.assignmentRuleHeader.assignmentRuleId = AR.id;
         Order__c orderCustomSettings = Order__c.getInstance('WDLCOrder');
@@ -19,7 +19,6 @@ public without sharing class WDLC_FurnitureComplaintsHelper {
         newCase.setOptions(dmlOpts);
         newCase.ProductCase__c = productId;
         try {
-            System.debug(newCase);
             Database.insert(newCase);
             return true;
         } catch (DmlException e) {

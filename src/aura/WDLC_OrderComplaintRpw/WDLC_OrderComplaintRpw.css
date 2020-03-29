@@ -1,0 +1,33 @@
+/**
+ * Created by Mateusz Wiorek on 29.03.2020.
+ */
+.THIS .iconClass svg{
+    width:2rem;
+    height:2rem;
+}
+.THIS .closed svg{
+    fill: #13EBA2;
+}
+.THIS .new svg{
+    fill: #244A80;
+}
+.THIS .more svg{
+    fill : #244A80;
+}
+.THIS .commentButton svg{
+    fill: blue;
+    width:1.5rem;
+    height:1.5rem;
+    transform:rotate(-30deg);
+}
+.THIS .chat{
+    background-color: #ECECEC;
+}
+.THIS .headerProductName .slds-form-element__label{
+    display:none;
+}
+.THIS .headerProductName .slds-form-element__static{
+    padding: 0;
+    font-size: xx-large;
+    text-align: left;
+}
