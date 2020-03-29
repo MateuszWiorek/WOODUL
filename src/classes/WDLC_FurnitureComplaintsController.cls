@@ -18,7 +18,7 @@ public with sharing class WDLC_FurnitureComplaintsController {
                 SELECT Id, CommentBody, CreatedDate, CreatedById, ParentId
                 FROM CaseComment
                 WHERE ParentId = :caseId
-                ORDER BY CreatedDate ASC
+                ORDER BY CreatedDate DESC
         ];
     }
     @AuraEnabled

@@ -3,6 +3,8 @@
  */
 ({
     onInit : function(component){
+        console.log('inside');
         component.set("v.userId", $A.get("$SObjectType.CurrentUser.Id"));
+        console.log($A.get("$SObjectType.CurrentUser.Id"));
     }
 })

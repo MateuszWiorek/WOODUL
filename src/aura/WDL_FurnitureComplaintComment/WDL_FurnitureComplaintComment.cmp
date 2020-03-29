@@ -11,7 +11,7 @@
         <aura:if isTrue="{!v.comment.CreatedById == v.userId}">
             <div class="slds-col slds-size--5-of-12" style="padding:5px;">
                 <lightning:recordViewForm objectApiName="User" recordId="{!v.comment.CreatedById}">
-                    <lightning:outputField fieldName="{!$Label.c.WDLC_FirstName}"/>
+                    <lightning:outputField fieldName="FirstName"/>
                 </lightning:recordViewForm>
                 <div class="message" style="padding: 5px;">
                     {!v.comment.CommentBody}

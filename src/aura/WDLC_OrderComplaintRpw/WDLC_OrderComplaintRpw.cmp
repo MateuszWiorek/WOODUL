@@ -16,7 +16,8 @@
             <div class="slds-col slds-size--2-of-12">
                 <aura:if isTrue="{!v.complaint.Status == $Label.c.WDLC_Closed}">
                     <div style="padding-left:5px;">
-                        <lightning:icon iconName="action:approval" alternativeText="{!$Label.c.WDLC_Closed}" class="iconClass"/>
+                        <lightning:icon iconName="action:approval" alternativeText="{!$Label.c.WDLC_Closed}"
+                                        class="iconClass"/>
                     </div>
                 </aura:if>
                 <aura:if isTrue="{!v.complaint.Status == $Label.c.WDLC_Working}">
@@ -27,7 +28,8 @@
                 </aura:if>
                 <aura:if isTrue="{!v.complaint.Status == $Label.c.WDLC_New}">
                     <div style="padding-left:5px;">
-                        <lightning:icon iconName="action:new_note" alternativeText="{!$Label.c.WDLC_New}" class="iconClass"/>
+                        <lightning:icon iconName="action:new_note" alternativeText="{!$Label.c.WDLC_New}"
+                                        class="iconClass"/>
                     </div>
                 </aura:if>
             </div>
@@ -42,8 +44,9 @@
             <div class="slds-col slds-size--1-of-12"/>
             <div class="slds-col slds-size--1-of-12 slds-float_right">
                 <lightning:buttonIcon iconName="utility:threedots" variant="bare"
-                                      alternativeText="{!$Label.c.WDLC_GetDetails}" title="{!$Label.c.WDLC_GetDetails}" onclick="{!c.openModal}"
-                                      class="iconClass more"/>
+                                      alternativeText="{!$Label.c.WDLC_GetDetails}" title="{!$Label.c.WDLC_GetDetails}"
+                                      onclick="{!c.openModal}"
+                                      class="iconClass more slds-float_right"/>
             </div>
         </div>
         <aura:if isTrue="{!v.showModal}">
@@ -75,30 +78,33 @@
                                     <lightning:outputField fieldName="CreatedDate"/>
                                 </div>
                             </div>
-                            <div class="slds-scrollable_y chat" style="height:15rem; margin-bottom:5px; border: 1px solid gray;">
-                            <aura:iteration items="{!v.caseComments}" var="comm">
-                                <div>
-                                    <c:WDL_FurnitureComplaintComment comment="{!comm}"/>
+                            <aura:if isTrue="{!not(empty(v.caseComments))}">
+                                <div class="slds-scrollable_y chat"
+                                     style="height:15rem; margin-bottom:5px; border: 1px solid gray;">
+                                    <aura:iteration items="{!v.caseComments}" var="comm">
+                                        <div>
+                                            <c:WDL_FurnitureComplaintComment comment="{!comm}"/>
+                                        </div>
+                                    </aura:iteration>
                                 </div>
-                            </aura:iteration>
-                        </div>
-                        <div class="slds-grid">
-                            <div class="slds-col slds-size--11-of-12">
-                                <ui:inputTextArea value="{!v.caseCommentMessage}" rows="1"/>
+                            </aura:if>
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size--11-of-12">
+                                    <ui:inputTextArea value="{!v.caseCommentMessage}" rows="1"/>
+                                </div>
+                                <div class="slds-col slds-size--1-of-12" style="margin-left:5px;">
+                                    <lightning:buttonIcon iconName="utility:send" variant="bare"
+                                                          onclick="{!c.postComment}"
+                                                          size="large"
+                                                          alternativeText="{!$Label.c.WDLC_Comment}"
+                                                          title="{!$Label.c.WDLC_Comment}" class="commentButton"/>
+                                </div>
                             </div>
-                            <div class="slds-col slds-size--1-of-12" style="margin-left:5px;">
-                                <lightning:buttonIcon iconName="utility:send" variant="bare"
-                                                      onclick="{!c.postComment}"
-                                                      size="large"
-                                                      alternativeText="{!$Label.c.WDLC_Comment}"
-                                                      title="{!$Label.c.WDLC_Comment}" class="commentButton"/>
-                            </div>
                         </div>
-                    </div>
-                    <footer class="slds-modal__footer">
-                        <button class="slds-button slds-button_neutral"
-                                onclick="{!c.closeModal}">{!$Label.c.Close}</button>
-                    </footer>
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_neutral"
+                                    onclick="{!c.closeModal}">{!$Label.c.Close}</button>
+                        </footer>
                     </div>
                 </lightning:recordViewForm>
             </section>
