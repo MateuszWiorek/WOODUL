@@ -15,7 +15,8 @@
             let state = response.getState();
             if(state === "SUCCESS"){
                 let toastComp = component.find("toastComponent");
-                toastComp.openInformationToast($A.get("{!$Label.c.WDLC_AddedToCart}"),'success', 'success');
+                toastComp.openInformationToast($A.get("{!$Label.c.WDLC_AddedToCart}"),
+                                                $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
                 let basketEvent = $A.get("e:c:WDLC_RefreshBasketComponent");
                 basketEvent.fire();
             }
@@ -32,7 +33,7 @@
             let state = response.getState();
             if(state === "SUCCESS"){
                 component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_AddedToObserved}"),
-                                        $A.get("{!$Label.c.Success"), $A.get("{!$Label.c.Success"));
+                                        $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
             }
         });
         $A.enqueueAction(addToWishListAction);
@@ -47,7 +48,7 @@
             let state = response.getState();
             if(state === "SUCCESS"){
                 component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_RemovedFromObserved}"),
-                                                $A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"));
+                                                $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
             }
         });
         $A.enqueueAction(removeFromList);
