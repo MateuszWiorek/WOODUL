@@ -60,10 +60,14 @@
                     </h2>
                     <center class="productInfo" style="margin-top: 15px;">
                         <lightning:button class="slds-button slds-button_outline-brand"
-                                          onclick="{!c.goToOrder}">{!$Label.c.WDLC_Order}</lightning:button>
+                                          onclick="{!c.goToOrder}">{!$Label.c.WDLC_GoToOrder}</lightning:button>
+                        <lightning:button class="slds-button slds-button_outline-brand"
+                                          onclick="{!c.orderWithDefaultAddress}">{!$Label.c.WDLC_Order}</lightning:button>
                     </center>
                 </lightning:card>
             </aura:if>
         </div>
     </div>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ErrorComponent aura:id="errorToast"/>
 </aura:component>

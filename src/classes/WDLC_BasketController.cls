@@ -27,4 +27,8 @@ public with sharing class WDLC_BasketController {
     public static WDLC_ProductToOrderWrapper changeProductCounter(String id, Integer newValue){
         return WDLC_BasketHelper.changeProductCounter(id, newValue);
     }
+    @AuraEnabled
+    public static Order orderWithDefaultCustomerData(){
+        return WDLC_FurnitureOrderController.makeOrder('');
+    }
 }

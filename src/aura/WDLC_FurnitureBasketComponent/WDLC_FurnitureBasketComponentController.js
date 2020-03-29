@@ -10,5 +10,8 @@
       },
       goToOrder : function(component, event, helper){
           helper.doGoToOrder(component, event);
+      },
+      orderWithDefaultAddress : function(component, event, helper){
+          helper.doOrderWithDefaultAddress(component,event);
       }
 })

@@ -10,7 +10,6 @@
                     let total = 0;
                     let productsInBasket = 0;
                     component.set("v.productsToOrder", response.getReturnValue());
-                    console.log(response.getReturnValue());
                     for(let i of response.getReturnValue()){
                         total += i.totalCost;
                         productsInBasket += i.quantity;
@@ -18,7 +17,7 @@
                     component.set("v.totalPrice", total);
                     component.set("v.itemsInBasket", productsInBasket);
                 }else{
-                    //toast will be here
+                    component.find("errorToast").openErrorToast(response);
                 }
             });
             $A.enqueueAction(getListAction);
@@ -32,7 +31,6 @@
                             let total = 0;
                             let productsInBasket = 0;
                             component.set("v.productsToOrder", response.getReturnValue());
-                            console.log(response.getReturnValue());
                             for(let i of response.getReturnValue()){
                                 total += i.totalCost;
                                 productsInBasket += i.quantity;
@@ -46,7 +44,19 @@
                 },
     doGoToOrder : function(component, event){
         let pageURL = decodeURIComponent(window.location.href);
-        let splittedAddress = pageURL.substr(0,pageURL.lastIndexOf('/')+1) +'order';
-        window.open(splittedAddress, '_top');
+        let orderAddress = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/order';
+        window.open(orderAddress, '_top');
+    },
+    doOrderWithDefaultAddress : function(component, event){
+        let makeDefaultOrderAction = component.get("c.orderWithDefaultCustomerData");
+        makeDefaultOrderAction.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+                component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_OrderSuccess}"),
+                                                 $A.get("{!$Label.c.Success}"),$A.get("{!$Label.c.Success}"));
+            }else{
+                component.find("errorToast").showError(response);
+            }
+        });
+        $A.enqueueAction(makeDefaultOrderAction);
     }
 })
