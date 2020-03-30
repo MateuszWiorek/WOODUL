@@ -30,7 +30,7 @@ public without sharing class WDLC_FurnitureComplaintsHelper {
                 SELECT Id, CommentBody, CreatedDate, CreatedById, ParentId
                 FROM CaseComment
                 WHERE ParentId = :caseId
-                ORDER BY CreatedDate DESC
+                ORDER BY CreatedDate ASC
         ];
     }
     public static void postCommentToCase(String caseId, String bodyComment) {
