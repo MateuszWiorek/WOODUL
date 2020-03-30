@@ -15,7 +15,7 @@
      addToFavorite : function(component, event, helper){
          helper.doAddToFavorite(component, event);
      },
-     addToOrder : function(component, event, helper){
+     buyNow : function(component, event, helper){
          helper.doAddToOrder(component, event);
      }
 })

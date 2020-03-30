@@ -21,12 +21,13 @@
             let state = response.getState();
             let toast = component.find("toastComponent")
             if(state === "SUCCESS"){
-                toast.openInformationToast("Success","Success","Success");
+                toast.openInformationToast($A.get("{!$Label.c.WDLC_AddedToObserved}"),
+                $A.get("{!$Label.c.Success}"),$A.get("{!$Label.c.Success}"));
                 let product = component.get("v.product");
                 product.isWishlisted = !product.isWishlisted;
                 component.set("v.product", product);
             }else{
-                toast.openInformationToast("Error","Error","Error");
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(addAction);
@@ -41,8 +42,12 @@
         addToOrderAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
-                component.find("toastComponent").openInformationToast('suc','success','succcess');
+                component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_OrderSuccess}"),
+                $A.get("{!$Label.c.Success}"),$A.get("{!$Label.c.Success}"));
+            }else{
+                component.find("errorToast").showError(response);
             }
-        })
+        });
+        $A.enqueueAction(addToOrderAction);
     }
 })

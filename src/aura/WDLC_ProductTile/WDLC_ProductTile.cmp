@@ -16,18 +16,22 @@
                 <figure style="position: relative;">
                     <div class="slds-m-around_small rateHover">
                         <lightning:buttonIconStateful iconName="utility:favorite" selected="{! v.product.isWishlisted }"
-                                                      onclick="{!c.addToFavorite}" alternativeText="Like" class="favButton" />
+                                                      onclick="{!c.addToFavorite}"
+                                                      alternativeText="{!$Label.c.WDLC_AddToObservedButton}" class="favButton" />
                     </div>
                     <img src="{!v.product.productPhotoUrl}" alt="{!v.product.productName}"/>
                     <span class="fullName">{!v.product.productName}</span>
                     <p><lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
-                                                  currencyCode="EUR" currencyDisplayAs="symbol"/></p>
+                                                  currencyCode="{!$Label.c.WDLC_CurrencyCode}"
+                                                  currencyDisplayAs="symbol"/></p>
                 </figure>
             </div>
             <center>
-                <lightning:button onclick="{!c.addToOrder}" class="buyNowButton" value="Buy now"> Buy now </lightning:button>
+                <lightning:button onclick="{!c.buyNow}" class="buyNowButton"
+                                  value="{!$Label.c.WDLC_BuyNow}">{!$Label.c.WDLC_BuyNow}</lightning:button>
             </center>
         </div>
     </lightning:card>
     <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ErrorComponent aura:id="errorToast"/>
 </aura:component>
