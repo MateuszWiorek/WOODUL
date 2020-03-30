@@ -18,6 +18,10 @@
     },
     openModal : function(component){
         component.set("v.showModal", true);
+        let pes = component.find('peService');
+        pes.subscribe("WDLC_NewCaseComment__e",function(){
+            console.log('subscribed');
+        })
     },
     postComment : function(component, event, helper){
         let postAction = component.get("c.postCommentToCase");
@@ -46,5 +50,7 @@
     },
     closeModal : function(component, event){
         component.set("v.showModal",false);
-    }
+    },
+
+
 })
