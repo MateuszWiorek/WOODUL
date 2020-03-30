@@ -1,0 +1,40 @@
+<!--
+ - Created by Mateusz Wiorek on 25.03.2020.
+ -->
+
+<aura:component description="WDLC_OrderTableRow" controller="WDLC_FurnitureOrderController"
+                implements="forceCommunity:availableForAllPageTypes" extensible="true">
+    <aura:attribute name="cell" type="Object" access="global"/>
+    <aura:attribute name="productQuantity" type="Decimal" access="global" default="{!v.cell.quantity}"/>
+
+    <aura:registerEvent name="changeEvent" type="c:WDLC_RefreshOrderList"/>
+    <tr onclick="{!c.goToProduct}">
+        <td data-label="{!$Label.c.WDLC_ProductName}">
+            <div style="height:70px; overflow:hidden;">
+                <img src="{!v.cell.product.productPhotoUrl}"
+                     style="margin-top: 5px; width:60px; height:auto; object-fit:cover;"/>
+            </div>
+        </td>
+        <td data-label="{!$Label.c.Description}">
+            <div style="width:80px; padding-right:10px;">
+                <lightning:buttonIcon iconName="utility:dash" variant="bare"
+                                      disabled="{!if(v.cell.quantity ==1,true,false)}"
+                                      onclick="{!c.decrementCounter}"
+                                      alternativeText="Remove"
+                                      title="Remove"/>
+                <ui:inputNumber value="{!v.productQuantity}" change="{!c.changeProductCounter}"/>
+                <lightning:buttonIcon iconName="utility:add" variant="bare"
+                                      onclick="{!c.incrementCounter}" alternativeText="Add"
+                                      title="Add"/>
+
+            </div>
+        </td>
+        <td data-label="Price">
+            <lightning:formattedNumber value="{!v.cell.totalCost}" style="currency"
+                                       currencyCode="EUR" currencyDisplayAs="symbol"/>
+        </td>
+        <td data-label="Action">
+            <lightning:buttonIcon iconName="utility:delete" onclick="{!c.removeProduct}" variant="bare"/>
+        </td>
+    </tr>
+</aura:component>
