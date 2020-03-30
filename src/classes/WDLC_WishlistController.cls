@@ -10,7 +10,7 @@ public with sharing class WDLC_WishlistController {
     }
     @AuraEnabled
     public static List<WDLC_ProductWrapper> getWishlistedProducts(){
-        return WDLC_WishlistHelper.getWishlistedProducts();
+        return WDLC_ProductHelper.getWishlistedProducts();
     }
     @AuraEnabled
     public static Boolean removeFromWishList(String productId){
