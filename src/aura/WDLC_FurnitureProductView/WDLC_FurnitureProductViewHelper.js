@@ -19,6 +19,8 @@
                                                 $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
                 let basketEvent = $A.get("e:c:WDLC_RefreshBasketComponent");
                 basketEvent.fire();
+            }else{
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(addToCartAction);
@@ -34,7 +36,10 @@
             if(state === "SUCCESS"){
                 component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_AddedToObserved}"),
                                         $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
+            }else{
+                component.find("errorToast").showError(response);
             }
+
         });
         $A.enqueueAction(addToWishListAction);
     },
@@ -49,6 +54,8 @@
             if(state === "SUCCESS"){
                 component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_RemovedFromObserved}"),
                                                 $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
+            }else{
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(removeFromList);
