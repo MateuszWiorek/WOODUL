@@ -43,12 +43,17 @@ public with sharing class WDLC_BasketHelper {
     }
     public static WDLC_ProductToOrderWrapper getProduct(String productId) {
         Map<String, Integer> cachedProducts = getBasketMapFromCache(Label.WDLC_BasketCachePartition);
-        if(cachedProducts.containsKey(productId)) {
+        if (cachedProducts.containsKey(productId)) {
             return getWrappedProducts(new Map<String, Integer>{
                     productId => cachedProducts.get(productId)
             }).get(0);
-        }else{
+        } else {
             throw new WDLC_CustomException(Label.WDLC_NotExistingProduct);
+        }
+    }
+    public static void removeBasket() {
+        if (Cache.Session.contains(Label.WDLC_BasketCachePartition)) {
+            Cache.Session.remove(Label.WDLC_BasketCachePartition);
         }
     }
     private static Map<String, Integer> getBasketMapFromCache(String namespaceCache) {
@@ -90,7 +95,7 @@ public with sharing class WDLC_BasketHelper {
                 }
             }
         }
-        if(wrappedProductsToOrder.size()==0){
+        if (wrappedProductsToOrder.size() == 0) {
             throw new WDLC_CustomException(Label.WDLC_NotExistingProduct);
         }
         return wrappedProductsToOrder;
