@@ -19,9 +19,11 @@ public with sharing class WDLC_WishlistHelper {
                         CreatedById = :UserInfo.getUserId()
         ];
         Set<Id> wishlistedIds = new Set<Id>();
+        System.debug(wishlistedIds);
         for (WDLC_Wishlist__c element : wishlist) {
             wishlistedIds.add(element.ProductId__c);
         }
+        System.debug(wishlistedIds);
         List<Product2> products = [
                 SELECT Name, Description, photoUrl__c, ProductCode, StockKeepingUnit, QuantityUnitOfMeasure
                 FROM Product2
@@ -53,8 +55,8 @@ public with sharing class WDLC_WishlistHelper {
         ];
         if (element != null) {
             try {
-                delete element;
-                return true;
+                Database.DeleteResult dr = Database.delete(element);
+                return dr.isSuccess()?true:false;
             } catch (DmlException e) {
                 throw new WDLC_CustomException(Label.WDLC_DeleteError);
             }
