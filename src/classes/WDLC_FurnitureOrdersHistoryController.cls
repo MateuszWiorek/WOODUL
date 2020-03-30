@@ -6,7 +6,7 @@ public with sharing class WDLC_FurnitureOrdersHistoryController {
 
     @AuraEnabled
     public static List<Order> getOrders(){
-        return WDLC_FurnitureOrdersHistoryHelper.getOrders();
+        return WDLC_FurnitureOrderHelper.getOrders();
     }
     @AuraEnabled
     public static Boolean addComplaint(String productName, String subject, String description){
