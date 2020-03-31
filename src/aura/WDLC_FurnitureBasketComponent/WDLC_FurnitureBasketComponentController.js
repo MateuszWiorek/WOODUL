@@ -13,10 +13,5 @@
       },
       orderWithDefaultAddress : function(component, event, helper){
           helper.doOrderWithDefaultAddress(component,event);
-      },
-    goToObserved : function(component, event){
-        console.log('cc');
-        let orderAddress = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/wishlist';
-        window.open(orderAddress, '_top');
-    }
+      }
 })

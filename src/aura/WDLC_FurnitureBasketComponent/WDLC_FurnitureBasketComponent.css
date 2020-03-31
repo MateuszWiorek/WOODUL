@@ -2,18 +2,29 @@
  * Created by Mateusz Wiorek on 26.03.2020.
  */
 .THIS .cartItems{
-    z-index: 9999;
+    z-index:9999;
+    position:absolute;
+    top:6%;
     right:1%;
     display:none;
 }
 .THIS .cart {
+    position:absolute;
+    top:8%;
+    right:3%;
     z-index:9999;
 }
 .THIS .cart:hover + .cartItems{
-    display:block !important;
+    display:block;
 }
 .THIS .cartItems:hover {
     display:block;
+}
+.THIS .cartIcon {
+
+    color: black;
+    width: 12px;
+    height: 12px;
 }
 .THIS .icon-cart {
   position:absolute;
@@ -124,13 +135,13 @@
   bottom: 0;
 }
 .THIS .heart{
-    background-color: transparent;
-    width: 2.5rem;
-    height: 2.5rem;
-    border: none;
+   background-color: transparent;
+   width: 2.5rem;
+   height: 2.5rem;
+   border: none;
 }
-.THIS .observedIcon svg{
-    fill: #02A7D7;
-        width: 2.5rem;
-        height: 2.5rem;
+   .THIS .observedIcon svg{
+   fill: #02A7D7;
+   width: 2.5rem;
+   height: 2.5rem;
 }
