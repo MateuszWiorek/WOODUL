@@ -1,0 +1,52 @@
+<!--
+ - Created by Mateusz Wiorek on 31.03.2020.
+ -->
+
+<aura:component description="WDLC_ProductCreatedView" controller="WDLC_ProductManagementController"
+                implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="productId" type="String" access="global"/>
+    <aura:attribute name="firstPhotoUrl" type="String[]" access="global"/>
+    <aura:attribute name="mainPhotoUrl" type="String" access="global"/>
+
+    <aura:handler event="c:WDLC_ProductIdSendToSummary" action="{!c.handleEvent}"/>
+
+    <aura:if isTrue="{!not(empty(v.productId))}">
+        <lightning:card>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size--1-of-6"/>
+                <div class="slds-col slds-size--4-of-6">
+                    <h2 style="font-size:46px; font-weight:bolder;">Summary</h2>
+                </div>
+                <div class="slds-col slds-size--1-of-6">
+                <lightning:button onclick="{!c.goToPage}"> Go to details page.</lightning:button> </div>
+                <lightning:recordViewForm objectApiName="Product2" recordId="{!v.productId}">
+                    <div class="slds-col slds-size--1-of-1">
+                        <lightning:outputField fieldName="Name"/>
+                    </div>
+                    <div class="slds-col slds-size--1-of-1">
+                        <lightning:outputField fieldName="Description"/>
+                    </div>
+                    <div class="slds-col slds-size--1-of-1">
+                        <lightning:outputField fieldName="Family"/>
+                    </div>
+                    <div class="slds-col slds-size--2-of-6"/>
+                    <div class="slds-col slds-size--4-of-6">
+                        <h2 style="font-size:22px; font-weight:bold;">Set main photo</h2>
+                    </div>
+                </lightning:recordViewForm>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="display:flex;">
+                    <aura:if isTrue="{!not(empty(v.firstPhotoUrl))}">
+                        <aura:iteration items="{!v.firstPhotoUrl}" var="photoSrc">
+                                <c:WDLC_ProductPhotoComponent productId="{!v.productId}" photoUrl="{!photoSrc}" changeEvent="{!c.refreshMain}"/>
+                        </aura:iteration>
+                    </aura:if>
+                </div>
+                <div>
+                    <img src="{!v.mainPhotoUrl}" style="border:1px solid black;"/>
+                </div>
+            </div>
+        </lightning:card>
+    </aura:if>
+</aura:component>
