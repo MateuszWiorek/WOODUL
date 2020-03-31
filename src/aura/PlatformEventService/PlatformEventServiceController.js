@@ -9,6 +9,7 @@
         const serverAction = component.get('c.getSessionId');
         server.callServer(serverAction, {}, false, sessionId => {
             component.set('v.sessionId', sessionId);
+            console.log(component.get("v.cometd"));
             if (component.get('v.cometd') != null) {
                 helper.connectCometd(component);
             }
@@ -18,7 +19,9 @@
     onCometdScriptLoaded : function(component, event, helper) {
         const cometd = new org.cometd.CometD();
         component.set('v.cometd', cometd);
+        console.log(cometd);
         if (component.get('v.sessionId') != null) {
+            console.log("")
             helper.connectCometd(component);
         }
     },

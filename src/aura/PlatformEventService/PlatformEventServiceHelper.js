@@ -8,6 +8,7 @@
             requestHeaders: { Authorization: 'OAuth '+ component.get('v.sessionId')},
             appendMessageTypeToURL : false
         });
+        console.log(cometd);
         cometd.websocketEnabled = false;
 
         // Establish CometD connection
