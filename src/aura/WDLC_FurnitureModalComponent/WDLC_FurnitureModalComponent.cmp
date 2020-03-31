@@ -2,15 +2,20 @@
  - Created by Mateusz Wiorek on 24.03.2020.
  -->
 
-<aura:component description="WDLC_FurnitureModalComponent">
+<aura:component description="WDLC_FurnitureModalComponent" implements="forceCommunity:availableForAllPageTypes"
+                controller="WDLC_ModalController">
     <aura:attribute name="typeOfModal" type="String" access="global"/>
     <aura:attribute name="showModal" type="Boolean" access="global"/>
     <aura:attribute name="subject" type="String" access="global"/>
     <aura:attribute name="product" type="Object" access="global"/>
     <aura:attribute name="description" type="String" access="global"/>
     <aura:attribute name="cell" type="Object" access="global"/>
+    <aura:attribute name="caseComments" type="Object[]" access="global"/>
+    <aura:attribute name="complaint" type="Object" access="global"/>
+    <aura:attribute name="caseCommentMessage" type="String" access="global"/>
+    <aura:attribute name="order" type="Object" access="global"/>
 
-
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
     <aura:if isTrue="{!and(v.typeOfModal == 'Complaint', v.showModal)}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -87,4 +92,68 @@
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
+
+    <aura:if isTrue="{!and(v.typeOfModal == 'complaintDetails', v.showModal)}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <lightning:recordViewForm recordId="{!v.complaint.Id}" objectApiName="Case">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="{!$Label.c.WDLC_Close}">
+                            <span class="slds-assistive-text">{!$Label.c.WDLC_Close}</span>
+                        </button>
+
+                        <h2 id="modal-heading-01"
+                            class="slds-modal__title slds-hyphenate headerProductName">
+                            <lightning:outputField fieldName="ProductCase__c"/>
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-grid">
+                            <div class="slds-col">
+                                <lightning:outputField fieldName="Reason"/>
+                                <lightning:outputField fieldName="Description"/>
+                                <lightning:outputField fieldName="SuppliedEmail"/>
+                            </div>
+                            <div class="slds-col">
+                                <lightning:outputField fieldName="Subject"/>
+                                <lightning:outputField fieldName="Status"/>
+                                <lightning:outputField fieldName="CreatedDate"/>
+                            </div>
+                        </div>
+                        <aura:if isTrue="{!not(empty(v.caseComments))}">
+                            <div class="slds-scrollable_y chat"
+                                 style="height:15rem; margin-bottom:5px; border: 1px solid gray;">
+                                <aura:iteration items="{!v.caseComments}" var="comm">
+                                    <div>
+                                        <c:WDL_FurnitureComplaintComment comment="{!comm}"/>
+                                    </div>
+                                </aura:iteration>
+                            </div>
+                        </aura:if>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size--11-of-12">
+                                <ui:inputTextArea value="{!v.caseCommentMessage}" rows="1"/>
+                            </div>
+                            <div class="slds-col slds-size--1-of-12" style="margin-left:5px;">
+                                <lightning:buttonIcon iconName="utility:send" variant="bare"
+                                                      onclick="{!c.postComment}"
+                                                      size="large"
+                                                      alternativeText="{!$Label.c.WDLC_Comment}"
+                                                      title="{!$Label.c.WDLC_Comment}" class="commentButton"/>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral"
+                                onclick="{!c.closeModalCase}">{!$Label.c.Close}</button>
+                    </footer>
+                </div>
+            </lightning:recordViewForm>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>

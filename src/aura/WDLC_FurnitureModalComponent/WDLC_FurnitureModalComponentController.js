@@ -12,5 +12,12 @@
             component.set("v.typeOfModal", '');
             component.set("v.showModal", false);
         },
-
+        postComment : function(component,event, helper){
+            helper.doPostComment(component,event);
+        },
+        onInit : function(component, event, helper){
+            setInterval(function(){
+                helper.refreshComments(component,event);
+            }, 5000);
+        }
 })
