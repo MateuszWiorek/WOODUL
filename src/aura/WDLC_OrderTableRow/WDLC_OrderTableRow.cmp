@@ -20,18 +20,18 @@
                 <lightning:buttonIcon iconName="utility:dash" variant="bare"
                                       disabled="{!if(v.cell.quantity ==1,true,false)}"
                                       onclick="{!c.decrementCounter}"
-                                      alternativeText="Remove"
-                                      title="Remove"/>
+                                      alternativeText="{!$Label.c.WDLC_Remove}"
+                                      title="{!$Label.c.WDLC_Remove}"/>
                 <ui:inputNumber value="{!v.productQuantity}" change="{!c.changeProductCounter}"/>
                 <lightning:buttonIcon iconName="utility:add" variant="bare"
-                                      onclick="{!c.incrementCounter}" alternativeText="Add"
-                                      title="Add"/>
+                                      onclick="{!c.incrementCounter}" alternativeText="{!$Label.c.WDLC_Add}"
+                                      title="{!$Label.c.WDLC_Add}"/>
 
             </div>
         </td>
         <td data-label="Price">
             <lightning:formattedNumber value="{!v.cell.totalCost}" style="currency"
-                                       currencyCode="EUR" currencyDisplayAs="symbol"/>
+                                       currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
         </td>
         <td data-label="Action">
             <lightning:buttonIcon iconName="utility:delete" onclick="{!c.removeProduct}" variant="bare"/>

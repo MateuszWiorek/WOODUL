@@ -37,12 +37,12 @@
                             </strong></th>
                             <th class="" scope="col"><strong>
                                 <div class="slds-truncate slds-truncate_container_10"
-                                     title="{!$Label.c.WDLC_TotalPrice}">Price
+                                     title="{!$Label.c.WDLC_Price}">{!$Label.c.WDLC_Price}
                                 </div>
                             </strong></th>
                             <th class="" scope="col"><strong>
                                 <div class="slds-truncate slds-truncate_container_10"
-                                     title="{!$Label.c.WDLC_TotalPrice}">Action
+                                     title="{!$Label.c.WDLC_Action}">{!$Label.c.WDLC_Action}
                                 </div>
                             </strong></th>
                         </tr>
@@ -56,7 +56,7 @@
                     </table>
                     <h2>Total price:
                         <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
-                                                   currencyCode="EUR" currencyDisplayAs="symbol"/>
+                                                   currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
                     </h2>
                     <center class="productInfo" style="margin-top: 15px;">
                         <lightning:button class="slds-button slds-button_outline-brand"

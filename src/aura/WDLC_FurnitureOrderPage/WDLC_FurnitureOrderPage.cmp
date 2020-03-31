@@ -33,7 +33,7 @@
                             </strong></th>
                             <th class="" scope="col"><strong>
                                 <div class="slds-truncate slds-truncate_container_10"
-                                     title="{!$Label.c.WDLC_TotalPrice}">Price
+                                     title="{!$Label.c.WDLC_TotalPrice}">{!$Label.c.WDLC_Price}
                                 </div>
                             </strong></th>
                         </tr>
@@ -51,7 +51,7 @@
                                 </td>
                                 <td data-label="Price">
                                     <lightning:formattedNumber value="{!cell.totalCost}" style="currency"
-                                                               currencyCode="EUR" currencyDisplayAs="symbol"/>
+                                                               currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
                                 </td>
                             </tr>
                         </aura:iteration>
@@ -59,7 +59,7 @@
                         </tbody>
                     </table>
                     <h2>Total price: <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
-                                                                currencyCode="EUR" currencyDisplayAs="symbol"/></h2>
+                                                                currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/></h2>
                 </lightning:card>
             </div>
             <div class="slds-col slds-size-1-of-12"/>
