@@ -8,7 +8,6 @@
         let searchQuery;
         for (let i = 0; i<variables.length;i++){
             if(variables[i].split('=')[0] ='searchItem'){
-                console.log(variables);
                 searchQuery = variables[i].split('=')[1].replace('+',' ');
             }
         }

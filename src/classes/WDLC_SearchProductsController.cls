@@ -7,6 +7,6 @@ public with sharing class WDLC_SearchProductsController {
         if(String.isEmpty(name)){
             throw new WDLC_CustomException(Label.WDLC_FillFields);
         }
-        return WDLC_SearchProductsHelper.findProducts(name);
+        return WDLC_ProductHelper.findProducts(name);
     }
 }
