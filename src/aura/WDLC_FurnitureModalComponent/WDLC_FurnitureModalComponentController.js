@@ -18,12 +18,11 @@
         refreshCommentsAfterEvent : function(component,event,helper){
             let eventCaseId = event.getParam("caseID");
             let idFromComplaint = component.get("v.complaint").Id;
-            if(eventCaseId == idFromComplaint){
+            if(eventCaseId === idFromComplaint){
                 helper.refreshComments(component,event);
-            }else{
-                let resultsToast = $A.get("e.force:showToast");
-                component.find("toastComponent").openInformationToast('New message','success',
-                                                'on your complaint: ' + eventCaseId);
+            }else if(eventCaseId != idFromComplaint){
+                component.find("toastComponent").openInformationToast('on your complaint: ' + eventCaseId,'success',
+                                                'New message');
             }
         }
 })
