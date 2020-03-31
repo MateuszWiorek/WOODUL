@@ -134,3 +134,14 @@
   left: 200%;
   bottom: 0;
 }
+.THIS .heart{
+   background-color: transparent;
+   width: 2.5rem;
+   height: 2.5rem;
+   border: none;
+}
+.THIS .observedIcon svg{
+   fill: #02A7D7;
+   width: 2.5rem;
+   height: 2.5rem;
+}

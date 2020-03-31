@@ -54,7 +54,7 @@
 
                         </tbody>
                     </table>
-                    <h2>Total price:
+                    <h2>{!$Label.c.WDLC_TotalPrice}:
                         <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
                                                    currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
                     </h2>
@@ -67,6 +67,10 @@
                 </lightning:card>
             </aura:if>
         </div>
+<!--        <div class="observedIcon" style="margin-left:10px;">-->
+<!--            <lightning:buttonIcon iconName="utility:favorite" alternativeText="Go to observed" onclick="{!c.goToObserved}"-->
+<!--                                  class="heart"/>-->
+<!--        </div>-->
     </div>
     <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
     <c:WDLC_ErrorComponent aura:id="errorToast"/>
