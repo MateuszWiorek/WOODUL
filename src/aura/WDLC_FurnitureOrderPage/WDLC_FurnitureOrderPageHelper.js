@@ -93,5 +93,8 @@
             }
         });
         $A.enqueueAction(getItemsAction);
-    }
+    },
+    openModal : function(component){
+        component.set("v.showModal", true);
+    },
 })

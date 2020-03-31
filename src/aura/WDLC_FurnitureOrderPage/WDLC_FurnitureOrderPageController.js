@@ -7,6 +7,8 @@
     },
     makeOrderr : function(component, event, helper){
         helper.doMakeOrder(component, event);
+        helper.openModal(component);
+        helper.doRefreshTable(component,event);
     },
     incrementCounter : function(component,event,helper){
         helper.doIncrementCounter(component,event);
@@ -16,12 +18,5 @@
     },
     refreshTable : function(component, event, helper){
         helper.doRefreshTable(component, event);
-    },
-    closeModal : function(component, event,helper){
-        helper.doRefreshTable(component,event);
-        component.set("v.showModal",false);
-    },
-    openModal : function(component){
-        component.set("v.showModal", true);
     }
 })
