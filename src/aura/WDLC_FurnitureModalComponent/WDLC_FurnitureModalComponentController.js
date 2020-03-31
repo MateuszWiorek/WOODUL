@@ -13,7 +13,6 @@
             component.set("v.showModal", false);
         },
         postComment : function(component,event, helper){
-            console.log('com');
             helper.doPostComment(component,event);
         },
         onInit : function(component, event, helper){

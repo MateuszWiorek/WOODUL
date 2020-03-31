@@ -3,7 +3,6 @@
  */
 ({
     onInit : function(component, event, helper){
-        console.log('on init');
         helper.doOnInit(component, event);
     },
     postComment : function(component, event, helper){

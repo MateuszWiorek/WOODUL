@@ -14,7 +14,6 @@
         createCaseAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
-                console.log(response);
                 let toast = component.find("toastComponent");
                 if(response.getReturnValue() == true){
                     toast.openInformationToast($A.get("{!$Label.c.WDLC_ComplaintSuccesSend}"),
@@ -32,16 +31,11 @@
         $A.enqueueAction(createCaseAction);
     },
     doPostComment : function(component, event){
-        console.log('dupa');
         let postAction = component.get("c.postCommentToCase");
-                console.log(component.get("v.caseCommentMessage"));
-                console.log(component.get("v.complaint").Id);
         postAction.setParams({
             "caseId" : component.get("v.complaint").Id,
             "bodyComment" : component.get("v.caseCommentMessage")
         });
-        console.log(component.get("v.caseCommentMessage"));
-        console.log(component.get("v.complaint").Id);
         postAction.setCallback(this,function(response){
             if(response.getState() === "SUCCESS"){
                 let caseCommentsAction = component.get("c.getCaseComments");
