@@ -15,12 +15,15 @@
         postComment : function(component,event, helper){
             helper.doPostComment(component,event);
         },
-        onInit : function(component, event, helper){
-                setInterval(function(){
-                    let typeOfComponent = component.get("v.typeOfModal");
-                    if(typeOfComponent === 'complaintDetails'){
-                        helper.refreshComments(component,event);
-                    }
-                }, 5000);
+        refreshCommentsAfterEvent : function(component,event,helper){
+            let eventCaseId = event.getParam("caseID");
+            let idFromComplaint = component.get("v.complaint").Id;
+            if(eventCaseId == idFromComplaint){
+                helper.refreshComments(component,event);
+            }else{
+                let resultsToast = $A.get("e.force:showToast");
+                component.find("toastComponent").openInformationToast('New message','success',
+                                                'on your complaint: ' + eventCaseId);
+            }
         }
 })

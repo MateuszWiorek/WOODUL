@@ -52,6 +52,5 @@
         </div>
         <c:WDLC_FurnitureModalComponent typeOfModal="complaintDetails" showModal="{!v.showModal}"
                                         complaint="{!v.complaint}" caseComments="{!v.caseComments}"/>
-        <c:PlatformEventService aura:id="peService"/>
     </lightning:card>
 </aura:component>
