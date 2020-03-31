@@ -13,10 +13,7 @@
         }
 
         let findAction = component.get("c.findProducts");
-        if(searchQuery === ""){
-            component.set("v.results", []);
-            component.set("v.searchResult","");
-        }else{
+
             findAction.setParams({
                 "name" : searchQuery
             });
@@ -32,5 +29,4 @@
             });
             $A.enqueueAction(findAction);
         }
-    }
 })
