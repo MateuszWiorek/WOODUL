@@ -4,7 +4,6 @@
 ({
     doOnInit : function(component, event){
         let sPageURL = decodeURIComponent(window.location.href.substring(0));
-        console.log(sPageURL);
         let sURLVariables = sPageURL.split('/');
         let caseIdR = sURLVariables[sURLVariables.length-2];
         component.set("v.caseDetail", sURLVariables[sURLVariables.length-2]);
