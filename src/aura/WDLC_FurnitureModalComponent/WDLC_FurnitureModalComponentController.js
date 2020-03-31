@@ -16,8 +16,11 @@
             helper.doPostComment(component,event);
         },
         onInit : function(component, event, helper){
-            setInterval(function(){
-                helper.refreshComments(component,event);
-            }, 5000);
+                setInterval(function(){
+                    let typeOfComponent = component.get("v.typeOfModal");
+                    if(typeOfComponent === 'complaintDetails'){
+                        helper.refreshComments(component,event);
+                    }
+                }, 5000);
         }
 })
