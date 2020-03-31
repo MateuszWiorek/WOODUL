@@ -54,12 +54,10 @@
                     </div>
                 </lightning:tab>
             </lightning:tabset>
-<!--            <div class="carousel">-->
             <aura:if isTrue="{!not(empty(v.product))}">
                 <center><h3>{!$Label.c.WDLC_BuySimilar}</h3></center>
                 <c:WDLC_SimilarFurnitureProducts product2="{!v.product}"/>
             </aura:if>
-<!--            </div>-->
 
         </lightning:card>
     </aura:if>
