@@ -3,14 +3,12 @@
  */
 ({
     doSendDataToCase : function(component, event){
-        let createCaseAction = component.get("c.addComplaint");
-        let prodName = component.get("v.product");
-        let sub = component.get("v.subject");
-        let desc = component.get("v.description");
+        let createCaseAction = component.get("c.createComplaint");
         createCaseAction.setParams({
-            "productName" : prodName,
-            "subject" : sub,
-            "description" : desc
+            "productName" : component.get("v.product"),
+            "subject" : component.get("v.subject"),
+            "description" : component.get("v.description"),
+            "orderId" : component.get("v.order").Id
         });
 
         createCaseAction.setCallback(this, function(response){
@@ -27,8 +25,7 @@
                 }
                     component.set("v.showModal", false);
             }else{
-                let toast = component.find("toastComponent");
-                toast.openInformationToast(response.getError()[0], $A.get("{!$Label.c.Error}"), $A.get("{!$Label.c.Error}"));
+                component.find("errorToast").showError(response);
             }
         });
 
@@ -57,6 +54,7 @@
                         component.set("v.caseComments", response.getReturnValue());
                         component.set("v.caseCommentMessage","");
                     }else{
+                        component.find("errorToast").showError(response);
                     }
                 });
                 $A.enqueueAction(caseCommentsAction);
@@ -74,6 +72,7 @@
              if(state === "SUCCESS"){
                     component.set("v.caseComments", response.getReturnValue());
              }else{
+                 component.find("errorToast").showError(response);
              }
           });
           $A.enqueueAction(caseCommentsAction);

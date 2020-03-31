@@ -4,8 +4,13 @@
 
 public with sharing class WDLC_FurnitureComplaintsController {
     @AuraEnabled
-    public static Boolean createComplaint(String productName, String subject, String description) {
-        return WDLC_FurnitureComplaintsHelper.createComplaint(productName,subject,description);
+    public static Boolean createComplaint(String productName, String subject, String description, String orderId) {
+        Product2 prod = [SELECT Id, Name FROM Product2 WHERE Name = :productName];
+        try {
+            return WDLC_FurnitureComplaintsHelper.makeComplaint(prod.Id, subject, description, orderId);
+        } catch (Exception e) {
+            throw new WDLC_CustomException(e.getMessage());
+        }
     }
     @AuraEnabled
     public static List<CaseComment> getCaseComments(String caseId) {

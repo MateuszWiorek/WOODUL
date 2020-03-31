@@ -4,7 +4,7 @@
 
 public without sharing class WDLC_FurnitureComplaintsHelper {
 
-    public static Boolean makeComplaint(String productId, String subject, String description) {
+    public static Boolean makeComplaint(String productId, String subject, String description, String orderId) {
         AssignmentRule AR = new AssignmentRule();
         AR = [SELECT Id FROM AssignmentRule WHERE SobjectType = 'Case' AND Active = true LIMIT 1];
         Database.DMLOptions dmlOpts = new Database.DMLOptions();
@@ -13,11 +13,14 @@ public without sharing class WDLC_FurnitureComplaintsHelper {
         if (orderCustomSettings == null) {
             throw new WDLC_CustomException(Label.WDLC_CaseError);
         }
-        Case newCase = new Case(Status = 'New', Origin = 'Web', Priority = 'Medium',
+        Case newCase = new Case(Status = 'New',
+                Origin = 'Web', Priority = 'Medium',
                 AccountId = orderCustomSettings.AccountId__c,
-                Subject = subject, Description = description, Reason = 'Complaint', SuppliedEmail = UserInfo.getUserEmail());
+                Subject = subject, Description = description,
+                Reason = 'Complaint', SuppliedEmail = UserInfo.getUserEmail());
         newCase.setOptions(dmlOpts);
         newCase.ProductCase__c = productId;
+        newCase.OrderCase__c = orderId;
         try {
             Database.insert(newCase);
             return true;
@@ -50,13 +53,5 @@ public without sharing class WDLC_FurnitureComplaintsHelper {
                 FROM Case
                 WHERE Reason = 'Complaint' AND CreatedById = :UserInfo.getUserId()
         ];
-    }
-    public static Boolean createComplaint(String productName, String subject, String description) {
-        Product2 prod = [SELECT Id, Name FROM Product2 WHERE Name = :productName];
-        try {
-            return WDLC_FurnitureComplaintsHelper.makeComplaint(prod.Id, subject, description);
-        } catch (Exception e) {
-            throw new WDLC_CustomException(e.getMessage());
-        }
     }
 }

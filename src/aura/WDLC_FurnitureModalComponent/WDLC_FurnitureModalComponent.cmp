@@ -13,6 +13,7 @@
     <aura:attribute name="caseComments" type="Object[]" access="global"/>
     <aura:attribute name="complaint" type="Object" access="global"/>
     <aura:attribute name="caseCommentMessage" type="String" access="global"/>
+    <aura:attribute name="order" type="Object" access="global"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
     <aura:if isTrue="{!and(v.typeOfModal == 'Complaint', v.showModal)}">
@@ -153,4 +154,6 @@
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>

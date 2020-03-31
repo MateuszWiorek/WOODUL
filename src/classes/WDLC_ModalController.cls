@@ -4,17 +4,13 @@
 
 public with sharing class WDLC_ModalController {
     @AuraEnabled
-    public static Boolean createComplaint(String productName, String subject, String description) {
-        return WDLC_FurnitureComplaintsHelper.createComplaint(productName,subject,description);
-    }
-    @AuraEnabled
     public static void postCommentToCase(String caseId, String bodyComment) {
         WDLC_FurnitureComplaintsHelper.postCommentToCase(caseId, bodyComment);
     }
     @AuraEnabled
-    public static Boolean addComplaint(String productName, String subject, String description){
+    public static Boolean addComplaint(String productName, String subject, String description, String orderId){
         try {
-            return WDLC_FurnitureComplaintsController.createComplaint(productName, subject, description);
+            return WDLC_FurnitureComplaintsController.createComplaint(productName, subject, description, orderId);
         }catch (Exception e){
             throw new WDLC_CustomException(e.getMessage());
         }
