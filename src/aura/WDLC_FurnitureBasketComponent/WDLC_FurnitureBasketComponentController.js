@@ -1,5 +1,5 @@
 /**
- * Created by Mateusz Wiorek on 26.03.2020.
+ * Created by Mateusz Wiorek on 31.03.2020.
  */
 ({
         doInit : function(component, event, helper){
@@ -13,5 +13,9 @@
       },
       orderWithDefaultAddress : function(component, event, helper){
           helper.doOrderWithDefaultAddress(component,event);
+      },
+      goToObserved : function(component, event){
+        let orderAddress = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/wishlist';
+        window.open(orderAddress, '_top');
       }
 })
