@@ -8,11 +8,11 @@
     <aura:attribute name="productQuantity" type="Decimal" access="global" default="{!v.cell.quantity}"/>
 
     <aura:registerEvent name="changeEvent" type="c:WDLC_RefreshOrderList"/>
-    <tr onclick="{!c.goToProduct}">
+    <tr>
         <td data-label="{!$Label.c.WDLC_ProductName}">
             <div style="height:70px; overflow:hidden;">
                 <img src="{!v.cell.product.productPhotoUrl}"
-                     style="margin-top: 5px; width:60px; height:auto; object-fit:cover;"/>
+                     style="margin-top: 5px; width:60px; height:auto; object-fit:cover;" onclick="{!c.goToProduct}"/>
             </div>
         </td>
         <td data-label="{!$Label.c.Description}">
@@ -32,6 +32,10 @@
         <td data-label="Price">
             <lightning:formattedNumber value="{!v.cell.totalCost}" style="currency"
                                        currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
+            <div> ({!v.cell.quantity} x <lightning:formattedNumber value="{!v.cell.product.productPrice}" style="currency"
+                                                                   currencyCode="{!$Locale.currencyCode}"
+                                                                   currencyDisplayAs="symbol"/>)
+            </div>
         </td>
         <td data-label="Action">
             <lightning:buttonIcon iconName="utility:delete" onclick="{!c.removeProduct}" variant="bare"/>
