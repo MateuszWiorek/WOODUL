@@ -10,14 +10,9 @@
         });
         setMain.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
-            component.find("infoToast").openInformationToast("Set main photo", 'success','success');
             component.getEvent('changeEvent').fire();
             }
         });
         $A.enqueueAction(setMain);
     },
-    onInit : function(component, event){
-        console.log(component.get("v.productId"))
-        console.log(component.get("v.photoUrl"))
-    }
 })

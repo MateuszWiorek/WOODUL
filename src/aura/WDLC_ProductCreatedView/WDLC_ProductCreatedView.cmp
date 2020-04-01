@@ -18,7 +18,8 @@
                     <h2 style="font-size:46px; font-weight:bolder;">{!$Label.c.WDLC_Summary}</h2>
                 </div>
                 <div class="slds-col slds-size--1-of-6">
-                <lightning:button onclick="{!c.goToPage}">{!$Label.c.WDLC_GoToDetails}</lightning:button> </div>
+                <lightning:button onclick="{!c.goToPage}" variant="brand">
+                        {!$Label.c.WDLC_GoToDetails}</lightning:button> </div>
                 <lightning:recordViewForm objectApiName="Product2" recordId="{!v.productId}">
                     <div class="slds-col slds-size--1-of-1">
                         <lightning:outputField fieldName="{!$Label.c.Name}"/>
