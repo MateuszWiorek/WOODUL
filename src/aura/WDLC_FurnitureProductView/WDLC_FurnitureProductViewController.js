@@ -18,8 +18,25 @@
             if(state === "SUCCESS"){
                 component.set("v.product", response.getReturnValue());
                 component.set("v.productId", productToShowId);
+                component.set("v.livePhoto", response.getReturnValue().productPhotoUrl);
+            let getPhotosAction = component.get("c.getPhotos");
+            getPhotosAction.setParams({
+                "productId" : productToShowId
+            });
+            getPhotosAction.setCallback(this, function(response){
+                if(response.getState() === "SUCCESS"){
+                    if(response.getReturnValue().length>0){
+                        component.set("v.productPhotos", response.getReturnValue());
+                        console.log(response.getReturnValue());
+                    }else{
+                        component.set("v.productPhotos", component.get("v.product").productPhotoUrl);
+                    }
+                }
+            });
+            $A.enqueueAction(getPhotosAction)
             }
         });
+
         $A.enqueueAction(initAction);
     },
     addToCart : function(component, event, helper){
@@ -30,5 +47,9 @@
     },
     removeFromList : function(component, event, helper){
         helper.doRemoveFromList(component, event);
+    },
+    setLivePhoto : function(component, event){
+        console.log(event.getParam('source'));
+        component.set("v.livePhoto", event.getParam('source'));
     }
 })

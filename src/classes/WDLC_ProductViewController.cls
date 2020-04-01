@@ -15,4 +15,8 @@ public with sharing class WDLC_ProductViewController {
     public static void addProductToWishList(String productId){
         WDLC_WishlistController.addToWishList(productId);
     }
+    @AuraEnabled
+    public static List<String> getPhotos(String productId){
+        return WDLC_ProductManagementController.getImages(productId);
+    }
 }
