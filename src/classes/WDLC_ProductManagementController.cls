@@ -39,11 +39,28 @@ public with sharing class WDLC_ProductManagementController {
         prod.Family = family;
         prod.IsActive = true;
         prod.RecordTypeId = recordTypeId;
-        if(photosIds.size() >0) {
-            prod.photoUrl__c = startURL + photosIds.get(0);
-        }
         Database.SaveResult sr = Database.insert(prod);
         String productId = sr.getId();
+        List<ContentDocumentLink> cdl = new List<ContentDocumentLink>();
+for(String pI : photosIds){
+    cdl.add(new ContentDocumentLink(LinkedEntityId = productId, ContentDocumentId = pI, ShareType = 'I', Visibility='AllUsers'));
+}
+        Database.insert(cdl);
+        ContentVersion cv = [SELECT Id FROM ContentVersion WHERE ContentDocumentId = :cdl.get(0).ContentDocumentId];
+        ContentDistribution cd = new ContentDistribution();
+        cd.Name = 'Test';
+        cd.ContentVersionId = cv.id;
+        cd.PreferencesAllowViewInBrowser= true;
+        cd.PreferencesLinkLatestVersion=true;
+        cd.PreferencesNotifyOnVisit=false;
+        cd.PreferencesPasswordRequired=false;
+        cd.PreferencesAllowOriginalDownload= true;
+        insert cd;
+        ContentDistribution ccccc = [
+                SELECT
+                        DistributionPublicUrl, ContentVersionId FROM ContentDistribution WHERE ContentVersionId = :cv.Id LIMIT 1];
+        prod.photoUrl__c = ccccc.DistributionPublicUrl;
+        upsert prod;
         List<WDLC_Photo__c> photos = new List<WDLC_Photo__c>();
         for(String ph : photosIds){
             WDLC_Photo__c photo = new WDLC_Photo__c();
