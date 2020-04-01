@@ -15,23 +15,23 @@
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size--1-of-6"/>
                 <div class="slds-col slds-size--4-of-6">
-                    <h2 style="font-size:46px; font-weight:bolder;">Summary</h2>
+                    <h2 style="font-size:46px; font-weight:bolder;">{!$Label.c.WDLC_Summary}</h2>
                 </div>
                 <div class="slds-col slds-size--1-of-6">
-                <lightning:button onclick="{!c.goToPage}"> Go to details page.</lightning:button> </div>
+                <lightning:button onclick="{!c.goToPage}">{!$Label.c.WDLC_GoToDetails}</lightning:button> </div>
                 <lightning:recordViewForm objectApiName="Product2" recordId="{!v.productId}">
                     <div class="slds-col slds-size--1-of-1">
-                        <lightning:outputField fieldName="Name"/>
+                        <lightning:outputField fieldName="{!$Label.c.Name}"/>
                     </div>
                     <div class="slds-col slds-size--1-of-1">
-                        <lightning:outputField fieldName="Description"/>
+                        <lightning:outputField fieldName="{!$Label.c.Description}"/>
                     </div>
                     <div class="slds-col slds-size--1-of-1">
-                        <lightning:outputField fieldName="Family"/>
+                        <lightning:outputField fieldName="{!$Label.c.Family}"/>
                     </div>
                     <div class="slds-col slds-size--2-of-6"/>
                     <div class="slds-col slds-size--4-of-6">
-                        <h2 style="font-size:22px; font-weight:bold;">Set main photo</h2>
+                        <h2 style="font-size:22px; font-weight:bold;">{!$Label.c.WDLC_SetMainPhoto}</h2>
                     </div>
                 </lightning:recordViewForm>
             </div>

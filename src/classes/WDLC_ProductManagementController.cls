@@ -16,8 +16,9 @@ public with sharing class WDLC_ProductManagementController {
         }
         return options;
     }
+
     public List<WDLC_Photo__c> getPhotos(List<String> files, String productId){
-        String startURL = 'https://woodu-dev-ed.lightning.force.com/sfc/servlet.shepherd/document/download/';
+        String startURL = Label.WDLC_StartUrl;
         List<WDLC_Photo__c> photos = new List<WDLC_Photo__c>();
         for(String file : files){
             WDLC_Photo__c photo = new WDLC_Photo__c();
@@ -30,7 +31,7 @@ public with sharing class WDLC_ProductManagementController {
     }
     @AuraEnabled
     public static Id addProduct(String name, String description, String family, List<String> photosIds){
-        String startURL = 'https://woodu-dev-ed.lightning.force.com/sfc/servlet.shepherd/document/download/';
+        String startURL = Label.WDLC_StartUrl;
         Id recordTypeId = Schema.SObjectType.Product2.getRecordTypeInfosByName().get('Furniture').getRecordTypeId();
         Product2 prod = new Product2();
         prod.Name = name;
