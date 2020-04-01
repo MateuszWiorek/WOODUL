@@ -1,0 +1,77 @@
+<!--
+ - Created by Mateusz Wiorek on 26.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureBasketComponent" controller="WDLC_BasketController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="productsToOrder" type="Object[]" access="global"/>
+    <aura:attribute name="totalPrice" type="String" access="global"/>
+    <aura:attribute name="itemsInBasket" type="String" access="global" default="0"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:WDLC_RefreshBasketComponent" action="{!c.refreshTable}"/>
+    <div class="wrapper">
+        <div class="cart">
+            <div class="icon-cart" style="float: left">
+                <div class="cart-line-1" style="background-color: #02A7D7"></div>
+                <div class="cart-line-2" style="background-color: #02A7D7"></div>
+                <div class="cart-line-3" style="background-color: #02A7D7"></div>
+                <div class="cart-wheel" style="background-color: #02A7D7"></div>
+            </div>
+            <span style="color:white; font-size:25px;">{!v.itemsInBasket}</span>
+        </div>
+        <div class="cartItems">
+            <aura:if isTrue="{!not(empty(v.productsToOrder))}">
+                <lightning:card>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate" style="width:70px;"
+                                     title="{!$Label.c.WDLC_Product}">{!$Label.c.WDLC_Product}</div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_Quantity}">{!$Label.c.WDLC_Quantity}
+                                </div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_Price}">{!$Label.c.WDLC_Price}
+                                </div>
+                            </strong></th>
+                            <th class="" scope="col"><strong>
+                                <div class="slds-truncate slds-truncate_container_10"
+                                     title="{!$Label.c.WDLC_Action}">{!$Label.c.WDLC_Action}
+                                </div>
+                            </strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <aura:iteration var="cell1" items="{!v.productsToOrder}" indexVar="index">
+                            <c:WDLC_OrderTableRow changeEvent="{!c.refreshTable}" cell="{!cell1}"/>
+                        </aura:iteration>
+
+                        </tbody>
+                    </table>
+                    <h2>{!$Label.c.WDLC_TotalPrice}:
+                        <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
+                                                   currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
+                    </h2>
+                    <center class="productInfo" style="margin-top: 15px;">
+                        <lightning:button class="slds-button slds-button_outline-brand"
+                                          onclick="{!c.goToOrder}">{!$Label.c.WDLC_GoToOrder}</lightning:button>
+                        <lightning:button class="slds-button slds-button_outline-brand"
+                                          onclick="{!c.orderWithDefaultAddress}">{!$Label.c.WDLC_Order}</lightning:button>
+                    </center>
+                </lightning:card>
+            </aura:if>
+        </div>
+        <div class="observedIcon" style="margin-left:10px;">
+            <lightning:buttonIcon iconName="utility:favorite" alternativeText="{!$Label.c.WDLC_GoToObserved}" onclick="{!c.goToObserved}"
+                                  class="heart"/>
+        </div>
+    </div>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ErrorComponent aura:id="errorToast"/>
+</aura:component>
