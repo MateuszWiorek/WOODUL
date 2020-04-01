@@ -2,21 +2,15 @@
  * Created by Mateusz Wiorek on 01.04.2020.
  */
 ({
-    onInit : function(component,event,helper){
-        let getPhotosAction = component.get("c.loadPhotos");
+onInit : function(component,event,helper){
+        let getPhotosAction = component.get("c.getImages");
         getPhotosAction.setParams({
-            "id" : component.get("v.recordId")
+            "productId" : component.get("v.recordId")
         });
         getPhotosAction.setCallback(this, function(response){
             console.log(response.getState());
             if(response.getState() === "SUCCESS"){
-                console.log(response.getReturnValue());
-                let photosIds = response.getReturnValue();
-                let photosUrls = [];
-                photosIds.forEach(function(item){
-                    photosUrls.push($A.get("{!$Label.c.WDLC_StartUrl}")+item.FileId__c);
-                });
-                component.set("v.photos", photosUrls);
+                component.set("v.photos", response.getReturnValue());
                         let getMainAction = component.get("c.getMainPhoto");
                         getMainAction.setParams({
                             "productId" : component.get("v.recordId")

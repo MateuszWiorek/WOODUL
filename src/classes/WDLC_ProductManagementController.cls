@@ -17,10 +17,10 @@ public with sharing class WDLC_ProductManagementController {
         return options;
     }
 
-    public List<WDLC_Photo__c> getPhotos(List<String> files, String productId){
+    public List<WDLC_Photo__c> getPhotos(List<String> files, String productId) {
         String startURL = Label.WDLC_StartUrl;
         List<WDLC_Photo__c> photos = new List<WDLC_Photo__c>();
-        for(String file : files){
+        for (String file : files) {
             WDLC_Photo__c photo = new WDLC_Photo__c();
             photo.FileId__c = startURL + file;
             photo.Product__c = productId;
@@ -30,7 +30,7 @@ public with sharing class WDLC_ProductManagementController {
         return photos;
     }
     @AuraEnabled
-    public static Id addProduct(String name, String description, String family, List<String> photosIds){
+    public static Id addProduct(String name, String description, String family, List<String> photosIds) {
         String startURL = Label.WDLC_StartUrl;
         Id recordTypeId = Schema.SObjectType.Product2.getRecordTypeInfosByName().get('Furniture').getRecordTypeId();
         Product2 prod = new Product2();
@@ -39,30 +39,47 @@ public with sharing class WDLC_ProductManagementController {
         prod.Family = family;
         prod.IsActive = true;
         prod.RecordTypeId = recordTypeId;
+
         Database.SaveResult sr = Database.insert(prod);
         String productId = sr.getId();
+
         List<ContentDocumentLink> cdl = new List<ContentDocumentLink>();
-for(String pI : photosIds){
-    cdl.add(new ContentDocumentLink(LinkedEntityId = productId, ContentDocumentId = pI, ShareType = 'I', Visibility='AllUsers'));
-}
-        Database.insert(cdl);
-        ContentVersion cv = [SELECT Id FROM ContentVersion WHERE ContentDocumentId = :cdl.get(0).ContentDocumentId];
-        ContentDistribution cd = new ContentDistribution();
-        cd.Name = 'Test';
-        cd.ContentVersionId = cv.id;
-        cd.PreferencesAllowViewInBrowser= true;
-        cd.PreferencesLinkLatestVersion=true;
-        cd.PreferencesNotifyOnVisit=false;
-        cd.PreferencesPasswordRequired=false;
-        cd.PreferencesAllowOriginalDownload= true;
-        insert cd;
-        ContentDistribution ccccc = [
+        for (String pI : photosIds) {
+            cdl.add(new ContentDocumentLink(LinkedEntityId = productId, ContentDocumentId = pI,
+                    ShareType = 'I', Visibility = 'AllUsers'));
+        }
+        Set<String> ids = new Set<String>();
+        for (ContentDocumentLink cd : cdl) {
+            ids.add(cd.ContentDocumentId);
+        }
+        insert cdl;
+        List<ContentVersion> cvs = [SELECT Id FROM ContentVersion WHERE ContentDocumentId IN :ids];
+        List<ContentDistribution> cds = new List<ContentDistribution>();
+        for (ContentVersion cv : cvs) {
+            ContentDistribution cd = new ContentDistribution();
+
+            cd.Name = 'Test';
+            cd.ContentVersionId = cv.id;
+            cd.PreferencesAllowViewInBrowser = true;
+            cd.PreferencesLinkLatestVersion = true;
+            cd.PreferencesNotifyOnVisit = false;
+            cd.PreferencesPasswordRequired = false;
+            cd.PreferencesAllowOriginalDownload = true;
+            cds.add(cd);
+        }
+        insert cds;
+        ContentDistribution contentDistributionRetrieved = [
                 SELECT
-                        DistributionPublicUrl, ContentVersionId FROM ContentDistribution WHERE ContentVersionId = :cv.Id LIMIT 1];
-        prod.photoUrl__c = ccccc.DistributionPublicUrl;
+                        ContentDownloadUrl, ContentVersionId
+                FROM ContentDistribution
+                WHERE ContentVersionId = :cvs.get(0).Id
+                LIMIT 1
+        ];
+        prod.photoUrl__c = contentDistributionRetrieved.ContentDownloadUrl;
+
         upsert prod;
         List<WDLC_Photo__c> photos = new List<WDLC_Photo__c>();
-        for(String ph : photosIds){
+        for (String ph : photosIds) {
             WDLC_Photo__c photo = new WDLC_Photo__c();
             photo.Product__c = productId;
             photo.FileId__c = ph;
@@ -83,16 +100,57 @@ for(String pI : photosIds){
         Database.SaveResult result = Database.update(products[0]);
     }
     @AuraEnabled
-    public static String getMainPhoto(String productId){
+    public static String getMainPhoto(String productId) {
         List<Product2> products = [SELECT Id, photoUrl__c FROM Product2 WHERE Id = :productId];
         return products[0].photoUrl__c;
     }
     @AuraEnabled
-    public static String getListViewId(){
-        List<ListView> ids = [SELECT
-                DeveloperName,
-                Id
-        FROM ListView WHERE DeveloperName='FurnitureProducts'];
+    public static String getListViewId() {
+        List<ListView> ids = [
+                SELECT
+                        DeveloperName,
+                        Id
+                FROM ListView
+                WHERE DeveloperName = 'FurnitureProducts'
+        ];
         return ids[0].Id;
+    }
+    @AuraEnabled
+    public static List<String> getImages(String productId) {
+        List<ContentDocumentLink> cdl = [
+                SELECT ContentDocumentId, LinkedEntityId
+                FROM ContentDocumentLink
+                WHERE LinkedEntityId = :productId
+        ];
+        System.debug(cdl);
+        Set<String> ids = new Set<String>();
+        for (ContentDocumentLink cd : cdl) {
+            ids.add(cd.ContentDocumentId);
+        }
+        System.debug(ids);
+        List<ContentVersion> cvs = [
+                SELECT Id
+                FROM ContentVersion
+                WHERE ContentDocumentId IN :ids
+        ];
+        System.debug(cvs);
+        Set<String> cvIds = new Set<String>();
+        for (ContentVersion cv : cvs) {
+            cvIds.add(cv.Id);
+        }
+        System.debug(cvIds);
+        List<ContentDistribution> cddd = [
+                SELECT ContentVersionId,
+                        ContentDownloadUrl
+                FROM ContentDistribution
+                WHERE ContentVersionId IN :cvIds
+        ];
+        System.debug(cddd);
+        List<String> photos = new List<String>();
+        for (ContentDistribution c : cddd) {
+            photos.add(c.ContentDownloadUrl);
+        }
+        System.debug(photos);
+    return photos;
     }
 }
