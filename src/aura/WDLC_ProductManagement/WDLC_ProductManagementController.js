@@ -10,7 +10,7 @@
           if(response.getState() === "SUCCESS"){
               component.set("v.families", response.getReturnValue());
           }else{
-
+              component.find("errorToast").showError(response);
           }
       });
       $A.enqueueAction(initAction);
@@ -34,15 +34,33 @@
        createAction.setCallback(this, function(response){
            console.log(response.getState());
            if(response.getState() === "SUCCESS"){
-               let sendIdEvent = $A.get("e.c:WDLC_ProductIdSendToSummary");
-               sendIdEvent.setParams({
-                   "productId" : response.getReturnValue()
-               });
-               sendIdEvent.fire();
+                let navEvt = $A.get("e.force:navigateToSObject");
+                navEvt.setParams({
+                    "recordId": response.getReturnValue(),
+                    "slideDevName": "detail"
+                });
+                navEvt.fire();
            }else{
               component.find("errorToast").showError(response);
            }
        });
        $A.enqueueAction(createAction);
+   },
+   goBackToList : function(component){
+       let getListViewIdAction = component.get("c.getListViewId");
+       getListViewIdAction.setCallback(this, function(response){
+           if(response.getState() === "SUCCESS"){
+                let navEvent = $A.get("e.force:navigateToList");
+                navEvent.setParams({
+                   "listViewId": response.getReturnValue(),
+                   "listViewName": null,
+                    "scope": "Product2"
+                });
+                navEvent.fire();
+           }else{
+               component.find("errorToast").showError(response);
+           }
+       });
+       $A.enqueueAction(getListViewIdAction);
    }
 })

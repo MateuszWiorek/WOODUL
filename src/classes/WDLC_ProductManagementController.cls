@@ -70,4 +70,12 @@ public with sharing class WDLC_ProductManagementController {
         List<Product2> products = [SELECT Id, photoUrl__c FROM Product2 WHERE Id = :productId];
         return products[0].photoUrl__c;
     }
+    @AuraEnabled
+    public static String getListViewId(){
+        List<ListView> ids = [SELECT
+                DeveloperName,
+                Id
+        FROM ListView WHERE DeveloperName='FurnitureProducts'];
+        return ids[0].Id;
+    }
 }

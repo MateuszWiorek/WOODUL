@@ -3,7 +3,7 @@
  -->
 
 <aura:component description="WDLC_ProductManagement" controller="WDLC_ProductManagementController"
-                implements="flexiPage:availableForAllPageTypes">
+                implements="flexiPage:availableForAllPageTypes, force:lightningQuickAction">
     <aura:attribute name="product" type="Object" access="global"/>
     <aura:attribute name="filesId" type="String[]" access="global"/>
     <aura:attribute name="description" type="String" access="global"/>
@@ -15,41 +15,52 @@
     <aura:registerEvent name="WDLC_ProductIdSendToSummary" type="c:WDLC_ProductIdSendToSummary"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
-    <lightning:card>
-        <div class="slds-grid slds-wrap">
-            <div class="slds-col slds-size--2-of-6"/>
-            <div class="slds-col slds-size--4-of-6">
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <lightning:card>
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                    <span class="slds-assistive-text">Close</span>
+                </button>
                 <h2 style="font-size:46px; font-weight:bolder;">{!$Label.c.WDLC_AddProduct}</h2>
-            </div>
-            <div class="slds-col slds-size--1-of-1">
-                <ui:inputText value="{!v.description}" label="{!$Label.c.WDLC_ProductDescription}"></ui:inputText>
-            </div>
-            <div class="slds-col slds-size--1-of-1">
-                <ui:inputText value="{!v.name}" label="{!$Label.c.WDLC_ProductName}"></ui:inputText>
-            </div>
-            <aura:if isTrue="{!not(empty(v.families))}">
-                <div class="slds-col slds-size--1-of-1">
-                    <lightning:select label="{!$Label.c.Family}" aura:id="picklistFamilies">
-                        <aura:iteration items="{!v.families}" var="famil">
-                            <option text="{!famil}" value="{!v.family}"></option>
-                        </aura:iteration>
-                    </lightning:select>
+
+            </header>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size--1-of-1" style="padding:10px;">
+                    <ui:inputText value="{!v.description}" label="{!$Label.c.WDLC_ProductDescription}"></ui:inputText>
                 </div>
-            </aura:if>
-            <div class="slds-col slds-size--1-of-1">
-                <lightning:fileUpload label="{!$Label.c.WDLC_AttachPhotos}"
-                                      name="fileUploader"
-                                      multiple="true"
-                                      accept=".pdf, .png"
-                                      recordId="{!v.userId}"
-                                      onuploadfinished="{!c.handleUploadFinished}"/>
+                <div class="slds-col slds-size--1-of-1" style="padding:10px;">
+                    <ui:inputText value="{!v.name}" label="{!$Label.c.WDLC_ProductName}"></ui:inputText>
+                </div>
+                <aura:if isTrue="{!not(empty(v.families))}">
+                    <div class="slds-col slds-size--1-of-1" style="padding:10px;">
+                        <lightning:select label="{!$Label.c.Family}" aura:id="picklistFamilies">
+                            <aura:iteration items="{!v.families}" var="famil">
+                                <option text="{!famil}" value="{!v.family}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </aura:if>
+                <div class="slds-col slds-size--1-of-1" style="padding:10px;">
+                    <lightning:fileUpload label="{!$Label.c.WDLC_AttachPhotos}"
+                                          name="fileUploader"
+                                          multiple="true"
+                                          accept=".pdf, .png"
+                                          recordId="{!v.userId}"
+                                          onuploadfinished="{!c.handleUploadFinished}"/>
+                </div>
             </div>
-            <div class="slds-col slds-size--1-of-1 slds-text-align--right">
+            <footer class="slds-modal__footer">
+                <lightning:button label="{!$Label.c.WDLC_AddProduct}" variant="brand" onclick="{!c.goBackToList}">
+                            Back to list
+                    </lightning:button>
                 <lightning:button label="{!$Label.c.WDLC_AddProduct}" variant="brand" onclick="{!c.createProduct}">
-                        {!$Label.c.WDLC_AddProduct}
-                </lightning:button>
-            </div>
+                            {!$Label.c.WDLC_AddProduct}
+                    </lightning:button>
+            </footer>
+            </lightning:card>
         </div>
-    </lightning:card>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
     <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>
