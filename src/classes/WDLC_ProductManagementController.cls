@@ -16,19 +16,6 @@ public with sharing class WDLC_ProductManagementController {
         }
         return options;
     }
-
-    public List<WDLC_Photo__c> getPhotos(List<String> files, String productId) {
-        String startURL = Label.WDLC_StartUrl;
-        List<WDLC_Photo__c> photos = new List<WDLC_Photo__c>();
-        for (String file : files) {
-            WDLC_Photo__c photo = new WDLC_Photo__c();
-            photo.FileId__c = startURL + file;
-            photo.Product__c = productId;
-            photos.add(photo);
-        }
-        Database.upsert(photos);
-        return photos;
-    }
     @AuraEnabled
     public static Id addProduct(String name, String description, String family, List<String> photosIds) {
         String startURL = Label.WDLC_StartUrl;
@@ -78,20 +65,7 @@ public with sharing class WDLC_ProductManagementController {
         prod.photoUrl__c = contentDistributionRetrieved.ContentDownloadUrl;
 
         upsert prod;
-        List<WDLC_Photo__c> photos = new List<WDLC_Photo__c>();
-        for (String ph : photosIds) {
-            WDLC_Photo__c photo = new WDLC_Photo__c();
-            photo.Product__c = productId;
-            photo.FileId__c = ph;
-            photos.add(photo);
-        }
-        Database.insert(photos);
         return productId;
-    }
-    @AuraEnabled
-    public static List<WDLC_Photo__c> loadPhotos(String id) {
-        List<WDLC_Photo__c> photos = [SELECT Id, Product__c, FileId__c FROM WDLC_Photo__c WHERE Product__c = :id];
-        return photos;
     }
     @AuraEnabled
     public static void setMainPhoto(String url, String productId) {
@@ -122,35 +96,29 @@ public with sharing class WDLC_ProductManagementController {
                 FROM ContentDocumentLink
                 WHERE LinkedEntityId = :productId
         ];
-        System.debug(cdl);
         Set<String> ids = new Set<String>();
         for (ContentDocumentLink cd : cdl) {
             ids.add(cd.ContentDocumentId);
         }
-        System.debug(ids);
         List<ContentVersion> cvs = [
                 SELECT Id
                 FROM ContentVersion
                 WHERE ContentDocumentId IN :ids
         ];
-        System.debug(cvs);
         Set<String> cvIds = new Set<String>();
         for (ContentVersion cv : cvs) {
             cvIds.add(cv.Id);
         }
-        System.debug(cvIds);
         List<ContentDistribution> cddd = [
                 SELECT ContentVersionId,
                         ContentDownloadUrl
                 FROM ContentDistribution
                 WHERE ContentVersionId IN :cvIds
         ];
-        System.debug(cddd);
         List<String> photos = new List<String>();
         for (ContentDistribution c : cddd) {
             photos.add(c.ContentDownloadUrl);
         }
-        System.debug(photos);
     return photos;
     }
 }
