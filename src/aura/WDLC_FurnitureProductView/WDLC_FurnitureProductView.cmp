@@ -18,21 +18,20 @@
                 <div class="slds-size--1-of-12 slds-col_bump-left">
                     <aura:if isTrue="{!not(empty(v.productPhotos))}">
                     <aura:iteration items="{!v.productPhotos}" var="photoUrl">
-<!--                        <img src="{!photoUrl}"/>-->
+
                         <c:WDLC_ProductPhotoElement photoUrl="{!photoUrl}" changeLiveEvent="{!c.setLivePhoto}"/>
                     </aura:iteration>
                     </aura:if>
                 </div>
                 <div class="slds-col slds-size--5-of-12">
                     <img src="{!v.livePhoto}"/>
-<!--                    <img src="{!v.product.productPhotoUrl}"/>-->
                 </div>
                 <div class="slds-col slds-size--1-of-12"/>
                 <div class="slds-col slds-size--5-of-12 slds-align-middle productInfo">
                     <h2>{!v.product.productName}</h2>
                     <p>
                         <lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
-                                                   currencyCode="EUR" currencyDisplayAs="symbol"/>
+                                                   currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
                     </p>
                     <lightning:button class="slds-button slds-button_outline-brand"
                                       onclick="{!c.addToCart}">{!$Label.c.WDLC_AddToCart}</lightning:button>

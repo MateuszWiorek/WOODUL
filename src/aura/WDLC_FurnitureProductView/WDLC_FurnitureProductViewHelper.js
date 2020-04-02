@@ -2,8 +2,39 @@
  * Created by Mateusz Wiorek on 23.03.2020.
  */
 ({
-    doHandleProductId : function(component, event){
-        let productId = event.getParam("productId");
+    doOnInit : function(component, event){
+        let initAction = component.get("c.getProduct");
+        let productUrl = decodeURIComponent(window.location.pathname.substring(1));
+        let variables = productUrl.split("/");
+        let productToShowId = variables[variables.length-1];
+        initAction.setParams({
+            "productId" : productToShowId
+        });
+        initAction.setCallback(this, function(response){
+            let state = response.getState();
+            if(state === "SUCCESS"){
+                component.set("v.product", response.getReturnValue());
+                component.set("v.productId", productToShowId);
+                component.set("v.livePhoto", response.getReturnValue().productPhotoUrl);
+            let getPhotosAction = component.get("c.getPhotos");
+            getPhotosAction.setParams({
+                "productId" : productToShowId
+            });
+            getPhotosAction.setCallback(this, function(response){
+                if(response.getState() === "SUCCESS"){
+                    if(response.getReturnValue().length>0){
+                        component.set("v.productPhotos", response.getReturnValue());
+                        console.log(response.getReturnValue());
+                    }else{
+                        component.set("v.productPhotos", component.get("v.product").productPhotoUrl);
+                    }
+                }
+            });
+            $A.enqueueAction(getPhotosAction)
+            }
+        });
+
+        $A.enqueueAction(initAction);
     },
     doAddToCart : function(component,event){
         let productToBuyId = component.get("v.productId");

@@ -6,7 +6,7 @@
     <aura:attribute name="photoUrl" type="String" access="global"/>
 
     <aura:registerEvent name="changeLiveEvent" type="c:WDLC_ChangeLivePhoto"/>
-    <aura:if isTrue="{!not(empty(v.photoUrl))}">\
+    <aura:if isTrue="{!not(empty(v.photoUrl))}">
     <div onclick="{!c.refreshLivePhoto}">
         <img src="{!v.photoUrl}"/>
     </div>
