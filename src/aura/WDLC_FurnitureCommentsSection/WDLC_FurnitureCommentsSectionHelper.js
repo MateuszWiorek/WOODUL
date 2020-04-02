@@ -9,7 +9,6 @@
            "content" : component.get("v.richComment"),
            "productId" : component.get("v.product").productId
         });
-
         commentAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){

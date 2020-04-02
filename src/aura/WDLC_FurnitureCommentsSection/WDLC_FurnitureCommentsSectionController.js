@@ -10,7 +10,6 @@
         helper.doInit(component, event);
     },
     rate : function(component, event){
-        console.log(event.getParam("ratingProduct"));
         component.set("v.ratingGrade", event.getParam("ratingProduct"));
     }
 })
