@@ -15,7 +15,11 @@ public with sharing class WDLC_FurnitureProductCommentsHelper {
         comment.Rating__c = rating;
         comment.Product__c = productId;
         Database.SaveResult saveResult = Database.insert(comment);
-        return (saveResult.isSuccess() ? true : false);
+        if(saveResult.isSuccess()){
+            return true;
+        }else{
+            throw new WDLC_CustomException(saveResult.getErrors().get(0).getMessage());
+        }
     }
     public static List<WDLC_Comment__c> getComments(String productId) {
         List<WDLC_Comment__c> comments = [
@@ -26,12 +30,10 @@ public with sharing class WDLC_FurnitureProductCommentsHelper {
         return comments;
     }
     private static Boolean checkIfUserAlreadyCommentProduct(String productId) {
-        List<WDLC_Comment__c> comments = getComments(productId);
-        for (WDLC_Comment__c com : comments) {
-            if (com.CreatedById == UserInfo.getUserId()) {
-                return true;
-            }
-        }
-        return false;
+        List<WDLC_Comment__c> comments = [
+                SELECT createdByUser__c, CreatedById, Product__c
+                FROM WDLC_Comment__c
+                WHERE Product__c = :productId AND createdByUser__c =:UserInfo.getUserId()];
+        return(!comments.isEmpty());
     }
 }
