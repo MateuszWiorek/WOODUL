@@ -6,8 +6,12 @@ public with sharing class WDLC_WishlistHelper {
 
     public static Boolean addProductToWishlist(String productId) {
         WDLC_Wishlist__c wishlistedProduct = new WDLC_Wishlist__c(ProductId__c = productId);
-        Database.SaveResult saveResult = Database.insert(wishlistedProduct);
-        return (saveResult.isSuccess() ? true : false);
+        try{
+            insert(wishlistedProduct);
+            return true;
+        }catch (DmlException e){
+            throw new WDLC_CustomException(e.getMessage());
+        }
     }
 
     public static Boolean removeProductFromWishList(String productId) {
@@ -20,8 +24,8 @@ public with sharing class WDLC_WishlistHelper {
         ];
         if (element != null) {
             try {
-                Database.DeleteResult dr = Database.delete(element);
-                return dr.isSuccess()?true:false;
+                delete(element);
+                return true;
             } catch (DmlException e) {
                 throw new WDLC_CustomException(Label.WDLC_DeleteError);
             }
