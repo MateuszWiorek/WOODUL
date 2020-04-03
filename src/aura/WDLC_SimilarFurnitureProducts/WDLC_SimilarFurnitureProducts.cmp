@@ -4,7 +4,7 @@
 
 <aura:component description="WDLC_SimilarFurnitureProducts" controller="WDLC_SimilarProductsController"
                 implements="forceCommunity:availableForAllPageTypes">
-    <aura:attribute type="Object" name="product" access="global"/>
+    <aura:attribute type="Object" name="product2" access="global"/>
     <aura:attribute type="Object[]" name="similarProducts" access="global"/>
     <aura:attribute type="Boolean" name="canBeShown" access="global" default="true"/>
 
@@ -19,12 +19,12 @@
         <lightning:card>
             <div class="carousel">
                 <aura:iteration items="{!v.similarProducts}" var="similarProduct">
-                    <div style="overflow: hidden; width: 110px; height: auto; margin-right:7px;">
+                    <div style="overflow: hidden; width: 110px; height: auto; margin-right:7px; margin-left:110px;">
                         <c:WDLC_ProductTile product="{!similarProduct}"/>
-                        <p>{!similarProduct.productName}</p>
                     </div>
                 </aura:iteration>
             </div>
         </lightning:card>
     </aura:if>
+    <c:WDLC_ErrorComponent aura:id="errorToast"/>
 </aura:component>

@@ -3,36 +3,37 @@
  */
 ({
     doComment: function(component, event){
-        let commentAction = component.get("c.addComment")
+        let commentAction = component.get("c.addComment");
         commentAction.setParams({
-           "rating" : component.get("v.rating"),
-           "commentMessage" : component.get("v.richComment"),
-           "productId" : component.get("v.product.productId")
+           "rating" : component.get("v.ratingGrade"),
+           "content" : component.get("v.richComment"),
+           "productId" : component.get("v.product").productId
         });
-
         commentAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
-
+                component.find("toastComponent").openInformationToast($A.get("$Label.c.WDLC_AddedComment"),
+                 $A.get("$Label.c.Success"), $A.get("$Label.c.Success"));
+                 component.set("v.ratingGrade", 0);
+                 component.set("v.richComment", '');
             }else{
-
+                component.find("errorComponent").openErrorToast(response);
             }
         });
         $A.enqueueAction(commentAction);
     },
     doInit : function(component, event){
         let getCommentAction = component.get("c.getComments");
-        let pr = component.get("v.product");
-//        let prId = pr.productId;
         getCommentAction.setParams({
-            "productId" : "01t5J000000FuOoQAK"
+            "productId" : component.get("v.product").productId
         });
         getCommentAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
                 component.set("v.comments", response.getReturnValue());
-                console.log(response.getReturnValue());
-                component.set("v.canBeShown", true);
+            }else{
+                let toast = component.find("toastComponent");
+                component.find("errorComponent").openErrorToast(response);
             }
         });
         $A.enqueueAction(getCommentAction);

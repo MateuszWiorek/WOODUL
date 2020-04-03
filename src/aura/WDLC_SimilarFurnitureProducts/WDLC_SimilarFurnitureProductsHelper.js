@@ -3,33 +3,31 @@
  */
 ({
     doOnInit : function(component, event){
-        let product = component.get("v.product");
+        let product = component.get("v.product2");
         let getSimilarAction = component.get("c.getSimilarProducts");
         getSimilarAction.setParams({
-            "productId" : "01t5J000000FuOoQAK"
+            "productId" : product.productId
         });
         getSimilarAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
-                console.log('inside function');
                 component.set("v.similarProducts", response.getReturnValue());
                 console.log(response.getReturnValue());
                 component.set("v.canBeShown", true);
-                setTimeout(function(){
+                setTimeout(function() {
                  $('.carousel').slick({
                             autoplay: true,
                             autoplaySpeed: 3000,
                             dots: true,
                             arrows: true,
-                            prevArrow : '<button type="button" class="slick-prev">Previous</button>',
-                            nextArrow : '<button type="button" class="slick-next">Next</button>',
+                            prevArrow : '<button type="button" class="slick-prev">'+$A.get("{!$Label.c.WDLC_Previous}")+'</button>',
+                            nextArrow : '<button type="button" class="slick-next">'+$A.get("{!$Label.c.WDLC_Next}")+'</button>',
                             infinite: true,
                             speed: 1200,
-                            slidesToShow: 5,
-                            slidesToScroll: 5
+                            slidesToShow: 2,
+                            slidesToScroll: 2
                         });
                  }, 0);
-                 console.log('afterSetTimeout');
             }
         });
         $A.enqueueAction(getSimilarAction);
