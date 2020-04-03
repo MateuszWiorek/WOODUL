@@ -8,6 +8,11 @@
          meta.setAttribute("http-equiv", "Content-Security-Policy")
          meta.setAttribute("content", "date=no;img-src 'self' data:");
          document.getElementsByTagName('head')[0].appendChild(meta);
+         if(component.get("v.product").productPrice != component.get("v.product").productPriceAfterDiscount){
+         $A.util.addClass(component.find("standardPrice"), 'standardPrice');
+         $A.util.addClass(component.find("discountPrice"), 'discountPrice');
+         $A.util.removeClass(component.find("discountPrice"), 'discountPriceNone');
+         }
      },
      sendFurnitureIdToProductView : function(component, event, helper){
          helper.doSendFurnitureIdToProductView(component, event);

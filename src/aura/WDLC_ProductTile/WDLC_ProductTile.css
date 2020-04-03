@@ -43,3 +43,14 @@
     border:1px solid black;
     background-color:transparent;
 }
+.THIS .standardPrice{
+    text-decoration : line-through;
+}
+.THIS .discountPrice{
+    display:inline;
+    font-weight: bolder;
+    font-size : 16px;
+}
+.THIS .discountPriceNone{
+    display:none;
+}

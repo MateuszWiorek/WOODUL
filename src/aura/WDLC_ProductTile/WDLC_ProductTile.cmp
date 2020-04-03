@@ -3,7 +3,8 @@
  -->
 
 <aura:component description="WDLC_ProductTile" controller="WDLC_ProductTileController"
-                implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" extensible="true">
+                implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
+                extensible="true">
     <aura:attribute name="product" type="Object" access="global" default="null"/>
 
     <aura:registerEvent name="WDLC_SendFurnitureId" type="c:WDLC_SendFurnitureId"/>
@@ -11,19 +12,30 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <lightning:card>
-        <div class="movieImage" style=" margin-left: 7px; width:15rem; height:auto;" >
+        <div class="movieImage" style=" margin-left: 7px; width:15rem; height:auto;">
             <div style="height:auto;" onclick="{!c.sendFurnitureIdToProductView}">
                 <figure style="position: relative;">
                     <div class="slds-m-around_small rateHover">
                         <lightning:buttonIconStateful iconName="utility:favorite" selected="{! v.product.isWishlisted }"
                                                       onclick="{!c.addToFavorite}"
-                                                      alternativeText="{!$Label.c.WDLC_AddToObservedButton}" class="favButton" />
+                                                      alternativeText="{!$Label.c.WDLC_AddToObservedButton}"
+                                                      class="favButton"/>
                     </div>
-                    <img src="{!v.product.productPhotoUrl}" alt="{!v.product.productName}"/>
+                    <img src="{!v.product.productPhotoUrl}" alt="{!v.product.productName}" style="max-height:240px;"/>
                     <span class="fullName">{!v.product.productName}</span>
-                    <p><lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
-                                                  currencyCode="{!$Label.c.WDLC_CurrencyCode}"
-                                                  currencyDisplayAs="symbol"/></p>
+                    <p/>
+                    <span aura:id="standardPrice">
+                        <lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
+                                                   currencyCode="{!$Label.c.WDLC_CurrencyCode}"
+                                                   currencyDisplayAs="symbol"/>
+                    </span>
+                    <span class="discountPriceNone" aura:id="discountPrice" style="margin-left:6px;">
+                        <lightning:formattedNumber value="{!v.product.productPriceAfterDiscount}"
+                                                   style="currency"
+                                                   currencyCode="{!$Label.c.WDLC_CurrencyCode}"
+                                                   currencyDisplayAs="symbol"/>
+                    </span>
+
                 </figure>
             </div>
             <center>
