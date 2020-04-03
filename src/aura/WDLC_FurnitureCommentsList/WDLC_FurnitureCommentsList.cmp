@@ -1,0 +1,19 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureCommentsList" implements="forceCommunity:availableForAllPageTypes"
+                extensible="true">
+    <aura:attribute type="Object[]" name="comments" access="global"/>
+    <aura:if isTrue="{!not(empty(v.comments))}">
+        <lightning:card>
+            <ul class="slds-feed__list">
+            <aura:iteration items="{!v.comments}" var="comment">
+                <li class="slds-feed__item comment">
+                    <c:WDLC_FurnitureComment comment="{!comment}"/>
+                </li>
+            </aura:iteration>
+            </ul>
+        </lightning:card>
+    </aura:if>
+</aura:component>
