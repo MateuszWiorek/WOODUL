@@ -1,0 +1,30 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_SimilarFurnitureProducts" controller="WDLC_SimilarProductsController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute type="Object" name="product2" access="global"/>
+    <aura:attribute type="Object[]" name="similarProducts" access="global"/>
+    <aura:attribute type="Boolean" name="canBeShown" access="global" default="true"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <ltng:require
+            styles="{!join(',', $Resource.Slick + '/slick/slick.css', $Resource.Slick + '/slick/slick-theme.css')}"
+            scripts="{!join(',', $Resource.Slick + '/slick/jquery-3.3.1.js', $Resource.Slick + '/slick/slick.js')}"
+    />
+
+    <aura:if isTrue="{!v.canBeShown == true}">
+        <lightning:card>
+            <div class="carousel">
+                <aura:iteration items="{!v.similarProducts}" var="similarProduct">
+                    <div style="overflow: hidden; width: 110px; height: auto; margin-right:7px; margin-left:110px;">
+                        <c:WDLC_ProductTile product="{!similarProduct}"/>
+                    </div>
+                </aura:iteration>
+            </div>
+        </lightning:card>
+    </aura:if>
+    <c:WDLC_ErrorComponent aura:id="errorToast"/>
+</aura:component>
