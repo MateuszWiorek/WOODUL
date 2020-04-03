@@ -42,7 +42,7 @@
             </div>
             <div class="slds-col slds-size--1-of-12">
                 <lightning:formattedNumber value="{!v.cell.TotalAmount}" style="currency"
-                                           currencyCode="EUR" currencyDisplayAs="symbol"/>
+                                           currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
             </div>
             <div class="slds-col slds-size--2-of-12 ">
                 <lightning:buttonIcon iconName="utility:threedots" alternativeText="{!$Label.c.WDLC_MakeComplaint}"
