@@ -16,6 +16,11 @@
                 component.set("v.product", response.getReturnValue());
                 component.set("v.productId", productToShowId);
                 component.set("v.livePhoto", response.getReturnValue().productPhotoUrl);
+                 if(component.get("v.product").productPrice != component.get("v.product").productPriceAfterDiscount){
+                     $A.util.addClass(component.find("standardPrice"), 'standardPrice');
+                     $A.util.addClass(component.find("discountPrice"), 'discountPrice');
+                     $A.util.removeClass(component.find("discountPrice"), 'discountPriceNone');
+                 }
             let getPhotosAction = component.get("c.getPhotos");
             getPhotosAction.setParams({
                 "productId" : productToShowId

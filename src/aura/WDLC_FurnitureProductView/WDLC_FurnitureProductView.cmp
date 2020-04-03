@@ -29,10 +29,16 @@
                 <div class="slds-col slds-size--1-of-12"/>
                 <div class="slds-col slds-size--5-of-12 slds-align-middle productInfo">
                     <h2>{!v.product.productName}</h2>
-                    <p>
+                    <p/>
+                    <span aura:id="standardPrice">
                         <lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
                                                    currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
-                    </p>
+                    </span>
+                    <span aura:id="discountPrice" class="discountPriceNone" style="margin-left: 6px;">
+                        <lightning:formattedNumber value="{!v.product.productPriceAfterDiscount}" style="currency"
+                                                   currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
+                    </span>
+                    <p/>
                     <lightning:button class="slds-button slds-button_outline-brand"
                                       onclick="{!c.addToCart}">{!$Label.c.WDLC_AddToCart}</lightning:button>
                     <aura:if isTrue="{!not(v.product.isWishlisted)}">

@@ -9,8 +9,7 @@
     font-weight: bold;
 }
 .THIS .productInfo span{
-    font-size: 21px;
-    font-weight: normal;
+    font-size: 24px;
 }
 .THIS .productInfo button{
     height:50px;
@@ -32,4 +31,15 @@
 }
 .THIS img:hover{
     opacity: 0.8;
+}
+.THIS .standardPrice{
+    text-decoration : line-through;
+}
+.THIS .discountPrice{
+    display:inline;
+    font-weight: bolder;
+    font-size: 28px;
+}
+.THIS .discountPriceNone{
+    display:none;
 }
