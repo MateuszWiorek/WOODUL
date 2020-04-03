@@ -17,7 +17,6 @@ public with sharing class WDLC_ProductHelper {
             productsIds.add(prod.Id);
         }
 
-
         return getProductsWithIdIn(productsIds);
     }
     public static List<WDLC_ProductWrapper> getSimilarProducts(String productId) {
@@ -43,32 +42,75 @@ public with sharing class WDLC_ProductHelper {
         return getProductsWithIdIn(wishlistedIds);
     }
     public static WDLC_ProductWrapper getProduct(String productId) {
-        Set<Id> productIds = new Set<Id>{productId};
+        Set<Id> productIds = new Set<Id>{
+                productId
+        };
         return getProductsWithIdIn(productIds).get(0);
     }
-    private static List<WDLC_ProductWrapper> getProductsWithIdIn(Set<Id> productIds){
+    private static List<WDLC_ProductWrapper> getProductsWithIdIn(Set<Id> productIds) {
+        Map<String, List<Decimal>> productsWithPrices = new Map<String, List<Decimal>>();
         List<Product2> products = [
                 SELECT Name, Description, photoUrl__c, ProductCode, StockKeepingUnit, QuantityUnitOfMeasure
                 FROM Product2
                 WHERE Id IN :productIds
         ];
+        List<Pricebook2> pricebooks = [
+                SELECT IsActive, Id
+                FROM Pricebook2
+                WHERE IsActive = TRUE
+        ];
+        System.debug(pricebooks);
+        Set<Id> pricebookIds = new Set<Id>();
+        for (Pricebook2 pr : pricebooks) {
+            pricebookIds.add(pr.Id);
+        }
+
         List<PricebookEntry> pricebookEntries = [
                 SELECT Name, Pricebook2Id, Product2Id, UnitPrice
                 FROM PricebookEntry
                 WHERE Product2Id IN
-                        :productIds
+                        :productIds AND Pricebook2Id IN :pricebookIds
         ];
-        return wrapProduct(products, pricebookEntries);
+        System.debug(pricebookEntries);
+        for (PricebookEntry entry : pricebookEntries) {
+            if (productsWithPrices.get(entry.Product2Id) == null) {
+                productsWithPrices.put(entry.Product2Id, new List<Decimal>{
+                        entry.UnitPrice
+                });
+            } else {
+                productsWithPrices.get(entry.Product2Id).add(entry.UnitPrice);
+                productsWithPrices.put(entry.Product2Id, productsWithPrices.get(entry.Product2Id));
+            }
+        }
+        return wrapProduct(products, productsWithPrices);
     }
-    private static List<WDLC_ProductWrapper> wrapProduct(List<Product2> products, List<PricebookEntry> pricebookEntries) {
+    public static Product2 createNewProduct2(WDLC_ProductWrapper wrappedProduct) {
+        Product2 product = new Product2();
+        product.Name = wrappedProduct.productName;
+        product.DisplayUrl = wrappedProduct.secondPhotoUrl;
+        product.photoUrl__c = wrappedProduct.productPhotoUrl;
+        product.Description = wrappedProduct.productDescription;
+        product.Family = wrappedProduct.productFamily;
+        return null;
+    }
+    private static List<WDLC_ProductWrapper> wrapProduct(List<Product2> products, Map<String, List<Decimal>> pricebookEntries) {
         Set<Id> wishlistedIds = getWishlistedIds();
         List<WDLC_ProductWrapper> wrappedProducts = new List<WDLC_ProductWrapper>();
         for (Product2 prod : products) {
-            for (PricebookEntry entry : pricebookEntries) {
-                if (prod.Id == entry.Product2Id) {
-                    WDLC_ProductWrapper wrap = new WDLC_ProductWrapper(String.valueOf(prod.Id), prod.Name, prod.Description,
-                            prod.ProductCode, prod.photoUrl__c, String.valueOf(entry.UnitPrice));
+            for (String entry : pricebookEntries.keySet()) {
+                if (prod.Id == entry) {
+                    pricebookEntries.get(entry).sort();
+                    WDLC_ProductWrapper wrap = new WDLC_ProductWrapper(String.valueOf(prod.Id),
+                            prod.Name,
+                            prod.Description,
+                            prod.ProductCode,
+                            prod.photoUrl__c,
+                            String.valueOf(pricebookEntries
+                                    .get(entry)
+                                    .get(pricebookEntries.get(entry).size() - 1)));
+                            String.valueOf(pricebookEntries.get(entry).get(0));
                     wrap.isWishlisted = (wishlistedIds.contains(wrap.productId)) ? true : false;
+                    wrap.productPriceAfterDiscount = String.valueOf(pricebookEntries.get(entry).get(0));
                     wrappedProducts.add(wrap);
                 }
             }
