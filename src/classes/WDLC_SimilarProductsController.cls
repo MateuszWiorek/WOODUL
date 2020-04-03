@@ -7,5 +7,6 @@ public with sharing class WDLC_SimilarProductsController {
     @AuraEnabled
     public static List<WDLC_ProductWrapper> getSimilarProducts(String productId){
         return WDLC_ProductHelper.getSimilarProducts(productId);
+
     }
 }

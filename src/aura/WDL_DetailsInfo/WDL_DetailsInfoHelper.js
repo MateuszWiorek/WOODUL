@@ -40,10 +40,7 @@
                 $A.enqueueAction(action);
     },
     doShowModal : function(component, event){
-           let sectionModal = document.getElementById("newClientSectionId");
-           sectionModal.classList.add("slds-fade-in-open");
-           let backdropModal = document.getElementById("backdropAdding");
-           backdropModal.classList.add("slds-backdrop_open");
+           component.set("v.showModal",true);
     },
     doHideModal : function(component, event){
             let sectionModal = document.getElementById("newClientSectionId");
