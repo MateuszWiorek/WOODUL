@@ -15,9 +15,14 @@
         postComment : function(component,event, helper){
             helper.doPostComment(component,event);
         },
-        onInit : function(component, event, helper){
-            setInterval(function(){
+        refreshCommentsAfterEvent : function(component,event,helper){
+            let eventCaseId = event.getParam("caseID");
+            let idFromComplaint = component.get("v.complaint").Id;
+            if(eventCaseId === idFromComplaint){
                 helper.refreshComments(component,event);
-            }, 5000);
+            }else if(eventCaseId != idFromComplaint){
+                component.find("toastComponent").openInformationToast('on your complaint: ' + eventCaseId,'success',
+                                                'New message');
+            }
         }
 })
