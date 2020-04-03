@@ -29,4 +29,8 @@ public abstract class PlatformEventServiceController {
             throw new AuraHandledException(errorMessage);
         }
     }
+    @AuraEnabled
+    public static Id getCurrentUserId(){
+        return UserInfo.getUserId();
+    }
 }

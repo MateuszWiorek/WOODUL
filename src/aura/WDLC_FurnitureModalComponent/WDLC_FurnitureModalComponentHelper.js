@@ -66,6 +66,7 @@
              if(state === "SUCCESS"){
                     if(component.get("v.caseComments") != response.getReturnValue()){
                         component.set("v.caseComments", response.getReturnValue());
+                    }else{
                     }
              }else{
                  component.find("errorToast").showError(response);
