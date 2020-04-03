@@ -1,0 +1,20 @@
+<!--
+ - Created by Mateusz Wiorek on 03.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountDetails"
+                controller="WDLC_DiscountManagerController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="pricebookId" type="Object" access="global"/>
+
+    <aura:handler event="c:WDLC_SendPricebookDetails" action="{!c.showDetails}"/>
+
+    <aura:if isTrue="{!not(empty(v.pricebookId))}">
+        <lightning:card>
+            <lightning:recordViewForm objectApiName="Pricebook2" recordId="{!v.pricebookId}">
+                <lightning:outputField fieldName="{!$Label.c.WDLC_Name}"/>
+                <lightning:outputField fieldName="{!$Label.c.WDLC_StartDateField}"/>
+                <lightning:outputField fieldName="{!$Label.c.WDLC_EndDateField}"/>
+            </lightning:recordViewForm>
+        </lightning:card>
+    </aura:if>
+</aura:component>

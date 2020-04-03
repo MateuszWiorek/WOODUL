@@ -1,0 +1,24 @@
+/**
+ * Created by Mateusz Wiorek on 02.04.2020.
+ */
+
+ .THIS.hide {
+ 	display: none;
+ }
+
+ .THIS.btn {
+ 	margin-bottom: 10px;
+ }
+
+.THIS label.uiLabel {
+    padding-right: 12px;
+}
+
+.THIS .field{
+  padding: 5px;
+  border: 1px solid #dce4ec;
+  border-radius: 2px;
+}
+.THIS {
+    padding: 10px;
+}

@@ -1,0 +1,30 @@
+<!--
+ - Created by Mateusz Wiorek on 02.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountProductsList"
+                controller="WDLC_DiscountManagerController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="productsWithoutPrice" type="Object[]" access="global"/>
+    <aura:attribute name="prices" type="Decimal[]" access="global"/>
+    <aura:attribute name="productsToSetPrices" type="Map" access="global" default="{}"/>
+    <aura:attribute name="productsToDiscount" type="Object[]" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <lightning:card>
+        <aura:if isTrue="{!not(empty(v.productsWithoutPrice))}">
+            <center><h2>Set standard price for these items first.</h2></center>
+            <aura:iteration items="{!v.productsWithoutPrice}" var="productWithoutPrice" indexVar="index">
+                <c:WDLC_ProductDiscountProductElement productWithoutPrice="{!productWithoutPrice}"
+                                                      setPriceEvent="{!c.addProductWithPriceToMap}"/>
+            </aura:iteration>
+            <lightning:button variant="brand" onclick="{!c.setPrices}">{!$Label.c.WDLC_SetStandardPrices}</lightning:button>
+        </aura:if>
+        <aura:if isTrue="{!empty(v.productsWithoutPrice)}">
+            <c:WDLC_ProductDiscountSearchProduct sendSearchItem="{!c.searchItems}"/>
+            <aura:if isTrue="{!not(empty(v.productsToDiscount))}">
+                <c:WDLC_ProductDiscountSearchResultsList results="{!v.productsToDiscount}"/>
+            </aura:if>
+        </aura:if>
+    </lightning:card>
+</aura:component>

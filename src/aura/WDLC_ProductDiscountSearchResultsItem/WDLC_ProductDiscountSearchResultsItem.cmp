@@ -1,0 +1,44 @@
+<!--
+ - Created by Mateusz Wiorek on 02.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountSearchResultsItem">
+    <aura:attribute name="product" type="Object" access="global"/>
+    <aura:attribute name="newPrice" type="Decimal" access="global"/>
+    <aura:attribute name="isSelected" type="Boolean" access="global" default="false"/>
+
+    <aura:registerEvent type="c:WDLC_ProductSetPrice" name="changePrice"/>
+    <aura:registerEvent type="c:WDLC_MarkToAddEvent" name="markAsSelected"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:method name="setPriceAfterDiscount" action="{!c.setPrice}" access="global">
+        <aura:attribute name="typeOfDiscount" type="String" access="global"/>
+        <aura:attribute name="amountOfDiscount" type="String" access="global"/>
+    </aura:method>
+
+    <div class="slds-grid">
+        <div class="slds-col slds-size--1-of-12">
+            <ui:inputCheckbox value="{!v.isSelected}" change="{!c.markToDiscount}"/>
+        </div>
+        <div class="slds-col slds-size--3-of-12">
+            <img style="max-height:50px; max-width:50px" src="{!v.product.productPhotoUrl}"/>
+        </div>
+        <div class="slds-col slds-size--1-of-6">
+            <ui:outputText value="{!v.product.productName}"/>
+        </div>
+        <div class="slds-col slds-size--3-of-12">
+            <ui:outputText value="{!v.product.productDescription}"/>
+        </div>
+        <div class="slds-col slds-size--1-of-12">
+            <lightning:formattedNumber style="currency" currencyCode="{!$Locale.currencyCode}"
+                                       value="{!v.product.productPrice}"/>
+        </div>
+        <div class="slds-col slds-size--1-of-12">
+            <lightning:formattedNumber style="currency" currencyCode="{!$Locale.currencyCode}" value="{!v.newPrice}"/>
+        </div>
+        <div class="slds-col slds-size--1-of-12">
+            <ui:inputNumber placeholder="{!$Label.c.WDLC_NewPrice}" value="{!v.newPrice}" change="{!c.markToDiscount}"
+                            format="{!$Label.c.WDLC_FormatPrices}"/>
+        </div>
+    </div>
+</aura:component>

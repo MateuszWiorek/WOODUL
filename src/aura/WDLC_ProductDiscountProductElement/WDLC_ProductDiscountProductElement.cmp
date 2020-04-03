@@ -1,0 +1,24 @@
+<!--
+ - Created by Mateusz Wiorek on 02.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountProductElement" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="productWithoutPrice" type="Object" access="global"/>
+    <aura:attribute name="price" type="Decimal" access="global"/>
+
+    <aura:registerEvent type="c:WDLC_ProductSetPrice" name="setPriceEvent"/>
+
+    <lightning:tile>
+        <div class="slds-grid">
+            <div class="slds-col slds-size--1-of-4" style="max-height:50px;"><img
+                    src="{!v.productWithoutPrice.photoUrl__c}"
+                    style="max-height:50px; max-width:50px;"/></div>
+            <div class="slds-col slds-size--1-of-4">{!v.productWithoutPrice.Name}</div>
+            <div class="slds-col slds-size--1-of-4">{!v.productWithoutPrice.Description}</div>
+            <div class="slds-col slds-size--1-of-4">
+                <ui:inputNumber placeholder="{!$Label.c.WDLC_SetStandardPrice}" value="{!v.price}"
+                              change="{!c.setStandardPrice}"/>
+            </div>
+        </div>
+    </lightning:tile>
+</aura:component>
