@@ -6,21 +6,31 @@ public with sharing class WDLC_WishlistHelper {
 
     public static Boolean addProductToWishlist(String productId) {
         WDLC_Wishlist__c wishlistedProduct = new WDLC_Wishlist__c(ProductId__c = productId);
-        Database.SaveResult saveResult = Database.insert(wishlistedProduct);
-        return (saveResult.isSuccess() ? true : false);
+        try{
+            insert(wishlistedProduct);
+            return true;
+        }catch (DmlException e){
+            throw new WDLC_CustomException(e.getMessage());
+        }
     }
 
-    public static List<Product2> getWishlistedProducts() {
-        List<WDLC_Wishlist__c> wishlist = [SELECT ProductId__c FROM WDLC_Wishlist__c];
-        Set<Id> wishlistedIds = new Set<Id>();
-        for (WDLC_Wishlist__c element : wishlist) {
-            wishlistedIds.add(element.ProductId__c);
-        }
-        List<Product2> products = [
-                SELECT Name, Description, photoUrl__c, ProductCode, StockKeepingUnit, QuantityUnitOfMeasure
-                FROM Product2
-                WHERE Id IN :wishlistedIds
+    public static Boolean removeProductFromWishList(String productId) {
+        WDLC_Wishlist__c element = [
+                SELECT ProductId__c, CreatedById
+                FROM WDLC_Wishlist__c
+                WHERE
+                CreatedById = :UserInfo.getUserId() AND ProductId__c = :productId
+                LIMIT 1
         ];
-        return products;
+        if (element != null) {
+            try {
+                delete(element);
+                return true;
+            } catch (DmlException e) {
+                throw new WDLC_CustomException(Label.WDLC_DeleteError);
+            }
+        } else {
+            throw new WDLC_CustomException(Label.WDLC_DeleteError);
+        }
     }
 }

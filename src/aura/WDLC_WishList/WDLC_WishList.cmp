@@ -9,18 +9,16 @@
     <aura:attribute name="canBeShown" type="Boolean" default="false" access="global"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
     <aura:if isTrue="{!v.canBeShown == true }">
         <lightning:card>
             <aura:if isTrue="{!not(empty(v.emptyInformation))}">
                 <h2> {!v.emptyInformation}</h2>
             </aura:if>
             <aura:if isTrue="{!not(empty(v.wishlist))}">
-                <div class="slds-grid" style="display: flex; flex-wrap: wrap;">
+                <div class="slds-grid slds-gutters" style="display: flex; flex-wrap: wrap;">
                     <aura:iteration items="{!v.wishlist}" var="element">
-                        <div class="slds-col">
-                            <!--                ProductTile component will be here-->
-                            {!element.Name}
+                        <div class="slds-col" style="max-width:300px; height:auto;">
+                            <c:WDLC_ProductTile product="{!element}"/>
                         </div>
                     </aura:iteration>
                 </div>
@@ -28,3 +26,4 @@
         </lightning:card>
     </aura:if>
 </aura:component>
+

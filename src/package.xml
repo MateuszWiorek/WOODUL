@@ -116,6 +116,7 @@
         <name>DuplicateRule</name>
     </types>
     <types>
+
         <members>*</members>
         <name>EscalationRule</name>
     </types>
@@ -171,6 +172,16 @@
     <types>
         <members>*</members>
         <name>Queue</name>
+    </types>
+    <types>
+        <members>Case.LogACall</members>
+        <members>Case.NewChildCase</members>
+        <members>Case.SendEmail</members>
+        <members>LogACall</members>
+        <members>NewAccount</members>
+        <members>NewCase</members>
+        <members>NewCommunityCase</members>
+        <name>QuickAction</name>
     </types>
     <types>
         <members>Account.Division</members>
@@ -260,6 +271,13 @@
         <name>StaticResource</name>
     </types>
     <types>
+        <members>Account.Billing</members>
+        <members>Campaign.ViewCampaignInfluenceReport</members>
+        <members>Case.UpsellCrosssellOpportunity</members>
+        <members>Opportunity.DeliveryStatus</members>
+        <name>WebLink</name>
+    </types>
+    <types>
         <members>Lead</members>
         <name>Workflow</name>
     </types>
@@ -267,6 +285,10 @@
         <members>Lead.SurveyEmail</members>
         <members>Lead.SurveyLinkEmail</members>
         <name>WorkflowAlert</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Settings</name>
     </types>
     <version>47.0</version>
 </Package>

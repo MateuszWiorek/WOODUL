@@ -4,5 +4,5 @@
 ({
     doInit: function(component, event, helper){
         helper.doDoInit(component,event);
-    }
+    },
 })

@@ -338,6 +338,15 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="WDLC_WishlistController" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_WishlistHelper" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_WishListTest" />
 
                             <option name="name" value="WDLC_SimilarProductsController" />
                             <option name="selected" value="true" />
@@ -603,6 +612,7 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="WDLC_WishList" />
                             <option name="name" value="WDLC_SimilarFurnitureProducts" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
@@ -1845,6 +1855,10 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="UserProvisioningRequest" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="WDLC_Wishlist__c" />
+                            <option name="selected" value="true" />
                           </MetadataEntry>
                         </list>
                       </option>

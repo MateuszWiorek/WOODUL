@@ -157,6 +157,9 @@
         <fullName>ProductId__c</fullName>
         <externalId>false</externalId>
         <label>ProductId</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
         <length>18</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
