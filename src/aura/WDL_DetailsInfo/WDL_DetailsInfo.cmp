@@ -5,6 +5,7 @@
 <aura:component description="WDL_DetailsInfo" controller="WDL_DetailsInfoController"
                 implements="flexipage:availableForAllPageTypes,force:hasRecordId">
     <aura:attribute name="accountDetail" type="Account" access="public"/>
+    <aura:attribute name="showModal" type="Boolean" access="public" default="false"/>
 
     <aura:registerEvent name="WDL_RefreshAfterDeleteRecord" type="c:WDL_RefreshAfterDeleteRecord"/>
 
@@ -16,16 +17,16 @@
                 <div class="slds-box">
                     <div class="slds-grid slds-gutters">
                         <div class="slds-col slds-size_1-of-2">
-                            <lightning:outputField fieldName="Name"/>
-                            <lightning:outputField fieldName="ShippingStreet"/>
-                            <lightning:outputField fieldName="ShippingCity"/>
-                            <lightning:outputField fieldName="Industry"/>
+                            <lightning:outputField fieldName="{!$Label.c.WDLC_Name}"/>
+                            <lightning:outputField fieldName="{!$Label.c.ShippingAddress}"/>
+                            <lightning:outputField fieldName="{!$Label.c.ShippingCity}"/>
+                            <lightning:outputField fieldName="{!$Label.c.WDL_Industry}"/>
                         </div>
                         <div class="slds-col slds-size_1-of-2">
-                            <lightning:outputField fieldName="Type"/>
-                            <lightning:outputField fieldName="SLA__c"/>
-                            <lightning:outputField fieldName="Website"/>
-                            <lightning:outputField fieldName="Description"/>
+                            <lightning:outputField fieldName="{!$Label.c.WDL_Type}"/>
+                            <lightning:outputField fieldName="{!$Label.c.WDL_SLA}"/>
+                            <lightning:outputField fieldName="{!$Label.c.HRHM_website}"/>
+                            <lightning:outputField fieldName="{!$Label.c.Description}"/>
                         </div>
                     </div>
                 </div>
@@ -41,27 +42,7 @@
         </aura:if>
     </lightning:card>
 
-    <section id="newClientSectionId" role="dialog" tabindex="-1" class="slds-modal slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
-        <div class="slds-modal__container">
-            <header class="slds-modal__header">
-                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
-                    <span class="slds-assistive-text">Close</span>
-                </button>
-            </header>
-            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                   <p style="text-align: center">{!$Label.c.WDL_DeleteConfirmation}</p>
-            </div>
-            <footer class="slds-modal__footer">
-                <lightning:button label="{!$Label.c.No}"
-                                  class="slds-button slds-button_brand"
-                                  onclick="{!c.hideModal}"/>
-                <lightning:button label="{!$Label.c.Yes}"
-                                  class="slds-button slds-button_destructive"
-                                  onclick="{!c.handleDeleteRecord}"/>
-            </footer>
-        </div>
-    </section>
-    <div id="backdropAdding" class="slds-backdrop"></div>
+    <c:WDL_ModalComponent aura:id="modalComponent" accountInfo="{!v.accountDetail}" canBeShown="{!v.showModal}"/>
 
     <c:WDL_ShowErrorComponent aura:id="errorChildComponent">
     </c:WDL_ShowErrorComponent>
