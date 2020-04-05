@@ -65,21 +65,41 @@ public with sharing class WDLC_ProductHelper {
             pricebookIds.add(pr.Id);
         }
 
-        List<PricebookEntry> pricebookEntries = [
-                SELECT Name, Pricebook2Id, Product2Id, UnitPrice
+//        List<PricebookEntry> pricebookEntries = [
+//                SELECT Name, Pricebook2Id, Product2Id, UnitPrice
+//                FROM PricebookEntry
+//                WHERE Product2Id IN
+//                        :productIds AND Pricebook2Id IN :pricebookIds
+//        ];
+//        System.debug(pricebookEntries);
+//        for (PricebookEntry entry : pricebookEntries) {
+//            if (productsWithPrices.get(entry.Product2Id) == null) {
+//                productsWithPrices.put(entry.Product2Id, new List<Decimal>{
+//                        entry.UnitPrice
+//                });
+//            } else {
+//                productsWithPrices.get(entry.Product2Id).add(entry.UnitPrice);
+//                productsWithPrices.put(entry.Product2Id, productsWithPrices.get(entry.Product2Id));
+//            }
+//        }
+
+
+        List<AggregateResult> pricebookEntries = [
+                SELECT Pricebook2Id, Product2Id, MIN(UnitPrice) minimalPrice, MAX(UnitPrice) maximalPrice
                 FROM PricebookEntry
                 WHERE Product2Id IN
-                        :productIds AND Pricebook2Id IN :pricebookIds
+                        :productIds AND Pricebook2Id IN :pricebookIds GROUP BY Pricebook2Id, Product2Id
         ];
         System.debug(pricebookEntries);
-        for (PricebookEntry entry : pricebookEntries) {
-            if (productsWithPrices.get(entry.Product2Id) == null) {
-                productsWithPrices.put(entry.Product2Id, new List<Decimal>{
-                        entry.UnitPrice
+        for (AggregateResult entry : pricebookEntries) {
+            if (productsWithPrices.get((String)entry.get('Product2Id')) == null) {
+                productsWithPrices.put((String)entry.get('Product2Id'), new List<Decimal>{
+                        (Decimal)entry.get('minimalPrice'),(Decimal)entry.get('maximalPrice')
                 });
             } else {
-                productsWithPrices.get(entry.Product2Id).add(entry.UnitPrice);
-                productsWithPrices.put(entry.Product2Id, productsWithPrices.get(entry.Product2Id));
+                productsWithPrices.get((String)entry.get('Product2Id')).add((Decimal)entry.get('minimalPrice'));
+                productsWithPrices.get((String)entry.get('Product2Id')).add((Decimal)entry.get('maximalPrice'));
+                productsWithPrices.put((String)entry.get('Product2Id'), productsWithPrices.get((String)entry.get('Product2Id')));
             }
         }
         return wrapProduct(products, productsWithPrices);
