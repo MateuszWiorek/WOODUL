@@ -30,6 +30,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
             Database.SaveResult saveResults = Database.insert(newOrder);
             if (saveResults.isSuccess()) {
                 orderId = saveResults.Id;
+                System.debug(orderId);
             }
         } catch (DmlException e) {
             throw new WDLC_CustomException(Label.WDLC_OrderError);
@@ -37,9 +38,8 @@ public with sharing class WDLC_FurnitureOrderHelper {
         List<OrderItem> itemsToOrder = new List<OrderItem>();
         for (WDLC_ProductToOrderWrapper wrappedProduct : productsToOrder) {
             OrderItem item = new OrderItem(OrderId = orderId);
-            item.UnitPrice = Decimal.valueOf(wrappedProduct.product.productPrice);
             item.Quantity = wrappedProduct.quantity;
-            item.PricebookEntryId = wrappedProduct.product.productPriceBookEntryId;
+            item.PricebookEntryId = WDLC_ProductHelper.getPriceBookEntryId(wrappedProduct.product.productId);
             item.UnitPrice = Decimal.valueOf(WDLC_ProductHelper.getLowestPriceForProduct(wrappedProduct.product.productId));
             item.Product2Id = wrappedProduct.product.productId;
             itemsToOrder.add(item);
@@ -50,6 +50,22 @@ public with sharing class WDLC_FurnitureOrderHelper {
         } catch (DmlException e) {
             throw new WDLC_CustomException(Label.WDLC_OrderError + 'items' + e.getMessage());
         }
+        Order ord = [
+                SELECT BillingCountry, BillingState, BillingPostalCode, BillingCity, BillingStreet,
+                        Status, TotalAmount, (
+                        SELECT Id,
+                                OrderId,
+                                OrderItemNumber,
+                                PricebookEntry.Product2.Name,
+                                PricebookEntry.Product2.id,
+                                Quantity,
+                                UnitPrice
+                        FROM OrderItems
+                )
+                FROM Order
+                WHERE Id = :orderId
+        ];
+        System.debug(ord);
         return [
                 SELECT BillingCountry, BillingState, BillingPostalCode, BillingCity, BillingStreet,
                         Status, TotalAmount, (

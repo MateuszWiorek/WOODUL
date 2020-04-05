@@ -71,6 +71,7 @@ public with sharing class WDLC_BasketHelper {
         List<WDLC_ProductToOrderWrapper> wrappedProductsToOrder = new List<WDLC_ProductToOrderWrapper>();
         List<Product2> products = [
                 SELECT
+                        Name,
                         Description,
                         DisplayUrl,
                         Id,
@@ -79,21 +80,10 @@ public with sharing class WDLC_BasketHelper {
                 FROM Product2
                 WHERE Id IN :cachedProducts.keySet()
         ];
-        List<PricebookEntry> pricebookEntries = [
-                SELECT Name, Pricebook2Id, Product2Id, UnitPrice
-                FROM PricebookEntry
-                WHERE Product2Id IN
-                        :cachedProducts.keySet()
-        ];
         for (Product2 prod : products) {
-            for (PricebookEntry entry : pricebookEntries) {
-                if (prod.Id == entry.Product2Id) {
-                    WDLC_ProductWrapper wrap = new WDLC_ProductWrapper(String.valueOf(prod.Id), entry.Name, prod.Description,
-                            prod.ProductCode, prod.photoUrl__c, String.valueOf(entry.UnitPrice));
-                    wrap.productPriceBookEntryId = entry.Id;
+                    WDLC_ProductWrapper wrap = new WDLC_ProductWrapper(String.valueOf(prod.Id), prod.Name, prod.Description,
+                            prod.ProductCode, prod.photoUrl__c, (String)WDLC_ProductHelper.getLowestPriceForProduct(prod.Id));
                     wrappedProductsToOrder.add(new WDLC_ProductToOrderWrapper(wrap, cachedProducts.get(wrap.productId)));
-                }
-            }
         }
         if (wrappedProductsToOrder.size() == 0) {
             throw new WDLC_CustomException(Label.WDLC_NotExistingProduct);
