@@ -58,5 +58,4 @@
         });
         $A.enqueueAction(createDiscountAction);
     }
-
 })
