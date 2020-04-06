@@ -20,7 +20,7 @@ public with sharing class WDLC_DiscountManagerController {
         return products;
     }
     @AuraEnabled
-    public static List<WDLC_ProductWrapper> findProducts(String name){
+    public static List<WDLC_ProductWrapper> findProducts(String name) {
         return WDLC_ProductHelper.findProducts(name);
     }
     @AuraEnabled
@@ -30,12 +30,12 @@ public with sharing class WDLC_DiscountManagerController {
     }
     @AuraEnabled
     public static void createNewDiscount(String name, Date startDate, Date endDate) {
-        if((startDate > endDate) || (endDate<System.today())){
-        throw new WDLC_CustomException(Label.WDLC_EndDateError);
-    }
+        if ((startDate > endDate) || (endDate < System.today())) {
+            throw new WDLC_CustomException(Label.WDLC_EndDateError);
+        }
         Pricebook2 newDiscount = new Pricebook2();
         newDiscount.StartDate__c = startDate;
-        if(startDate<= System.today()){
+        if (startDate <= System.today()) {
             newDiscount.IsActive = true;
         }
         newDiscount.EndDate__c = endDate;
@@ -54,7 +54,7 @@ public with sharing class WDLC_DiscountManagerController {
     @AuraEnabled
     public static Pricebook2 getDiscount(String name) {
         Pricebook2 discountPricebook = [
-                SELECT Id
+                SELECT Id, Name
                 FROM Pricebook2
                 WHERE Name = :name
                 LIMIT 1
@@ -62,16 +62,66 @@ public with sharing class WDLC_DiscountManagerController {
         return discountPricebook;
     }
     @AuraEnabled
-    public static List<Pricebook2> getAllDiscounts(){
+    public static List<Pricebook2> getAllDiscounts() {
         return [
-                SELECT Id, Name
+                SELECT Id, Name, StartDate__c, EndDate__c
                 FROM Pricebook2
-                WHERE  IsActive = true OR StartDate__c > :System.today()
+                WHERE IsActive = true OR StartDate__c > :System.today()
         ];
     }
+    @AuraEnabled
+    public static List<WDLC_ProductWrapper> getProductsInDiscount(String discountId, Integer page) {
+        Integer offset = 20 * (page - 1);
+        List<AggregateResult> products = [
+                SELECT Name, MIN(UnitPrice) minimalPrice, MAX(UnitPrice) maximalPrice, Pricebook2Id, Product2Id
+                FROM PricebookEntry
+                WHERE Pricebook2Id IN (
+                        SELECT Id
+                        FROM Pricebook2
+                        WHERE Id = :discountId AND
+                        StartDate__c <= :System.today() AND EndDate__c >= :System.today()
+                ) AND Product2Id IN (
+                        SELECT Id
+                        FROM Product2
+                        WHERE
+                                RecordType.Name = 'Furniture'
+                )
+                GROUP BY Pricebook2Id, Name, Product2Id
+                LIMIT 20
+                OFFSET :offset
+        ];
+        System.debug(products);
+        return convertAggregateResultsToProductWrappers(products);
+    }
+    private static List<WDLC_ProductWrapper> convertAggregateResultsToProductWrappers(List<AggregateResult> products) {
+        Set<Id> ids = new Set<Id>();
+        System.debug(products);
+        for (AggregateResult ar : products) {
+            ids.add((String)ar.get('Product2Id'));
+        }
+        System.debug(ids);
+        List<Product2> products2 = [SELECT Description, photoUrl__c, Id FROM Product2 WHERE Id IN :ids];
+        System.debug(products2);
+        List<WDLC_ProductWrapper> wrappedProducts = new List<WDLC_ProductWrapper>();
+        for (AggregateResult ag : products) {
+            for (Product2 pr : products2) {
+                System.debug(ag);
+                System.debug(pr);
+                if (ag.get('Product2Id') == pr.Id) {
+                    WDLC_ProductWrapper prod = new WDLC_ProductWrapper((String) ag.get('Product2Id'),
+                            (String) ag.get('Name'),
+                            pr.Description, '',
+                            pr.photoUrl__c, String.valueOf((Decimal) ag.get('maximalPrice')));
+                    prod.productPriceAfterDiscount = String.valueOf((Decimal) ag.get('minimalPrice'));
+                    wrappedProducts.add(prod);
+                }
+            }
+        }
+        return wrappedProducts;
+    }
     private static List<WDLC_ProductWithPriceWrapper> setPrices(Map<Id, Decimal> prices, Id pricebookId) {
-        for(Id prodId : prices.keySet()){
-            if(prices.get(prodId)<0){
+        for (Id prodId : prices.keySet()) {
+            if (prices.get(prodId) < 0) {
                 prices.remove(prodId);
             }
         }
