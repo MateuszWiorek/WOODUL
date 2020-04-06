@@ -7,24 +7,16 @@
     <aura:attribute name="productsToDiscountMap" type="Map" access="global" default="{}"/>
     <aura:attribute name="selectedProductsToDiscountMap" type="Map" access="global" default="{}"/>
     <aura:attribute name="amountToDiscount" type="Decimal" access="global"/>
-    <aura:attribute name="discounts" type="String[]" access="global"/>
+    <aura:attribute name="discount" type="String" access="global"/>
     <aura:attribute name="types" type="String[]" access="global"/>
 
     <aura:registerEvent name="WDLC_SendPricebookDetails" type="c:WDLC_SendPricebookDetails"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
     <aura:handler event="c:WDLC_RefreshDiscounts" action="{!c.getDisc}"/>
+    <aura:handler event="c:WDLC_SendValuesToSearchDiscount" action="{!c.getItems}"/>
+
     <div class="slds-grid slds-grid_vertical-align-center">
-        <div class="slds-col slds-size--2-of-12">
-            <aura:if isTrue="{!not(empty(v.discounts))}">
-                <lightning:select label="{!$Label.c.WDLC_SelectDiscount}" aura:id="pricebookId"
-                                  onchange="{!c.showDiscountDetails}">
-                    <aura:iteration items="{!v.discounts}" var="discount">
-                        <option value="{!discount}" label="{!discount}"/>
-                    </aura:iteration>
-                </lightning:select>
-            </aura:if>
-        </div>
         <div class="slds-col slds-size--2-of-12">
             <aura:if isTrue="{!not(empty(v.types))}">
                 <lightning:select label="{!$Label.c.WDLC_SelectTypeOfDiscount}" aura:id="toDiscount">
@@ -34,28 +26,34 @@
                 </lightning:select>
             </aura:if>
         </div>
-    </div>
-    <div class="slds-grid slds-grid_vertical-align-center">
         <div class="slds-col slds-size--1-of-6">
-            <ui:inputNumber label="{!$Label.c.WDLC_SetAmountDiscount}" value="{!v.amountToDiscount}" change="{!c.showNewPrice}"/>
+            <ui:inputNumber label="{!$Label.c.WDLC_SetAmountDiscount}" value="{!v.amountToDiscount}"
+                            change="{!c.showNewPrice}"/>
         </div>
-        <div class="slds-col slds-size--1-of-4" style="padding-top: 6px;">
-            <lightning:button onclick="{!c.showNewPrice}" variant="brand" label="{!$Label.c.WDLC_Calculate}"/>
+        <div class="slds-col slds slds-size--7-of-12"/>
+        <div class="slds-col slds-size--1-of-12" style="padding-top: 6px;">
+            <lightning:button onclick="{!c.setNewPrices}"
+                              variant="brand">{!$Label.c.WDLC_SetNewPrices}</lightning:button>
         </div>
     </div>
-    <div class="slds-grid">
-    <div class="slds-col slds-size--1-of-12">{!$Label.c.WDLC_Select}</div>
-    <div class="slds-col slds-size--3-of-12">{!$Label.c.WDLC_Image}</div>
-    <div class="slds-col slds-size--1-of-6">{!$Label.c.WDLC_Name}</div>
-    <div class="slds-col slds-size--3-of-12">{!$Label.c.WDLC_Description}</div>
-    <div class="slds-col slds-size--1-of-12">{!$Label.c.WDLC_StandardPrice}</div>
-    <div class="slds-col slds-size--1-of-12">{!$Label.c.WDLC_NewPrice}</div>
-    <div class="slds-col slds-size--1-of-12">{!$Label.c.WDLC_NewPrice}</div>
-    </div>
-    <aura:iteration items="{!v.results}" var="item" indexVar="index">
-        <c:WDLC_ProductDiscountSearchResultsItem aura:id="element" product="{!item}" changePrice="{!c.refreshPrice}"
-                                                 markAsSelected="{!c.refreshMap}"/>
-    </aura:iteration>
-
-    <lightning:button onclick="{!c.setNewPrices}" variant="brand">{!$Label.c.WDLC_SetNewPrices}</lightning:button>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+        <tr class="slds-line-height_reset">
+            <th>{!$Label.c.WDLC_Select}</th>
+            <th>{!$Label.c.WDLC_Image}</th>
+            <th>{!$Label.c.WDLC_ProductName}</th>
+            <th>{!$Label.c.WDLC_Description}</th>
+            <th>{!$Label.c.WDLC_StandardPrice}</th>
+            <th>{!$Label.c.WDLC_ActualPrice}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <aura:iteration items="{!v.results}" var="item" indexVar="index">
+            <c:WDLC_ProductDiscountSearchResultsItem aura:id="element" product="{!item}" changePrice="{!c.refreshPrice}"
+                                                     markAsSelected="{!c.refreshMap}"/>
+        </aura:iteration>
+        </tbody>
+    </table>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>

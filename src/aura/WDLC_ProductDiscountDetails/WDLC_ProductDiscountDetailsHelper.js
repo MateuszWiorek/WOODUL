@@ -13,7 +13,24 @@
             console.log(response.getState());
             if(response.getState() === "SUCCESS"){
                 console.log(response.getReturnValue());
+                  component.set("v.name", response.getReturnValue().Name);
+                  component.set("v.isDiscountSelected", true);
                   component.set("v.pricebookId", response.getReturnValue().Id);
+                  let resultsAction = component.get("c.getProductsInDiscount");
+                  resultsAction.setParams({
+                      "discountId" : response.getReturnValue().Id,
+                      "page" : component.get("v.page")
+                  });
+                  resultsAction.setCallback(this, function(response){
+                      if(response.getState() === "SUCCESS"){
+                          component.set("v.discountedItems", response.getReturnValue());
+                      }else{
+                          component.find("errorToast").showError(response);
+                      }
+                  });
+                  $A.enqueueAction(resultsAction);
+            }else{
+                console.log(response.getError()[0]);
             }
         });
         $A.enqueueAction(getDiscountAction);

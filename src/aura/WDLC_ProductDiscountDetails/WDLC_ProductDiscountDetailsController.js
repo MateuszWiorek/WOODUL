@@ -3,7 +3,9 @@
  */
 ({
     showDetails : function(component, event, helper){
-        console.log('dupa');
         helper.doShowDetails(component, event);
+    },
+    openModal : function(component, event){
+        component.set("v.canBeShown", true);
     }
 })

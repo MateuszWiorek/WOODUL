@@ -11,10 +11,9 @@
         });
         createDiscountAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
-                alert("success");
                 $A.get("e.c:WDLC_RefreshDiscounts").fire();
             }else{
-                alert(response.getError()[0]);
+                component.find("errorToast").showError(response);
                 component.find("errorToast").showError(response);
             }
         });

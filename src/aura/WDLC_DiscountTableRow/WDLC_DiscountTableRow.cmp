@@ -1,0 +1,26 @@
+<!--
+ - Created by Mateusz Wiorek on 05.04.2020.
+ -->
+
+<aura:component description="WDLC_DiscountTableRow" controller="WDLC_DiscountManagerController"
+                implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="discount" access="global" type="Object"/>
+
+    <aura:registerEvent name="WDLC_SendPricebookDetails" type="c:WDLC_SendPricebookDetails"/>
+
+    <tr class="slds-hint-parent" onclick="{!c.showDiscountDetails}">
+        <th data-label="{!v.discount.Name}" scope="row">
+            <div class="slds-truncate">
+                <a href="javascript:void(0);" tabindex="-1">{!v.discount.Name}</a>
+            </div>
+        </th>
+        <td data-label="{!v.discount.StartDate__c}">
+            <div class="slds-truncate">{!v.discount.StartDate__c}</div>
+        </td>
+        <td data-label="{!v.discount.EndDate__c}">
+            <div class="slds-truncate">{!v.discount.EndDate__c}</div>
+        </td>
+    </tr>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+</aura:component>

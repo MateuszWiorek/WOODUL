@@ -1,0 +1,46 @@
+<!--
+ - Created by Mateusz Wiorek on 05.04.2020.
+ -->
+
+<aura:component description="WDLC_DiscountTable" controller="WDLC_DiscountManagerController"
+                implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="data" type="Object[]" access="global"/>
+    <aura:attribute name="canBeShown" type="Boolean" access="global" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <aura:if isTrue="{!not(empty(v.data))}">
+        <lightning:card>
+            <div class="slds-grid" style="margin-bottom: 5px;">
+                <div class="slds-col slds-size--11-of-12"/>
+                <div class="slds-col slds-size--1-of-12">
+                    <lightning:button onclick="{!c.openModal}">New Discount</lightning:button>
+                </div>
+            </div>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate"
+                             title="{!$Label.c.WDLC_ProductName}">{!$Label.c.WDLC_ProductName}</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="{!$Label.c.WDLC_StartDate}">{!$Label.c.WDLC_StartDate}</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="{!$Label.c.WDLC_EndDate}">{!$Label.c.WDLC_EndDate}</div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <aura:iteration items="{!v.data}" var="discount">
+                    <c:WDLC_DiscountTableRow discount="{!discount}"/>
+                </aura:iteration>
+                </tbody>
+            </table>
+        </lightning:card>
+    </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+    <c:WDL_ModalComponent type="newDiscount" canBeShown="{!v.canBeShown}"/>
+</aura:component>

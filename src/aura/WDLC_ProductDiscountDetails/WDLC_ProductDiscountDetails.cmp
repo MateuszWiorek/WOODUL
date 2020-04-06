@@ -5,16 +5,47 @@
 <aura:component description="WDLC_ProductDiscountDetails"
                 controller="WDLC_DiscountManagerController" implements="flexiPage:availableForAllPageTypes">
     <aura:attribute name="pricebookId" type="Object" access="global"/>
+    <aura:attribute name="discountedItems" type="Object[]" access="global"/>
+    <aura:attribute name="page" type="Integer" access="global" default="1"/>
+    <aura:attribute name="name" type="String" access="global"/>
+    <aura:attribute name="canBeShown" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="isDiscountSelected" type="Boolean" access="global" default="false"/>
 
     <aura:handler event="c:WDLC_SendPricebookDetails" action="{!c.showDetails}"/>
 
     <aura:if isTrue="{!not(empty(v.pricebookId))}">
         <lightning:card>
             <lightning:recordViewForm objectApiName="Pricebook2" recordId="{!v.pricebookId}">
-                <lightning:outputField fieldName="{!$Label.c.WDLC_Name}"/>
-                <lightning:outputField fieldName="{!$Label.c.WDLC_StartDateField}"/>
-                <lightning:outputField fieldName="{!$Label.c.WDLC_EndDateField}"/>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size--11-of-12"/>
+                    <div class="slds-col slds-size--1-of-12">
+                        <lightning:button onclick="{!c.openModal}">New Discount</lightning:button>
+                    </div>
+                    <div class="slds-col slds-size--1-of-3">
+                        <lightning:outputField fieldName="{!$Label.c.WDLC_Name}"/>
+                    </div>
+                    <div class="slds-col slds-size--1-of-3">
+                        <lightning:outputField fieldName="{!$Label.c.WDLC_StartDateField}"/>
+                    </div>
+                    <div class="slds-col slds-size--1-of-3">
+                        <lightning:outputField fieldName="{!$Label.c.WDLC_EndDateField}"/>
+                    </div>
+                </div>
             </lightning:recordViewForm>
+            <lightning:tabset>
+                <lightning:tab label="{!$Label.c.WDLC_DiscountProducts}">
+                    <c:WDLC_DiscountSearchResults results="{!v.discountedItems}"/>
+                </lightning:tab>
+                <lightning:tab label="{!$Label.c.WDLC_AddToDiscount}">
+                    <c:WDLC_ProductDiscountSearchProduct/>
+                    <aura:if isTrue="{!v.isDiscountSelected}">
+                        <c:WDLC_ProductDiscountSearchResultsList discount="{!v.name}"/>
+                    </aura:if>
+                </lightning:tab>
+            </lightning:tabset>
         </lightning:card>
     </aura:if>
+    <c:WDL_ModalComponent type="newDiscount" canBeShown="{!v.canBeShown}"/>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>

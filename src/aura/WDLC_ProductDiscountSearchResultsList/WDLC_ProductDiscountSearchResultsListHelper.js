@@ -3,30 +3,15 @@
  */
 ({
     doOnInit : function(component,event){
-        let types = ['percentage', 'cash'];
+        let types = ['percentage', 'fixed'];
         component.set("v.types", types);
-        let initAction = component.get("c.getAllDiscounts");
-        initAction.setCallback(this, function(response){
-            if(response.getState() === "SUCCESS"){
-                let tabs = response.getReturnValue();
-                let discounts = [];
-                tabs.forEach(function(item){
-                    discounts.push(item.Name);
-                });
-                component.set("v.discounts", discounts);
-            }
-        });
-        $A.enqueueAction(initAction);
     },
     doRefreshPrice : function(component, event){
+                console.log('HELP?');
         let mapOfProducts = component.get("v.productsToDiscountMap");
         mapOfProducts[event.getParam("productId")] = event.getParam("productPrice");
         component.set("v.productsToSetPrices", mapOfProducts);
         let mapp = component.get("v.productsToSetPrices");
-        for(let key in mapp){
-            console.log(key);
-            console.log(mapp[key]);
-        }
     },
     doShowNewPrice : function(component, event){
         let products = component.get("v.results");
@@ -38,15 +23,18 @@
     },
     doSetNewPrices : function(component, event){
         let setNewPricesAction = component.get("c.addProductsToDiscount");
-        let pricebookName = component.find("pricebookId").get("v.value");
         setNewPricesAction.setParams({
             "prices" : component.get("v.selectedProductsToDiscountMap"),
-            "pricebookName" : pricebookName
+            "pricebookName" : component.get("v.discount")
         });
+        console.log(component.get("v.discount"));
+        console.log(component.get("v.selectedProductsToDiscountMap"));
         setNewPricesAction.setCallback(this, function(response){
             console.log(response.getState());
             if(response.getState() === "SUCCESS"){
-                alert('success');
+                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"));
+            }else{
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(setNewPricesAction);
@@ -69,18 +57,31 @@
                     discounts.push(item.Name);
                 });
                 component.set("v.discounts", discounts);
+            }else{
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(initAction);
     },
     doShowDiscountDetails : function(component, event){
         let detailsEvent = $A.get("e.c:WDLC_SendPricebookDetails");
-        console.log('dwa');
         detailsEvent.setParams({
             "pricebookId" : component.find("pricebookId").get("v.value")
         });
-        console.log(detailsEvent.getParam("pricebookId"));
         detailsEvent.fire();
-        console.log('dd');
+    },
+    doGetItems : function(component, event){
+        let getItemsAction = component.get("c.findProducts");
+        getItemsAction.setParams({
+            "name" : event.getParam("query")
+        });
+        getItemsAction.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+                component.set("v.results", response.getReturnValue());
+            }else{
+                component.find("errorToast").showError(response);
+            }
+        });
+        $A.enqueueAction(getItemsAction);
     }
 })

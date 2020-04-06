@@ -8,11 +8,13 @@
     <aura:registerEvent type="c:WDLC_SendValuesToSearchDiscount" name="sendSearchItem"/>
 
     <div class="slds-grid">
-        <div class="slds-col slds-size--10-of-12">
-            <ui:inputText value="{!v.itemToSearch}" placeholder="{!$Label.c.WDLC_SearchItemForDiscount}"/>
+        <div class="slds-col slds-size--2-of-12"/>
+        <div class="slds-col slds-size--8-of-12">
+            <ui:inputText value="{!v.itemToSearch}" placeholder="{!$Label.c.WDLC_SearchItemForDiscount}"
+                          change="{!c.searchProducts}"/>
         </div>
-        <div class="slds-col slds-size--2-of-12">
-            <lightning:button onclick="{!c.searchProducts}">Search</lightning:button>
-        </div>
+        <div class="slds-col slds-size--2-of-12"/>
     </div>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>

@@ -1,12 +1,12 @@
 /**
- * Created by Mateusz Wiorek on 02.04.2020.
+ * Created by Mateusz Wiorek on 05.04.2020.
  */
 ({
     doChangePrice : function(component, event){
         component.set("v.newPrice", component.get("v.newPrice"));
        let changePriceEvent = component.getEvent("changePrice");
        changePriceEvent.setParams({
-            "productId" : component.get("v.product").productId,
+            "productId" : component.get("v.item").productId,
             "productPrice" : component.get("v.newPrice")
        });
        changePriceEvent.fire();
@@ -17,9 +17,10 @@
             let type = params.typeOfDiscount;
             let amount = params.amountOfDiscount;
             if(type === "percentage"){
-                component.set("v.newPrice",component.get("v.product").productPrice - component.get("v.product").productPrice * (amount/100));
-            }else if(type === "fixed"){
-                let standardPrice = component.get("v.product").productPrice;
+                component.set("v.newPrice",
+                component.get("v.item").productPrice - component.get("v.item").productPrice * (amount/100));
+            }else if(type === "cash"){
+                let standardPrice = component.get("v.item").productPrice;
                 if(standardPrice > amount){
                     component.set("v.newPrice", standardPrice - amount);
                 }
@@ -30,10 +31,9 @@
         let markSelectedEvent = component.getEvent("markAsSelected");
         markSelectedEvent.setParams({
             "isSelected" : component.get("v.isSelected"),
-            "productId" : component.get("v.product").productId,
+            "productId" : component.get("v.item").productId,
             "productPrice" : component.get("v.newPrice")
         });
-        console.log(component.get("v.newPrice"));
         markSelectedEvent.fire();
     }
 })
