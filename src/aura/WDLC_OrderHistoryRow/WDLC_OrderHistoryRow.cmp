@@ -37,7 +37,7 @@
             </div>
             <div class="slds-col slds-size--4-of-12">
                 <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
-                    <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity}</h2>
+                    <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity} x <ui:outputCurrency value="{!itemOrder.UnitPrice}"/></h2>
                 </aura:iteration>
             </div>
             <div class="slds-col slds-size--1-of-12">

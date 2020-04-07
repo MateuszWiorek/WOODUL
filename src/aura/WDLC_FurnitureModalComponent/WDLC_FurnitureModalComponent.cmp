@@ -73,7 +73,7 @@
                             </div>
                             <div class="slds-col">
                                 <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
-                                    <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity}</h2>
+                                    <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity} x <ui:outputCurrency value="{!itemOrder.UnitPrice}"/> </h2>
                                 </aura:iteration>
                                 <lightning:outputField fieldName="Status"/>
                                 <lightning:outputField fieldName="CreatedDate"/>
