@@ -15,13 +15,31 @@
             <center><h2>{!$Label.c.WDLC_GoToDiscountInformation}</h2></center>
         </aura:if>
         <aura:if isTrue="{!not(empty(v.productsWithoutPrice))}">
-            <center><h2>{!$Label.c.WDLC_SetStandardPrices}</h2></center>
+            <div class="slds-grid">
+                <div class="slds-col slds-size-11-of-12">
+                </div>
+                <div class="slds-col slds-size--1-of-12">
+                    <lightning:button variant="brand"
+                                      onclick="{!c.setPrices}">{!$Label.c.WDLC_SetStandardPrices}</lightning:button>
+                </div>
+            </div>
+            <center style="margin-bottom:15px;"><h2>{!$Label.c.WDLC_SetStandardPrices}</h2></center>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th>{!$Label.c.WDLC_Image}</th>
+                    <th>{!$Label.c.WDLC_ProductName}</th>
+                    <th>{!$Label.c.WDLC_Description}</th>
+                    <th>{!$Label.c.WDLC_StandardPrice}</th>
+                </tr>
+                </thead>
+                <tbody>
             <aura:iteration items="{!v.productsWithoutPrice}" var="productWithoutPrice" indexVar="index">
                 <c:WDLC_ProductDiscountProductElement productWithoutPrice="{!productWithoutPrice}"
                                                       setPriceEvent="{!c.addProductWithPriceToMap}"/>
             </aura:iteration>
-            <lightning:button variant="brand"
-                              onclick="{!c.setPrices}">{!$Label.c.WDLC_SetStandardPrices}</lightning:button>
+                </tbody>
+            </table>
         </aura:if>
     </lightning:card>
     <c:WDL_ShowErrorComponent aura:id="informationToast"/>

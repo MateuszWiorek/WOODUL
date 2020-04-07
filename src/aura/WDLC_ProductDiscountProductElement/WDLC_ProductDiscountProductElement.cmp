@@ -8,17 +8,13 @@
 
     <aura:registerEvent type="c:WDLC_ProductSetPrice" name="setPriceEvent"/>
 
-    <lightning:tile>
-        <div class="slds-grid">
-            <div class="slds-col slds-size--1-of-4" style="max-height:50px;"><img
+        <tr class="slds-hint-parent">
+            <td style="width: 450px;"><img
                     src="{!v.productWithoutPrice.photoUrl__c}"
-                    style="max-height:50px; max-width:50px;"/></div>
-            <div class="slds-col slds-size--1-of-4">{!v.productWithoutPrice.Name}</div>
-            <div class="slds-col slds-size--1-of-4">{!v.productWithoutPrice.Description}</div>
-            <div class="slds-col slds-size--1-of-4">
-                <ui:inputNumber placeholder="{!$Label.c.WDLC_SetStandardPrice}" value="{!v.price}"
-                              change="{!c.setStandardPrice}"/>
-            </div>
-        </div>
-    </lightning:tile>
+                    style="max-height:50px; max-width:50px;"/></td>
+            <td style="width: 450px;">{!v.productWithoutPrice.Name}</td>
+            <td class="slds-truncate" style="width: 800px;">{!v.productWithoutPrice.Description}</td>
+            <td><ui:inputNumber placeholder="{!$Label.c.WDLC_SetStandardPrice}" value="{!v.price}"
+                                change="{!c.setStandardPrice}"/></td>
+        </tr>
 </aura:component>
