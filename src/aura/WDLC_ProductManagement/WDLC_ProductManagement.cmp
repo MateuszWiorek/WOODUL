@@ -3,7 +3,7 @@
  -->
 
 <aura:component description="WDLC_ProductManagement" controller="WDLC_ProductManagementController"
-                implements="flexiPage:availableForAllPageTypes, force:lightningQuickAction">
+                implements="flexiPage:availableForAllPageTypes,lightning:isUrlAddressable,force:lightningQuickAction,lightning:actionOverride">
     <aura:attribute name="product" type="Object" access="global"/>
     <aura:attribute name="filesId" type="String[]" access="global"/>
     <aura:attribute name="description" type="String" access="global"/>
@@ -11,11 +11,24 @@
     <aura:attribute name="family" type="String" access="global"/>
     <aura:attribute name="families" type="String[]" access="global"/>
     <aura:attribute name="userId" type="String" access="global"/>
+    <aura:attribute name="canBeShown" type="Boolean" access="global"/>
 
     <aura:registerEvent name="WDLC_ProductIdSendToSummary" type="c:WDLC_ProductIdSendToSummary"/>
 
+
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
-    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+    <lightning:listView aura:id="listObjects"
+                        objectApiName="Product2"
+                        listName="{!$Label.c.WDLC_ListName}"
+                        rows="20"
+                        showSearchBar="true"
+                        showActionBar="true"
+                        enableInlineEdit="true"
+                        showRowLevelActions="false"
+    />
+    <aura:if isTrue="{!v.canBeShown}">
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+             aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
         <div class="slds-modal__container">
             <lightning:card>
             <header class="slds-modal__header">
@@ -62,5 +75,6 @@
         </div>
     </section>
     <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
     <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>

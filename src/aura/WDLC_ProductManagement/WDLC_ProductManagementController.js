@@ -3,6 +3,7 @@
  */
 ({
     onInit : function(component, event){
+       component.set("v.canBeShown", true);
       let userId = $A.get("$SObjectType.CurrentUser.Id");
       component.set("v.userId", userId);
       let initAction = component.get("c.getFamilyOptions");
