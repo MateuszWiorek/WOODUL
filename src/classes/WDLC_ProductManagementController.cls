@@ -29,42 +29,13 @@ public with sharing class WDLC_ProductManagementController {
 
         Database.SaveResult sr = Database.insert(prod);
         String productId = sr.getId();
-
         List<ContentDocumentLink> cdl = new List<ContentDocumentLink>();
         for (String pI : photosIds) {
             cdl.add(new ContentDocumentLink(LinkedEntityId = productId, ContentDocumentId = pI,
                     ShareType = 'I', Visibility = 'AllUsers'));
         }
-        Set<String> ids = new Set<String>();
-        for (ContentDocumentLink cd : cdl) {
-            ids.add(cd.ContentDocumentId);
-        }
         insert cdl;
-        List<ContentVersion> cvs = [SELECT Id FROM ContentVersion WHERE ContentDocumentId IN :ids];
-        List<ContentDistribution> cds = new List<ContentDistribution>();
-        for (ContentVersion cv : cvs) {
-            ContentDistribution cd = new ContentDistribution();
-
-            cd.Name = 'Test';
-            cd.ContentVersionId = cv.id;
-            cd.PreferencesAllowViewInBrowser = true;
-            cd.PreferencesLinkLatestVersion = true;
-            cd.PreferencesNotifyOnVisit = false;
-            cd.PreferencesPasswordRequired = false;
-            cd.PreferencesAllowOriginalDownload = true;
-            cds.add(cd);
-        }
-        insert cds;
-        ContentDistribution contentDistributionRetrieved = [
-                SELECT
-                        ContentDownloadUrl, ContentVersionId
-                FROM ContentDistribution
-                WHERE ContentVersionId = :cvs.get(0).Id
-                LIMIT 1
-        ];
-        prod.photoUrl__c = contentDistributionRetrieved.ContentDownloadUrl;
-
-        upsert prod;
+            setStandardPhoto(productId);
         return productId;
     }
     @AuraEnabled
@@ -120,5 +91,34 @@ public with sharing class WDLC_ProductManagementController {
             photos.add(c.ContentDownloadUrl);
         }
     return photos;
+    }
+    private static void setStandardPhoto(Id prodId){
+        List<ContentDocumentLink> cdl = [
+                SELECT ContentDocumentId, LinkedEntityId
+                FROM ContentDocumentLink
+                WHERE LinkedEntityId = :prodId
+        ];
+        Set<String> ids = new Set<String>();
+        for (ContentDocumentLink cd : cdl) {
+            ids.add(cd.ContentDocumentId);
+        }
+        List<ContentVersion> cvs = [
+                SELECT Id
+                FROM ContentVersion
+                WHERE ContentDocumentId IN :ids
+        ];
+        Set<String> cvIds = new Set<String>();
+        for (ContentVersion cv : cvs) {
+            cvIds.add(cv.Id);
+        }
+        List<ContentDistribution> cddd = [
+                SELECT ContentVersionId,
+                        ContentDownloadUrl
+                FROM ContentDistribution
+                WHERE ContentVersionId IN :cvIds
+        ];
+        Product2 prod = [SELECT photoUrl__c FROM Product2 WHERE Id = :prodId];
+        prod.photoUrl__c = cddd.get(0).ContentDownloadUrl;
+        upsert prod;
     }
 }
