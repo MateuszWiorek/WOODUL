@@ -34,10 +34,10 @@
                 </tr>
                 </thead>
                 <tbody>
-            <aura:iteration items="{!v.productsWithoutPrice}" var="productWithoutPrice" indexVar="index">
-                <c:WDLC_ProductDiscountProductElement productWithoutPrice="{!productWithoutPrice}"
-                                                      setPriceEvent="{!c.addProductWithPriceToMap}"/>
-            </aura:iteration>
+                <aura:iteration items="{!v.productsWithoutPrice}" var="productWithoutPrice" indexVar="index">
+                    <c:WDLC_ProductDiscountProductElement productWithoutPrice="{!productWithoutPrice}"
+                                                          setPriceEvent="{!c.addProductWithPriceToMap}"/>
+                </aura:iteration>
                 </tbody>
             </table>
         </aura:if>

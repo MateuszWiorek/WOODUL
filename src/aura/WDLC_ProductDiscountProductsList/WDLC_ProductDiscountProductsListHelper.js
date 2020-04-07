@@ -27,7 +27,9 @@
         });
         setPricesAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
-                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"));
+                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"));
             }else{
                 component.find("errorToast").showError(response);
             }
