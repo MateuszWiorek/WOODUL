@@ -135,4 +135,29 @@ public with sharing class WDLC_ProductHelper {
         }
         return wishlistedIds;
     }
+    public static Id getPriceBookEntryId(String productId) {
+        List<PricebookEntry> pricebookEntries = [
+                SELECT Id, UnitPrice
+                FROM PricebookEntry
+                WHERE Product2Id = :productId
+                AND Pricebook2Id IN (SELECT Id FROM Pricebook2 WHERE StartDate__c <= :System.today() AND EndDate__c >= :System.today())
+                ORDER BY UnitPrice ASC
+                LIMIT
+                        1
+        ];
+        if (!pricebookEntries.isEmpty()) {
+            return pricebookEntries.get(0).Id;
+        } else {
+            PricebookEntry e = [
+                    SELECT Id
+                    FROM PricebookEntry
+                    WHERE Pricebook2Id IN (
+                            SELECT Id
+                            FROM PRicebook2
+                            WHERE Name = 'Standard Price Book'
+                    ) AND Product2Id = :productId LIMIT 1
+            ];
+            return e.Id;
+        }
+    }
 }
