@@ -57,40 +57,18 @@ public with sharing class WDLC_ProductHelper {
         List<Pricebook2> pricebooks = [
                 SELECT IsActive, Id
                 FROM Pricebook2
-                WHERE IsActive = TRUE
+                WHERE StartDate__c<= :System.today() AND EndDate__c >= :System.today()
         ];
-        System.debug(pricebooks);
         Set<Id> pricebookIds = new Set<Id>();
         for (Pricebook2 pr : pricebooks) {
             pricebookIds.add(pr.Id);
         }
-
-//        List<PricebookEntry> pricebookEntries = [
-//                SELECT Name, Pricebook2Id, Product2Id, UnitPrice
-//                FROM PricebookEntry
-//                WHERE Product2Id IN
-//                        :productIds AND Pricebook2Id IN :pricebookIds
-//        ];
-//        System.debug(pricebookEntries);
-//        for (PricebookEntry entry : pricebookEntries) {
-//            if (productsWithPrices.get(entry.Product2Id) == null) {
-//                productsWithPrices.put(entry.Product2Id, new List<Decimal>{
-//                        entry.UnitPrice
-//                });
-//            } else {
-//                productsWithPrices.get(entry.Product2Id).add(entry.UnitPrice);
-//                productsWithPrices.put(entry.Product2Id, productsWithPrices.get(entry.Product2Id));
-//            }
-//        }
-
-
         List<AggregateResult> pricebookEntries = [
                 SELECT Pricebook2Id, Product2Id, MIN(UnitPrice) minimalPrice, MAX(UnitPrice) maximalPrice
                 FROM PricebookEntry
                 WHERE Product2Id IN
                         :productIds AND Pricebook2Id IN :pricebookIds GROUP BY Pricebook2Id, Product2Id
         ];
-        System.debug(pricebookEntries);
         for (AggregateResult entry : pricebookEntries) {
             if (productsWithPrices.get((String)entry.get('Product2Id')) == null) {
                 productsWithPrices.put((String)entry.get('Product2Id'), new List<Decimal>{
@@ -104,6 +82,13 @@ public with sharing class WDLC_ProductHelper {
         }
         return wrapProduct(products, productsWithPrices);
     }
+    public static String getLowestPriceForProduct(String productId) {
+        List<WDLC_ProductWrapper> productList = getProductsWithIdIn(new Set<Id>{
+                productId
+        });
+        return productList.get(0).productPriceAfterDiscount;
+    }
+
     public static Product2 createNewProduct2(WDLC_ProductWrapper wrappedProduct) {
         Product2 product = new Product2();
         product.Name = wrappedProduct.productName;
