@@ -14,7 +14,7 @@ public with sharing class WDLC_DiscountManagerController {
                 ) AND RecordTypeId IN (
                         SELECT Id
                         FROM RecordType
-                        WHERE sobjecttype = 'Product2' AND Name = 'Furniture'
+                        WHERE SobjectType = 'Product2' AND Name = 'Furniture'
                 )
         ];
         return products;
@@ -53,20 +53,24 @@ public with sharing class WDLC_DiscountManagerController {
     }
     @AuraEnabled
     public static Pricebook2 getDiscount(String name) {
-        Pricebook2 discountPricebook = [
+        List<Pricebook2> discountPricebooks = [
                 SELECT Id, Name
                 FROM Pricebook2
                 WHERE Name = :name
                 LIMIT 1
         ];
-        return discountPricebook;
+        if (!discountPricebooks.isEmpty()) {
+            return discountPricebooks.get(0);
+        } else {
+            throw new WDLC_CustomException(Label.WDLC_DiscountNotExitst);
+        }
     }
     @AuraEnabled
     public static List<Pricebook2> getAllDiscounts() {
         return [
                 SELECT Id, Name, StartDate__c, EndDate__c
                 FROM Pricebook2
-                WHERE IsActive = true OR StartDate__c > :System.today()
+                WHERE EndDate__c >= :System.today()
         ];
     }
     @AuraEnabled
@@ -97,7 +101,7 @@ public with sharing class WDLC_DiscountManagerController {
         Set<Id> ids = new Set<Id>();
         System.debug(products);
         for (AggregateResult ar : products) {
-            ids.add((String)ar.get('Product2Id'));
+            ids.add((String) ar.get('Product2Id'));
         }
         System.debug(ids);
         List<Product2> products2 = [SELECT Description, photoUrl__c, Id FROM Product2 WHERE Id IN :ids];
@@ -119,7 +123,7 @@ public with sharing class WDLC_DiscountManagerController {
         }
         return wrappedProducts;
     }
-    private static List<WDLC_ProductWithPriceWrapper> setPrices(Map<Id, Decimal> prices, Id pricebookId) {
+    public static List<WDLC_ProductWithPriceWrapper> setPrices(Map<Id, Decimal> prices, Id pricebookId) {
         for (Id prodId : prices.keySet()) {
             if (prices.get(prodId) < 0) {
                 prices.remove(prodId);

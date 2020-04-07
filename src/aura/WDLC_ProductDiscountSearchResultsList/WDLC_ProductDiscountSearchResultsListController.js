@@ -15,7 +15,6 @@
         helper.doSetNewPrices(component, event);
     },
     refreshMap : function(component, event, helper){
-        console.log('anyone?');
         helper.doRefreshMap(component, event);
     },
     getDisc : function(component, event, helper){

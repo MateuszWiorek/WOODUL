@@ -3,17 +3,9 @@
  */
 ({
     doAddProductWithPriceToMap : function(component, event){
-        console.log(event.getParam("productId"));
-        console.log(event.getParam("productPrice"));
-
         let mapOfProducts = component.get("v.productsToSetPrices");
         mapOfProducts[event.getParam("productId")] = event.getParam("productPrice");
         component.set("v.productsToSetPrices", mapOfProducts);
-        let mapp = component.get("v.productsToSetPrices");
-        for(let key in mapp){
-            console.log(key);
-            console.log(mapp[key]);
-        }
     },
     doSetPrices : function(component, event){
         let setPricesAction = component.get("c.setStandardPrices");
@@ -21,10 +13,12 @@
             "prices" : component.get("v.productsToSetPrices")
         });
         setPricesAction.setCallback(this, function(response){
-            if(response.getState() === "SUCCES"){
-
+            if(response.getState() === "SUCCESS"){
+                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"));
             }else{
-
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(setPricesAction);

@@ -35,7 +35,7 @@
         </td>
         <td>
             <ui:inputCurrency placeholder="{!$Label.c.WDLC_NewPrice}" value="{!v.newPrice}" change="{!c.markToDiscount}"
-                              format="{!'€ #,###' + $Label.c.WDLC_FormatPrices}"/>
+                              format="{!$Label.c.WDLC_InputPriceFormat}"/>
         </td>
     </tr>
     <c:WDL_ShowErrorComponent aura:id="informationToast"/>

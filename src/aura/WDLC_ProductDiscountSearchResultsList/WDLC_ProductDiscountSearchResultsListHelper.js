@@ -7,16 +7,13 @@
         component.set("v.types", types);
     },
     doRefreshPrice : function(component, event){
-                console.log('HELP?');
         let mapOfProducts = component.get("v.productsToDiscountMap");
         mapOfProducts[event.getParam("productId")] = event.getParam("productPrice");
         component.set("v.productsToSetPrices", mapOfProducts);
-        let mapp = component.get("v.productsToSetPrices");
     },
     doShowNewPrice : function(component, event){
         let products = component.get("v.results");
         let arrayOfProducts = component.find('element');
-
         for (let i = 0; i< arrayOfProducts.length; i++ ){
             arrayOfProducts[i].setPriceAfterDiscount(component.find("toDiscount").get('v.value'),component.get("v.amountToDiscount"));
         }
@@ -27,12 +24,11 @@
             "prices" : component.get("v.selectedProductsToDiscountMap"),
             "pricebookName" : component.get("v.discount")
         });
-        console.log(component.get("v.discount"));
-        console.log(component.get("v.selectedProductsToDiscountMap"));
         setNewPricesAction.setCallback(this, function(response){
-            console.log(response.getState());
             if(response.getState() === "SUCCESS"){
-                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"));
+                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"));
             }else{
                 component.find("errorToast").showError(response);
             }

@@ -10,9 +10,6 @@
     },
     onInit : function(component, event){
         let product = component.get("v.product")
-//        if(product.productDescription.length>50){
-//            product.productDescription = product.productDescription.substring(0,30);
-//        }
         component.set("v.product", product);
     },
     markToDiscount : function(component, event, helper){

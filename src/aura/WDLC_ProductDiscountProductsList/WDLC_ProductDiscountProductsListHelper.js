@@ -3,7 +3,6 @@
  */
 ({
     doOnInit: function(component, event){
-        console.log('cc');
         let initAction = component.get("c.getProductsWithoutPrice");
         initAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
@@ -18,7 +17,6 @@
         let mapOfProducts = component.get("v.productsToSetPrices");
         mapOfProducts[event.getParam("productId")] = event.getParam("productPrice");
         component.set("v.productsToSetPrices", mapOfProducts);
-        let mapp = component.get("v.productsToSetPrices");
     },
     doSetPrices : function(component, event){
         let setPricesAction = component.get("c.setStandardPrices");
@@ -27,7 +25,9 @@
         });
         setPricesAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
-                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"),$A.get("{!$Label.c.Success"));
+                component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"),
+                                                                        $A.get("{!$Label.c.Success"));
             }else{
                 component.find("errorToast").showError(response);
             }

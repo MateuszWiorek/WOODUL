@@ -14,7 +14,7 @@
             <div class="slds-grid" style="margin-bottom: 5px;">
                 <div class="slds-col slds-size--11-of-12"/>
                 <div class="slds-col slds-size--1-of-12">
-                    <lightning:button onclick="{!c.openModal}">New Discount</lightning:button>
+                    <lightning:button onclick="{!c.openModal}">{!$Label.c.WDLC_NewDiscount}</lightning:button>
                 </div>
             </div>
             <table class="slds-table slds-table_cell-buffer slds-table_bordered">

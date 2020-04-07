@@ -16,12 +16,12 @@
         if(params){
             let type = params.typeOfDiscount;
             let amount = params.amountOfDiscount;
+            let oldPrice = component.get("v.product").productPrice;
             if(type === "percentage"){
-                component.set("v.newPrice",component.get("v.product").productPrice - component.get("v.product").productPrice * (amount/100));
+                component.set("v.newPrice", oldPrice - oldPrice * (amount/100));
             }else if(type === "fixed"){
-                let standardPrice = component.get("v.product").productPrice;
-                if(standardPrice > amount){
-                    component.set("v.newPrice", standardPrice - amount);
+                if(oldPrice > amount){
+                    component.set("v.newPrice", oldPrice - amount);
                 }
             }
         }
@@ -33,7 +33,6 @@
             "productId" : component.get("v.product").productId,
             "productPrice" : component.get("v.newPrice")
         });
-        console.log(component.get("v.newPrice"));
         markSelectedEvent.fire();
     }
 })

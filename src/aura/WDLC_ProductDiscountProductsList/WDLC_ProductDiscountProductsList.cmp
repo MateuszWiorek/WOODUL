@@ -15,7 +15,7 @@
             <center><h2>{!$Label.c.WDLC_GoToDiscountInformation}</h2></center>
         </aura:if>
         <aura:if isTrue="{!not(empty(v.productsWithoutPrice))}">
-            <center><h2>Set standard price for these items first.</h2></center>
+            <center><h2>{!$Label.c.WDLC_SetStandardPrices}</h2></center>
             <aura:iteration items="{!v.productsWithoutPrice}" var="productWithoutPrice" indexVar="index">
                 <c:WDLC_ProductDiscountProductElement productWithoutPrice="{!productWithoutPrice}"
                                                       setPriceEvent="{!c.addProductWithPriceToMap}"/>
