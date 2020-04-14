@@ -1,0 +1,25 @@
+/**
+ * Created by Mateusz Wiorek on 09.04.2020.
+ */
+.THIS .sldsInput{
+    margin-left:5px;
+    margin-right:5px;
+    max-width: 150px;
+}
+.THIS .cardHeight{
+    min-height:600px;
+}
+.THIS .slds-card__footer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 5px;
+}
+.THIS .slds-card__footer .slds-button{
+    margin-bottom:5px;
+}
+.THIS .sldsButton {
+    margin-right: 5px;
+}
+.THIS .slds-docked-form-footer.slds-is-absolute{
+    display:none;
+}

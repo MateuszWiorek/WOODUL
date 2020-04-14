@@ -25,6 +25,8 @@ public with sharing class WDLC_ProductWrapper {
     public Boolean isWishlisted{get;set;}
     @AuraEnabled
     public String productPriceAfterDiscount{get; set;}
+    @AuraEnabled
+    public String discountAmount{get; set;}
 
     public WDLC_ProductWrapper(String productId, String name, String description, String code,
             String photoURL, String productPrice){

@@ -1,0 +1,56 @@
+<!--
+ - Created by Mateusz Wiorek on 08.04.2020.
+ -->
+
+<aura:component description="WDLC_DiscountsList"
+                controller="WDLC_DiscountManagerController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="steps" type="List"/>
+    <aura:attribute name="currentStep" type="String" default="step-1"/>
+    <aura:attribute name="showPricebooks" type="Boolean" default="true"/>
+    <aura:attribute name="columns" type="String[]" access="global"/>
+    <aura:attribute name="results" type="Object[]" access="global"/>
+    <aura:attribute name="showModal" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="rowToDelete" type="String" access="global"/>
+    <aura:attribute name="query" type="String" access="global"/>
+    <aura:attribute name="type" type="String" access="global"/>
+
+    <aura:registerEvent name="WDLC_SendPricebookDetails" type="c:WDLC_SendPricebookDetails"/>
+    <aura:registerEvent name="WDLC_HideDetails" type="c:WDLC_HideDetails"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler event="c:WDLC_RefreshDiscounts" action="{!c.refresh}"/>
+    <aura:handler event="c:WDLC_ProgressIndicatorSet" action="{!c.setStep}"/>
+
+
+        <lightning:progressIndicator currentStep="{!v.currentStep}" type="path" variant="base" class="slds-p-around_medium">
+            <aura:iteration items="{! v.steps }" var="step">
+                <lightning:progressStep label="{! step.label }" value="{! step.value }" onclick="{!c.goToDiscounts}"/>
+            </aura:iteration>
+        </lightning:progressIndicator>
+
+    <aura:if isTrue="{!and(v.showPricebooks, v.currentStep == 'step-2')}">
+        <lightning:card title="Select discount" iconName="standard:pricebook" class="slds-p-around_medium">
+            <aura:set attribute="actions">
+                <div style="display: flex; justify-content : space-evenly;  align-items: flex-end">
+                    <lightning:input type="text" placeholder="{!$Label.c.WDLC_SearchList}" label=""
+                                     value="{!v.query}" onchange="{!c.searchPricebooks}"/>
+                    <lightning:button label="New" class="sldsButton" onclick="{!c.openModal}" variant="brand"/>
+                </div>
+            </aura:set>
+            <div class="buttonsAsLink">
+                <lightning:datatable
+                        columns="{! v.columns }"
+                        data="{! v.results }"
+                        hideCheckboxColumn="true"
+                        keyField="Id"
+                        onrowaction="{! c.handleRowAction }"
+                        oncellchange="{!c.handleCellChange}"
+                        onsave="{! c.handleSaveEdition }"
+                />
+            </div>
+        </lightning:card>
+    </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="toast"/>
+    <c:WDL_ModalComponent canBeShown="{!v.showModal}" type="{!v.type}" pricebookName="{!v.rowToDelete}"/>
+</aura:component>

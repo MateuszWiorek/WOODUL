@@ -17,6 +17,57 @@
         },
         createNewDisc : function(component, event, helper){
             helper.doCreateNewDiscount(component,event);
+        },
+        deletePricebook : function(component, event, helper){
+                let deleteAction = component.get("c.deleteDiscount");
+                deleteAction.setParams({
+                    "name" : component.get("v.pricebookName")
+                });
+                deleteAction.setCallback(this, function(response){
+                    if(response.getState() === "SUCCESS"){
+                        component.find("errorChildComponent").openInformationToast("Removed item successfully",
+                         "Success",
+                          "Success");
+                        component.set("v.canBeShown", false);
+                        $A.get("e.c:WDLC_RefreshDiscounts").fire();
+                    }
+                });
+                $A.enqueueAction(deleteAction);
+        },
+        handleSuccess : function(component, event){
+            component.set("v.canBeShown", false);
+            $A.get("e.c:WDLC_RefreshDiscounts").fire();
+        },
+        deleteProductFromPricebook : function(component, event, helper){
+            let deletePricebookAction = component.get("c.removeItemsFromPricebook");
+            deletePricebookAction.setParams({
+                "pricebookId" : component.get("v.discountId"),
+                "productsId" : component.get("v.productsToDelete")
+            });
+            deletePricebookAction.setCallback(this, function(response){
+                if(response.getState() === "SUCCESS"){
+                        component.find("errorChildComponent").openInformationToast("Removed item successfully",
+                         "Success",
+                          "Success");
+                          component.set("v.canBeShown", false);
+                    let refreshEvent = $A.get("e.c:WDLC_RemoveProductFromDiscount");
+                    refreshEvent.setParams({
+                        "products" : component.get("v.productsToDelete"),
+                        "pricebook" : component.get("v.discountId")
+                    });
+                    refreshEvent.fire();
+                }else{
+                    component.find("errorToastComponent").showError(response);
+                }
+            });
+            $A.enqueueAction(deletePricebookAction);
+        },
+        goToDiscounts : function(component, event, helper){
+                   let stepEvent = $A.get("e.c:WDLC_ProgressIndicatorSet");
+                   stepEvent.setParams({
+                       'step' : 'step-2'
+                   });
+                   stepEvent.fire();
+                   component.set("v.canBeShown", false);
         }
-
 })

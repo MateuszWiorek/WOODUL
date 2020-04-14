@@ -1,0 +1,84 @@
+<!--
+ - Created by Mateusz Wiorek on 09.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductSetDiscountDetails"
+                controller="WDLC_DiscountManagerController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="columns" type="String[]" access="global"/>
+    <aura:attribute name="results" type="Object[]" access="global"/>
+    <aura:attribute name="hiddenResults" type="Object[]" access="global"/>
+    <aura:attribute name="query" type="String" access="global"/>
+    <aura:attribute name="discount" type="String" access="global"/>
+    <aura:attribute name="discountDate" type="String" access="global"/>
+    <aura:attribute name="amount" type="Integer" access="global"/>
+    <aura:attribute name="fixedBoolean" type="String" access="global" default="fixed"/>
+    <aura:attribute name="value" type="String" default="fixed"/>
+    <aura:attribute name="pricesToSet" type="Map" access="global" default="{}"/>
+    <aura:attribute name="productsToRemove" type="String[]" access="global" default="{}"/>
+    <aura:attribute name="showModal" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="discountId" type="String" access="global"/>
+    <aura:attribute name="isMassDeleteActive" type="Boolean" access="global" default="true"/>
+    <aura:attribute name="isStandard" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="isDisabled" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="isDisabledBecauseStandard" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="typeModal" type="String" access="global" default="deleteItemsFromPricebook"/>
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'Fixed', 'value': 'fixed'},
+    {'label': '%', 'value': 'percentage'}
+    ]"/>
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler event="c:WDLC_SendProductsList" action="{!c.handleEvent}"/>
+    <aura:handler event="c:WDLC_RemoveProductFromDiscount" action="{!c.refreshResults}"/>
+
+    <lightning:card title="{!$Label.c.WDLC_ProductsInDiscount + v.discount +' '+ v.discountDate}" iconName="standard:product_item"
+                    class="slds-p-around_medium cardHeight">
+        <aura:set attribute="actions">
+            <div style="display: flex; justify-content : space-evenly;  align-items: flex-end">
+                <lightning:button label="{!$Label.c.WDLC_MassDelete}" onclick="{!c.handleMassClick}" disabled="{!or(v.isDisabled, v.isDisabledBecauseStandard)}"/>
+                <lightning:input type="text" placeholder="{!$Label.c.WDLC_SearchList}" label=""
+                                 value="{!v.query}" onchange="{!c.searchProducts}" class="sldsInput"/>
+            </div>
+            <div style="display: flex; justify-content : space-evenly;  align-items: flex-end">
+                <lightning:radioGroup name="radioButtonGroup"
+                                      label="{!$Label.c.WDLC_DiscountType}"
+                                      options="{! v.options }"
+                                      value="{! v.value }"
+                                      onchange="{! c.handleChange }"
+                                      type="button"
+                                      disabled="{!or(v.isDisabled, v.isDisabledBecauseStandard)}"/>
+                <ui:inputNumber label="" placeholder="{!$Label.c.WDLC_SetGlobalDiscount}" class="sldsInput" value="{!v.amount}"
+                                change="{!c.handleDiscountValueChange}" disabled="{!or(v.isDisabled, v.isDisabledBecauseStandard)}"/>
+            </div>
+        </aura:set>
+        <aura:if isTrue="{!not(empty(v.results))}">
+            <div class="slds-scrollable_y" style="height:380px;">
+                <lightning:datatable
+                        columns="{! v.columns }"
+                        data="{! v.results }"
+                        keyField="productId"
+                        hideCheckboxColumn="{!v.isMassDeleteActive}"
+                        onrowaction="{!c.handleRowAction}"
+                        onrowselection="{!c.handleSelection}"
+                        oncellchange="{!c.updatePriceAfterDiscount}"
+
+                />
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!empty(v.results)}">
+            {!$Label.c.WDLC_EmptyList}
+        </aura:if>
+        <aura:set attribute="footer">
+            <lightning:button variant="brand" label="{!$Label.c.WDLC_SetNewPrices}" onclick="{!c.submitPrices}" disabled="{!v.isDisabled}"/>
+            <aura:if isTrue="{!not(v.isMassDeleteActive)}">
+                <lightning:button variant="destructive" label="{!$Label.c.WDLC_Remove}" onclick="{!c.handleMassDelete}"
+                                  class="sldsButton" />
+            </aura:if>
+        </aura:set>
+    </lightning:card>
+    <c:WDL_ModalComponent type="{!v.typeModal}" discountId="{!v.discountId}"
+                          productsToDelete="{!v.productsToRemove}" canBeShown="{!v.showModal}"/>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="toast"/>
+</aura:component>

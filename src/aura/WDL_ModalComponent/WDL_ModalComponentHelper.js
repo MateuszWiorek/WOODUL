@@ -51,6 +51,7 @@
         });
         createDiscountAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
+                                component.set("v.canBeShown",false);
                 $A.get("e.c:WDLC_RefreshDiscounts").fire();
             }else{
                 component.find("errorToast").showError(response);
