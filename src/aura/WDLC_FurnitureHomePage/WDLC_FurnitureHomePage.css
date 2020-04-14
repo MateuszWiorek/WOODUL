@@ -1,0 +1,105 @@
+/**
+ * Created by Mateusz Wiorek on 27.03.2020.
+ */
+.THIS .mainDiv{
+        width:1920px;
+        height:1080px;
+}
+.THIS .paddingZero{
+    padding:0px;
+}
+.THIS .bodyClass{
+    overflow:hidden;
+    max-width:100%;
+}
+.THIS .table{
+    height: 100vh;
+    width: 1920px;
+    background-position: center;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    padding: 7rem 1.5rem 1rem;
+}
+.THIS .table-div {
+    width:35vw;
+    height:70vh;
+    background-color: rgba(255,255,255, 0.95);
+    opacity: 0.96;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.THIS .main-div_button{
+}
+.THIS .main-span_title{
+    color: black;
+    font-size: 10rem;
+    font-weight: bolder;
+    margin: 0 auto 10%;
+    line-height:0.9;
+}
+.THIS .main-span_subtitle{
+    color: black;
+    font-size:2rem;
+    text-transform:uppercase;
+    margin: 0.5rem 0;
+}
+.THIS .goCozyButton{
+    color: black;
+    font-weight: bold;
+    border: 4px solid black;
+    border-radius:0;
+    width: 100%;
+    height: 6rem;
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+}
+.THIS .apartment{
+    height: 100vh;
+    width: 1920px;
+    background-position: top;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 7rem 1.5rem 1rem;
+    background-size: auto;
+}
+.THIS .apartment-div{
+    width:35vw;
+    height:70vh;
+    background-color: rgba(128,128,128, 0.95);
+    opacity: 0.96;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.THIS .apartment-span_title{
+    color: black;
+    font-size: 10rem;
+    font-weight: bolder;
+    margin: 0 auto 10%;
+    line-height:0.9;
+}
+.THIS .apartment-span_subtitle{
+    color: black;
+    font-size:2rem;
+    text-transform:uppercase;
+    margin: 0.5rem 0;
+}
+.THIS .goRawButton{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background-color:transparent;
+    border: 3px solid white;
+    border-radius: 0;
+    width: 100%;
+    height: 6rem;
+    font-size: 4rem;
+    color: white;
+    text-transform: uppercase;
+}
