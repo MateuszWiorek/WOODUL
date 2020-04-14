@@ -1,0 +1,17 @@
+/**
+ * Created by Mateusz Wiorek on 29.03.2020.
+ */
+.THIS .more svg{
+    fill : #244A80;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+}
+.THIS .more {
+    border: none;
+    margin-right: 10px;
+}
+.THIS.slds-card{
+    border: none;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}

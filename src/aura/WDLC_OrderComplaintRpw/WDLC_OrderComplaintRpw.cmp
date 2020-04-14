@@ -1,0 +1,57 @@
+<!--
+ - Created by Mateusz Wiorek on 29.03.2020.
+ -->
+
+<aura:component description="WDLC_OrderComplaintRpw" controller="WDLC_FurnitureComplaintsController"
+                implements="forceCommunity:availableForAllPageTypes"
+                extensible="true">
+    <aura:attribute name="complaint" type="Object" access="global"/>
+    <aura:attribute name="channel" type="String" default="/event/WDLC_NewCaseComment__e"/>
+    <aura:attribute name="showModal" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="caseComments" type="Object[]" access="global"/>
+    <aura:attribute name="caseCommentMessage" type="String" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <lightning:card class="slds-card_boundary">
+        <div class="slds-grid wrapper">
+            <div class="slds-col slds-size--2-of-12">
+                <aura:if isTrue="{!v.complaint.Status == $Label.c.WDLC_Closed}">
+                    <div style="padding-left:5px;">
+                        <lightning:icon iconName="action:approval" alternativeText="{!$Label.c.WDLC_Closed}"
+                                        class="iconClass"/>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.complaint.Status == $Label.c.WDLC_Working}">
+                    <div style="padding-left:5px;">
+                        <lightning:icon iconName="action:change_record_type" alternativeText="{!$Label.c.WDLC_Working}"
+                                        class="iconClass"/>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.complaint.Status == $Label.c.WDLC_New}">
+                    <div style="padding-left:5px;">
+                        <lightning:icon iconName="action:new_note" alternativeText="{!$Label.c.WDLC_New}"
+                                        class="iconClass"/>
+                    </div>
+                </aura:if>
+            </div>
+            <div class="slds-col slds-size--3-of-12">
+                <ui:outputDate value="{!v.complaint.CreatedDate}"/>
+            </div>
+            <div class="slds-col slds-size--3-of-12">
+                <lightning:recordViewForm objectApiName="Case" recordId="{!v.complaint.Id}">
+                    <lightning:outputField fieldName="ProductCase__c"/>
+                </lightning:recordViewForm>
+            </div>
+            <div class="slds-col slds-size--2-of-12">
+                <lightning:recordViewForm objectApiName="Case" recordId="{!v.complaint.Id}">
+                <lightning:outputField fieldName="Status"/>
+                </lightning:recordViewForm>
+            </div>
+            <div class="slds-col slds-size--1-of-12 slds-float_right">
+                <lightning:button variant="brand" onclick="{!c.openModal}" label="{!$Label.c.WDLC_Preview}">{!$Label.c.WDLC_Preview}</lightning:button>
+            </div>
+        </div>
+        <c:WDLC_FurnitureModalComponent typeOfModal="complaintDetails" showModal="{!v.showModal}"
+                                        complaint="{!v.complaint}" caseComments="{!v.caseComments}"/>
+    </lightning:card>
+</aura:component>

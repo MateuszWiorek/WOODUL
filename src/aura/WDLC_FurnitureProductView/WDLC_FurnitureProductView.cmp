@@ -1,0 +1,78 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureProductView" controller="WDLC_ProductViewController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute type="String" name="productId" access="global"/>
+    <aura:attribute type="String" name="livePhoto" access="global"/>
+    <aura:attribute type="Object" name="product" access="global"/>
+    <aura:attribute type="String[]" name="productPhotos" access="global"/>
+
+    <aura:registerEvent type="c:WDLC_RefreshBasketComponent" name="refreshBasket"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue="{!not(empty(v.product))}">
+        <lightning:card>
+            <div class="slds-grid" style="padding: 3rem 1rem;">
+                <div class="slds-size--1-of-12 slds-col_bump-left">
+                    <aura:if isTrue="{!not(empty(v.productPhotos))}">
+                    <aura:iteration items="{!v.productPhotos}" var="photoUrl">
+
+                        <c:WDLC_ProductPhotoElement photoUrl="{!photoUrl}" changeLiveEvent="{!c.setLivePhoto}"/>
+                    </aura:iteration>
+                    </aura:if>
+                </div>
+                <div class="slds-col slds-size--5-of-12">
+                    <img src="{!v.livePhoto}"/>
+                </div>
+                <div class="slds-col slds-size--1-of-12"/>
+                <div class="slds-col slds-size--5-of-12 slds-align-middle productInfo">
+                    <h2>{!v.product.productName}</h2>
+                    <p/>
+                    <span aura:id="standardPrice">
+                        <lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
+                                                   currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
+                    </span>
+                    <span aura:id="discountPrice" class="discountPriceNone" style="margin-left: 6px;">
+                        <lightning:formattedNumber value="{!v.product.productPriceAfterDiscount}" style="currency"
+                                                   currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
+                    </span>
+                    <p/>
+                    <lightning:button class="slds-button slds-button_outline-brand"
+                                      onclick="{!c.addToCart}">{!$Label.c.WDLC_AddToCart}</lightning:button>
+                    <aura:if isTrue="{!not(v.product.isWishlisted)}">
+                        <lightning:button class="slds-button slds-button_outline-brand"
+                                          onclick="{!c.addToWishList}">{!$Label.c.WDLC_AddToList}</lightning:button>
+                    </aura:if>
+                    <aura:if isTrue="{!v.product.isWishlisted}">
+                        <lightning:button class="slds-button slds-button_outline-brand"
+                                          onclick="{!c.removeFromList}">{!$Label.c.WDLC_RemoveFromList}
+                        </lightning:button>
+                    </aura:if>
+
+                </div>
+            </div>
+            <lightning:tabset>
+                <lightning:tab label="{!$Label.c.Description}">
+                    <div>
+                        <h3>{!$Label.c.Description}</h3>
+                        <span>{!v.product.productDescription}</span>
+                    </div>
+                </lightning:tab>
+                <lightning:tab label="{!$Label.c.WDLC_Comments}">
+                    <div>
+                        <c:WDLC_FurnitureCommentsSection product="{!v.product}"/>
+                    </div>
+                </lightning:tab>
+            </lightning:tabset>
+            <aura:if isTrue="{!not(empty(v.product))}">
+                <center><h3>{!$Label.c.WDLC_BuySimilar}</h3></center>
+                <c:WDLC_SimilarFurnitureProducts product2="{!v.product}"/>
+            </aura:if>
+
+        </lightning:card>
+    </aura:if>
+    <c:WDLC_ErrorComponent aura:id="errorToast"/>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+</aura:component>

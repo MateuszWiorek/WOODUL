@@ -1,0 +1,57 @@
+<!--
+ - Created by Mateusz Wiorek on 26.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureComplaint" controller="WDLC_FurnitureComplaintsController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="caseDetail" type="String" access="global"/>
+    <aura:attribute name="caseCommentMessage" type="String" access="global"/>
+    <aura:attribute name="caseComments" type="Object[]" access="global"/>
+
+<!--    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>-->
+
+<!--    <lightning:card>-->
+<!--        <aura:if isTrue="{!not(empty(v.caseDetail))}">-->
+<!--            <lightning:recordViewForm recordId="{!caseDetail}" objectApiName="Case">-->
+<!--                <div class="slds-grid">-->
+<!--                    <div class="slds-col">-->
+<!--                        <lightning:outputField fieldName="Reason"/>-->
+<!--                        <lightning:outputField fieldName="ProductCase__c"/>-->
+<!--                        <lightning:outputField fieldName="SuppliedEmail"/>-->
+<!--                    </div>-->
+<!--                    <div class="slds-col">-->
+<!--                        <lightning:outputField fieldName="Status"/>-->
+<!--                        <lightning:outputField fieldName="Subject"/>-->
+<!--                        <lightning:outputField fieldName="Description"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </lightning:recordViewForm>-->
+<!--        </aura:if>-->
+<!--    </lightning:card>-->
+<!--    <lightning:card>-->
+<!--        <center><h2>Add comment to this complaint.</h2></center>-->
+<!--        <ui:inputTextArea value="{!v.caseCommentMessage}"/>-->
+<!--        <lightning:buttonIcon iconName="utility:share_post" variant="bare" onclick="{!c.postComment}" size="large"-->
+<!--                              alternativeText="Comment" title="Comment"/>-->
+
+<!--        <aura:if isTrue="{!not(empty(v.caseComments))}">-->
+<!--            <center><h2>Add comment to this complaint.</h2></center>-->
+<!--            <aura:iteration items="{!v.caseComments}" var="com">-->
+<!--                <article style="border: 1px solid gray; margin-bottom:10px;">-->
+<!--                    <div class="slds-grid">-->
+<!--                        <div class="slds-col">-->
+<!--                            <lightning:recordViewForm objectApiName="User" recordId="{!com.CreatedById}">-->
+<!--                                <span class="deletedLabel"><lightning:outputField fieldName="Name"/></span>-->
+<!--                            </lightning:recordViewForm>-->
+<!--                        </div>-->
+<!--                        <div class="slds-col">-->
+<!--                            <ui:outputDateTime value="{!com.CreatedDate}"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <span style="font-weight:bolder;"><ui:outputText value="{!com.CommentBody}"/></span>-->
+<!--                </article>-->
+<!--            </aura:iteration>-->
+<!--        </aura:if>-->
+<!--    </lightning:card>-->
+    <c:WDLC_FurnitureComplaintsSection/>
+</aura:component>
