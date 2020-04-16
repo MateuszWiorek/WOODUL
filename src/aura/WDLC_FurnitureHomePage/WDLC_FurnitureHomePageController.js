@@ -5,7 +5,7 @@
     makeCarousel: function(component, event){
         setTimeout(function() {
             $('.carousel').slick({
-                autoplay: false,
+                autoplay: true,
                 autoplaySpeed: 7000,
                 dots: true,
                 centerPadding: '0',

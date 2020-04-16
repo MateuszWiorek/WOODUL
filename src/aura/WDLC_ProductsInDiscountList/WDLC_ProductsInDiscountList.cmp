@@ -1,0 +1,64 @@
+<!--
+ - Created by Mateusz Wiorek on 08.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductsInDiscountList" controller="WDLC_DiscountManagerController"
+                implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="columns" type="String[]" access="global"/>
+    <aura:attribute name="results" type="Object[]" access="global"/>
+    <aura:attribute name="canBeShown" type="Boolean" default="false"/>
+    <aura:attribute name="query" type="String" access="global" default=""/>
+    <aura:attribute name="discountName" type="String" access="global"/>
+    <aura:attribute name="sortDirection" type="String" default="asc"/>
+    <aura:attribute name="defaultSortDirection" type="String" default="asc"/>
+    <aura:attribute name="sortedBy" type="String"/>
+    <aura:attribute name="selectedProducts" type="Set" access="global" default=""/>
+    <aura:attribute name="selectedRowsCount" type="Integer" access="global"/>
+    <aura:attribute name="isMassSelectActive" type="Boolean" access="global" default="true"/>
+    <aura:attribute name="isDisabled" type="Boolean" access="global" default="false"/>
+
+    <aura:registerEvent type="c:WDLC_SendProductsList" name="WDLC_SendProductsList"/>
+
+    <aura:handler event="c:WDLC_SendPricebookDetails" action="{!c.onInit}"/>
+    <aura:handler event="c:WDLC_RemoveProductFromDiscount" action="{!c.refreshResults}"/>
+    <aura:handler event="c:WDLC_HideDetails" action="{!c.hideAll}"/>
+
+    <aura:if isTrue="{!v.canBeShown}">
+    <div class="slds-grid">
+        <div class="slds-col slds-size--1-of-2 slds-p-around_medium">
+            <lightning:card title="{!'Search products '}" iconName="standard:product_item" class="slds-p-around_medium cardHeight" >
+                <aura:set attribute="actions">
+                    <div style="display: flex; justify-content : space-evenly;  align-items: flex-end">
+                        <lightning:button label="{!$Label.c.WDLC_MassSelect}" class="sldsButton" onclick="{!c.handleMassSelect}" disabled="{!v.isDisabled}"/>
+                        <lightning:input type="text" placeholder="{!$Label.c.WDLC_SearchList}" label=""
+                                         value="{!v.query}" onchange="{!c.searchProducts}" class="sldsInput"/>
+                    </div>
+                </aura:set>
+                <aura:if isTrue="{!not(empty(v.results))}">
+                    <div class="slds-scrollable_y" style="max-height:450px;">
+                        <lightning:datatable
+                                columns="{! v.columns }"
+                                data="{! v.results }"
+                                keyField="id"
+                                defaultSortDirection="{!v.defaultSortDirection}"
+                                onrowselection="{!c.updateSelectedText}"
+                                hideCheckboxColumn="{!v.isMassSelectActive}"
+                                onrowaction="{!c.handleAction}"
+                        />
+                    </div>
+                </aura:if>
+                <aura:set attribute="footer">
+                    <aura:if isTrue="{!not(v.isMassSelectActive)}">
+                        <lightning:button variant="brand" label="{!$Label.c.WDLC_AddToDiscount}" onclick="{!c.setDetails}" class="sldsButton"/>
+                    </aura:if>
+                </aura:set>
+            </lightning:card>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-p-around_medium">
+            <c:WDLC_ProductSetDiscountDetails discount="{!v.discountName}"/>
+        </div>
+    </div>
+    </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="toast"/>
+</aura:component>

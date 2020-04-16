@@ -1,0 +1,79 @@
+<!--
+ - Created by Mateusz Wiorek on 02.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountSearchResultsList" controller="WDLC_DiscountManagerController">
+    <aura:attribute name="results" type="Object[]" access="global"/>
+    <aura:attribute name="productsToDiscountMap" type="Map" access="global" default="{}"/>
+    <aura:attribute name="selectedProductsToDiscountMap" type="Map" access="global" default="{}"/>
+    <aura:attribute name="amountToDiscount" type="Decimal" access="global"/>
+    <aura:attribute name="discount" type="String" access="global"/>
+    <aura:attribute name="types" type="String[]" access="global"/>
+    <aura:attribute name="columns" type="String[]" access="global"/>
+
+    <aura:registerEvent name="WDLC_SendPricebookDetails" type="c:WDLC_SendPricebookDetails"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler event="c:WDLC_RefreshDiscounts" action="{!c.getDisc}"/>
+    <aura:handler event="c:WDLC_SendValuesToSearchDiscount" action="{!c.getItems}"/>
+
+<!--    <table class="slds-table slds-table_cell-buffer slds-table_bordered">-->
+<!--        <thead>-->
+<!--        <tr class="slds-line-height_reset">-->
+<!--            <th>{!$Label.c.WDLC_Select}</th>-->
+<!--            <th>{!$Label.c.WDLC_Image}</th>-->
+<!--            <th>{!$Label.c.WDLC_ProductName}</th>-->
+<!--            <th>{!$Label.c.WDLC_Description}</th>-->
+<!--            <th>{!$Label.c.WDLC_StandardPrice}</th>-->
+<!--            <th>{!$Label.c.WDLC_ActualPrice}</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <aura:iteration items="{!v.results}" var="item" indexVar="index" end="13">-->
+<!--            <c:WDLC_ProductDiscountSearchResultsItem aura:id="element" product="{!item}" changePrice="{!c.refreshPrice}"-->
+<!--                                                     markAsSelected="{!c.refreshMap}"/>-->
+<!--        </aura:iteration>-->
+<!--        </tbody>-->
+<!--    </table>-->
+    <div>
+        <lightning:datatable
+                columns="{! v.columns }"
+                data="{! v.results }"
+                keyField="id"
+        />
+    </div>
+    <aura:if isTrue="{!not(empty(v.results))}">
+        <div class="slds-grid slds-grid_vertical-align-center slds-wrap" style="margin-top: 15px; padding-left: 15px;">
+            <div class="slds-col slds-size--2-of-12" style="padding-left: 10px;">
+                <aura:if isTrue="{!not(empty(v.types))}">
+                    <lightning:select label="{!$Label.c.WDLC_SelectTypeOfDiscount}" class="selectPadding"
+                                      aura:id="toDiscount">
+                        <aura:iteration items="{!v.types}" var="typeOfDiscount">
+                            <option value="{!typeOfDiscount}" label="{!typeOfDiscount}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                </aura:if>
+            </div>
+
+            <div class="slds-col slds-size--10-of-12"/>
+            <div class="slds-col slds-size--2-of-12" style="">
+                <ui:inputNumber label="{!$Label.c.WDLC_SetAmountDiscount}" class="" value="{!v.amountToDiscount}"
+                                change="{!c.showNewPrice}"/>
+            </div>
+            <div class="slds-col slds slds-size--8-of-12"/>
+            <div class="slds-col slds-size--2-of-12" style="padding-top: 6px;">
+                <lightning:button onclick="{!c.setNewPrices}"
+                                  variant="brand" class="slds-float_right sldsButton">{!$Label.c.WDLC_SetNewPrices}</lightning:button>
+            </div>
+        </div>
+    </aura:if>
+<!--    <div style="height: 300px">-->
+<!--        <lightning:datatable-->
+<!--                columns="{! v.columns }"-->
+<!--                data="{! v.results }"-->
+<!--                keyField="id"-->
+<!--        />-->
+<!--    </div>-->
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+</aura:component>

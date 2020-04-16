@@ -8,3 +8,11 @@
     color: white;
     border: 1px solid white;
 }
+.THIS .summary_boldFont > * > *{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.THIS .summary_boldFont > * > * > *{
+    font-weight: bold;
+    font-size: 1.2rem;
+}

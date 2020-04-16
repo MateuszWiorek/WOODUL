@@ -1,0 +1,31 @@
+/**
+ * Created by Mateusz Wiorek on 08.04.2020.
+ */
+.THIS .sldsButton{
+    margin-left: 5px;
+}
+.THIS .buttonsAsLink .slds-button.slds-button_neutral{
+      background: none!important;
+      border: none;
+      padding: 0!important;
+      /*optional*/
+      font-family: arial, sans-serif;
+      /*input has OS specific font-family*/
+      color: #069;
+      text-decoration: underline;
+      cursor: pointer;
+}
+.THIS .slds-card__footer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 5px;
+}
+.THIS .slds-card__footer .slds-button{
+    margin-bottom:5px;
+}
+.THIS .sldsButton {
+    margin-right: 5px;
+}
+.THIS .slds-docked-form-footer.slds-is-absolute{
+    display:none;
+}

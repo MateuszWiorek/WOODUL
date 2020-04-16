@@ -1,0 +1,20 @@
+<!--
+ - Created by Mateusz Wiorek on 02.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountProductElement" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="productWithoutPrice" type="Object" access="global"/>
+    <aura:attribute name="price" type="Decimal" access="global"/>
+
+    <aura:registerEvent type="c:WDLC_ProductSetPrice" name="setPriceEvent"/>
+
+        <tr class="slds-hint-parent">
+            <td style="width: 450px;"><img
+                    src="{!v.productWithoutPrice.photoUrl__c}"
+                    style="max-height:50px; max-width:50px;"/></td>
+            <td style="width: 450px;">{!v.productWithoutPrice.Name}</td>
+            <td class="slds-truncate" style="width: 800px;">{!v.productWithoutPrice.Description}</td>
+            <td><ui:inputNumber placeholder="Enter standard price for this item" value="{!v.price}"
+                                change="{!c.setStandardPrice}"/></td>
+        </tr>
+</aura:component>

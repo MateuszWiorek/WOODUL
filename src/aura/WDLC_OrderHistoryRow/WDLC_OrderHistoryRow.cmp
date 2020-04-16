@@ -14,19 +14,24 @@
 
     <lightning:card>
         <div class="slds-grid">
-            <div class="slds-col slds-size--2-of-12">
+            <div class="slds-col slds-size--1-of-12">
                 <aura:if isTrue="{!v.cell.Status == 'Activated'}">
                     <div style="padding-left:5px;">
-                        <lightning:icon iconName="action:approval" alternativeText="{!$Label.c.WDLC_Closed}"
+                        <lightning:icon iconName="action:approval" alternativeText="{!$Label.c.WDLC_Closed}" title="{!$Label.c.WDLC_Closed}"
                                         class="iconClass"/>
                     </div>
                 </aura:if>
                 <aura:if isTrue="{!v.cell.Status =='Draft'}">
                     <div style="padding-left:5px;">
-                        <lightning:icon iconName="action:change_record_type" alternativeText="{!$Label.c.WDLC_Working}"
+                        <lightning:icon iconName="action:change_record_type" alternativeText="{!$Label.c.WDLC_Working}" title="{!$Label.c.WDLC_Working}"
                                         class="iconClass"/>
                     </div>
                 </aura:if>
+            </div>
+            <div class="slds-col slds-size--2-of-12">
+                <label class="slds-form-element__label" for="unique-id-of-input">{!$Label.c.WDLC_OrderNumber}</label>
+                <br/>
+                <ui:outputNumber value="{!v.cell.OrderNumber}"/>
             </div>
             <div class="slds-col slds-size--3-of-12">
                 <p>
@@ -35,7 +40,7 @@
                                                  minute="2-digit" timeZone="UTC" timeZoneName="short" hour12="false"/>
                 </p>
             </div>
-            <div class="slds-col slds-size--4-of-12">
+            <div class="slds-col slds-size--3-of-12">
                 <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
                     <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity} x <ui:outputCurrency value="{!itemOrder.UnitPrice}"/></h2>
                 </aura:iteration>
@@ -45,10 +50,6 @@
                                            currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
             </div>
             <div class="slds-col slds-size--2-of-12 ">
-<!--                <lightning:buttonIcon iconName="utility:threedots" alternativeText="{!$Label.c.WDLC_MakeComplaint}"-->
-<!--                                      variant="border-filled"-->
-<!--                                      onclick="{!c.openOrderDetails}"-->
-<!--                                      class="more slds-float_right"/>-->
                 <lightning:button variant="brand" onclick="{!c.openOrderDetails}" label="{!$Label.c.WDLC_Preview}">{!$Label.c.WDLC_Preview}</lightning:button>
             </div>
         </div>

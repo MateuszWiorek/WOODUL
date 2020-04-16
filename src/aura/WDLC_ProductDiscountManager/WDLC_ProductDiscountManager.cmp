@@ -1,0 +1,29 @@
+<!--
+ - Created by Mateusz Wiorek on 02.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountManager"
+                controller="WDLC_DiscountManagerController"
+                implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:appHostable">
+    <aura:attribute name="discountName" type="String" access="global"/>
+    <aura:attribute name="discountStartDate" type="Date" access="global"/>
+    <aura:attribute name="discountEndDate" type="Date" access="global"/>
+
+    <aura:registerEvent name="WDLC_RefreshDiscounts" type="c:WDLC_RefreshDiscounts"/>
+
+    <lightning:card>
+        <div class="slds-grid">
+            <div class="slds-col slds-size--1-of-12"/>
+            <div class="slds-col slds-size--10-of-12">
+
+                <ui:inputText value="{!v.discountName}" label="{!$Label.c.WDLC_DiscountName}"/>
+                <ui:inputDate value="{!v.discountStartDate}" class="field" displayDatePicker="true"
+                              label="{!$Label.c.WDLC_StartDate}"/>
+                <ui:inputDate value="{!v.discountEndDate}" class="field" displayDatePicker="true"
+                              label="{!$Label.c.WDLC_EndDate}"/>
+            </div>
+        </div>
+    </lightning:card>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+</aura:component>

@@ -1,0 +1,49 @@
+<!--
+ - Created by Mateusz Wiorek on 05.04.2020.
+ -->
+
+<aura:component description="WDLC_DiscountItemRow" controller="WDLC_DiscountManagerController"
+                implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="item" type="Object" access="global"/>
+    <aura:attribute name="newPrice" type="Decimal" access="global" default="{!v.item.productPriceAfterDiscount}"/>
+    <aura:attribute name="isSelected" type="Boolean" access="global" default="false"/>
+
+    <aura:registerEvent type="c:WDLC_ProductSetPrice" name="changePrice"/>
+    <aura:registerEvent type="c:WDLC_MarkToAddEvent" name="markAsSelected"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler event="c:WDLC_SendPricebookDetails" action="{!c.hideTables}"/>
+
+    <aura:method name="setPriceAfterDiscount" action="{!c.setPrice}" access="global">
+        <aura:attribute name="typeOfDiscount" type="String" access="global"/>
+        <aura:attribute name="amountOfDiscount" type="String" access="global"/>
+    </aura:method>
+
+    <aura:if isTrue="{!not(empty(v.item))}">
+        <tr class="slds-hint-parent">
+            <td>
+                <ui:inputCheckbox value="{!v.isSelected}" change="{!c.markToDiscount}"/>
+            </td>
+            <td>
+                <img src="{!v.item.productPhotoUrl}" style="max-height:50px; max-width:50px"/>
+            </td>
+            <td>
+                <ui:outputText value="{!v.item.productName}"/>
+            </td>
+            <td class="slds-truncate" style="max-width: 300px;">
+                <ui:outputText value="{!v.item.productDescription}"/>
+            </td>
+            <td>
+                <lightning:formattedNumber style="currency" currencyCode="{!$Locale.currencyCode}"
+                                           value="{!v.item.productPrice}"/>
+            </td>
+            <td>
+                <ui:inputNumber placeholder="{!$Label.c.WDLC_NewPrice}" value="{!v.newPrice}"
+                                change="{!c.markToDiscount}"
+                                format="{!$Label.c.WDLC_FormatPrices}"/>
+            </td>
+        </tr>
+    </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+</aura:component>

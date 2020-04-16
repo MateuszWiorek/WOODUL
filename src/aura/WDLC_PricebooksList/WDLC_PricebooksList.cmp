@@ -1,0 +1,40 @@
+<!--
+ - Created by Mateusz Wiorek on 07.04.2020.
+ -->
+
+<aura:component description="WDLC_PricebooksList"
+                controller="WDLC_DiscountManagerController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="discounts" type="Object[]" access="global"/>
+    <aura:attribute name="canBeShown" type="Boolean" access="global" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <aura:if isTrue="{!not(empty(v.discounts))}">
+        <lightning:card title="Discounts">
+<!--            <div style="margin-bottom:5px; padding-left: 5px;">-->
+<!--                <lightning:button onclick="{!c.openModal}">{!$Label.c.WDLC_NewDiscount}</lightning:button>-->
+<!--            </div>-->
+<!--            <center style="margin-bottom:15px;">-->
+<!--                <h2>List of discounts</h2>-->
+<!--            </center>-->
+            <div class="slds-scrollable_y" style="height:10rem;">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                    <tr class="slds-line-height_reset">
+                        <th>Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <aura:iteration items="{!v.discounts}" var="item">
+                        <c:WDLC_DiscountTableRow discount="{!item}"/>
+                    </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </lightning:card>
+    </aura:if>
+    <c:WDL_ModalComponent type="newDiscount" canBeShown="{!v.canBeShown}"/>
+</aura:component>

@@ -1,0 +1,48 @@
+<!--
+ - Created by Mateusz Wiorek on 02.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductDiscountProductsList"
+                controller="WDLC_DiscountManagerController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="productsWithoutPrice" type="Object[]" access="global"/>
+    <aura:attribute name="prices" type="Decimal[]" access="global"/>
+    <aura:attribute name="productsToSetPrices" type="Map" access="global" default="{}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <lightning:card>
+        <aura:if isTrue="{!empty(v.productsWithoutPrice)}">
+            <center><h2>{!$Label.c.WDLC_GoToDiscountInformation}</h2></center>
+        </aura:if>
+        <aura:if isTrue="{!not(empty(v.productsWithoutPrice))}">
+            <center style="margin-bottom:15px;"><h2>Enter standard prices</h2></center>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th>{!$Label.c.WDLC_Image}</th>
+                    <th>{!$Label.c.WDLC_ProductName}</th>
+                    <th>{!$Label.c.WDLC_Description}</th>
+                    <th>{!$Label.c.WDLC_StandardPrice}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <aura:iteration items="{!v.productsWithoutPrice}" var="productWithoutPrice" indexVar="index">
+                    <c:WDLC_ProductDiscountProductElement productWithoutPrice="{!productWithoutPrice}"
+                                                          setPriceEvent="{!c.addProductWithPriceToMap}"/>
+                </aura:iteration>
+                </tbody>
+            </table>
+            <div class="slds-grid">
+                <div class="slds-col slds-size-11-of-12">
+                </div>
+                <div class="slds-col slds-size--1-of-12" style="margin-top: 10px;">
+                    <lightning:button variant="brand"
+                                      onclick="{!c.setPrices}" class="buttonSLDS slds-float_right">{!$Label.c.WDLC_SetStandardPrices}</lightning:button>
+                </div>
+            </div>
+
+        </aura:if>
+    </lightning:card>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+</aura:component>

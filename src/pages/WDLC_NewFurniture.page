@@ -1,0 +1,22 @@
+<!--
+ - Created by Mateusz Wiorek on 06.04.2020.
+ -->
+
+<apex:page id="WDLC_NewFurniture" standardController="Product2" lightningStyleSheets="true">
+<!--    <apex:includeLightning/>-->
+<!--    <div id="Con"/>-->
+<!--    <script>-->
+<!--        $Lightning.use(“c:WDLC_CreateProduct”, function() {-->
+<!--            $Lightning.createComponent(-->
+<!--                “c:ProductManagement”,-->
+<!--                {},-->
+<!--                “Con”,-->
+<!--                function(cmp) {-->
+<!--                    console.log(“Component is created!”);-->
+<!--                    console.log(cmp);-->
+<!--                });-->
+<!--            });-->
+
+<!--    </script>-->
+    aaa
+</apex:page>

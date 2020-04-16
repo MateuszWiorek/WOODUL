@@ -48,6 +48,7 @@
             billingCity : city
         };
             let addressJson = JSON.stringify(address);
+            console.log(addressJson);
         let orderAction = component.get("c.makeOrder");
         orderAction.setParams({
             "addressOrder" : addressJson

@@ -1,0 +1,9 @@
+<!--
+ - Created by Mateusz Wiorek on 07.04.2020.
+ -->
+
+<aura:component description="WDLC_Image360View" implements="flexiPage:availableForAllPageTypes">
+    <ltng:require scripts="{!join(',' , $Resource.WDLC_ThreeJS, $Resource.WDLC_PanolensJs)}"
+    afterScriptsLoaded="{!c.afterLoad}"/>
+    <iframe allowfullscreen="true" src="{!$Resource.WDLC_TestImage}" width="1020px" height="1200"></iframe>
+</aura:component>

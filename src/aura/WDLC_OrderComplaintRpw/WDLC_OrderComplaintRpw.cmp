@@ -14,7 +14,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
     <lightning:card class="slds-card_boundary">
         <div class="slds-grid wrapper">
-            <div class="slds-col slds-size--2-of-12">
+            <div class="slds-col slds-size--1-of-12">
                 <aura:if isTrue="{!v.complaint.Status == $Label.c.WDLC_Closed}">
                     <div style="padding-left:5px;">
                         <lightning:icon iconName="action:approval" alternativeText="{!$Label.c.WDLC_Closed}"
@@ -34,7 +34,12 @@
                     </div>
                 </aura:if>
             </div>
-            <div class="slds-col slds-size--3-of-12">
+            <div class="slds-col slds-size--2-of-12">
+                <label class="slds-form-element__label" for="unique-id-of-input">{!$Label.c.WDLC_CaseNumber}</label>
+                <br/>
+                <ui:outputText value="{!v.complaint.CaseNumber}"/>
+            </div>
+            <div class="slds-col slds-size--2-of-12">
                 <ui:outputDate value="{!v.complaint.CreatedDate}"/>
             </div>
             <div class="slds-col slds-size--3-of-12">

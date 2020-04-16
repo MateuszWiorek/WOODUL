@@ -14,10 +14,16 @@
     addToWishList : function(component, event, helper){
         helper.doAddToWishList(component, event);
     },
-    removeFromList : function(component, event, helper){
+    removeFromObserved : function(component, event, helper){
         helper.doRemoveFromList(component, event);
     },
     setLivePhoto : function(component, event){
         component.set("v.livePhoto", event.getParam('source'));
+    },
+    incrementCounter : function(component, event, helper){
+        component.set("v.counter", component.get("v.counter")+1);
+    },
+    decrementCounter : function(component, event, helper){
+        component.set("v.counter", component.get("v.counter")-1);
     }
 })

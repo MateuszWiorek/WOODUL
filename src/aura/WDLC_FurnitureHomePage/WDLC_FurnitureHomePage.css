@@ -56,6 +56,7 @@
     height: 6rem;
     font-size: 4rem;
     margin-bottom: 0.5rem;
+        text-transform: uppercase;
 }
 .THIS .apartment{
     height: 100vh;

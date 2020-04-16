@@ -1,0 +1,31 @@
+<!--
+ - Created by Mateusz Wiorek on 05.04.2020.
+ -->
+
+<aura:component description="WDLC_DiscountManager" controller="WDLC_DiscountManagerController"
+                implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="showDiscounts" type="Boolean" access="global" default="true"/>
+    <aura:handler event="c:WDLC_SendPricebookDetails" action="{!c.hideTables}"/>
+    <lightning:tabset>
+        <lightning:tab label="Standard prices">
+            <c:WDLC_ProductDiscountProductsList/>
+        </lightning:tab>
+        <lightning:tab label="Discounts">
+            <div class="slds-grid">
+                <div class="slds-col slds-size--4-of-12" style="padding-left:1%; margin-top:16px;">
+                    <div style="border:1px solid lightgray; border-radius:3%; padding-top: 3%;">
+                            <c:WDLC_PricebooksList/>
+                    </div>
+                </div>
+                <!--                <div class="slds-col slds-size&#45;&#45;1-of-12"/>-->
+                <div class="slds-col slds-size--8-of-12" style="padding-left:0.5%; padding-right:1%;">
+                    <div>
+                            <c:WDLC_ProductDiscountDetails/>
+                    </div>
+                </div>
+            </div>
+        </lightning:tab>
+    </lightning:tabset>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+</aura:component>

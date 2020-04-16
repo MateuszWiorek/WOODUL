@@ -1,0 +1,30 @@
+<!--
+ - Created by Mateusz Wiorek on 29.03.2020.
+ -->
+
+<aura:component description="WDL_FurnitureComplaintComment" implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="comment" type="Object" access="global"/>
+    <aura:attribute name="userId" type="String" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <div style="border-bottom:1px solid lightgray; padding:1rem;">
+        <aura:if isTrue="{!v.comment.CreatedById == v.userId}">
+            <lightning:recordViewForm objectApiName="User" recordId="{!v.comment.CreatedById}">
+                <div style="display:flex; flex-direction: row-reverse;">
+                    <span style="font-weight: bold;"><lightning:outputField fieldName="FirstName" class="name-bold"/></span>
+                                        <span><lightning:outputField fieldName="CreatedDate"/></span>
+                </div>
+                <div style="display:flex; flex-direction: row-reverse;">
+                    <p>{!v.comment.CommentBody}</p>
+                </div>
+            </lightning:recordViewForm>
+        </aura:if>
+        <aura:if isTrue="{!not(v.comment.CreatedById == v.userId)}">
+            <div>
+                <span style="font-weight: bold;">Shop assistant </span>
+                <span style=""><ui:outputDateTime value="{!v.comment.CreatedDate}"/></span>
+            </div>
+            <span>{!v.comment.CommentBody}</span>
+        </aura:if>
+    </div>
+</aura:component>

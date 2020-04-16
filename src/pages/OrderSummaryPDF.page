@@ -1,0 +1,28 @@
+<!--
+ - Created by Mateusz Wiorek on 25.03.2020.
+ -->
+
+<apex:page id="OrderSummaryPDF" renderAs="pdf" standardController="Order">
+    <apex:outputField value="{! Order.Status}"/>
+    <apex:outputField value="{! Order.BillingStreet}"/>
+    <apex:outputField value="{! Order.BillingCity}"/>
+    <apex:outputField value="{! Order.BillingPostalCode}"/>
+    <apex:outputField value="{! Order.BillingState}"/>
+    <apex:outputField value="{! Order.BillingCountry}"/>
+    <apex:outputField value="{! Order.TotalAmount}"/>
+    <apex:repeat value="{!Order.OrderItems}" var="item">
+            <article>
+                <div class="slds-media__figure">
+                    <h2>
+                        <apex:outputText value="{!item.Quantity}"/>
+                        <apex:outputText value="{!item.PricebookEntry.Product2.Name}"/>
+                    </h2>
+                </div>
+                <div class="slds-post__content slds-text-longform">
+                    <p>
+                        <apex:outputText value="{!item.UnitPrice}"/>
+                    </p>
+                </div>
+            </article>
+    </apex:repeat>
+</apex:page>
