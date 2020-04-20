@@ -184,9 +184,6 @@
         <members>ExternalEventMapping</members>
         <members>FeedItem</members>
         <members>Goal</members>
-        <members>HRHM_Doctor__c</members>
-        <members>HRHM_Hospital__c</members>
-        <members>HRHM_RequestLogger__c</members>
         <members>Idea</members>
         <members>LeadCleanInfo</members>
         <members>LinkedArticle</members>
