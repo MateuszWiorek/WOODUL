@@ -22,6 +22,18 @@
         <members>WDLC_BasketController</members>
         <members>WDLC_BasketHelper</members>
         <members>SurveyTaken.trigger</members>
+        <members>WDLC_FurnitureProductComments</members>
+        <members>WDLC_ModalController</members>
+        <members>WDLC_OrderAddressWrapper</members>
+        <members>WDLC_ProductHelper</members>
+        <members>WDLC_ProductTileController</members>
+        <members>WDLC_ProductWithPriceWrapper</members>
+        <members>WDLC_FurnitureProductComments</members>
+        <members>WDLC_ModalController</members>
+        <members>WDLC_OrderAddressWrapper</members>
+        <members>WDLC_ProductHelper</members>
+        <members>WDLC_ProductTileController</members>
+        <members>WDLC_ProductWithPriceWrapper</members>
         <name>ApexClass</name>
     </types>
     <types>
