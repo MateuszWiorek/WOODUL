@@ -19,8 +19,9 @@
                 <div class="slds-size--1-of-12 slds-col_bump-left">
                     <aura:if isTrue="{!not(empty(v.productPhotos))}">
                         <aura:iteration items="{!v.productPhotos}" var="photoUrl">
-
-                            <c:WDLC_ProductPhotoElement photoUrl="{!photoUrl}" changeLiveEvent="{!c.setLivePhoto}"/>
+                            <div style="margin-top:5px; margin-right:5px;">
+                                <c:WDLC_ProductPhotoElement photoUrl="{!photoUrl}" changeLiveEvent="{!c.setLivePhoto}"/>
+                            </div>
                         </aura:iteration>
                     </aura:if>
                 </div>
@@ -48,7 +49,7 @@
                                                    title="{!$Label.c.WDLC_Remove}"/>
                         </div>
                         <p style="width:50px;">
-                        <ui:inputNumber value="{!v.counter}"  class="spanMaxWidth"/>
+                        <ui:inputNumber value="{!v.counter}" class="spanMaxWidth"/>
                             </p>
                 <div>
                         <lightning:buttonIcon iconName="utility:add" variant="bare"

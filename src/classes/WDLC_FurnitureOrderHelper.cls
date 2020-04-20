@@ -10,7 +10,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
         }
         List<WDLC_ProductToOrderWrapper> productsToOrder = WDLC_BasketController.getProductsInBasket();
         Order newOrder = new Order();
-        Order__c orderCustomSetting = Order__c.getInstance('WDLCOrder');
+        Order__c orderCustomSetting = Order__c.getInstance(Label.WDLC_OrderCommunitySettings);
         Pricebook2 pricebook = [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1];
         String orderId;
 
@@ -21,7 +21,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
         newOrder.BillingPostalCode = address.billingPostalCode;
         newOrder.BillingState = address.billingState;
         newOrder.BillingCountry = address.billingCountry;
-        newOrder.Status = 'Draft';
+        newOrder.Status = orderCustomSetting.Status__c;
         newOrder.EndDate = Date.today().addDays(14);
         newOrder.EffectiveDate = Date.today();
         newOrder.Pricebook2Id = pricebook.Id;

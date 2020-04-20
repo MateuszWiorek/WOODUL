@@ -17,7 +17,7 @@
                  component.set("v.ratingGrade", 0);
                  component.set("v.richComment", '');
             }else{
-                component.find("errorComponent").openErrorToast(response);
+                component.find("errorComponent").showError(response);
             }
         });
         $A.enqueueAction(commentAction);
@@ -33,7 +33,7 @@
                 component.set("v.comments", response.getReturnValue());
             }else{
                 let toast = component.find("toastComponent");
-                component.find("errorComponent").openErrorToast(response);
+                component.find("errorComponent").showError(response);
             }
         });
         $A.enqueueAction(getCommentAction);

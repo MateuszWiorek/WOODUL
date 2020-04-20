@@ -21,11 +21,11 @@ public with sharing class WDLC_FurnitureOrderController {
     }
     @AuraEnabled
     public static Order makeOrder(String addressOrder) {
-//        try {
+        try {
             return WDLC_FurnitureOrderHelper.addOrder(addressOrder);
-//        } catch (Exception e) {
-//            throw new WDLC_CustomException(e.getMessage());
-//        }
+        } catch (Exception e) {
+            throw new WDLC_CustomException(e.getMessage());
+        }
     }
     @AuraEnabled
     public static User getCurrentUserInfo() {

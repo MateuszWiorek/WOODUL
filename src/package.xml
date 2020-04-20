@@ -13,6 +13,18 @@
         <members>WDL_DetailsInfoController</members>
         <members>WDL_SearchFormController</members>
         <members>WDL_Utils</members>
+        <members>WDLC_CustomException</members>
+        <members>WDLC_SimilarProductsHelper</members>
+        <members>WDLC_SimilarProductsController</members>
+        <members>WDLC_ProductToOrderWrapper</members>
+        <members>WDLC_FurnitureProductCommentsHelper</members>
+        <members>WDLC_FurnitureProductCommentsController</members>
+        <members>WDLC_FurnitureOrderHelper</members>
+        <members>WDLC_FurnitureOrderController</members>
+        <members>WDLC_BasketController</members>
+        <members>WDLC_BasketHelper</members>
+        <members>WDLC_BasketTest</members>
+        <members>WDLC_CommentsTest</members>
         <name>ApexClass</name>
     </types>
     <types>

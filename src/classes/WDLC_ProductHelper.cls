@@ -54,30 +54,26 @@ public with sharing class WDLC_ProductHelper {
                 FROM Product2
                 WHERE Id IN :productIds
         ];
-        List<Pricebook2> pricebooks = [
-                SELECT IsActive, Id
-                FROM Pricebook2
-                WHERE StartDate__c<= :System.today() AND EndDate__c >= :System.today()
-        ];
-        Set<Id> pricebookIds = new Set<Id>();
-        for (Pricebook2 pr : pricebooks) {
-            pricebookIds.add(pr.Id);
-        }
         List<AggregateResult> pricebookEntries = [
                 SELECT Pricebook2Id, Product2Id, MIN(UnitPrice) minimalPrice, MAX(UnitPrice) maximalPrice
                 FROM PricebookEntry
                 WHERE Product2Id IN
-                        :productIds AND Pricebook2Id IN :pricebookIds GROUP BY Pricebook2Id, Product2Id
+                        :productIds AND Pricebook2Id IN (
+                        SELECT Id
+                        FROM Pricebook2
+                        WHERE StartDate__c <= :System.today() AND EndDate__c >= :System.today()
+                )
+                GROUP BY Pricebook2Id, Product2Id
         ];
         for (AggregateResult entry : pricebookEntries) {
-            if (productsWithPrices.get((String)entry.get('Product2Id')) == null) {
-                productsWithPrices.put((String)entry.get('Product2Id'), new List<Decimal>{
-                        (Decimal)entry.get('minimalPrice'),(Decimal)entry.get('maximalPrice')
+            if (productsWithPrices.get((String) entry.get('Product2Id')) == null) {
+                productsWithPrices.put((String) entry.get('Product2Id'), new List<Decimal>{
+                        (Decimal) entry.get('minimalPrice'), (Decimal) entry.get('maximalPrice')
                 });
             } else {
-                productsWithPrices.get((String)entry.get('Product2Id')).add((Decimal)entry.get('minimalPrice'));
-                productsWithPrices.get((String)entry.get('Product2Id')).add((Decimal)entry.get('maximalPrice'));
-                productsWithPrices.put((String)entry.get('Product2Id'), productsWithPrices.get((String)entry.get('Product2Id')));
+                productsWithPrices.get((String) entry.get('Product2Id')).add((Decimal) entry.get('minimalPrice'));
+                productsWithPrices.get((String) entry.get('Product2Id')).add((Decimal) entry.get('maximalPrice'));
+                productsWithPrices.put((String) entry.get('Product2Id'), productsWithPrices.get((String) entry.get('Product2Id')));
             }
         }
         return wrapProduct(products, productsWithPrices);
@@ -113,7 +109,7 @@ public with sharing class WDLC_ProductHelper {
                             String.valueOf(pricebookEntries
                                     .get(entry)
                                     .get(pricebookEntries.get(entry).size() - 1)));
-                            String.valueOf(pricebookEntries.get(entry).get(0));
+                    String.valueOf(pricebookEntries.get(entry).get(0));
                     wrap.isWishlisted = (wishlistedIds.contains(wrap.productId)) ? true : false;
                     wrap.productPriceAfterDiscount = String.valueOf(pricebookEntries.get(entry).get(0));
                     wrappedProducts.add(wrap);
@@ -140,7 +136,11 @@ public with sharing class WDLC_ProductHelper {
                 SELECT Id, UnitPrice
                 FROM PricebookEntry
                 WHERE Product2Id = :productId
-                AND Pricebook2Id IN (SELECT Id FROM Pricebook2 WHERE StartDate__c <= :System.today() AND EndDate__c >= :System.today())
+                AND Pricebook2Id IN (
+                        SELECT Id
+                        FROM Pricebook2
+                        WHERE StartDate__c <= :System.today() AND EndDate__c >= :System.today()
+                )
                 ORDER BY UnitPrice ASC
                 LIMIT
                         1
@@ -155,7 +155,8 @@ public with sharing class WDLC_ProductHelper {
                             SELECT Id
                             FROM PRicebook2
                             WHERE Name = 'Standard Price Book'
-                    ) AND Product2Id = :productId LIMIT 1
+                    ) AND Product2Id = :productId
+                    LIMIT 1
             ];
             return e.Id;
         }

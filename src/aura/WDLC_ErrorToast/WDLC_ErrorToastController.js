@@ -4,15 +4,15 @@
 ({
     openToast: function(component, event){
         let params = event.getParam('arguments');
-        let message;
+        let erMessage;
         if(params){
-            message = params.errorMessage;
+            erMessage = params.errorMessage;
         }
         let resultsToast = $A.get("e.force:showToast");
         resultsToast.setParams({
-            "type" : $A.get("{!$Label.c.WDLC_Error}"),
-            "title": $A.get("{!$Label.c.WDLC_Error}"),
-            "message": message.getError()[0]
+            "type" : $A.get("{!$Label.c.WDLC_ErrorToast}"),
+            "title": $A.get("{!$Label.c.WDLC_ErrorToast}"),
+            "message": erMessage.getError()[0].message
         });
         resultsToast.fire();
     },
@@ -20,7 +20,6 @@
         let params = event.getParam('arguments');
         let message;
         let title;
-        console.log(JSON.stringify(params));
             if(params){
                  message = params.message;
                  title = params.title;

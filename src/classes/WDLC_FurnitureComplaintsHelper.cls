@@ -9,15 +9,16 @@ public without sharing class WDLC_FurnitureComplaintsHelper {
         AR = [SELECT Id FROM AssignmentRule WHERE SobjectType = 'Case' AND Active = true LIMIT 1];
         Database.DMLOptions dmlOpts = new Database.DMLOptions();
         dmlOpts.assignmentRuleHeader.assignmentRuleId = AR.id;
-        Order__c orderCustomSettings = Order__c.getInstance('WDLCOrder');
-        if (orderCustomSettings == null) {
+        Order__c orderCustomSettings = Order__c.getInstance(Label.WDLC_OrderCommunitySettings);
+        WDLC_CaseSettings__c caseSetting = WDLC_CaseSettings__c.getInstance(Label.WDLC_CommunityOrderComplaintSettings);
+        if (orderCustomSettings == null || caseSetting == null) {
             throw new WDLC_CustomException(Label.WDLC_CaseError);
         }
-        Case newCase = new Case(Status = 'New',
-                Origin = 'Web', Priority = 'Medium',
+        Case newCase = new Case(Status = caseSetting.Status__c,
+                Origin = caseSetting.Origin__c, Priority = caseSetting.Priority__c,
                 AccountId = orderCustomSettings.AccountId__c,
                 Subject = subject, Description = description,
-                Reason = 'Complaint', SuppliedEmail = UserInfo.getUserEmail());
+                Reason = caseSetting.Reason__c, SuppliedEmail = UserInfo.getUserEmail());
         newCase.setOptions(dmlOpts);
         newCase.ProductCase__c = productId;
         newCase.OrderCase__c = orderId;
@@ -48,10 +49,14 @@ public without sharing class WDLC_FurnitureComplaintsHelper {
         }
     }
     public static List<Case> getCases() {
+        WDLC_CaseSettings__c caseSetting = WDLC_CaseSettings__c.getInstance(Label.WDLC_CommunityOrderComplaintSettings);
+        if (caseSetting == null) {
+            throw new WDLC_CustomException(Label.WDLC_CaseError);
+        }
         return [
                 SELECT Status, CaseNumber, CreatedDate, CreatedById, ProductCase__c, Reason, SuppliedEmail, Subject, Description
                 FROM Case
-                WHERE Reason = 'Complaint' AND CreatedById = :UserInfo.getUserId()
+                WHERE Reason = :caseSetting.Reason__c AND CreatedById = :UserInfo.getUserId()
         ];
     }
 }
