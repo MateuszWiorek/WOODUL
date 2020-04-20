@@ -115,6 +115,8 @@
         <members>Product2</members>
         <members>User</members>
         <members>WDLC_Wishlist__c</members>
+        <members>WDLC_Comment__c</members>
+        
         <name>CustomObject</name>
     </types>
     <types>
@@ -172,6 +174,10 @@
     <types>
         <members>*</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomLabels</name>
     </types>
     <types>
         <members>Furniture Service Profile</members>
