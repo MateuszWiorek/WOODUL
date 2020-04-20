@@ -9,6 +9,7 @@
     <aura:attribute name="canBeShown" type="Boolean" default="false" access="global"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
     <aura:if isTrue="{!v.canBeShown == true }">
         <lightning:card>
             <aura:if isTrue="{!not(empty(v.emptyInformation))}">
@@ -26,4 +27,3 @@
         </lightning:card>
     </aura:if>
 </aura:component>
-

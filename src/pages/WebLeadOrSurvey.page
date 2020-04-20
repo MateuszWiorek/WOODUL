@@ -193,6 +193,7 @@ h2{
             <p style="text-align: center; font-size=55px;">We will contact you soon.</p>
         </div>
     </div>
+
     <script>
         let webToLeadDiv = document.getElementById("webToLead");
         let survey = document.getElementById("surveyDiv");
@@ -219,5 +220,6 @@ h2{
             thanksDiv.style.display ='block';
             thanksDiv.style.fontSize ='55px';
         }
+
     </script>
 </apex:page>

@@ -1,0 +1,21 @@
+/**
+ * Created by Mateusz Wiorek on 19.02.2020.
+ */
+.THIS.slds-spinner_container {
+  z-index: 10000;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.10);
+}
+.THIS {
+    font-size: 14px;
+    overflow: hidden;
+}
+.THIS .selectedRow{
+    background-color : #DCDCDC;
+}
+.THIS h2{
+    margin-left: 40%;
+    margin-bottom: 10px;
+    margin-top: -3px;
+    font-size: 20px;
+}

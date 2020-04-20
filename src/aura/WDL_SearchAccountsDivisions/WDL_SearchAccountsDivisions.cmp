@@ -1,5 +1,3 @@
-
-
 <aura:component description="WDL_SearchAccountsDivisions" implements="flexipage:availableForAllPageTypes">
     <div class="slds-grid slds-gutters">
         <div class="slds-col slds-size_1-of-2">

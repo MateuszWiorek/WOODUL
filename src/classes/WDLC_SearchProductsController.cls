@@ -4,6 +4,9 @@
 
 public with sharing class WDLC_SearchProductsController {
     @AuraEnabled public static List<WDLC_ProductWrapper> findProducts(String name){
-        return WDLC_SearchProductsHelper.findProducts(name);
+        if(String.isEmpty(name)){
+            throw new WDLC_CustomException(Label.WDLC_FillFields);
+        }
+        return WDLC_ProductHelper.findProducts(name);
     }
 }

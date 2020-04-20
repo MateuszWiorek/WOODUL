@@ -25,11 +25,11 @@
         <table class="slds-table slds-table_cell-buffer slds-table_bordered">
             <thead>
             <tr class="slds-line-height_reset">
-                <th class="" scope="col"><strong> <div class="slds-truncate" title="{!$Label.c.Account_Name}">{!$Label.c.Account_Name}</div> </strong></th>
+                <th class="" scope="col"><strong> <div class="slds-truncate" title="Account Name">{!$Label.c.Account_Name}</div> </strong></th>
                 <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10"
-                                                       title="{!$Label.c.ShippingCity}">{!$Label.c.ShippingCity}</div></strong></th>
+                                                       title="ShippingAddress">{!$Label.c.ShippingCity}</div></strong></th>
                 <th class="" scope="col"><strong> <div class="slds-truncate slds-truncate_container_10"
-                                                       title="{!$Label.c.Description}">{!$Label.c.Description}</div></strong></th>
+                                                       title="ShippingAddress">{!$Label.c.Description}</div></strong></th>
             </tr>
             </thead>
             <tbody>

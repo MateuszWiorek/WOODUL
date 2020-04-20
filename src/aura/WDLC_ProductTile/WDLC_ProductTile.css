@@ -1,0 +1,51 @@
+/**
+ * Created by Mateusz Wiorek on 18.03.2020.
+ */
+ .THIS .movieImage {
+     width: 100%;
+     height: auto;
+     overflow: hidden;
+     border-radius: 5px;
+     position:relative;
+     margin: 3rem 0;
+ }
+  .THIS .fullName{
+        font-size: 18px;
+        color: black;
+        text-align: center;
+}
+.THIS .movieImage:hover{
+     opacity: 0.8;
+ }
+.THIS .rateHover{
+    display:none;
+    position:absolute;
+    top:0;
+    left:10%;
+    z-index:9999;
+}
+.THIS .movieImage:hover .rateHover{
+    display:block;
+}
+.THIS .favButton{
+    width:30px;
+}
+.THIS img{
+    width:100%;
+    height:auto;
+    object-fit:cover;
+}
+.THIS .buyNowButton{
+    border: none;
+}
+.THIS .standardPrice{
+    text-decoration : line-through;
+}
+.THIS .discountPrice{
+    display:inline;
+    font-weight: bolder;
+    font-size : 16px;
+}
+.THIS .discountPriceNone{
+    display:none;
+}

@@ -5,7 +5,7 @@
 public with sharing class WDLC_FurnitureOrderController {
     @AuraEnabled
     public static List<WDLC_ProductToOrderWrapper> getProductsToOrder() {
-        return WDLC_FurnitureOrderHelper.getProductToOrder();
+        return WDLC_BasketController.getProductsInBasket();
     }
     @AuraEnabled
     public static WDLC_ProductToOrderWrapper increaseProductCounter(String productId){
@@ -35,5 +35,9 @@ public with sharing class WDLC_FurnitureOrderController {
                 WHERE Id = :UserInfo.getUserId()
         ];
         return u;
+    }
+    @AuraEnabled
+    public static WDLC_ProductToOrderWrapper changeCounter(String id, Integer newValue){
+        return WDLC_BasketController.changeProductCounter(id, newValue);
     }
 }

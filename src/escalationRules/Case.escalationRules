@@ -13,7 +13,7 @@
             <escalationAction>
                 <minutesToEscalation>30</minutesToEscalation>
                 <notifyCaseOwner>true</notifyCaseOwner>
-                <notifyTo>mateusz.manager@interia.pl</notifyTo>
+                <notifyTo>mateusz.wiorek@britenet.com</notifyTo>
                 <notifyToTemplate>unfiled$public/SupportEscalatedCaseReassignment</notifyToTemplate>
             </escalationAction>
             <escalationStartTime>CaseCreation</escalationStartTime>

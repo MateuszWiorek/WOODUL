@@ -21,6 +21,7 @@
         <members>WDLC_FurnitureOrderController</members>
         <members>WDLC_BasketController</members>
         <members>WDLC_BasketHelper</members>
+        <members>SurveyTaken.trigger</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -125,7 +126,6 @@
         <name>DuplicateRule</name>
     </types>
     <types>
-
         <members>*</members>
         <name>EscalationRule</name>
     </types>

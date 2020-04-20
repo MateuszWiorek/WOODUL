@@ -7,6 +7,7 @@
         getWishListAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
+                console.log(response.getReturnValue());
                 component.set("v.wishlist", response.getReturnValue());
                 component.set("v.canBeShown", true);
             }else{
