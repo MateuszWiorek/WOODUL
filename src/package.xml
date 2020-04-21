@@ -77,6 +77,8 @@
         <members>LexInputFieldCompCtrl_Test</members>
         <members>SurveyAndQuestionController</members>
         <members>SurveyAndQuestionController_Test</members>
+        <members>WDLC_FurnitureComplaintsController</members>
+        <members>WDLC_FurnitureComplaintsHelper</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -192,8 +194,6 @@
         <members>AccountContactRole</members>
         <members>Asset</members>
         <members>AssetRelationship</members>
-        <members>BoatType__c</members>
-        <members>Boat__c</members>
         <members>ContentVersion</members>
         <members>Contract</members>
         <members>ContractContactRole</members>
@@ -454,8 +454,6 @@
         <name>Community</name>
     </types>
     <types>
-        <members>BoatType__c</members>
-        <members>Boat__c</members>
         <members>Divisions</members>
         <members>SurveyTaker__c</members>
         <members>Survey_Question__c</members>
@@ -483,7 +481,6 @@
         <name>ProfileSessionSetting</name>
     </types>
     <types>
-        <members>BoatType__c-Boat Type Layout</members>
         <name>Layout</name>
     </types>
     <types>
