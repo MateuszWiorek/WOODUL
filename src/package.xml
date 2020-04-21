@@ -79,6 +79,7 @@
         <members>SurveyAndQuestionController_Test</members>
         <members>WDLC_FurnitureComplaintsController</members>
         <members>WDLC_FurnitureComplaintsHelper</members>
+        <members>ReportFinderUtil</members>
         <name>ApexClass</name>
     </types>
     <types>
