@@ -149,6 +149,7 @@
         <members>WDL_ProductTile</members>
         <members>WDLC_ProductChangePhoto</members>
         <members>WDLC_ProductPhotoComponent</members>
+        <members>WDLC_ChangeMainPhoto</members>
         <members>WDLC_ProductPhotoElement</members>
         <members>WDL_ErrorComponent</members>
         <members>svg</members>
