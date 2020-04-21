@@ -677,7 +677,7 @@
         <dataType>DateTime</dataType>
         <expression>NOW() + 1</expression>
     </formulas>
-    <interviewLabel>ConvertLeadFromOpenToMeeting-31_InterviewLabel</interviewLabel>
+    <interviewLabel>ConvertLeadFromOpenToMeeting-InterviewLabel</interviewLabel>
     <label>ConvertLeadFromOpenToMeeting</label>
     <processMetadataValues>
         <name>ObjectType</name>
