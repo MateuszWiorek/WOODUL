@@ -9,5 +9,5 @@
     <tabs>SurveyTaker__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>Survey_Question__c</tabs>
-    <tabs>ObectToTestOWD__c</tabs>
+
 </CustomApplication>
