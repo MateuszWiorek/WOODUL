@@ -4,27 +4,4 @@
 
 <aura:component description="WDLC_WishList" controller="WDLC_WishlistController"
                 implements="forceCommunity:availableForAllPageTypes">
-    <aura:attribute name="wishlist" type="Object" access="global"/>
-    <aura:attribute name="emptyInformation" type="String" access="global" default=""/>
-    <aura:attribute name="canBeShown" type="Boolean" default="false" access="global"/>
-
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
-    <aura:if isTrue="{!v.canBeShown == true }">
-        <lightning:card>
-            <aura:if isTrue="{!not(empty(v.emptyInformation))}">
-                <h2> {!v.emptyInformation}</h2>
-            </aura:if>
-            <aura:if isTrue="{!not(empty(v.wishlist))}">
-                <div class="slds-grid slds-gutters" style="display: flex; flex-wrap: wrap;">
-                    <aura:iteration items="{!v.wishlist}" var="element">
-                        <div class="slds-col" style="max-width:300px; height:auto;">
-                            <c:WDLC_ProductTile product="{!element}"/>
-                        </div>
-                    </aura:iteration>
-                </div>
-            </aura:if>
-        </lightning:card>
-    </aura:if>
-    <c:WDLC_ErrorComponent />
 </aura:component>
