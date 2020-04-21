@@ -137,13 +137,13 @@
         <members>WDL_DetailsInfoValues</members>
         <members>WDL_HeaderSearchForm</members>
         <members>WDL_Map</members>
-        <members>WDL_ProductTile</members>
         <members>WDL_RefreshAfterDeleteRecord</members>
         <members>WDL_Results</members>
         <members>WDL_SearchAccountsDivisions</members>
         <members>WDL_SearchForm</members>
         <members>WDL_SendAccountListToMap</members>
         <members>WDL_SendValues</members>
+        <members>WDL_DivisionSearchForm</members>
         <members>WDL_ShowErrorComponent</members>
         <members>svg</members>
         <members>ticker</members>
