@@ -33,6 +33,7 @@
         <members>WDLC_OrderAddressWrapper</members>
         <members>WDLC_ProductHelper</members>
         <members>WDLC_ProductTileController</members>
+        <members>WDLC_ErrorComponent</members>
         <members>WDLC_ProductWithPriceWrapper</members>
         <members>CommunitiesLandingController</members>
         <members>CommunitiesLandingControllerTest</members>
