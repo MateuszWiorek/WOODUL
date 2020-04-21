@@ -42,6 +42,31 @@
         <members>CommunitiesSelfRegConfirmControllerTest</members>
         <members>CommunitiesSelfRegController</members>
         <members>CommunitiesSelfRegControllerTest</members>
+        <members>CSUtils</members>
+        <members>CSUtilsTest</members>
+        <members>GSurveysController</members>
+        <members>GSurveysController_Test</members>
+        <members>GettingStartedController</members>
+        <members>GettingStartedController_Test</members>
+        <members>SFDCAccessControlException</members>
+        <members>SFDCAccessController</members>
+        <members>SFDCAccessControllerTest</members>
+        <members>SFQuestion</members>
+        <members>SFQuestion_Test</members>
+        <members>SiteLoginController</members>
+        <members>SiteLoginControllerTest</members>
+        <members>SiteRegisterController</members>
+        <members>SiteRegisterControllerTest</members>
+        <members>SurveyManagerController</members>
+        <members>SurveyManagerController_Test</members>
+        <members>SurveySitesUtil</members>
+        <members>SurveyTestingUtil</members>
+        <members>Utilities_Test</members>
+        <members>ViewSurveyController</members>
+        <members>ViewSurveyController_Test</members>
+        <members>viewShareSurveyComponentController</members>
+        <members>viewShareSurveyComponentController_Test</members>
+        <members>viewSurveyResultsComponentController</members>
         <name>ApexClass</name>
     </types>
     <types>
