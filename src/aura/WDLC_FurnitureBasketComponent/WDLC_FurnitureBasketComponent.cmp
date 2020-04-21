@@ -73,5 +73,5 @@
         </div>
     </div>
     <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
-    <c:WDLC_ErrorComponent aura:id="errorToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>

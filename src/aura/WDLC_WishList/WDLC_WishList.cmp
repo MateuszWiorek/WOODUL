@@ -26,5 +26,5 @@
             </aura:if>
         </lightning:card>
     </aura:if>
-    <c:WDLC_ErrorComponent />
+    <c:WDLC_ErrorToast />
 </aura:component>

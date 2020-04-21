@@ -61,5 +61,5 @@
     <aura:if istrue="{!v.hideSpinner}">
             <lightning:spinner alternativeText="Loading" size="small" />
     </aura:if>
-    <c:WDLC_ErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ErrorToast aura:id="toastComponent"/>
 </aura:component>

@@ -33,7 +33,7 @@
                 component.set("v.comments", response.getReturnValue());
             }else{
                 let toast = component.find("toastComponent");
-                component.find("errorComponent").openErrorToast(response);
+                component.find("errorComponent").showError(response);
             }
         });
         $A.enqueueAction(getCommentAction);
