@@ -237,7 +237,6 @@
         <members>SocialPersona</members>
         <members>Solution</members>
         <members>StreamActivityAccess</members>
-        <members>StreamingChannel</members>
         <members>Task</members>
         <members>Topic</members>
         <members>TopicAssignment</members>
@@ -474,7 +473,6 @@
         <name>NavigationMenu</name>
     </types>
     <types>
-        <members>Furniture Service</members>
         <members>FurnitureStore</members>
         <members>WoodUL Store</members>
         <name>Network</name>
@@ -506,7 +504,7 @@
         <name>ContentAsset</name>
     </types>
     <types>
-        <members>resolve case</members>
+        <members>Resolve case</members>
         <name>EntitlementProcess</name>
     </types>
     <types>
