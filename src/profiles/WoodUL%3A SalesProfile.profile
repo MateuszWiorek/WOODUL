@@ -74,14 +74,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <tabVisibilities>
-        <tab>BoatType__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Boat__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Divisions</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

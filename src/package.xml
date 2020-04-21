@@ -484,7 +484,6 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>BoatType__c</members>
         <name>TopicsForObjects</name>
     </types>
     <types>
