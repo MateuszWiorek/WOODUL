@@ -81,6 +81,7 @@
         <members>WDLC_FurnitureComplaintsController</members>
         <members>WDLC_FurnitureComplaintsHelper</members>
         <members>ReportFinderUtil</members>
+        <members>WDLC_ProductManagementController</members>
         <name>ApexClass</name>
     </types>
     <types>
