@@ -354,6 +354,8 @@
         <members>Service_Contract_Record_Page</members>
         <members>WOOD_U_L</members>
         <members>WOOD_U_UtilityBar</members>
+        <members>Product_Record_Page</members>
+        <members>WOOD_U_L_UtilityBar</members>
         <name>FlexiPage</name>
     </types>
     <types>

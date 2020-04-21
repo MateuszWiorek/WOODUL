@@ -1,0 +1,50 @@
+<!--
+ - Created by Mateusz Wiorek on 05.04.2020.
+ -->
+
+<aura:component description="WDLC_DiscountSearchResults" controller="WDLC_DiscountManagerController">
+    <aura:attribute name="results" type="Object[]" access="global"/>
+    <aura:attribute name="productsToDiscountMap" type="Map" access="global" default="{}"/>
+    <aura:attribute name="selectedProductsToDiscountMap" type="Map" access="global" default="{}"/>
+    <aura:attribute name="amountToDiscount" type="Decimal" access="global"/>
+    <aura:attribute name="discounts" type="String[]" access="global"/>
+    <aura:attribute name="discount" type="String" access="global"/>
+    <aura:attribute name="types" type="String[]" access="global"/>
+
+    <aura:registerEvent name="WDLC_SendPricebookDetails" type="c:WDLC_SendPricebookDetails"/>
+
+    <aura:handler event="c:WDLC_RefreshDiscounts" action="{!c.getDisc}"/>
+
+    <h2></h2>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+        <tr class="slds-line-height_reset">
+            <th>{!$Label.c.WDLC_Select}</th>
+            <th>{!$Label.c.WDLC_Image}</th>
+            <th>{!$Label.c.WDLC_ProductName}</th>
+            <th>{!$Label.c.WDLC_Description}</th>
+            <th>{!$Label.c.WDLC_StandardPrice}</th>
+            <th>{!$Label.c.WDLC_ActualPrice}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <aura:if isTrue="{!not(empty(v.results))}">
+            <aura:iteration items="{!v.results}" var="item" indexVar="index" end="10">
+                <c:WDLC_DiscountItemRow item="{!item}" changePrice="{!c.refreshPrice}"
+                                        markAsSelected="{!c.refreshMap}"/>
+            </aura:iteration>
+        </aura:if>
+        </tbody>
+    </table>
+    <div class="slds-grid">
+        <div class="slds-col slds-size--10-of-12">
+        </div>
+        <div class="slds-col slds-size--2-of-12" style="padding-top: 6px;">
+            <lightning:button onclick="{!c.removeItems}"
+                              variant="brand"
+                              class="slds-float_right sldsButton">Remove selected</lightning:button>
+        </div>
+    </div>
+    <c:WDL_ShowErrorComponent aura:id="informationToast"/>
+    <c:WDLC_ErrorToast aura:id="errorToast"/>
+</aura:component>
