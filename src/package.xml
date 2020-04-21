@@ -69,6 +69,14 @@
         <members>viewSurveyResultsComponentController</members>
         <members>Message</members>
         <members>Message_Test</members>
+        <members>ChangePasswordController</members>
+        <members>ChangePasswordControllerTest</members>
+        <members>ForgotPasswordController</members>
+        <members>ForgotPasswordControllerTest</members>
+        <members>LexInputFieldCompCtrl</members>
+        <members>LexInputFieldCompCtrl_Test</members>
+        <members>SurveyAndQuestionController</members>
+        <members>SurveyAndQuestionController_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
