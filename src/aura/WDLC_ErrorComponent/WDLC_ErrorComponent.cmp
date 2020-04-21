@@ -4,6 +4,6 @@
 
 <aura:component description="WDLC_ErrorComponent" implements="forceCommunity:availableForAllPageTypes">
     <aura:method name="openErrorToast" action="{!c.openToast}" access="global">
-    <aura:attribute name="errorResponse" type="Object" access="global"/>
+            <aura:attribute name="errorResponse" type="Object" access="global"/>
     </aura:method>
 </aura:component>
