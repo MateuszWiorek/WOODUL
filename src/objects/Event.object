@@ -187,9 +187,6 @@
         <fullName>IsPrivate</fullName>
     </fields>
     <fields>
-        <fullName>DB_Activity_Type__c</fullName>
-    </fields>
-    <fields>
         <fullName>IsRecurrence2</fullName>
     </fields>
     <fields>
