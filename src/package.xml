@@ -145,6 +145,7 @@
         <members>WDL_DivisionSearchForm</members>
         <members>WDL_DivisionSearchResults</members>
         <members>WDL_ShowErrorComponent</members>
+        <members>WDL_ProductTile</members>
         <members>svg</members>
         <members>ticker</members>
         <members>toast</members>
