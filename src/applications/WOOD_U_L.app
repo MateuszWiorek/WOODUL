@@ -33,6 +33,15 @@
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>Product_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Product2</pageOrSobjectType>
+        <recordType>Product2.Furniture</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Product_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Product2</pageOrSobjectType>
         <recordType>Product2.Furniture</recordType>
@@ -45,6 +54,7 @@
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Contract</tabs>
     <tabs>standard-Order</tabs>
+    <tabs>standard-Product2</tabs>
     <tabs>Divisions</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>WOOD_U_L_UtilityBar</utilityBar>
