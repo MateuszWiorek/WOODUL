@@ -82,6 +82,8 @@
         <members>WDLC_FurnitureComplaintsHelper</members>
         <members>ReportFinderUtil</members>
         <members>WDLC_ProductManagementController</members>
+        <members>OpportunityAlertController</members>
+        <members>OpportunityAlertControllerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
