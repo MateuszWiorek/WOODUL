@@ -127,7 +127,6 @@
         <members>Map</members>
         <members>OpportunityAlert</members>
         <members>WDLC_ProductInfo</members>
-        <members>WDLC_ProductTile</members>
         <members>WDLC_ProductView</members>
         <members>WDLC_SearchBar</members>
         <members>WDLC_SearchResultsList</members>
@@ -144,6 +143,7 @@
         <members>WDL_SendAccountListToMap</members>
         <members>WDL_SendValues</members>
         <members>WDL_DivisionSearchForm</members>
+        <members>WDL_DivisionSearchResults</members>
         <members>WDL_ShowErrorComponent</members>
         <members>svg</members>
         <members>ticker</members>
