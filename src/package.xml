@@ -34,6 +34,14 @@
         <members>WDLC_ProductHelper</members>
         <members>WDLC_ProductTileController</members>
         <members>WDLC_ProductWithPriceWrapper</members>
+        <members>CommunitiesLandingController</members>
+        <members>CommunitiesLandingControllerTest</members>
+        <members>CommunitiesLoginController</members>
+        <members>CommunitiesLoginControllerTest</members>
+        <members>CommunitiesSelfRegConfirmController</members>
+        <members>CommunitiesSelfRegConfirmControllerTest</members>
+        <members>CommunitiesSelfRegController</members>
+        <members>CommunitiesSelfRegControllerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -51,6 +59,15 @@
         <members>SurveyPage</members>
         <members>TakeSurvey</members>
         <members>WebLeadOrSurvey</members>
+        <members>FileNotFound</members>
+        <members>ForgotPassword</members>
+        <members>ForgotPasswordConfirm</members>
+        <members>SiteLogin</members>
+        <members>SiteRegister</members>
+        <members>SiteRegisterConfirm</members>
+        <members>SiteTemplate</members>
+        <members>StdExceptionTemplate</members>
+        <members>Unauthorized</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -320,6 +337,7 @@
         <members>NewAccount</members>
         <members>NewCase</members>
         <members>NewCommunityCase</members>
+        <members>Product2.WDL_NewRecord</members>
         <name>QuickAction</name>
     </types>
     <types>
@@ -377,6 +395,12 @@
         <members>WooDUL%3A Support Profile</members>
         <members>WoodUL Store Profile</members>
         <members>WoodUL%3A SalesProfile</members>
+        <members>Furniture Service Profile</members>
+        <members>FurnitureStore Profile</members>
+        <members>LeadConversion Profile</members>
+        <members>WOOD U L Community Plus</members>
+        <members>WOODUL Community Plus Login User</members>
+        <members>WooDUL%3A Community Login User</members>
         <name>Profile</name>
     </types>
     <types>
@@ -432,6 +456,49 @@
     <types>
         <members>*</members>
         <name>Settings</name>
+    </types>
+    <types>
+        <members>LexInputField</members>
+        <members>SiteFooter</members>
+        <members>SiteHeader</members>
+        <members>SiteLogin</members>
+        <members>SitePoweredBy</members>
+        <members>uiMessage</members>
+        <members>viewShareSurveyComponent</members>
+        <members>viewSurveyResultsComponent</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>Internal Zone</members>
+        <name>Community</name>
+    </types>
+    <types>
+        <members>BoatType__c</members>
+        <members>Boat__c</members>
+        <members>Divisions</members>
+        <members>SurveyTaker__c</members>
+        <members>Survey_Question__c</members>
+        <members>Survey__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Default_Navigation</members>
+        <members>Default_Navigation1</members>
+        <name>NavigationMenu</name>
+    </types>
+    <types>
+        <members>Furniture Service</members>
+        <name>Network</name>
+    </types>
+    <types>
+        <members>cbFurniture_Service</members>
+        <name>NetworkBranding</name>
+    </types>
+    <types>
+        <members>WOODUL_Community_Plus_Login_User_profileSessionSetting1584998964558</members>
+        <members>WOOD_U_L_Community_Plus_profileSessionSetting1584998074060</members>
+        <members>WooDUL_Community_Login_User_profileSessionSetting1584997944858</members>
+        <name>ProfileSessionSetting</name>
     </types>
     <version>47.0</version>
 </Package>
