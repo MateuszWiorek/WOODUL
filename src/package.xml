@@ -479,6 +479,7 @@
         <members>SurveyTaker__c</members>
         <members>Survey_Question__c</members>
         <members>Survey__c</members>
+        <members>Getting_Started_With_Survey_Force</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -499,6 +500,14 @@
         <members>WOOD_U_L_Community_Plus_profileSessionSetting1584998074060</members>
         <members>WooDUL_Community_Login_User_profileSessionSetting1584997944858</members>
         <name>ProfileSessionSetting</name>
+    </types>
+    <types>
+        <members>BoatType__c-Boat Type Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>BoatType__c</members>
+        <name>TopicsForObjects</name>
     </types>
     <version>47.0</version>
 </Package>
