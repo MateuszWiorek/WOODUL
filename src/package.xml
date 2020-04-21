@@ -126,7 +126,6 @@
     </types>
     <types>
         <members>Account</members>
-        <members>Activity</members>
         <members>AgentWork</members>
         <members>AssistantProgress</members>
         <members>Campaign</members>
@@ -136,7 +135,6 @@
         <members>CaseContactRole</members>
         <members>CaseMilestone</members>
         <members>Lead</members>
-        <members>Opportunity</members>
         <members>Order</members>
         <members>OrderItem</members>
         <members>Pricebook2</members>
@@ -160,30 +158,8 @@
         <members>AccountContactRole</members>
         <members>Asset</members>
         <members>AssetRelationship</members>
-        <members>AuthorizationForm</members>
-        <members>AuthorizationFormConsent</members>
-        <members>AuthorizationFormDataUse</members>
-        <members>AuthorizationFormText</members>
         <members>BoatType__c</members>
         <members>Boat__c</members>
-        <members>ChannelProgram</members>
-        <members>ChannelProgramLevel</members>
-        <members>ChannelProgramMember</members>
-        <members>ChatterActivity</members>
-        <members>CollaborationGroup</members>
-        <members>CollaborationGroupMember</members>
-        <members>CommSubscription</members>
-        <members>CommSubscriptionChannelType</members>
-        <members>CommSubscriptionConsent</members>
-        <members>CommSubscriptionTiming</members>
-        <members>ConsumptionRate</members>
-        <members>ConsumptionSchedule</members>
-        <members>ContactCleanInfo</members>
-        <members>ContactPointConsent</members>
-        <members>ContactPointEmail</members>
-        <members>ContactPointPhone</members>
-        <members>ContactPointTypeConsent</members>
-        <members>ContactRequest</members>
         <members>ContentVersion</members>
         <members>Contract</members>
         <members>ContractContactRole</members>
@@ -198,20 +174,11 @@
         <members>Entitlement</members>
         <members>EntitlementContact</members>
         <members>Event</members>
-        <members>ExchangeUserMapping</members>
-        <members>ExpressionFilter</members>
-        <members>ExpressionFilterCriteria</members>
         <members>ExternalEventMapping</members>
         <members>FeedItem</members>
         <members>Goal</members>
         <members>Idea</members>
         <members>LeadCleanInfo</members>
-        <members>LinkedArticle</members>
-        <members>LiveAgentSession</members>
-        <members>LiveChatTranscript</members>
-        <members>LiveChatTranscriptEvent</members>
-        <members>LiveChatTranscriptSkill</members>
-        <members>LiveChatVisitor</members>
         <members>Macro</members>
         <members>MacroAction</members>
         <members>MacroInstruction</members>
@@ -220,31 +187,11 @@
         <members>MessagingSession</members>
         <members>Metric</members>
         <members>NetworkMember</members>
-        <members>ObectToTestOWD__c</members>
-        <members>OpportunityCompetitor</members>
-        <members>OpportunityContactRole</members>
-        <members>OpportunityLineItem</members>
-        <members>OrgDeleteRequest</members>
-        <members>OrgMetricScanResult</members>
-        <members>OrgMetricScanSummary</members>
         <members>PartnerFundAllocation</members>
         <members>PartnerFundClaim</members>
         <members>PartnerFundRequest</members>
         <members>PartnerMarketingBudget</members>
         <members>PartnerRole</members>
-        <members>PartyConsent</members>
-        <members>PendingServiceRouting</members>
-        <members>ProductConsumptionSchedule</members>
-        <members>PromptAction</members>
-        <members>QuickText</members>
-        <members>QuickTextUsage</members>
-        <members>Recommendation</members>
-        <members>RecordAction</members>
-        <members>RecordMergeHistory</members>
-        <members>RevenueElement</members>
-        <members>Scorecard</members>
-        <members>ScorecardAssociation</members>
-        <members>ScorecardMetric</members>
         <members>ServiceContract</members>
         <members>Site</members>
         <members>SocialPersona</members>
