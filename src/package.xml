@@ -67,6 +67,8 @@
         <members>viewShareSurveyComponentController</members>
         <members>viewShareSurveyComponentController_Test</members>
         <members>viewSurveyResultsComponentController</members>
+        <members>Message</members>
+        <members>Message_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -479,6 +481,10 @@
     <types>
         <members>BoatType__c</members>
         <name>TopicsForObjects</name>
+    </types>
+    <types>
+        <members>unfiled$public/SendEmailWithSurveyLink</members>
+        <name>EmailTemplate</name>
     </types>
     <version>47.0</version>
 </Package>
