@@ -509,5 +509,9 @@
         <members>EntitlementType</members>
         <name>StandardValueSet</name>
     </types>
+    <types>
+        <members>TMDBUser</members>
+        <name>PlatformCachePartition</name>
+    </types>
     <version>47.0</version>
 </Package>
