@@ -5,7 +5,7 @@
         <description>SurveyEmail</description>
         <protected>false</protected>
         <recipients>
-            <recipient>mateusz.wiorek@britenet.com</recipient>
+            <recipient>mateusz@wiorek.pl</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
