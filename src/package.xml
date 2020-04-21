@@ -367,14 +367,6 @@
         <name>FlexiPage</name>
     </types>
     <types>
-        <members>ConvertLeadFromOpenToMeeting</members>
-        <name>Flow</name>
-    </types>
-    <types>
-        <members>ConvertLeadFromOpenToMeeting</members>
-        <name>FlowDefinition</name>
-    </types>
-    <types>
         <members>Admins</members>
         <name>Group</name>
     </types>
