@@ -23,7 +23,6 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>mateusz.wiorek@britenet.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>woodul-developer-edition</subdomain>
     <urlPathPrefix>furnitureservice</urlPathPrefix>
