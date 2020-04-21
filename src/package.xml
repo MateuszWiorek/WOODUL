@@ -326,7 +326,6 @@
         <members>NewAccount</members>
         <members>NewCase</members>
         <members>NewCommunityCase</members>
-        <members>Product2.WDL_NewRecord</members>
         <name>QuickAction</name>
     </types>
     <types>
