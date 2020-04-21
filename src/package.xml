@@ -152,6 +152,7 @@
         <members>WDLC_ProductPhotoComponent</members>
         <members>WDLC_ChangeMainPhoto</members>
         <members>WDLC_ProductPhotoElement</members>
+        <members>WDLC_ChangeLivePhoto </members>
         <members>WDL_ErrorComponent</members>
         <members>svg</members>
         <members>ticker</members>
