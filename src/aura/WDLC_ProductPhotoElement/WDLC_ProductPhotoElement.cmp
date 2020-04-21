@@ -1,0 +1,14 @@
+<!--
+ - Created by Mateusz Wiorek on 01.04.2020.
+ -->
+
+<aura:component description="WDLC_ProductPhotoElement">
+    <aura:attribute name="photoUrl" type="String" access="global"/>
+
+    <aura:registerEvent name="changeLiveEvent" type="c:WDLC_ChangeLivePhoto"/>
+    <aura:if isTrue="{!not(empty(v.photoUrl))}">
+    <div onclick="{!c.refreshLivePhoto}">
+        <img src="{!v.photoUrl}"/>
+    </div>
+    </aura:if>
+</aura:component>
