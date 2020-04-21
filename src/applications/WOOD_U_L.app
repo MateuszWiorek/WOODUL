@@ -49,7 +49,6 @@
         <profile>Admin</profile>
     </profileActionOverrides>
     <tabs>standard-Account</tabs>
-    <tabs>Discount_Manager_V2</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>standard-Opportunity</tabs>
