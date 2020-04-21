@@ -6,7 +6,7 @@
     <communityRoles/>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
     <emailSenderAddress>mateusz.wiorek@interia.pl</emailSenderAddress>
-    <emailSenderName>Furniture Service</emailSenderName>
+    <emailSenderName>WoodUL Store</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
     <enableDirectMessages>true</enableDirectMessages>
     <enableGuestChatter>false</enableGuestChatter>
@@ -28,11 +28,7 @@
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
     <networkMemberGroups>
         <profile>admin</profile>
-        <profile>woodul: community login user</profile>
-        <profile>woodul: salesprofile</profile>
-        <profile>woodul: support profile</profile>
-        <profile>woodul community plus login user</profile>
-        <profile>wood u l community plus</profile>
+        <profile>standard</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
@@ -41,15 +37,15 @@
         <loginPageOverrideSetting>Designer</loginPageOverrideSetting>
         <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
     </networkPageOverrides>
-    <picassoSite>Furniture_Service1</picassoSite>
+    <picassoSite>WoodUL_Store1</picassoSite>
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
-    <site>Furniture_Service</site>
-    <status>Live</status>
+    <site>WoodUL_Store</site>
+    <status>DownForMaintenance</status>
     <tabs>
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>
     </tabs>
-    <urlPathPrefix>furnitureservice</urlPathPrefix>
+    <urlPathPrefix>store</urlPathPrefix>
     <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
 </Network>

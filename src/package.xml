@@ -471,10 +471,14 @@
     </types>
     <types>
         <members>Furniture Service</members>
+        <members>FurnitureStore</members>
+        <members>WoodUL Store</members>
         <name>Network</name>
     </types>
     <types>
         <members>cbFurniture_Service</members>
+        <members>cbFurnitureStore</members>
+        <members>cbWoodUL_Store</members>
         <name>NetworkBranding</name>
     </types>
     <types>
@@ -492,6 +496,18 @@
     <types>
         <members>unfiled$public/SendEmailWithSurveyLink</members>
         <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>download_22</members>
+        <name>ContentAsset</name>
+    </types>
+    <types>
+        <members>resolve case</members>
+        <name>EntitlementProcess</name>
+    </types>
+    <types>
+        <members>EntitlementType</members>
+        <name>StandardValueSet</name>
     </types>
     <version>47.0</version>
 </Package>
