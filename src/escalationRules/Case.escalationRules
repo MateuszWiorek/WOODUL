@@ -13,7 +13,6 @@
             <escalationAction>
                 <minutesToEscalation>30</minutesToEscalation>
                 <notifyCaseOwner>true</notifyCaseOwner>
-                <notifyTo>mateusz.wiorek@britenet.com</notifyTo>
                 <notifyToTemplate>unfiled$public/SupportEscalatedCaseReassignment</notifyToTemplate>
             </escalationAction>
             <escalationStartTime>CaseCreation</escalationStartTime>
