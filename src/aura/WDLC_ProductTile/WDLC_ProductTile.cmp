@@ -11,40 +11,4 @@
     <aura:registerEvent type="c:WDLC_RefreshBasketComponent" name="refreshBasket"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
-    <lightning:card>
-        <div class="movieImage" style=" margin-left: 7px; width:15rem; height:auto;">
-            <div style="height:auto;">
-                <figure style="position: relative;">
-                    <div class="slds-m-around_small rateHover">
-                        <lightning:buttonIconStateful iconName="utility:favorite" selected="{! v.product.isWishlisted }"
-                                                      onclick="{!c.addToObserved}"
-                                                      alternativeText="{!$Label.c.WDLC_AddToObservedButton}"
-                                                      class="favButton"/>
-                    </div>
-                    <img src="{!v.product.productPhotoUrl}" onclick="{!c.sendFurnitureIdToProductView}" alt="{!v.product.productName}" style="max-height:240px;"/>
-                    <span class="fullName">{!v.product.productName}</span>
-                    <p/>
-                    <span aura:id="standardPrice">
-                        <lightning:formattedNumber value="{!v.product.productPrice}" style="currency"
-                                                   currencyCode="{!$Label.c.WDLC_CurrencyCode}"
-                                                   currencyDisplayAs="symbol"/>
-                    </span>
-                    <span class="discountPriceNone" aura:id="discountPrice" style="margin-left:6px;">
-                        <lightning:formattedNumber value="{!v.product.productPriceAfterDiscount}"
-                                                   style="currency"
-                                                   currencyCode="{!$Label.c.WDLC_CurrencyCode}"
-                                                   currencyDisplayAs="symbol"/>
-                    </span>
-
-                </figure>
-            </div>
-            <center>
-                <lightning:button onclick="{!c.buyNow}" class="buyNowButton"
-                                  value="{!$Label.c.WDLC_BuyNow}" variant="brand">{!$Label.c.WDLC_BuyNow}</lightning:button>
-            </center>
-        </div>
-    </lightning:card>
-    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
-    <c:WDLC_ErrorComponent aura:id="errorToast"/>
 </aura:component>
