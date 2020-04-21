@@ -3,10 +3,6 @@
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
     <name>Tech support</name>
     <queueMembers>
-        <users>
-            <user>mateusz.agent@interia.pl</user>
-            <user>mateusz.manager@interia.pl</user>
-        </users>
     </queueMembers>
     <queueSobject>
         <sobjectType>Case</sobjectType>
