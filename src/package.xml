@@ -82,6 +82,7 @@
         <members>WDLC_ProductManagementController</members>
         <members>OpportunityAlertController</members>
         <members>OpportunityAlertControllerTest</members>
+        <members>SurveyTaken.trigger</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -111,7 +112,6 @@
         <name>ApexPage</name>
     </types>
     <types>
-        <members>SurveyTaken</members>
         <members>WDL_CaseTrigger</members>
         <name>ApexTrigger</name>
     </types>
@@ -264,7 +264,6 @@
         <members>*</members>
         <name>CustomLabels</name>
     </types>
-
     <types>
         <members>*</members>
         <name>Queue</name>
