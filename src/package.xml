@@ -150,6 +150,7 @@
         <members>WDL_ShowErrorComponent</members>
         <members>WDLC_ProductTile</members>
         <members>WDL_ProductTile</members>
+        <members>WDLC_RefreshBasketComponent</members>
         <members>WDLC_ProductChangePhoto</members>
         <members>WDLC_ProductPhotoComponent</members>
         <members>WDLC_ChangeMainPhoto</members>
