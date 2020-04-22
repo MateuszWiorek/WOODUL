@@ -118,16 +118,10 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>woodulCase</members>
-        <name>AssignmentRule</name>
-    </types>
-    <types>
         <members>Case</members>
         <name>AssignmentRules</name>
     </types>
     <types>
-        <members>ContactsToday</members>
-        <members>Map</members>
         <members>OpportunityAlert</members>
         <members>WDLC_ProductInfo</members>
         <members>WDLC_ProductView</members>
@@ -156,17 +150,12 @@
         <members>WDLC_ChangeMainPhoto</members>
         <members>WDLC_ProductPhotoElement</members>
         <members>WDLC_ChangeLivePhoto</members>
-        <members>WDL_ErrorComponent</members>
         <members>svg</members>
         <members>ticker</members>
         <members>toast</members>
         <members>WDLC_SendFurnitureId</members>
         <members>WDLC_SearchFurnitureProductsBar</members>
         <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>Opportunity.Furniture Sales</members>
-        <name>BusinessProcess</name>
     </types>
     <types>
         <members>WOOD_U_L</members>
@@ -180,7 +169,6 @@
         <members>AgentWork</members>
         <members>AssistantProgress</members>
         <members>Campaign</members>
-        <members>CampaignMember</members>
         <members>Case</members>
         <members>CaseComment</members>
         <members>CaseContactRole</members>
@@ -238,18 +226,11 @@
         <members>PartnerFundAllocation</members>
         <members>PartnerFundClaim</members>
         <members>PartnerFundRequest</members>
-        <members>PartnerMarketingBudget</members>
         <members>PartnerRole</members>
-        <members>ServiceContract</members>
         <members>Site</members>
-        <members>SocialPersona</members>
-        <members>Solution</members>
         <members>StreamActivityAccess</members>
-        <members>Task</members>
         <members>Topic</members>
         <members>TopicAssignment</members>
-        <members>UserProvisioningRequest</members>
-        <members>UserServicePresence</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -299,17 +280,7 @@
         <members>*</members>
         <name>CustomLabels</name>
     </types>
-    <types>
-        <members>Furniture Service Profile</members>
-        <members>LeadConversion Profile</members>
-        <members>WooDUL%3A Support Profile</members>
-        <members>WoodUL Store Profile</members>
-        <members>WoodUL%3A SalesProfile</members>
-        <members>WOODUL Community Plus Login User</members>
-        <members>WOOD U L Community Plus</members>
-        <members>WooDUL%3A Community Login User</members>
-        <name>Profile</name>
-    </types>
+
     <types>
         <members>*</members>
         <name>Queue</name>
@@ -321,7 +292,6 @@
         <members>LogACall</members>
         <members>NewAccount</members>
         <members>NewCase</members>
-        <members>NewCommunityCase</members>
         <name>QuickAction</name>
     </types>
     <types>
@@ -371,11 +341,8 @@
     </types>
     <types>
         <members>WooDUL%3A Support Profile</members>
-        <members>WoodUL Store Profile</members>
         <members>WoodUL%3A SalesProfile</members>
-        <members>Furniture Service Profile</members>
         <members>FurnitureStore Profile</members>
-        <members>LeadConversion Profile</members>
         <members>WOOD U L Community Plus</members>
         <members>WOODUL Community Plus Login User</members>
         <members>WooDUL%3A Community Login User</members>
@@ -419,7 +386,6 @@
         <members>Account.Billing</members>
         <members>Campaign.ViewCampaignInfluenceReport</members>
         <members>Case.UpsellCrosssellOpportunity</members>
-        <members>Opportunity.DeliveryStatus</members>
         <name>WebLink</name>
     </types>
     <types>
@@ -460,19 +426,7 @@
     </types>
     <types>
         <members>Default_Navigation</members>
-        <members>Default_Navigation1</members>
         <name>NavigationMenu</name>
-    </types>
-    <types>
-        <members>FurnitureStore</members>
-        <members>WoodUL Store</members>
-        <name>Network</name>
-    </types>
-    <types>
-        <members>cbFurniture_Service</members>
-        <members>cbFurnitureStore</members>
-        <members>cbWoodUL_Store</members>
-        <name>NetworkBranding</name>
     </types>
     <types>
         <members>WOODUL_Community_Plus_Login_User_profileSessionSetting1584998964558</members>
@@ -493,10 +447,6 @@
     <types>
         <members>download_22</members>
         <name>ContentAsset</name>
-    </types>
-    <types>
-        <members>Resolve case</members>
-        <name>EntitlementProcess</name>
     </types>
     <types>
         <members>EntitlementType</members>
