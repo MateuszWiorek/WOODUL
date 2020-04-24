@@ -45,6 +45,7 @@
         <members>WDL_DetailsInfoController</members>
         <members>WDL_SearchFormController</members>
         <members>WDL_Utils</members>
+        members>AAA</members>
         <members>soapSforceComSchemasClassHosWebser</members>
         <members>soapSforceComSchemasClassHosWrappe</members>
         <members>viewShareSurveyComponentController</members>
