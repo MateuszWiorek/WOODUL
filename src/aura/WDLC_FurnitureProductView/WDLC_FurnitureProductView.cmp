@@ -5,6 +5,7 @@
 <aura:component description="WDLC_FurnitureProductView" controller="WDLC_ProductViewController"
                 implements="forceCommunity:availableForAllPageTypes">
     <aura:attribute type="String" name="productId" access="global"/>
+    <aura:attribute type="Integer" name="counter" access="global" default="1"/>
     <aura:attribute type="String" name="livePhoto" access="global"/>
     <aura:attribute type="Object" name="product" access="global"/>
     <aura:attribute type="String[]" name="productPhotos" access="global"/>
@@ -14,13 +15,14 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!not(empty(v.product))}">
         <lightning:card>
-            <div class="slds-grid">
+            <div class="slds-grid" style="padding: 3rem 1rem;">
                 <div class="slds-size--1-of-12 slds-col_bump-left">
                     <aura:if isTrue="{!not(empty(v.productPhotos))}">
-                    <aura:iteration items="{!v.productPhotos}" var="photoUrl">
-
-                        <c:WDLC_ProductPhotoElement photoUrl="{!photoUrl}" changeLiveEvent="{!c.setLivePhoto}"/>
-                    </aura:iteration>
+                        <aura:iteration items="{!v.productPhotos}" var="photoUrl">
+                            <div style="margin-top:5px; margin-right:5px;">
+                                <c:WDLC_ProductPhotoElement photoUrl="{!photoUrl}" changeLiveEvent="{!c.setLivePhoto}"/>
+                            </div>
+                        </aura:iteration>
                     </aura:if>
                 </div>
                 <div class="slds-col slds-size--5-of-12">
@@ -39,21 +41,40 @@
                                                    currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
                     </span>
                     <p/>
-                    <lightning:button class="slds-button slds-button_outline-brand"
+                    <span style=" padding-right:10px; margin-right:10px; display: flex; align-items: center;">
+                        <div><lightning:buttonIcon iconName="utility:dash" variant="bare"
+                                                   disabled="{!if(v.counter ==1,true,false)}"
+                                                   onclick="{!c.decrementCounter}"
+                                                   alternativeText="{!$Label.c.WDLC_Remove}"
+                                                   title="{!$Label.c.WDLC_Remove}"/>
+                        </div>
+                        <p style="width:50px;">
+                        <ui:inputNumber value="{!v.counter}" class="spanMaxWidth"/>
+                            </p>
+                <div>
+                        <lightning:buttonIcon iconName="utility:add" variant="bare"
+                                              onclick="{!c.incrementCounter}" alternativeText="{!$Label.c.WDLC_Add}"
+                                              title="{!$Label.c.WDLC_Add}"/>
+                    </div>
+                        <div>
+                    <lightning:button class="slds-button slds-button_outline-brand buttonAddCard"
                                       onclick="{!c.addToCart}">{!$Label.c.WDLC_AddToCart}</lightning:button>
+                            </div>
+                        <div>
                     <aura:if isTrue="{!not(v.product.isWishlisted)}">
-                        <lightning:button class="slds-button slds-button_outline-brand"
+                        <lightning:button class="slds-button slds-button_outline-brand button_style"
                                           onclick="{!c.addToWishList}">{!$Label.c.WDLC_AddToList}</lightning:button>
                     </aura:if>
                     <aura:if isTrue="{!v.product.isWishlisted}">
-                        <lightning:button class="slds-button slds-button_outline-brand"
-                                          onclick="{!c.removeFromList}">{!$Label.c.WDLC_RemoveFromList}
+                        <lightning:button class="slds-button slds-button_outline-brand button_style button_fontsize"
+                                          onclick="{!c.removeFromObserved}">{!$Label.c.WDLC_RemoveFromList}
                         </lightning:button>
                     </aura:if>
-
+                            </div>
+                    </span>
                 </div>
             </div>
-            <lightning:tabset>
+            <lightning:tabset class="tabset_border">
                 <lightning:tab label="{!$Label.c.Description}">
                     <div>
                         <h3>{!$Label.c.Description}</h3>

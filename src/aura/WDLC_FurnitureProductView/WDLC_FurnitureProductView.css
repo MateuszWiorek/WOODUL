@@ -4,6 +4,9 @@
  .THIS {
      padding: 5px;
  }
+ .THIS h3{
+    font-size: 1.3rem;
+ }
 .THIS .productInfo h2{
     font-size: 36px;
     font-weight: bold;
@@ -16,10 +19,29 @@
     font-size: 20px;
     margin: 10px 5px;
 }
+.THIS .productInfo .button_style{
+    height:50px;
+    font-size: 20px;
+    margin: 10px 5px;
+}
+.THIS .productInfo button.button_fontsize{
+    height:50px;
+    font-size: 17px;
+    margin: 10px 5px;
+}
 .THIS .productInfo p{
     font-size: 24px;
 }
-.THIS .productInfo button:hover{
+.THIS .productInfo button.buttonAddCard{
+    background-color: #005fb2;
+    color: white;
+    border: 1px solid white;
+}
+.THIS .productInfo button.buttonAddCard:hover{
+    color: black;
+    border: 1px solid black;
+}
+.THIS .productInfo .button_style:hover{
     background-color: #005fb2;
     color: white;
     border: 1px solid white;
@@ -42,4 +64,10 @@
 }
 .THIS .discountPriceNone{
     display:none;
+}
+.THIS .spanMaxWidth{
+    width:50px;
+}
+.THIS .tabset_border{
+    border-bottom: 1px solid lightgray;
 }

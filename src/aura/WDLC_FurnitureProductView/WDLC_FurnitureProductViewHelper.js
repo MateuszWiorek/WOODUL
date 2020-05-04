@@ -29,10 +29,11 @@
                 if(response.getState() === "SUCCESS"){
                     if(response.getReturnValue().length>0){
                         component.set("v.productPhotos", response.getReturnValue());
-                        console.log(response.getReturnValue());
                     }else{
                         component.set("v.productPhotos", component.get("v.product").productPhotoUrl);
                     }
+                }else{
+                    component.find("errorToast").showError(response);
                 }
             });
             $A.enqueueAction(getPhotosAction)
@@ -43,9 +44,10 @@
     },
     doAddToCart : function(component,event){
         let productToBuyId = component.get("v.productId");
-        let addToCartAction = component.get("c.addProductToBasket");
+        let addToCartAction = component.get("c.changeProductCounter");
         addToCartAction.setParams({
-            'productId' : productToBuyId
+            'productId' : productToBuyId,
+            'newValue' : component.get("v.counter")
         });
         addToCartAction.setCallback(this, function(response){
             let state = response.getState();
@@ -53,7 +55,7 @@
                 let toastComp = component.find("toastComponent");
                 toastComp.openInformationToast($A.get("{!$Label.c.WDLC_AddedToCart}"),
                                                 $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
-                let basketEvent = $A.get("e:c:WDLC_RefreshBasketComponent");
+                let basketEvent = $A.get("e.c:WDLC_RefreshBasketComponent");
                 basketEvent.fire();
             }else{
                 component.find("errorToast").showError(response);
@@ -72,6 +74,9 @@
             if(state === "SUCCESS"){
                 component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_AddedToObserved}"),
                                         $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
+                let prod = component.get("v.product");
+                prod.isWishlisted = !prod.isWishlisted;
+                component.set("v.product", prod);
             }else{
                 component.find("errorToast").showError(response);
             }
@@ -90,6 +95,9 @@
             if(state === "SUCCESS"){
                 component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_RemovedFromObserved}"),
                                                 $A.get("{!$Label.c.HRHM_Success}"), $A.get("{!$Label.c.HRHM_Success}"));
+                let prod = component.get("v.product");
+                prod.isWishlisted = !prod.isWishlisted;
+                component.set("v.product", prod);
             }else{
                 component.find("errorToast").showError(response);
             }

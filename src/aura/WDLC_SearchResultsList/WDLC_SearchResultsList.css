@@ -4,3 +4,10 @@
 .THIS h2{
     font-size: 25px;
 }
+.THIS .sldsButtonIcons svg {
+    width: 2rem;
+    height: 2rem;
+}
+.THIS.slds-spinner_container{
+    background: none;
+}

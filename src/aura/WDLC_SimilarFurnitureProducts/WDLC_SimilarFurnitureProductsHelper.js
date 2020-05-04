@@ -12,7 +12,6 @@
             let state = response.getState();
             if(state === "SUCCESS"){
                 component.set("v.similarProducts", response.getReturnValue());
-                console.log(response.getReturnValue());
                 component.set("v.canBeShown", true);
                 setTimeout(function() {
                  $('.carousel').slick({

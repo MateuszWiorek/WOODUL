@@ -8,16 +8,12 @@
         let searchQuery;
         for (let i = 0; i<variables.length;i++){
             if(variables[i].split('=')[0] ='searchItem'){
-                console.log(variables);
                 searchQuery = variables[i].split('=')[1].replace('+',' ');
             }
         }
 
         let findAction = component.get("c.findProducts");
-        if(searchQuery === ""){
-            component.set("v.results", []);
-            component.set("v.searchResult","");
-        }else{
+
             findAction.setParams({
                 "name" : searchQuery
             });
@@ -26,11 +22,12 @@
                 let state = response.getState();
                 if(state === "SUCCESS"){
                     component.set("v.results", response.getReturnValue());
-                    console.log(component.get("v.results"));
                     component.set("v.searchResult", searchQuery);
+                    component.set("v.sizeOfResults", response.getReturnValue().length);
+                }else{
+                    component.find("toastComponent").openErrorToast(response);
                 }
             });
             $A.enqueueAction(findAction);
         }
-    }
 })
