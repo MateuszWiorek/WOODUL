@@ -1,7 +1,3 @@
-/**
- * Created by Mateusz Wiorek on 24.03.2020.
- */
-
 public with sharing class WDLC_FurnitureOrderHelper {
     public static Order addOrder(String addressOrder) {
         WDLC_OrderAddressWrapper address = (WDLC_OrderAddressWrapper) JSON.deserialize(addressOrder, WDLC_OrderAddressWrapper.class);
@@ -10,8 +6,8 @@ public with sharing class WDLC_FurnitureOrderHelper {
         }
         List<WDLC_ProductToOrderWrapper> productsToOrder = WDLC_BasketController.getProductsInBasket();
         Order newOrder = new Order();
-        Order__c orderCustomSetting = Order__c.getInstance('WDLCOrder');
-        Pricebook2 pricebook = [SELECT Id FROM Pricebook2 WHERE IsActive = true LIMIT 1];
+        Order__c orderCustomSetting = Order__c.getInstance(Label.WDLC_OrderCommunitySettings);
+        Pricebook2 pricebook = [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1];
         String orderId;
 
         newOrder.AccountId = orderCustomSetting.AccountId__c;
@@ -21,25 +17,24 @@ public with sharing class WDLC_FurnitureOrderHelper {
         newOrder.BillingPostalCode = address.billingPostalCode;
         newOrder.BillingState = address.billingState;
         newOrder.BillingCountry = address.billingCountry;
-        newOrder.Status = 'Draft';
+        newOrder.Status = orderCustomSetting.Status__c;
         newOrder.EndDate = Date.today().addDays(14);
         newOrder.EffectiveDate = Date.today();
         newOrder.Pricebook2Id = pricebook.Id;
 
         try {
-            Database.SaveResult saveResults = Database.insert(newOrder);
-            if (saveResults.isSuccess()) {
-                orderId = saveResults.Id;
-                System.debug(orderId);
-            }
+            insert newOrder;
+            orderId = newOrder.Id;
         } catch (DmlException e) {
             throw new WDLC_CustomException(Label.WDLC_OrderError);
         }
+
         List<OrderItem> itemsToOrder = new List<OrderItem>();
         for (WDLC_ProductToOrderWrapper wrappedProduct : productsToOrder) {
-            OrderItem item = new OrderItem(OrderId = orderId);
+            OrderItem item = new OrderItem();
+            item.OrderId = orderId;
             item.Quantity = wrappedProduct.quantity;
-            item.PricebookEntryId = WDLC_ProductHelper.getPriceBookEntryId(wrappedProduct.product.productId);
+            item.PricebookEntryId = WDLC_ProductHelper.getStandardPriceBookEntryId(wrappedProduct.product.productId);
             item.UnitPrice = Decimal.valueOf(WDLC_ProductHelper.getLowestPriceForProduct(wrappedProduct.product.productId));
             item.Product2Id = wrappedProduct.product.productId;
             itemsToOrder.add(item);
@@ -48,34 +43,20 @@ public with sharing class WDLC_FurnitureOrderHelper {
             insert itemsToOrder;
             WDLC_BasketHelper.removeBasket();
         } catch (DmlException e) {
-            throw new WDLC_CustomException(Label.WDLC_OrderError + 'items' + e.getMessage());
+            throw new WDLC_CustomException(Label.WDLC_OrderError + e.getMessage());
         }
-        Order ord = [
-                SELECT BillingCountry, BillingState, BillingPostalCode, BillingCity, BillingStreet,
-                        Status, TotalAmount, (
-                        SELECT Id,
-                                OrderId,
-                                OrderItemNumber,
-                                PricebookEntry.Product2.Name,
-                                PricebookEntry.Product2.id,
-                                Quantity,
-                                UnitPrice
-                        FROM OrderItems
-                )
-                FROM Order
-                WHERE Id = :orderId
-        ];
-        System.debug(ord);
+
         return [
                 SELECT BillingCountry, BillingState, BillingPostalCode, BillingCity, BillingStreet,
-                        Status, TotalAmount, (
+                        Status, OrderNumber, TotalAmount, (
                         SELECT Id,
                                 OrderId,
                                 OrderItemNumber,
                                 PricebookEntry.Product2.Name,
                                 PricebookEntry.Product2.id,
                                 Quantity,
-                                UnitPrice
+                                UnitPrice,
+                                TotalPrice
                         FROM OrderItems
                 )
                 FROM Order
@@ -106,7 +87,8 @@ public with sharing class WDLC_FurnitureOrderHelper {
                                 PricebookEntry.Product2.Name,
                                 PricebookEntry.Product2.id,
                                 Quantity,
-                                UnitPrice
+                                UnitPrice,
+                                TotalPrice
                         FROM OrderItems
                 )
                 FROM Order
