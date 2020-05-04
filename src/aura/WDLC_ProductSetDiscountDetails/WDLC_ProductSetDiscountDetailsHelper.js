@@ -97,7 +97,6 @@
                 "discountId" : discId,
                 "page" : 1
             });
-            console.log(JSON.stringify(getItemsInDiscountAction.getParams()));
             getItemsInDiscountAction.setCallback(this, function(response){
                 if(response.getState() === "SUCCESS"){
                     component.set("v.results", response.getReturnValue());

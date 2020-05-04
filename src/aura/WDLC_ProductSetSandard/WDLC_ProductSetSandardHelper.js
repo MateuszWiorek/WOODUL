@@ -27,7 +27,6 @@
         component.set("v.results", resultsAfterFilter);
     },
     doHandleSubmit : function(component, event){
-        console.log(component.get("v.results"));
         let submitStandard = component.get("c.setStandardPrices");
         let res = component.get("v.results");
         let pricesMap = component.get("v.pricesToSet");
@@ -36,7 +35,6 @@
             'prices' : pricesMap
         });
         submitStandard.setCallback(this, function(response){
-            console.log(response.getState());
             if(response.getState() === "SUCCESS"){
                 component.find("informationToast").openInformationToast($A.get("{!$Label.c.WDLC_PricesSubmitted}"),
                                                                         $A.get("{!$Label.c.Success}"),
@@ -50,7 +48,6 @@
     },
     doHandleSettingStandardPrices : function(component, event){
         let draftValues = event.getParam('draftValues');
-        console.log(draftValues[0]);
         let res = component.get("v.results");
         res.forEach(function(item){
             if(item.productId == draftValues[0].productId){

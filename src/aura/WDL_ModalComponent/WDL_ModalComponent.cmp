@@ -3,7 +3,7 @@
  -->
 
 <aura:component description="WDL_ModalComponent" controller="WDLC_DiscountManagerController"
-                implements="flexiPage:availableForAllPageTypes, force:hasRecordId" extensible="true" access="global">
+                implements="flexiPage:availableForAllPageTypes,force:hasRecordId" extensible="true" access="global">
 
     <aura:attribute type="Object" name="accountInfo" access="global"/>
     <aura:attribute type="Boolean" name="canBeShown" access="global"/>
@@ -59,6 +59,26 @@
                         <span class="slds-assistive-text">X</span>
                     </button>
                 </header>
+                <!--                <lightning:card>-->
+                <!--                    <div class="slds-grid">-->
+                <!--                        <div class="slds-col slds-size&#45;&#45;1-of-12"/>-->
+                <!--                        <div class="slds-col slds-size&#45;&#45;10-of-12">-->
+                <!--                            <ui:inputText value="{!v.discountName}" label="{!$Label.c.WDLC_DiscountName}"/>-->
+                <!--                            <ui:inputDate value="{!v.discountStartDate}" class="field" displayDatePicker="true"-->
+                <!--                                          label="{!$Label.c.WDLC_StartDate}"/>-->
+                <!--                            <ui:inputDate value="{!v.discountEndDate}" class="field" displayDatePicker="true"-->
+                <!--                                          label="{!$Label.c.WDLC_EndDate}"/>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </lightning:card>-->
+                <!--                <footer class="slds-modal__footer">-->
+                <!--                    <lightning:button label="Cancel"-->
+                <!--                                      class="slds-button"-->
+                <!--                                      onclick="{!c.hideModal}"/>-->
+                <!--                    <lightning:button onclick="{!c.createNewDisc}" variant="brand">-->
+                <!--                            {!$Label.c.WDLC_CreateNewDiscount}-->
+                <!--                    </lightning:button>-->
+                <!--                </footer>-->
                 <lightning:card>
                     <lightning:recordForm
                             objectApiName="Pricebook2"
