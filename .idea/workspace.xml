@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2372441b-ca5c-4844-abc3-cfb67735d78e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aura/WDLC_SearchResultsList/WDLC_SearchResultsList.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/aura/WDLC_SearchResultsList/WDLC_SearchResultsList.cmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aura/WDLC_SearchResultsList/WDLC_SearchResultsListController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aura/WDLC_SearchResultsList/WDLC_SearchResultsListController.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="#6-ProductSearch" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IlluminatedCloudWorkspaceSettings">
+    <option name="applicationWorkspaceSettings">
+      <ApplicationWorkspaceSettings>
+        <option name="showMetaXmlFiles" value="true" />
+      </ApplicationWorkspaceSettings>
+    </option>
+    <option name="moduleWorkspaceSettings">
+      <map>
+        <entry key="New Connectiona1">
+          <value>
+            <ModuleWorkspaceSettings>
+              <option name="moduleContentsLastModified" value="1588570617854" />
+            </ModuleWorkspaceSettings>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectWorkspaceSettings">
+      <ProjectWorkspaceSettings>
+        <option name="connectionWorkspaceSettings">
+          <map>
+            <entry key="New Connectiona">
+              <value>
+                <ConnectionWorkspaceSettings>
+                  <option name="buildSuccessDatesBySourceRootRelativePath">
+                    <map>
+                      <entry key="AURA/WDL_FURNITURECOMPLAINTCOMMENT" value="1588570561000" />
+                      <entry key="CLASSES/WDLC_FURNITURECOMPLAINTSHELPER.CLS" value="1588570558000" />
+                    </map>
+                  </option>
+                </ConnectionWorkspaceSettings>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="ignoredModuleNames">
+          <set>
+            <option value="WOOD U" />
+          </set>
+        </option>
+      </ProjectWorkspaceSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1bG9ctTsvN6Tl50npS5VPfGttgF" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="1" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="upsource.project.settings" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2372441b-ca5c-4844-abc3-cfb67735d78e" name="Default Changelist" comment="Added missing files to package.xml" />
+      <created>1588247646913</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588247646913</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added missing files to package.xml">
+      <created>1588569246166</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588569246166</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added missing custom label">
+      <created>1588569796294</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588569796294</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Change name for variable">
+      <created>1588570573970</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588570573970</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Removed hardcoded settings and add custom setting and labels">
+      <created>1588570749760</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588570749760</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added missing files to package.xml" />
+    <MESSAGE value="Added missing custom label" />
+    <MESSAGE value="Change name for variable" />
+    <MESSAGE value="Removed hardcoded settings and add custom setting and labels" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed hardcoded settings and add custom setting and labels" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2472" y="178" key="#Illuminated_Cloud" timestamp="1588570653983">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2472" y="178" key="#Illuminated_Cloud/0.0.1536.824/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1588249546486" />
+    <state x="2472" y="178" key="#Illuminated_Cloud/0.0.1536.824/3840.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1588570653983" />
+    <state x="2472" y="176" key="#Illuminated_Cloud/1920.0.1920.1030/0.0.1536.824@1920.0.1920.1030" timestamp="1588412575648" />
+    <state x="2472" y="176" key="#Illuminated_Cloud_(WOOD_U)" timestamp="1588412580949">
+      <screen x="1920" y="0" width="1920" height="1030" />
+    </state>
+    <state x="2472" y="178" key="#Illuminated_Cloud_(WOOD_U)/0.0.1536.824/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1588249542571" />
+    <state x="2472" y="176" key="#Illuminated_Cloud_(WOOD_U)/1920.0.1920.1030/0.0.1536.824@1920.0.1920.1030" timestamp="1588412580949" />
+    <state x="2472" y="178" key="#Notifications" timestamp="1588247899513">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2472" y="178" key="#Notifications/0.0.1536.824/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1588247899513" />
+    <state x="2534" y="114" key="CommitChangelistDialog2" timestamp="1588571015754">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2534" y="114" key="CommitChangelistDialog2/0.0.1536.824/3840.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1588571015754" />
+    <state x="2592" y="235" key="MultipleFileMergeDialog" timestamp="1588570615679">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2592" y="235" key="MultipleFileMergeDialog/0.0.1536.824/3840.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1588570615679" />
+    <state x="2381" y="162" key="SettingsEditor" timestamp="1588249417208">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2381" y="162" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1588249417208" />
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1588571020457">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1536.824/3840.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1588571020457" />
+    <state x="2661" y="232" key="git4idea.branch.GitSmartOperationDialog" timestamp="1588571036052">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2661" y="232" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824/3840.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1588571036052" />
+  </component>
+</project>
