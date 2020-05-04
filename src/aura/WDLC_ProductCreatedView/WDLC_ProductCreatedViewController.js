@@ -10,14 +10,11 @@
             "id" : idFromEvent
         });
         getPhotosAction.setCallback(this, function(response){
-            console.log(response.getState());
             if(response.getState() === "SUCCESS"){
-                console.log(response.getReturnValue());
                 let photosIds = response.getReturnValue();
                 let photosUrls = [];
                 photosIds.forEach(function(item){
                     photosUrls.push($A.get("{!$Label.c.WDLC_StartUrl}")+item.FileId__c);
-                    console.log(item);
                 });
                 component.set("v.firstPhotoUrl", photosUrls);
                         let getMainAction = component.get("c.getMainPhoto");
@@ -35,7 +32,6 @@
     $A.enqueueAction(getPhotosAction);
     },
     refreshMain:function(component,event){
-        console.log("in refresh :D");
         let getMainAction = component.get("c.getMainPhoto");
         getMainAction.setParams({
             "productId" : component.get("v.productId")

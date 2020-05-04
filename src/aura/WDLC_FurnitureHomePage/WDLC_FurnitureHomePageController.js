@@ -23,7 +23,6 @@
                 myElement[i].style.padding = "0";
             }
         }, 0);
-        console.log(component.find("divElement"));
     },
     goToSearch : function(component, event, helper){
         component.set("v.productName",$A.get("{!$Label.c.WDLC_FirstTypeOfSearch}"));

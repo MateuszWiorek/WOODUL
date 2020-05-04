@@ -6,7 +6,6 @@
           helper.doOnInit(component, event);
       },
       refreshTable : function(component, event, helper){
-          console.log('da');
           helper.doRefreshTable(component, event);
       },
       goToOrder : function(component, event, helper){

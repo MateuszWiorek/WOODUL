@@ -14,9 +14,6 @@
                   component.set("v.isDiscountSelected", true);
                   component.set("v.pricebookId", response.getReturnValue().Id);
                   component.set("v.pricebook", response.getReturnValue());
-                  console.log(component.get("v.pricebook").StartDate__c);
-                  console.log(new Date(response.getReturnValue().EndDate__c));
-                  console.log(new Date());
                   if(new Date() > new Date(response.getReturnValue().EndDate__c)){
                       component.set("v.canBeEdited", false);
                   }

@@ -32,8 +32,6 @@
     },
     doPostComment : function(component, event){
         let postAction = component.get("c.postCommentToCase");
-                console.log(component.get("v.caseCommentMessage"));
-                console.log(component.get("v.complaint").Id);
         postAction.setParams({
             "caseId" : component.get("v.complaint").Id,
             "bodyComment" : component.get("v.caseCommentMessage")

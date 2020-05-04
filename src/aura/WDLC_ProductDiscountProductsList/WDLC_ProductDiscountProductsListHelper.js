@@ -3,7 +3,6 @@
  */
 ({
     doOnInit: function(component, event){
-        console.log('cc');
         let initAction = component.get("c.getProductsWithoutPrice");
         initAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){

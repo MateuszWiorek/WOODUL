@@ -6,7 +6,6 @@
         let getDiscountsAction = component.get("c.getDiscounts");
         getDiscountsAction.setCallback(this, function(response){
             if (response.getState() === "SUCCESS"){
-                                console.log(response.getReturnValue());
                 component.set("v.discounts", response.getReturnValue());
             }else{
                 alert('gun gun');

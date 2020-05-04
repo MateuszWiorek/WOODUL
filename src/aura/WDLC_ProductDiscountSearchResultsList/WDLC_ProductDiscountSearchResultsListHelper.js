@@ -24,7 +24,6 @@
             "prices" : component.get("v.selectedProductsToDiscountMap"),
             "pricebookName" : component.get("v.discount")
         });
-        console.log(component.get("v.selectedProductsToDiscountMap"));
         setNewPricesAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
                 component.find("informationToast").openInformationToast($A.get("{!$Label.c.Success"),

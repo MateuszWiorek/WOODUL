@@ -9,7 +9,6 @@
         let productNameToUrl = productToSend.productName.toLowerCase().replace(' ','-');
         let urlToProduct = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/product/'
         + productNameToUrl +'/'+productToSendId;
-        console.log(urlToProduct);
         window.open(urlToProduct, '_top');
     },
     doAddToFavorite : function(component, event){
@@ -17,7 +16,6 @@
         addAction.setParams({
             "productId" : component.get("v.product").productId
         });
-        console.log(component.get("v.product").productId);
         addAction.setCallback(this,function(response){
             let state = response.getState();
             let toast = component.find("toastComponent")

@@ -86,7 +86,6 @@
                     "startDate" : startDate,
                     "endDate" : endDate
                 });
-                console.log(JSON.stringify(editPricebookAction.getParams()));
                 editPricebookAction.setCallback(this, function(response){
                     if(response.getState() === "SUCCESS"){
                            helper.doOnInit(component, event);

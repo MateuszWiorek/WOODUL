@@ -29,10 +29,11 @@
                 if(response.getState() === "SUCCESS"){
                     if(response.getReturnValue().length>0){
                         component.set("v.productPhotos", response.getReturnValue());
-                        console.log(response.getReturnValue());
                     }else{
                         component.set("v.productPhotos", component.get("v.product").productPhotoUrl);
                     }
+                }else{
+                    component.find("errorToast").showError(response);
                 }
             });
             $A.enqueueAction(getPhotosAction)

@@ -9,7 +9,6 @@
             "productId" : idOfProduct
         });
         incrementAction.setCallback(this,function(response){
-            console.log(component.get("v.cell").product.productPriceAfterDiscount);
             let state = response.getState();
             if(state === "SUCCESS"){
                 component.set("v.cell", response.getReturnValue());
@@ -31,6 +30,8 @@
                 component.set("v.cell", response.getReturnValue());
                 let refreshEvent = component.getEvent("changeEvent");
                 refreshEvent.fire();
+            }else{
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(incrementAction);
@@ -47,8 +48,7 @@
                 let refreshEvent = component.getEvent("changeEvent");
                 refreshEvent.fire();
             }else{
-                console.log('error');
-                console.log(response.getError()[0]);
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(removeAction);
@@ -65,8 +65,7 @@
                 let refreshEvent = component.getEvent("changeEvent");
                 refreshEvent.fire();
             }else{
-                console.log('error');
-                console.log(response.getError()[0]);
+                component.find("errorToast").showError(response);
             }
         });
         $A.enqueueAction(changeCounterAction);
