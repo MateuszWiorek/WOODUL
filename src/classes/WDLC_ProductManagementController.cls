@@ -35,7 +35,7 @@ public with sharing class WDLC_ProductManagementController {
                     ShareType = 'I', Visibility = 'AllUsers'));
         }
         insert cdl;
-            setStandardPhoto(productId);
+        setStandardPhoto(productId);
         return productId;
     }
     @AuraEnabled
@@ -71,28 +71,28 @@ public with sharing class WDLC_ProductManagementController {
         for (ContentDocumentLink cd : cdl) {
             ids.add(cd.ContentDocumentId);
         }
-        List<ContentVersion> cvs = [
-                SELECT Id
-                FROM ContentVersion
-                WHERE ContentDocumentId IN :ids
-        ];
-        Set<String> cvIds = new Set<String>();
-        for (ContentVersion cv : cvs) {
-            cvIds.add(cv.Id);
-        }
+
         List<ContentDistribution> cddd = [
                 SELECT ContentVersionId,
                         ContentDownloadUrl
                 FROM ContentDistribution
-                WHERE ContentVersionId IN :cvIds
+                WHERE ContentVersionId IN (
+                        SELECT Id
+                        FROM ContentVersion
+                        WHERE ContentDocumentId IN :ids
+                )
         ];
-        List<String> photos = new List<String>();
+        Set<String> idFromContentVersion = new Set<String>();
+        Set<String> photos = new Set<String>();
         for (ContentDistribution c : cddd) {
-            photos.add(c.ContentDownloadUrl);
+            if (!idFromContentVersion.contains(c.ContentVersionId)) {
+                photos.add(c.ContentDownloadUrl);
+                idFromContentVersion.add(c.ContentVersionId);
+            }
         }
-    return photos;
+        return new List<String>(photos);
     }
-    private static void setStandardPhoto(Id prodId){
+    private static void setStandardPhoto(Id prodId) {
         List<ContentDocumentLink> cdl = [
                 SELECT ContentDocumentId, LinkedEntityId
                 FROM ContentDocumentLink

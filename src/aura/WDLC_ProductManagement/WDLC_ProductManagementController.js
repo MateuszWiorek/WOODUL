@@ -33,7 +33,6 @@
            "photosIds" : component.get("v.filesId")
        });
        createAction.setCallback(this, function(response){
-           console.log(response.getState());
            if(response.getState() === "SUCCESS"){
                 let navEvt = $A.get("e.force:navigateToSObject");
                 navEvt.setParams({

@@ -3,33 +3,38 @@
  -->
 
 <aura:component description="WDLC_ProductChangePhoto" controller="WDLC_ProductManagementController"
-                implements="force:hasRecordId, flexipage:availableForAllPageTypes">
+                implements="force:hasRecordId,flexipage:availableForAllPageTypes">
     <aura:attribute name="photos" type="String[]" access="global"/>
     <aura:attribute name="mainPhoto" type="String" access="global"/>
     <aura:attribute name="showPhoto" type="Boolean" access="global" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
     <lightning:card>
         <aura:if isTrue="{!not(v.showPhoto)}">
-        <lightning:button onclick="{!c.showPhotos}" variant="brand">{!$Label.c.WDLC_ChangeMainPhoto}</lightning:button>
+            <div style="padding:4px;">
+                <lightning:button onclick="{!c.showPhotos}"
+                                  variant="brand">{!$Label.c.WDLC_ChangeMainPhoto}</lightning:button>
+            </div>
         </aura:if>
         <aura:if isTrue="{!v.showPhoto}">
-        <lightning:button onclick="{!c.hidePhotos}" variant="brand">{!$Label.c.WDLC_Hide}</lightning:button>
-        <div style="display: flex; justify-content: space-between;">
-            <div style="display:flex;">
-                <aura:if isTrue="{!not(empty(v.photos))}">
-                    <aura:iteration items="{!v.photos}" var="photoSrc">
-                        <div style="max-width:200px; max-height:200px">
-                        <c:WDLC_ProductPhotoComponent productId="{!v.recordId}" photoUrl="{!photoSrc}"
-                                                      changeEvent="{!c.refreshMain}"/>
-                        </div>
-                    </aura:iteration>
-                </aura:if>
+            <div style="padding:4px;">
+                <lightning:button onclick="{!c.hidePhotos}" variant="brand">{!$Label.c.WDLC_Hide}</lightning:button>
             </div>
-            <div style="max-width:200px; max-height:200px">
-                <p>{!$Label.c.WDLC_MainPhoto}</p>
-                <img src="{!v.mainPhoto}" style="border:1px solid black;"/>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="display:flex;">
+                    <aura:if isTrue="{!not(empty(v.photos))}">
+                        <aura:iteration items="{!v.photos}" var="photoSrc">
+                            <div style="max-width:200px; max-height:200px">
+                                <c:WDLC_ProductPhotoComponent productId="{!v.recordId}" photoUrl="{!photoSrc}"
+                                                              changeEvent="{!c.refreshMain}"/>
+                            </div>
+                        </aura:iteration>
+                    </aura:if>
+                </div>
+                <div style="width:180px; max-height:180px margin-right:5px;">
+                    <p>{!$Label.c.WDLC_MainPhoto}</p>
+                    <img src="{!v.mainPhoto}" style="border:1px solid black;"/>
+                </div>
             </div>
-        </div>
         </aura:if>
     </lightning:card>
 </aura:component>

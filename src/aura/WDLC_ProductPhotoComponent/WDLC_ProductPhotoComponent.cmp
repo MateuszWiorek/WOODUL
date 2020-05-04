@@ -8,9 +8,9 @@
     <aura:attribute name="photoUrl" type="String" access="global"/>
 
     <aura:registerEvent name="changeEvent" type="c:WDLC_ChangeMainPhoto"/>
-
+    
     <aura:if isTrue="{!not(empty(v.productId))}">
-        <div onclick="{!c.setAsMain}">
+        <div onclick="{!c.setAsMain}" style="overflow:hidden; max-height:200px; margin: 1px;">
             <img src="{!v.photoUrl}"/>
         </div>
     </aura:if>
