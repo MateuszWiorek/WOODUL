@@ -1,6 +1,3 @@
-/**
- * Created by Mateusz Wiorek on 24.02.2020.
- */
 ({
     openToast: function(component, event){
         let params = event.getParam('arguments');

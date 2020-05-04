@@ -3,7 +3,8 @@
  */
 ({
     doGoToSearch : function(component, event){
-        let urlToProduct = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/store?searchItem=chair';
+        let urlToProduct = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/store?searchItem='+
+        component.get("v.productName");
         window.open(urlToProduct, '_top');
     }
 })

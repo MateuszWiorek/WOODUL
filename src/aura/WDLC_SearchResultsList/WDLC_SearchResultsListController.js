@@ -35,7 +35,6 @@
          }else if(sortType == 'Name desc'){
             res.sort((a,b) => (a.productName < b.productName) ? 1 : -1);
          }
-         console.log(res);
          component.set("v.results", res);
          component.set("v.hideSpinner", true);
      },

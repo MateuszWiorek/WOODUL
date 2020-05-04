@@ -3,11 +3,11 @@
  */
 ({
     doSendData: function(component, event){
-        let eventAction =  $A.get("e.c:WDLC_SednItemToSearch");
-        eventAction.setParams({
-            "searchItem" : component.get("v.itemSearch")
-        });
-        eventAction.fire();
+        let productToSend = component.get("v.itemSearch");
+        let itemToSearch = productToSend.replace(' ','+');
+        let urlToProduct = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/store?searchItem='
+        + itemToSearch;
+        window.open(urlToProduct, '_top');
     },
     doClear : function(component, event){
         component.set("v.itemSearch", "");

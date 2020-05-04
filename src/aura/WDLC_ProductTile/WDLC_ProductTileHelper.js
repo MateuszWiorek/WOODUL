@@ -17,6 +17,7 @@
         addAction.setParams({
             "productId" : component.get("v.product").productId
         });
+        console.log(component.get("v.product").productId);
         addAction.setCallback(this,function(response){
             let state = response.getState();
             let toast = component.find("toastComponent")
@@ -42,8 +43,9 @@
         addToOrderAction.setCallback(this, function(response){
             let state = response.getState();
             if(state === "SUCCESS"){
-                component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_OrderSuccess}"),
-                $A.get("{!$Label.c.Success}"),$A.get("{!$Label.c.Success}"));
+                component.find("toastComponent").openInformationToast($A.get("{!$Label.c.WDLC_AddedToCart}"),
+                                                $A.get("{!$Label.c.Success}"),$A.get("{!$Label.c.Success}"));
+                $A.get("e.c:WDLC_RefreshBasketComponent").fire();
             }else{
                 component.find("errorToast").showError(response);
             }

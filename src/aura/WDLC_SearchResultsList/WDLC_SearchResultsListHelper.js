@@ -23,6 +23,7 @@
                 if(state === "SUCCESS"){
                     component.set("v.results", response.getReturnValue());
                     component.set("v.searchResult", searchQuery);
+                    component.set("v.sizeOfResults", response.getReturnValue().length);
                 }else{
                     component.find("toastComponent").openErrorToast(response);
                 }

@@ -19,7 +19,7 @@
                 <div class="slds-grid slds-gutters" style="display: flex; flex-wrap: wrap;">
                     <aura:iteration items="{!v.wishlist}" var="element">
                         <div class="slds-col" style="max-width:300px; height:auto;">
-                            <c:WDL_ProductTile product="{!element}"/>
+                            <c:WDLC_ProductTile product="{!element}"/>
                         </div>
                     </aura:iteration>
                 </div>

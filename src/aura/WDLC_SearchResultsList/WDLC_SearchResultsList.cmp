@@ -59,7 +59,7 @@
         </aura:if>
     </lightning:card>
     <aura:if istrue="{!v.hideSpinner}">
-        <lightning:spinner alternativeText="Loading" size="small" />
+            <lightning:spinner alternativeText="Loading" size="small" />
     </aura:if>
     <c:WDLC_ErrorComponent aura:id="toastComponent"/>
 </aura:component>
