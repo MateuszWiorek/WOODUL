@@ -5,10 +5,10 @@
 public without sharing class WDLC_FurnitureComplaintsHelper {
 
     public static Boolean makeComplaint(String productId, String subject, String description, String orderId) {
-        AssignmentRule AR = new AssignmentRule();
-        AR = [SELECT Id FROM AssignmentRule WHERE SobjectType = 'Case' AND Active = true LIMIT 1];
+        AssignmentRule assignmentRule = new AssignmentRule();
+        assignmentRule = [SELECT Id FROM AssignmentRule WHERE SobjectType = 'Case' AND Active = true LIMIT 1];
         Database.DMLOptions dmlOpts = new Database.DMLOptions();
-        dmlOpts.assignmentRuleHeader.assignmentRuleId = AR.id;
+        dmlOpts.assignmentRuleHeader.assignmentRuleId = assignmentRule.id;
         Order__c orderCustomSettings = Order__c.getInstance(Label.WDLC_OrderCommunitySettings);
         WDLC_CaseSettings__c caseSetting = WDLC_CaseSettings__c.getInstance(Label.WDLC_CommunityOrderComplaintSettings);
         if (orderCustomSettings == null || caseSetting == null) {
