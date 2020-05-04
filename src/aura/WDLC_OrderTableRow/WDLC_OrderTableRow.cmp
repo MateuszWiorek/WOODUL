@@ -16,13 +16,13 @@
             </div>
         </td>
         <td data-label="{!$Label.c.Description}">
-            <div style="width:80px; padding-right:10px;">
+            <div style="width:65px; padding-right:10px; margin-right:10px;">
                 <lightning:buttonIcon iconName="utility:dash" variant="bare"
                                       disabled="{!if(v.cell.quantity ==1,true,false)}"
                                       onclick="{!c.decrementCounter}"
                                       alternativeText="{!$Label.c.WDLC_Remove}"
                                       title="{!$Label.c.WDLC_Remove}"/>
-                <ui:inputNumber value="{!v.productQuantity}" change="{!c.changeProductCounter}"/>
+                    <ui:inputNumber value="{!v.productQuantity}" change="{!c.changeProductCounter}"/>
                 <lightning:buttonIcon iconName="utility:add" variant="bare"
                                       onclick="{!c.incrementCounter}" alternativeText="{!$Label.c.WDLC_Add}"
                                       title="{!$Label.c.WDLC_Add}"/>
@@ -30,12 +30,13 @@
             </div>
         </td>
         <td data-label="Price">
-            <lightning:formattedNumber value="{!v.cell.totalCost}" style="currency"
-                                       currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
-            <div> ({!v.cell.quantity} x <lightning:formattedNumber value="{!v.cell.product.productPriceAfterDiscount}" style="currency"
-                                                                   currencyCode="{!$Locale.currencyCode}"
-                                                                   currencyDisplayAs="symbol"/>)
-            </div>
+            <lightning:formattedNumber value="{!v.cell.product.productPrice}" style="currency"
+                                       currencyCode="{!$Locale.currencyCode}"
+                                       currencyDisplayAs="symbol"/>
+        </td>
+        <td>
+                <lightning:formattedNumber value="{!v.cell.totalCost}" style="currency"
+                                           currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
         </td>
         <td data-label="Action">
             <lightning:buttonIcon iconName="utility:delete" onclick="{!c.removeProduct}" variant="bare"/>

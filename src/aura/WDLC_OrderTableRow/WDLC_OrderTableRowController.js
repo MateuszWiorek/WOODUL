@@ -9,14 +9,12 @@
         helper.doDecrementCounter(component,event);
     },
     removeProduct : function(component, event, helper){
-        console.log('ha');
         helper.doRemoveProduct(component, event);
     },
     changeProductCounter : function(component, event, helper){
         helper.doChangeProductCounter(component, event);
     },
     onInit : function(component){
-        console.log(component.get("v.cell"));
     },
     goToProduct : function(component){
         let productId = component.get("v.cell").product.productId;

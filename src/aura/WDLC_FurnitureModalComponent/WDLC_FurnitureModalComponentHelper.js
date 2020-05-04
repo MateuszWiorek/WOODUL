@@ -64,9 +64,7 @@
          caseCommentsAction.setCallback(this, function(response){
              let state = response.getState();
              if(state === "SUCCESS"){
-                    if(component.get("v.caseComments") != response.getReturnValue()){
-                        component.set("v.caseComments", response.getReturnValue());
-                    }
+                    component.set("v.caseComments", response.getReturnValue());
              }else{
                  component.find("errorToast").showError(response);
              }

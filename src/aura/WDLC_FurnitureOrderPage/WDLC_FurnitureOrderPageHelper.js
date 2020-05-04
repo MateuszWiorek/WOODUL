@@ -20,10 +20,8 @@
                let getUserInfoAction = component.get("c.getCurrentUserInfo");
                getUserInfoAction.setCallback(this, function(response){
                    let state = response.getState();
-                   console.log(state);
                    if(state === "SUCCESS"){
                        let userI = response.getReturnValue();
-                       console.log(userI);
                        component.set("v.billingCountry", userI.Country);
                        component.set("v.billingCity", userI.City);
                        component.set("v.billingState", userI.State);
@@ -58,10 +56,8 @@
             if(state === "SUCCESS"){
                 component.set("v.orderSummary", response.getReturnValue());
                 component.set("v.showModal",true);
-                console.log(response.getReturnValue());
                 toast.openInformationToast($A.get("$Label.c.WDLC_OrderSuccess"),"success","Success");
             }else{
-                console.log(response.getError()[0]);
                 toast.openInformationToast(response.getError()[0].message, $A.get("$Label.c.WDL_Error"),
                  $A.get("$Label.c.WDL_Error"));
             }
@@ -70,16 +66,13 @@
     },
     doIncrementCounter : function(component, event){
         let indexOfItem = event.currentTarget.dataset.record;
-        console.log('1'+indexOfItem);
         let items = component.get("v.productsToOrder")[indexOfItem];
-        console.log(items);
         let incrementAction = component.get("c.increaseProductCounter");
         incrementAction.setParams({
             "productId" : idOfProduct
         });
     },
     doRefreshTable : function(component, event){
-        console.log('hi');
         let getItemsAction = component.get("c.getProductsToOrder");
         getItemsAction.setCallback(this,function(response){
             let state = response.getState();

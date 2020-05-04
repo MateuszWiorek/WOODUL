@@ -16,9 +16,7 @@
     <aura:attribute name="order" type="Object" access="global"/>
     <aura:attribute name="orderSummary" type="Object" access="global"/>
 
-<!--    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>-->
-    <aura:handler event="c:WDLC_ResfreshCaseCommentsEvent" action="{!c.refreshCommentsAfterEvent}"/>
-
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
     <aura:if isTrue="{!and(v.typeOfModal == 'Complaint', v.showModal)}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -75,12 +73,45 @@
                                 <lightning:outputField fieldName="BillingAddress"/>
                             </div>
                             <div class="slds-col">
-                                <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
-                                    <h2>{!itemOrder.PricebookEntry.Product2.Name} x {!itemOrder.Quantity}</h2>
-                                </aura:iteration>
                                 <lightning:outputField fieldName="Status"/>
                                 <lightning:outputField fieldName="CreatedDate"/>
                             </div>
+                        </div>
+                        <p style="font-weight:bold; font-size:1.5rem; margin: 10px;">{!$Label.c.WDLC_OrderLineItems}</p>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Quantity">Quantity</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Unit Price">Unit Price</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Total Price">Total Price</div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <aura:iteration var="itemOrder" items="{!v.cell.OrderItems}">
+                                <tr class="slds-hint-parent">
+                                    <td data-label="Name">{!itemOrder.PricebookEntry.Product2.Name}</td>
+                                    <td data-label="Quantity">{!itemOrder.Quantity}</td>
+                                    <td data-label="Unit Price">
+                                        <ui:outputCurrency value="{!itemOrder.UnitPrice}"/>
+                                    </td>
+                                    <td data-label="Total Price">
+                                        <ui:outputCurrency value="{!itemOrder.TotalPrice}"/>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                            </tbody>
+                        </table>
+                        <div class="summary_boldFont">
+                            <lightning:outputField fieldName="TotalAmount"/>
                         </div>
                     </lightning:recordViewForm>
                 </div>
@@ -125,9 +156,10 @@
                                 <lightning:outputField fieldName="CreatedDate"/>
                             </div>
                         </div>
+                        <p style="font-weight:bold; font-size:1.5rem; margin: 10px;">Comments linked with this complaint:</p>
                         <aura:if isTrue="{!not(empty(v.caseComments))}">
-                            <div class="slds-scrollable_y chat"
-                                 style="height:15rem; margin-bottom:5px; border: 1px solid gray;">
+                            <div class="slds-scrollable_y"
+                                 style="height:15rem; margin-bottom:5px;">
                                 <aura:iteration items="{!v.caseComments}" var="comm">
                                     <div>
                                         <c:WDL_FurnitureComplaintComment comment="{!comm}"/>
@@ -137,7 +169,8 @@
                         </aura:if>
                         <div class="slds-grid">
                             <div class="slds-col slds-size--11-of-12">
-                                <ui:inputTextArea value="{!v.caseCommentMessage}" rows="1"/>
+                                <ui:inputTextArea value="{!v.caseCommentMessage}" rows="1"
+                                                  placeholder="Write comment to complaint here."/>
                             </div>
                             <div class="slds-col slds-size--1-of-12" style="margin-left:5px;">
                                 <lightning:buttonIcon iconName="utility:send" variant="bare"
@@ -172,7 +205,6 @@
                                 <lightning:outputField fieldName="Status"/>
                                 <lightning:outputField fieldName="BillingStreet"/>
                                 <lightning:outputField fieldName="BillingCity"/>
-                                <lightning:outputField fieldName="TotalAmount"/>
                             </div>
                             <div class="slds-col slds-size--1-of-2">
                                 <lightning:outputField fieldName="BillingPostalCode"/>
@@ -181,27 +213,46 @@
                             </div>
                         </div>
                         <h2>Items in order:</h2>
-                        <aura:iteration items="{!v.orderSummary.OrderItems}" var="item">
-                            <article>
-                                <div class="slds-media__figure">
-                                    <h2>
-                                        <ui:outputText value="{!item.Quantity}"/>
-                                        x
-                                        <ui:outputText value="{!item.PricebookEntry.Product2.Name}"/>
-                                    </h2>
-                                </div>
-                                <div class="slds-post__content slds-text-longform">
-                                    <p>
-                                        <lightning:formattedNumber value="{!item.UnitPrice}" style="currency"
-                                                                   currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
-                                    </p>
-                                </div>
-                            </article>
-                        </aura:iteration>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Quantity">Quantity</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Unit Price">Unit Price</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Total Price">Total Price</div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <aura:iteration items="{!v.orderSummary.OrderItems}" var="item">
+                                <tr class="slds-hint-parent">
+                                    <td data-label="Name">{!item.PricebookEntry.Product2.Name}</td>
+                                    <td data-label="Quantity">{!item.Quantity}</td>
+                                    <td data-label="Unit Price">
+                                        <ui:outputCurrency value="{!item.UnitPrice}"/>
+                                    </td>
+                                    <td data-label="Total Price">
+                                        <ui:outputCurrency value="{!item.TotalPrice}"/>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                            </tbody>
+                        </table>
+                        <div class="summary_boldFont">
+                            <lightning:outputField fieldName="TotalAmount"/>
+                        </div>
                     </lightning:recordViewForm>
                 </div>
                 <footer class="slds-modal__footer">
-                    <button class="slds-button slds-button_neutral" onclick="{!c.closeModalCase}">{!$Label.c.WDLC_Close}</button>
+                    <button class="slds-button slds-button_neutral"
+                            onclick="{!c.closeModalCase}">{!$Label.c.WDLC_Close}</button>
                 </footer>
             </div>
         </section>
