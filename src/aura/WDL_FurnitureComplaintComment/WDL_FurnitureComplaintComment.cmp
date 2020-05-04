@@ -21,7 +21,7 @@
         </aura:if>
         <aura:if isTrue="{!not(v.comment.CreatedById == v.userId)}">
             <div>
-                <span style="font-weight: bold;">Shop assistant </span>
+                <span style="font-weight: bold;">{!$Label.c.WDLC_ShopAssistant}</span>
                 <span style=""><ui:outputDateTime value="{!v.comment.CreatedDate}"/></span>
             </div>
             <span>{!v.comment.CommentBody}</span>
