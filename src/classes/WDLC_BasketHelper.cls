@@ -27,7 +27,7 @@ public with sharing class WDLC_BasketHelper {
     }
     public static WDLC_ProductToOrderWrapper changeProductCounter(String id, Integer newValue) {
         Map<String, Integer> cachedProducts = getBasketMapFromCache(Label.WDLC_BasketCachePartition);
-        cachedProducts.put(id, newValue);
+        cachedProducts.put(id, (cachedProducts.containsKey(id)) ? newValue : newValue);
         Cache.Session.put(Label.WDLC_BasketCachePartition, cachedProducts);
         return getProduct(id);
     }
