@@ -1,0 +1,9 @@
+.THIS .nameBold *{
+    font-size: 1.1rem;
+    font-weight:bolder;
+}
+.THIS .price{
+    font-size:0.9rem;
+    font-weight:bold;
+    margin-bottom:3%;
+}

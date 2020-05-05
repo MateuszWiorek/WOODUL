@@ -1,0 +1,94 @@
+<!--
+ - Created by Mateusz Wiorek on 04.05.2020.
+ -->
+
+<aura:component description="WDLC_ProductCompareModal" controller="WDLC_ProductCompareController" implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute type="String" name="mainRecordId" access="global" default=" "/>
+    <aura:attribute type="String" name="recordToCompareId" access="global" default=""/>
+    <aura:attribute type="String" name="firstImageUrl" access="global"/>
+    <aura:attribute type="String" name="secondImageUrl" access="global"/>
+    <aura:attribute type="Object[]" name="products" access="global"/>
+    <aura:attribute type="Boolean" name="canShowModal" access="global" default="false"/>
+    <aura:attribute type="Boolean" name="showPicklist" access="global" default="true"/>
+    <aura:attribute type="String" name="firstProductPrice" access="global" default="0"/>
+    <aura:attribute type="String" name="secondProductPrice" access="global" default="0"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="change" value="{!v.mainRecordId}" action="{!c.getPhoto}"/>
+    
+    <aura:if isTrue="{!v.canShowModal}">
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+             aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <lightning:button variant="bare" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick="{!c.closeModal}" title="Close">
+                    <lightning:icon iconName="utility:close" alternativeText="Close" title="Close" />
+                    <span class="slds-assistive-text">Close</span>
+                </lightning:button>
+                <h2 class="slds-modal__title slds-hyphenate">Compare products</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size--1-of-2" style="padding: 1rem;">
+                        <lightning:recordViewForm objectApiName="Product2" recordId="{!v.mainRecordId}">
+                            <div style="display:flex;  align-items: baseline; margin-bottom: 2rem; justify-content:space-between; height:30%; min-height:30%;">
+                                <div style="display:flex; flex-direction: column; align-items:baseline;">
+                                    <lightning:outputField fieldName="Name" variant="label-hidden" class="nameBold"/>
+                                <ui:outputCurrency value="{!v.firstProductPrice}" class="price"/>
+                                    </div>
+                                <div style="max-width:40%">
+                        <c:WDLC_ProductPhotoElement photoUrl="{!v.firstImageUrl}"/>
+                                </div>
+                            </div>
+                            <lightning:outputField fieldName="Description" class="slds-truncate"/>
+                            <lightning:outputField fieldName="Family"/>
+                        </lightning:recordViewForm>
+                    </div>
+                    <div class="slds-col slds-size--1-of-2" style="border-left: 1px solid gray; padding: 1rem;">
+                        <aura:if isTrue="{!not(empty(v.recordToCompareId))}">
+                            <lightning:recordViewForm objectApiName="Product2" recordId="{!v.recordToCompareId}">
+                                <div style="display: flex; align-items: baseline; margin-bottom: 2rem; justify-content:space-between; height:30%;  min-height:30%;">
+                                    <div style="display:flex; flex-direction: column; align-items:baseline;">
+                                        <a onclick="{!c.goToProduct}" style="display:flex"><lightning:outputField fieldName="Name" variant="label-hidden" class="nameBold"/>
+                                            <lightning:icon  iconName="utility:shortcuts" title="Go to Product" alternativeText="Go to Product" size="x-small"/></a>
+                                        <ui:outputCurrency value="{!v.secondProductPrice}" class="price"/>
+                                    </div>
+                                    <div style="max-width:40%">
+                            <c:WDLC_ProductPhotoElement photoUrl="{!v.secondImageUrl}"/>
+                                    </div>
+                                </div>
+                                <lightning:outputField fieldName="Description"/>
+                                <lightning:outputField fieldName="Family"/>
+                            </lightning:recordViewForm>
+                            
+                        </aura:if>
+                        <aura:if isTrue="{!v.showPicklist}">
+                                                    <div style="display:flex; justify-content:center; align-items:center;">
+                                <div>
+                            <lightning:select label="Choose to compare" onchange="{!c.updateProductToCompare}" aura:id="selectToCompare">
+                                <option value="">Choose product</option>
+                                <aura:iteration items="{!v.products}" var="product">
+                                    <option value="{!product.Id}">{!product.Name}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                                    </div>
+                                </div>
+                            </aura:if>
+                        <aura:if isTrue="{!not(v.showPicklist)}">
+                            <div style="display:flex; flex-direction:row-reverse">
+                                <div>
+                        	<lightning:buttonIcon size="large" iconName="utility:change_record_type" variant="bare" onclick="{! c.showPicklist }" alternativeText="Change product to compare" title="Change product to compare" />
+                        </div>
+                            </div>
+                            </aura:if>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning:button class="slds-button slds-button_brand" onclick="{!c.closeModal}">Close</lightning:button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+</aura:component>
