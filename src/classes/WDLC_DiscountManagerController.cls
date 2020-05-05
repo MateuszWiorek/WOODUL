@@ -71,14 +71,6 @@ public with sharing class WDLC_DiscountManagerController {
     }
     @AuraEnabled
     public static Boolean isPricebookActive(String name) {
-        List<Pricebook2> pb = [SELECT StartDate__c, EndDate__c FROM Pricebook2 WHERE Name = :name LIMIT 1];
-        if (!pb.isEmpty()) {
-            if (pb[0].StartDate__c <= System.today() && pb[0].EndDate__c >= System.today()) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
+        return WDLC_PricebookHelper.isPricebookActive(name);
     }
 }

@@ -44,8 +44,7 @@ public with sharing class WDLC_PricebookHelper {
         return setPrices(prices, getDiscount(pricebookName).Id);
     }
     public static List<WDLC_ProductWithPriceWrapper> setStandardPrices(Map<Id, Decimal> prices) {
-        Pricebook2 standardPricebook = [SELECT Id FROM Pricebook2 WHERE Name = :Label.WDLC_StandardPricebook LIMIT 1];
-        return setPrices(prices, standardPricebook.Id);
+        return setPrices(prices, WDLC_PricebookSettings__c.getInstance(Label.WDLC_PricebookCommunitySettings).StandardPricebookId__c);
     }
     public static List<WDLC_ProductWrapper> getProductsWithoutPrice() {
         List<Product2> products = [
@@ -245,5 +244,16 @@ public with sharing class WDLC_PricebookHelper {
             }
         }
         return wrappedProducts;
+    }
+    public static Boolean isPricebookActive(String name) {
+        List<Pricebook2> pb = [SELECT StartDate__c, EndDate__c FROM Pricebook2 WHERE Name = :name LIMIT 1];
+        if (!pb.isEmpty()) {
+            if (pb[0].StartDate__c <= System.today() && pb[0].EndDate__c >= System.today()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 }

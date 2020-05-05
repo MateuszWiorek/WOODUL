@@ -11,7 +11,6 @@ public with sharing class WDLC_FurnitureOrderHelper {
         List<WDLC_ProductToOrderWrapper> productsToOrder = WDLC_BasketController.getProductsInBasket();
         Order newOrder = new Order();
         Order__c orderCustomSetting = Order__c.getInstance(Label.WDLC_OrderCommunitySettings);
-        Pricebook2 pricebook = [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1];
         String orderId;
 
         newOrder.AccountId = orderCustomSetting.AccountId__c;
@@ -24,7 +23,7 @@ public with sharing class WDLC_FurnitureOrderHelper {
         newOrder.Status = orderCustomSetting.Status__c;
         newOrder.EndDate = Date.today().addDays(14);
         newOrder.EffectiveDate = Date.today();
-        newOrder.Pricebook2Id = pricebook.Id;
+        newOrder.Pricebook2Id = WDLC_PricebookSettings__c.getInstance(Label.WDLC_PricebookCommunitySettings).StandardPricebookId__c;
 
         try {
             insert newOrder;

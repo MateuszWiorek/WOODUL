@@ -174,4 +174,54 @@ public with sharing class WDLC_ProductHelper {
         ];
         return pricebookEntries.get(0).Id;
     }
+    public static Id addProduct(String name, String description, String family, List<String> photosIds) {
+        String startURL = Label.WDLC_StartUrl;
+        Id recordTypeId = Schema.SObjectType.Product2.getRecordTypeInfosByName().get('Furniture').getRecordTypeId();
+        Product2 prod = new Product2();
+        prod.Name = name;
+        prod.Description = description;
+        prod.Family = family;
+        prod.IsActive = true;
+        prod.RecordTypeId = recordTypeId;
+
+        Database.SaveResult sr = Database.insert(prod);
+        String productId = sr.getId();
+        List<ContentDocumentLink> cdl = new List<ContentDocumentLink>();
+        for (String pI : photosIds) {
+            cdl.add(new ContentDocumentLink(LinkedEntityId = productId, ContentDocumentId = pI,
+                    ShareType = 'I', Visibility = 'AllUsers'));
+        }
+        insert cdl;
+        setStandardPhoto(productId);
+        return productId;
+    }
+    private static void setStandardPhoto(Id prodId) {
+        List<ContentDocumentLink> cdl = [
+                SELECT ContentDocumentId, LinkedEntityId
+                FROM ContentDocumentLink
+                WHERE LinkedEntityId = :prodId
+        ];
+        Set<String> ids = new Set<String>();
+        for (ContentDocumentLink cd : cdl) {
+            ids.add(cd.ContentDocumentId);
+        }
+        List<ContentVersion> cvs = [
+                SELECT Id
+                FROM ContentVersion
+                WHERE ContentDocumentId IN :ids
+        ];
+        Set<String> cvIds = new Set<String>();
+        for (ContentVersion cv : cvs) {
+            cvIds.add(cv.Id);
+        }
+        List<ContentDistribution> cddd = [
+                SELECT ContentVersionId,
+                        ContentDownloadUrl
+                FROM ContentDistribution
+                WHERE ContentVersionId IN :cvIds
+        ];
+        Product2 prod = [SELECT photoUrl__c FROM Product2 WHERE Id = :prodId];
+        prod.photoUrl__c = cddd.get(0).ContentDownloadUrl;
+        upsert prod;
+    }
 }
