@@ -33,12 +33,12 @@
                                  name: 'add_item', title: $A.get("{!$Label.c.WDLC_ClickToAdd}"), disabled: isButtonDisabled },
                                  type : 'button', editable: false}
             ]);
-            helper.doOnInit(component, event);
+            helper.onInit(component, event);
         });
         $A.enqueueAction(checkIfDiscountIsActive);
     },
     searchProducts : function(component, event, helper){
-            helper.doSearchProducts(component, event);
+            helper.searchProducts(component, event);
     },
     handleSort : function(component, event, helper){
         var sortedBy = event.getParam('fieldName');
@@ -48,21 +48,21 @@
         component.set('v.sortedBy', sortedBy);
     },
     updateSelectedText : function(component, event, helper){
-        helper.doUpdateSelectedText(component,event);
+        helper.UpdateSelectedText(component,event);
     },
     setDetails : function(component, event,helper){
-        helper.doSetDetails(component, event);
-        helper.doSearchProducts(component, event);
+        helper.setDetails(component, event);
+        helper.searchProducts(component, event);
     },
     handleMassSelect : function(component, event, helper){
         component.set("v.isMassSelectActive", !component.get("v.isMassSelectActive"));
     },
     handleAction : function(component, event, helper){
-        helper.doHandleAction(component, event);
+        helper.handleAction(component, event);
     },
     refreshResults : function(component, event, helper){
-          helper.doRefreshResults(component, event);
-          helper.doSearchProducts(component, event);
+          helper.refreshResults(component, event);
+          helper.searchProducts(component, event);
     },
     hideAll : function(component, event, helper){
         component.set("v.canBeShown", false);

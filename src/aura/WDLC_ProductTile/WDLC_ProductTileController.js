@@ -15,12 +15,12 @@
          }
      },
      sendFurnitureIdToProductView : function(component, event, helper){
-         helper.doSendFurnitureIdToProductView(component, event);
+         helper.sendFurnitureIdToProductView(component, event);
      },
      addToObserved : function(component, event, helper){
-         helper.doAddToFavorite(component, event);
+         helper.addToFavorite(component, event);
      },
      buyNow : function(component, event, helper){
-         helper.doAddToOrder(component, event);
+         helper.addToOrder(component, event);
      }
 })

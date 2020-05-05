@@ -3,12 +3,12 @@
  */
 ({
     showDetails : function(component, event, helper){
-        helper.doShowDetails(component, event);
+        helper.showDetails(component, event);
     },
     openModal : function(component, event){
         component.set("v.canBeShown", true);
     },
     editDiscount : function(component, event, helper){
-        helper.doEditDiscount(component, event);
+        helper.editDiscount(component, event);
     }
 })

@@ -3,16 +3,16 @@
  */
 ({
     addProductWithPriceToMap : function(component, event, helper){
-        helper.doAddProductWithPriceToMap(component, event);
+        helper.addProductWithPriceToMap(component, event);
     },
     setPrices : function(component, event, helper){
-        helper.doSetPrices(component, event);
+        helper.setPrices(component, event);
     },
     searchItems : function(component, event, helper){
-        helper.doSearchItems(component, event);
+        helper.searchItems(component, event);
     },
     refreshMap : function(component, event, helper){
-        helper.doRefreshMap(component,event);
+        helper.refreshMap(component,event);
     },
     removeItems : function(component, event){
         let deleteAction = component.get("c.removeItemsFromPricebook");

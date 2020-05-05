@@ -3,6 +3,6 @@
  */
 ({
     setStandardPrice : function(component, event, helper){
-        helper.doSetStandardPrice(component, event);
+        helper.setStandardPrice(component, event);
     }
 })

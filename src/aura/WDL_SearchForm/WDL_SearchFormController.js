@@ -1,12 +1,12 @@
 ({
     findAccounts: function(component, event, helper){
-        helper.doFindAccounts(component, event);
+        helper.findAccounts(component, event);
     },
 
     clear:function(component, event, helper){
-        helper.doClear(component, event);
+        helper.clear(component, event);
     },
     handleRefresh : function(component, event, helper){
-        helper.doFindAccounts(component, event);
+        helper.findAccounts(component, event);
     }
 })

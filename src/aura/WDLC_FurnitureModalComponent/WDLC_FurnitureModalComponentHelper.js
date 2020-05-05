@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 30.03.2020.
  */
 ({
-    doSendDataToCase : function(component, event){
+    sendDataToCase : function(component, event){
         let createCaseAction = component.get("c.createComplaint");
         createCaseAction.setParams({
             "productName" : component.get("v.product"),
@@ -30,7 +30,7 @@
 
         $A.enqueueAction(createCaseAction);
     },
-    doPostComment : function(component, event){
+    postComment : function(component, event){
         let postAction = component.get("c.postCommentToCase");
         postAction.setParams({
             "caseId" : component.get("v.complaint").Id,

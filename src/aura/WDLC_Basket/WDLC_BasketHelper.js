@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 24.03.2020.
  */
 ({
-    doDoInit : function(component, event){
+    doInit : function(component, event){
         let getBasketAction = component.get("c.getProductsInBasket");
         getBasketAction.setCallback(this, function(response){
             let state = response.getState();

@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 23.03.2020.
  */
 ({
-    doSendFurnitureIdToProductView : function(component, event){
+    sendFurnitureIdToProductView : function(component, event){
         let productToSend = component.get("v.product");
         let productToSendId = productToSend.productId;
         let eUrl = $A.get("e.force:navigateToURL");
@@ -11,7 +11,7 @@
         + productNameToUrl +'/'+productToSendId;
         window.open(urlToProduct, '_top');
     },
-    doAddToFavorite : function(component, event){
+    addToFavorite : function(component, event){
         let addAction = component.get("c.addToFavorite");
         addAction.setParams({
             "productId" : component.get("v.product").productId
@@ -31,7 +31,7 @@
         });
         $A.enqueueAction(addAction);
     },
-    doAddToOrder : function(component, event){
+    addToOrder : function(component, event){
         let addToOrderAction = component.get("c.addToBasket");
         let productToAddId = component.get("v.product").productId;
 

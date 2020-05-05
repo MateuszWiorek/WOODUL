@@ -3,10 +3,10 @@
  */
 ({
     sendData: function(component, event, helper){
-        helper.doSendData(component,event);
+        helper.sendData(component,event);
     },
     clear : function(component, event, helper){
-        helper.doClear(component, event);
+        helper.clear(component, event);
     },
         keyCheck : function(component, event, helper){
             if(event.getParams().keyCode == 13){

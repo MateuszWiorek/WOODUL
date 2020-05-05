@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 24.03.2020.
  */
 ({
-    doOnInit : function(component, event){
+    onInit : function(component, event){
         let getListAction = component.get("c.getProductsToOrder");
                getListAction.setCallback(this,function(response){
                    let state = response.getState();
@@ -35,7 +35,7 @@
                $A.enqueueAction(getUserInfoAction);
                $A.enqueueAction(getListAction);
     },
-    doMakeOrder : function(component, event){
+    makeOrder : function(component, event){
         let street = component.get("v.billingStreet");
         let postalCode = component.get("v.billingPostalCode");
         let state = component.get("v.billingState");
@@ -67,7 +67,7 @@
         });
         $A.enqueueAction(orderAction);
     },
-    doIncrementCounter : function(component, event){
+    incrementCounter : function(component, event){
         let indexOfItem = event.currentTarget.dataset.record;
         let items = component.get("v.productsToOrder")[indexOfItem];
         let incrementAction = component.get("c.increaseProductCounter");
@@ -75,7 +75,7 @@
             "productId" : idOfProduct
         });
     },
-    doRefreshTable : function(component, event){
+    refreshTable : function(component, event){
         let getItemsAction = component.get("c.getProductsToOrder");
         getItemsAction.setCallback(this,function(response){
             let state = response.getState();

@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 08.04.2020.
  */
 ({
-    doOnInit : function(component, event, helper){
+    onInit : function(component, event, helper){
         component.set("v.discountName", event.getParam("pricebookId"));
         let getItemsInDiscount = component.get("c.getDiscountId");
         getItemsInDiscount.setParams({
@@ -52,7 +52,7 @@
         });
         $A.enqueueAction(getItemsInDiscount);
     },
-    doSearchProducts : function(component, event){
+    searchProducts : function(component, event){
          let searchActions = component.get("c.findProducts");
          searchActions.setParams({
              "name" : component.get("v.query")
@@ -70,7 +70,7 @@
          });
          $A.enqueueAction(searchActions);
     },
-    doRefreshResults : function(component, event){
+    refreshResults : function(component, event){
         let removed = event.getParam("products");
         let removedList = [];
         for(let i = 0; i< removed.length; i++){
@@ -88,7 +88,7 @@
         component.set("v.selectedProducts", Array.from(selectedSet));
 //        helper.doSearchProducts(component, event);
     },
-    doHandleAction : function(component, event){
+    handleAction : function(component, event){
         let action = event.getParam('action');
         let row = event.getParam('row');
         switch (action.name){
@@ -107,7 +107,7 @@
             break;
         }
     },
-    doSetDetails : function(component, event){
+    setDetails : function(component, event){
         let setDetailsEvent = $A.get("e.c:WDLC_SendProductsList");
         setDetailsEvent.setParams({
             "products" : Array.from(component.get("v.selectedProducts")),
@@ -115,7 +115,7 @@
         });
         setDetailsEvent.fire();
     },
-    doUpdateSelectedText : function(component, event){
+    updateSelectedText : function(component, event){
          var selectedRows = event.getParam('selectedRows');
          let selectedList = component.get("v.selectedProducts");
          let selectedSet = new Set(selectedList);

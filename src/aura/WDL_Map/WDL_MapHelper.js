@@ -11,7 +11,7 @@
                 component.set('v.markersTitle', 'Accounts');
                 component.set('v.showFooter', false);
     },
-    doHandleMapDetails : function(cmp, event){
+    handleMapDetails : function(cmp, event){
                       let accountsFromEv = event.getParam("accountsList");
                       cmp.set("v.resultsList", accountsFromEv);
                       let mapMarkers = [];
@@ -52,7 +52,7 @@
                       }
     },
 
-    doHandleMarkerSelect : function(component, event){
+    handleMarkerSelect : function(component, event){
         let marker = event.getParam("selectedMarkerValue");
         let accounts = component.get("v.resultsList");
                 let detailsEvent2 = $A.get("e.c:WDL_DetailsInfoValues");

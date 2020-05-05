@@ -8,7 +8,7 @@
          meta.setAttribute("http-equiv", "Content-Security-Policy")
          meta.setAttribute("content", "date=no;img-src 'self' data:");
          document.getElementsByTagName('head')[0].appendChild(meta);
-        helper.doOnInit(component,event);
+        helper.onInit(component,event);
      },
      goNextPage: function(component,event,helper){
          component.set("v.productsToShowStart", component.get("v.productsToShowStart") + component.get("v.productsToShow"));

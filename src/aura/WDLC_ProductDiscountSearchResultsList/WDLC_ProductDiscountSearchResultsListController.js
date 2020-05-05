@@ -9,27 +9,27 @@
             {label: 'Price after discount', fieldName: 'productPriceAfterDiscount', type : 'String', editable: true},
             {label: 'Description', fieldName: 'productDescription', type : 'String', editable: true},
         ]);
-        helper.doOnInit(component,event);
+        helper.onInit(component,event);
     },
     refreshPrice : function(component, event, helper){
-        helper.doRefreshPrice(component, event);
+        helper.refreshPrice(component, event);
     },
     showNewPrice : function(component, event, helper){
-        helper.doShowNewPrice(component, event);
+        helper.showNewPrice(component, event);
     },
     setNewPrices : function(component, event, helper){
-        helper.doSetNewPrices(component, event);
+        helper.setNewPrices(component, event);
     },
     refreshMap : function(component, event, helper){
-        helper.doRefreshMap(component, event);
+        helper.refreshMap(component, event);
     },
     getDisc : function(component, event, helper){
-        helper.doGetDisc(component, event);
+        helper.getDisc(component, event);
     },
     showDiscountDetails : function(component, event, helper){
-        helper.doShowDiscountDetails(component,event);
+        helper.showDiscountDetails(component,event);
     },
     getItems : function (component, event, helper){
-        helper.doGetItems(component, event);
+        helper.getItems(component, event);
     }
 })

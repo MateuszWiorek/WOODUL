@@ -1,5 +1,5 @@
 ({
-    doFindAccounts: function(component, event){
+    findAccounts: function(component, event){
                 let appEvent = $A.get("e.c:WDL_SendValues");
                 appEvent.setParams({
                     "searchItemName" : component.get("v.searchName"),
@@ -7,7 +7,7 @@
                 });
                 appEvent.fire();
     },
-    doClear:function(component, event){
+    clear:function(component, event){
             component.set("v.searchName", '');
             component.set("v.searchShippingAddress", '');
 

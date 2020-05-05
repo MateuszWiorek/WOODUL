@@ -3,6 +3,6 @@
  */
 ({
     createNewDisc : function(component, event, helper){
-        helper.doCreateNewDiscount(component,event);
+        helper.createNewDisc(component,event);
     }
 })

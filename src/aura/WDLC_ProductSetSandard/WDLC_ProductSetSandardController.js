@@ -8,15 +8,15 @@
             {label: $A.get("{!Label.c.WDLC_StandardPrice}"), sortable: true,  fieldName: 'productPrice', type : 'String',
                                     placeholder: $A.get("{!$Label.c.WDLC_StandardPricePlaceholder}"), editable: true}
         ]);
-        helper.doOnInit(component, event);
+        helper.onInit(component, event);
     },
     handleSettingStandardPrices : function(component, event){
-        helper.doHandleSettingStandardPrices(component,event);
+        helper.handleSettingStandardPrices(component,event);
     },
     handleSubmit : function(component, event, helper){
-        helper.doHandleSubmit(component, event);
+        helper.handleSubmit(component, event);
     },
     searchProducts : function(component, event, helper){
-        helper.doSearchProducts(component,event);
+        helper.searchProducts(component,event);
     }
 })

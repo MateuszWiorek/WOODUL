@@ -3,7 +3,7 @@
  */
 ({
     comment: function(component, event, helper){
-        helper.doComment(component,event);
+        helper.comment(component,event);
         helper.doInit(component,event);
     },
     onInit: function(component,event,helper){

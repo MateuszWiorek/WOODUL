@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 08.04.2020.
  */
 ({
-    doOnInit: function(component, event){
+    onInit: function(component, event){
        let actions = [
                     { label: $A.get("{!$Label.c.WDLC_ShowDetails}"), name: 'show_details' },
                     { label: $A.get("{!$Label.c.WDLC_Delete}"), name: 'delete' }
@@ -28,7 +28,7 @@
         });
         $A.enqueueAction(getDiscountsAction);
     },
-    doHandleRowAction : function(component, event){
+    handleRowAction : function(component, event){
         let action = event.getParam('action');
         let row = event.getParam('row');
         switch (action.name){
@@ -48,7 +48,7 @@
                 break;
         }
     },
-    doSearchPricebooks : function(component, event){
+    searchPricebooks : function(component, event){
         let getPricebooks = component.get("c.findPricebooks");
         getPricebooks.setParams({
             "name" : component.get("v.query")
@@ -62,7 +62,7 @@
         });
         $A.enqueueAction(getPricebooks);
     },
-    doHandleCellChange : function(component, event){
+    handleCellChange : function(component, event){
         let draftValues = event.getParam('draftValues');
         let res = component.get("v.results");
         let startDate;
@@ -102,7 +102,7 @@
         });
         component.set("v.results", res);
     },
-    doSetStep : function(component, event){
+    setStep : function(component, event){
         component.set("v.currentStep", event.getParam('step'));
         if(event.getParam('step') == 'step-2'){
             component.set("v.currentStep", 'step-2');
@@ -110,7 +110,7 @@
             $A.get("e.c:WDLC_HideDetails").fire();
         }
     },
-    doGoToDiscounts : function(component, event){
+    goToDiscounts : function(component, event){
         component.set("v.currentStep", 'step-2');
         component.set('v.showPricebooks', true);
         $A.get("e.c:WDLC_HideDetails").fire();

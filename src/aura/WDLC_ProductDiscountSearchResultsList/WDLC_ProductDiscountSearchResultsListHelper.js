@@ -2,23 +2,23 @@
  * Created by Mateusz Wiorek on 02.04.2020.
  */
 ({
-    doOnInit : function(component,event){
+    onInit : function(component,event){
         let types = ['percentage', 'fixed'];
         component.set("v.types", types);
     },
-    doRefreshPrice : function(component, event){
+    refreshPrice : function(component, event){
         let mapOfProducts = component.get("v.productsToDiscountMap");
         mapOfProducts[event.getParam("productId")] = event.getParam("productPrice");
         component.set("v.productsToSetPrices", mapOfProducts);
     },
-    doShowNewPrice : function(component, event){
+    showNewPrice : function(component, event){
         let products = component.get("v.results");
         let arrayOfProducts = component.find('element');
         for (let i = 0; i< arrayOfProducts.length; i++ ){
             arrayOfProducts[i].setPriceAfterDiscount(component.find("toDiscount").get('v.value'),component.get("v.amountToDiscount"));
         }
     },
-    doSetNewPrices : function(component, event){
+    setNewPrices : function(component, event){
         let setNewPricesAction = component.get("c.addProductsToDiscount");
         setNewPricesAction.setParams({
             "prices" : component.get("v.selectedProductsToDiscountMap"),
@@ -35,7 +35,7 @@
         });
         $A.enqueueAction(setNewPricesAction);
     },
-    doRefreshMap : function(component, event){
+    refreshMap : function(component, event){
         let mapToDiscount = component.get("v.selectedProductsToDiscountMap");
         if(event.getParam("isSelected")){
         mapToDiscount[event.getParam("productId")] = event.getParam("productPrice");
@@ -43,7 +43,7 @@
         mapToDiscount[event.getParam("productId")] = -1;
         }
     },
-    doGetDisc : function(component, event){
+    getDisc : function(component, event){
         let initAction = component.get("c.getAllDiscounts");
         initAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
@@ -59,14 +59,14 @@
         });
         $A.enqueueAction(initAction);
     },
-    doShowDiscountDetails : function(component, event){
+    showDiscountDetails : function(component, event){
         let detailsEvent = $A.get("e.c:WDLC_SendPricebookDetails");
         detailsEvent.setParams({
             "pricebookId" : component.find("pricebookId").get("v.value")
         });
         detailsEvent.fire();
     },
-    doGetItems : function(component, event){
+    getItems : function(component, event){
         let getItemsAction = component.get("c.findProducts");
         getItemsAction.setParams({
             "name" : event.getParam("query")

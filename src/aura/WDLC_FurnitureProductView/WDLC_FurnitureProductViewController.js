@@ -3,19 +3,19 @@
  */
 ({
     handleProductId : function(component, event, helper){
-        helper.doHandleProductId(component, event);
+        helper.handleProductId(component, event);
     },
     doInit : function(component, event, helper){
-        helper.doOnInit(component,event);
+        helper.onInit(component,event);
     },
     addToCart : function(component, event, helper){
-        helper.doAddToCart(component,event);
+        helper.addToCart(component,event);
     },
     addToWishList : function(component, event, helper){
-        helper.doAddToWishList(component, event);
+        helper.addToWishList(component, event);
     },
     removeFromObserved : function(component, event, helper){
-        helper.doRemoveFromList(component, event);
+        helper.removeFromList(component, event);
     },
     setLivePhoto : function(component, event){
         component.set("v.livePhoto", event.getParam('source'));

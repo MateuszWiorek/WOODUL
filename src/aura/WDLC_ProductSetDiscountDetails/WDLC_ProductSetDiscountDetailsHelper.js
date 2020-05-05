@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 16.04.2020.
  */
 ({
-    doHandleEvent : function(component, event){
+    handleEvent : function(component, event){
         let getItemsAction = component.get("c.findProductsWithIds");
         getItemsAction.setParams({
             "ids" : event.getParam("products"),
@@ -24,7 +24,7 @@
         });
         $A.enqueueAction(getItemsAction);
     },
-    doOnInit : function(component, event){
+    onInit : function(component, event){
         let getDates = component.get("c.getDiscountDates");
         getDates.setParams({
             "name" : component.get("v.discount")
@@ -111,7 +111,7 @@
         });
         $A.enqueueAction(getDiscountId);
     },
-    doHandleDiscountValueChange : function(component, event){
+    handleDiscountValueChange : function(component, event){
         let type = component.get("v.value");
         let resultsTab = component.get("v.results");
         resultsTab.forEach(function(item){
@@ -138,7 +138,7 @@
                                  $A.get("{!$Label.c.WDL_SubmitPricesToastInformation}"),
                                  $A.get("{!$Label.c.WDLC_CalculatedPrices}"));
     },
-    doUpdatePriceAfterDiscount : function(component, event){
+    updatePriceAfterDiscount : function(component, event){
         let draftValues = event.getParam('draftValues');
                 let res = component.get("v.results");
         if(component.get("v.isStandard")){
@@ -163,7 +163,7 @@
                                          $A.get("$Label.c.WDLC_CalculatedPrices"));
         component.set("v.results", res);
     },
-    doSubmitPrices : function(component, event){
+    submitPrices : function(component, event){
         let res = component.get("v.results");
         let pricesMap = component.get("v.pricesToSet");
         if(!component.get("v.isStandard")){
@@ -207,7 +207,7 @@
             $A.enqueueAction(submitStandard);
         }
     },
-    doHandleRowAction : function(component, event){
+    handleRowAction : function(component, event){
         let action = event.getParam('action');
         let row = event.getParam('row');
         switch (action.name){
@@ -218,13 +218,13 @@
                 break;
         }
     },
-    doHandleSelection : function(component, event){
+    handleSelection : function(component, event){
          let selectedRows = event.getParam('selectedRows');
          let productsToRemove = [];
          selectedRows.forEach(item => productsToRemove.push(item.productId));
          component.set("v.productsToRemove", productsToRemove);
     },
-    doRefreshResults : function(component, event){
+    refreshResults : function(component, event){
          let removedItems = event.getParam("products");
          let res = component.get("v.results");
          let resString = [];
@@ -239,7 +239,7 @@
          }
          component.set("v.results", res);
     },
-    doSearchProducts : function(component, event){
+    searchProducts : function(component, event){
          let resultsBeforeFilter = component.get("v.hiddenResults");
          let query = component.get("v.query");
          let resultsAfterFilter = resultsBeforeFilter

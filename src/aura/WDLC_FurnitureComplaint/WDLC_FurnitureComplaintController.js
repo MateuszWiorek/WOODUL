@@ -3,10 +3,10 @@
  */
 ({
     onInit : function(component, event, helper){
-        helper.doOnInit(component, event);
+        helper.onInit(component, event);
     },
     postComment : function(component, event, helper){
-        helper.doPostComment(component, event);
-        helper.doOnInit(component,event);
+        helper.postComment(component, event);
+        helper.onInit(component,event);
     }
 })

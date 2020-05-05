@@ -6,14 +6,14 @@
             component.set("v.typeOfModal", 'Complaint');
         },
         sendDataToCase : function(component, event, helper){
-            helper.doSendDataToCase(component, event);
+            helper.sendDataToCase(component, event);
         },
         closeModalCase : function(component, event){
             component.set("v.typeOfModal", '');
             component.set("v.showModal", false);
         },
         postComment : function(component,event, helper){
-            helper.doPostComment(component,event);
+            helper.postComment(component,event);
         },
         onInit : function(component, event, helper){
             setInterval(function(){

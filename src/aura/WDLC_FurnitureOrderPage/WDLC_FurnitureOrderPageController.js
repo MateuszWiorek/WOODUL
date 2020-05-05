@@ -3,20 +3,20 @@
  */
 ({
     doInit : function(component, event, helper){
-        helper.doOnInit(component, event);
+        helper.onInit(component, event);
     },
     makeOrderr : function(component, event, helper){
-        helper.doMakeOrder(component, event);
+        helper.makeOrder(component, event);
         helper.openModal(component);
-        helper.doRefreshTable(component,event);
+        helper.refreshTable(component,event);
     },
     incrementCounter : function(component,event,helper){
-        helper.doIncrementCounter(component,event);
+        helper.incrementCounter(component,event);
     },
     decrementCounter : function(component, event, helper){
-        helper.doDecrementCounter(component,event);
+        helper.decrementCounter(component,event);
     },
     refreshTable : function(component, event, helper){
-        helper.doRefreshTable(component, event);
+        helper.refreshTable(component, event);
     }
 })

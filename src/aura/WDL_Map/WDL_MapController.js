@@ -4,9 +4,9 @@
     },
 
     handleMapDetails : function(component, event, helper){
-        helper.doHandleMapDetails(component, event);
+        helper.handleMapDetails(component, event);
     },
     handleMarkerSelect : function(component, event, helper){
-        helper.doHandleMarkerSelect(component,event);
+        helper.handleMarkerSelect(component,event);
     }
 });

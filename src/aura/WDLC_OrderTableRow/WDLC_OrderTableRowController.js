@@ -3,16 +3,16 @@
  */
 ({
     incrementCounter : function(component,event,helper){
-        helper.doIncrementCounter(component,event);
+        helper.incrementCounter(component,event);
     },
     decrementCounter : function(component, event, helper){
-        helper.doDecrementCounter(component,event);
+        helper.decrementCounter(component,event);
     },
     removeProduct : function(component, event, helper){
-        helper.doRemoveProduct(component, event);
+        helper.removeProduct(component, event);
     },
     changeProductCounter : function(component, event, helper){
-        helper.doChangeProductCounter(component, event);
+        helper.changeProductCounter(component, event);
     },
     onInit : function(component){
     },

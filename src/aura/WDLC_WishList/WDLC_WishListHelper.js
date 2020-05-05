@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 19.03.2020.
  */
 ({
-    doDoInit : function(component, event){
+    doInit : function(component, event){
         let getWishListAction = component.get("c.getWishlistedProducts");
         getWishListAction.setCallback(this, function(response){
             let state = response.getState();

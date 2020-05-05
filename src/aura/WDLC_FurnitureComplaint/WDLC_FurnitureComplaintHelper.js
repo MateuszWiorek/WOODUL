@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 26.03.2020.
  */
 ({
-    doOnInit : function(component, event){
+    onInit : function(component, event){
         let sPageURL = decodeURIComponent(window.location.href.substring(0));
         let sURLVariables = sPageURL.split('/');
         let caseIdR = sURLVariables[sURLVariables.length-2];
@@ -20,7 +20,7 @@
         });
         $A.enqueueAction(caseCommentsAction);
     },
-    doPostComment : function(component, event){
+    postComment : function(component, event){
         let postAction = component.get("c.postCommentToCase");
         postAction.setParams({
             "caseId" : component.get("v.caseDetail"),

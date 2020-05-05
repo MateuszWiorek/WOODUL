@@ -26,11 +26,11 @@
     },
     goToSearch : function(component, event, helper){
         component.set("v.productName",$A.get("{!$Label.c.WDLC_FirstTypeOfSearch}"));
-        helper.doGoToSearch(component,event);
+        helper.goToSearch(component,event);
     },
     goToSearchRaw : function(component,event, helper){
         component.set("v.productName", $A.get("{!$Label.c.WDLC_SecondTypeOfSearch}"));
-        helper.doGoToSearch(component,event);
+        helper.goToSearch(component,event);
     },
     doInit : function(component, event, helper) {
         let meta = document.createElement("meta");

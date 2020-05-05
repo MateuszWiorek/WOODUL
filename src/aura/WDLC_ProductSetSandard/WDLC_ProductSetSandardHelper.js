@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 09.04.2020.
  */
 ({
-    doOnInit : function(component, event){
+    onInit : function(component, event){
        let getProductsWithPrice = component.get("c.getProductsWithoutPrice");
        getProductsWithPrice.setCallback(this, function(response){
            if(response.getState() === "SUCCESS"){
@@ -19,14 +19,14 @@
        });
        $A.enqueueAction(getProductsWithPrice);
     },
-    doSearchProducts : function(component, event){
+    searchProducts : function(component, event){
         let resultsBeforeFilter = component.get("v.hiddenResults")
         let query = component.get("v.query")
         let resultsAfterFilter = resultsBeforeFilter
                .filter(item => item.productName.toUpperCase().startsWith(query.toUpperCase()));
         component.set("v.results", resultsAfterFilter);
     },
-    doHandleSubmit : function(component, event){
+    handleSubmit : function(component, event){
         let submitStandard = component.get("c.setStandardPrices");
         let res = component.get("v.results");
         let pricesMap = component.get("v.pricesToSet");
@@ -46,7 +46,7 @@
         });
         $A.enqueueAction(submitStandard);
     },
-    doHandleSettingStandardPrices : function(component, event){
+    handleSettingStandardPrices : function(component, event){
         let draftValues = event.getParam('draftValues');
         let res = component.get("v.results");
         res.forEach(function(item){

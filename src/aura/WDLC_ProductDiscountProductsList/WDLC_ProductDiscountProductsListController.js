@@ -3,15 +3,15 @@
  */
 ({
     onInit: function(component, event, helper){
-        helper.doOnInit(component, event);
+        helper.onInit(component, event);
     },
     addProductWithPriceToMap : function(component, event, helper){
-        helper.doAddProductWithPriceToMap(component, event);
+        helper.addProductWithPriceToMap(component, event);
     },
     setPrices : function(component, event, helper){
-        helper.doSetPrices(component, event);
+        helper.setPrices(component, event);
     },
     searchItems : function(component, event, helper){
-        helper.doSearchItems(component, event);
+        helper.searchItems(component, event);
     }
 })

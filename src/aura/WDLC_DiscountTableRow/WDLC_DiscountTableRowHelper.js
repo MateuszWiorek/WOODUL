@@ -3,7 +3,7 @@
  */
 ({
 
-    doShowDiscountDetails : function(component, event){
+    showDiscountDetails : function(component, event){
         let detailsEvent = $A.get("e.c:WDLC_SendPricebookDetails");
         detailsEvent.setParams({
             "pricebookId" : component.get("v.discount").Name

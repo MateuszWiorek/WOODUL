@@ -3,6 +3,6 @@
  */
 ({
     onInit : function(component, event, helper){
-        helper.doOnInit(component, event);
+        helper.onInit(component, event);
     }
 })

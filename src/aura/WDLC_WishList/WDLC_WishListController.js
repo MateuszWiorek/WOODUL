@@ -3,7 +3,7 @@
  */
 ({
     doInit: function(component, event, helper){
-        helper.doDoInit(component,event);
+        helper.doInit(component,event);
     },
     goToObserved : function(component, event){
         let orderAddress = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/wishlist';

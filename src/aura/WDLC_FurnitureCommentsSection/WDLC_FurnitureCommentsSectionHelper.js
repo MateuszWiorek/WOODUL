@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 20.03.2020.
  */
 ({
-    doComment: function(component, event){
+    comment: function(component, event){
         let commentAction = component.get("c.addComment");
         commentAction.setParams({
            "rating" : component.get("v.ratingGrade"),

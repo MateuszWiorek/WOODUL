@@ -3,25 +3,25 @@
  */
 ({
     handleEvent : function(component, event, helper){
-        helper.doHandleEvent(component, event);
+        helper.handleEvent(component, event);
     },
     onInit : function(component, event, helper){
-        helper.doOnInit(component, event);
+        helper.onInit(component, event);
     },
     handleDiscountValueChange : function(component, event, helper){
-        helper.doHandleDiscountValueChange(component, event);
+        helper.handleDiscountValueChange(component, event);
     },
     updatePriceAfterDiscount : function(component, event, helper){
-        helper.doUpdatePriceAfterDiscount(component, event);
+        helper.updatePriceAfterDiscount(component, event);
     },
     submitPrices : function(component, event, helper){
-        helper.doSubmitPrices(component, event);
+        helper.submitPrices(component, event);
     },
     handleRowAction : function(component, event, helper){
-        helper.doHandleRowAction(component, event);
+        helper.handleRowAction(component, event);
     },
     handleSelection : function(component, event, helper){
-        helper.doHandleSelection(component, event);
+        helper.handleSelection(component, event);
      },
     handleMassDelete : function(component, event, helper){
          component.set("v.typeModal", 'deleteItemsFromPricebook');
@@ -34,9 +34,9 @@
         component.set("v.value", event.getParam("value"));
     },
     refreshResults : function(component, event, helper){
-        helper.doRefreshResults(component, event);
+        helper.refreshResults(component, event);
     },
     searchProducts : function(component, event, helper){
-        helper.doSearchProducts(component, event);
+        helper.searchProducts(component, event);
     }
 })

@@ -1,5 +1,5 @@
 ({
-    doSearch: function(component, event, helper){
+    search: function(component, event, helper){
              let action = component.get("c.searchAccounts");
              let shippingAddressV = component.get("v.addressFromEvent");
              let name = component.get("v.nameFromEvent");
@@ -37,7 +37,7 @@
               $A.enqueueAction(action);
         },
 
-        doGetRecord : function(component, event){
+        getRecord : function(component, event){
              let accounts = [];
              let acc = component.get("v.accountRows")[event.currentTarget.dataset.index];
              let detailsEvent = $A.get("e.c:WDL_DetailsInfoValues");

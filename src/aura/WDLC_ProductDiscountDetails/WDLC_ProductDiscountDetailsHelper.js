@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 03.04.2020.
  */
 ({
-    doShowDetails : function(component, event){
+    showDetails : function(component, event){
         let discountName = event.getParam("pricebookId");
         let getDiscountAction = component.get("c.getDiscount");
         getDiscountAction.setParams({
@@ -36,7 +36,7 @@
         });
         $A.enqueueAction(getDiscountAction);
     },
-    doEditDiscount : function(component, event){
+    editDiscount : function(component, event){
         let editAction = component.get("c.editPricebook");
         editAction.setParams({
             'pricebookId' : component.get("v.pricebookId"),

@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 02.04.2020.
  */
 ({
-    doCreateNewDiscount : function(component, event){
+    createNewDisc : function(component, event){
         let createDiscountAction = component.get("c.createNewDiscount");
         createDiscountAction.setParams({
             "name" : component.get("v.discountName"),

@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 02.04.2020.
  */
 ({
-    doOnInit: function(component, event){
+    onInit: function(component, event){
         let initAction = component.get("c.getProductsWithoutPrice");
         initAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
@@ -13,13 +13,13 @@
         });
         $A.enqueueAction(initAction);
     },
-    doAddProductWithPriceToMap : function(component, event){
+    addProductWithPriceToMap : function(component, event){
         let mapOfProducts = component.get("v.productsToSetPrices");
         mapOfProducts[event.getParam("productId")] = event.getParam("productPrice");
         component.set("v.productsToSetPrices", mapOfProducts);
         let mapp = component.get("v.productsToSetPrices");
     },
-    doSetPrices : function(component, event){
+    setPrices : function(component, event){
         let setPricesAction = component.get("c.setStandardPrices");
         setPricesAction.setParams({
             "prices" : component.get("v.productsToSetPrices")
@@ -35,7 +35,7 @@
         });
         $A.enqueueAction(setPricesAction);
     },
-    doSearchItems : function(component, event){
+    searchItems : function(component, event){
         let findAction = component.get("c.findProducts");
         findAction.setParams({
         "name" : event.getParam("query")

@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 20.03.2020.
  */
 ({
-    doOnInit : function(component, event){
+    onInit : function(component, event){
         let product = component.get("v.product2");
         let getSimilarAction = component.get("c.getSimilarProducts");
         getSimilarAction.setParams({

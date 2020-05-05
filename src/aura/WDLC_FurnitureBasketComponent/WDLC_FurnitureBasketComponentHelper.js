@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 31.03.2020.
  */
 ({
-    doOnInit : function(component, event){
+    onInit : function(component, event){
             let getListAction = component.get("c.getProductsInBasket");
             getListAction.setCallback(this,function(response){
                 let state = response.getState();
@@ -23,7 +23,7 @@
             $A.enqueueAction(getListAction);
         },
 
-    doRefreshTable : function(component, event){
+    refreshTable : function(component, event){
                     let getListAction = component.get("c.getProductsInBasket");
                     getListAction.setCallback(this,function(response){
                         let state = response.getState();
@@ -42,12 +42,12 @@
                     });
                     $A.enqueueAction(getListAction);
                 },
-    doGoToOrder : function(component, event){
+    goToOrder : function(component, event){
         let pageURL = decodeURIComponent(window.location.href);
         let orderAddress = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/order';
         window.open(orderAddress, '_top');
     },
-    doOrderWithDefaultAddress : function(component, event){
+    orderWithDefaultAddress : function(component, event){
         let makeDefaultOrderAction = component.get("c.orderWithDefaultCustomerData");
         makeDefaultOrderAction.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){

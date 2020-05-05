@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 02.04.2020.
  */
 ({
-    doChangePrice : function(component, event){
+    changePrice : function(component, event){
         component.set("v.newPrice", component.get("v.newPrice"));
        let changePriceEvent = component.getEvent("changePrice");
        changePriceEvent.setParams({
@@ -11,7 +11,7 @@
        });
        changePriceEvent.fire();
     },
-    doSetPrice : function(component, event){
+    setPrice : function(component, event){
         let params = event.getParam('arguments');
         if(params){
             let type = params.typeOfDiscount;
@@ -26,7 +26,7 @@
             }
         }
     },
-    doMarkToDiscount : function(component, event){
+    markToDiscount : function(component, event){
         let markSelectedEvent = component.getEvent("markAsSelected");
         markSelectedEvent.setParams({
             "isSelected" : component.get("v.isSelected"),

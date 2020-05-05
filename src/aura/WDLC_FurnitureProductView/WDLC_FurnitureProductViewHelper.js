@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 23.03.2020.
  */
 ({
-    doOnInit : function(component, event){
+    onInit : function(component, event){
         let initAction = component.get("c.getProduct");
         let productUrl = decodeURIComponent(window.location.pathname.substring(1));
         let variables = productUrl.split("/");
@@ -42,7 +42,7 @@
 
         $A.enqueueAction(initAction);
     },
-    doAddToCart : function(component,event){
+    addToCart : function(component,event){
         let productToBuyId = component.get("v.productId");
         let addToCartAction = component.get("c.changeProductCounter");
         addToCartAction.setParams({
@@ -63,7 +63,7 @@
         });
         $A.enqueueAction(addToCartAction);
     },
-    doAddToWishList : function(component, event){
+    addToWishList : function(component, event){
         let productToWishListId = component.get("v.productId");
         let addToWishListAction = component.get("c.addProductToWishList");
         addToWishListAction.setParams({
@@ -84,7 +84,7 @@
         });
         $A.enqueueAction(addToWishListAction);
     },
-    doRemoveFromList : function(component, event){
+    removeFromList : function(component, event){
         let productToWishListId = component.get("v.productId");
         let removeFromList = component.get("c.removeFromList");
         removeFromList.setParams({

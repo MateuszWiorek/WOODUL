@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 18.03.2020.
  */
 ({
-    doOnInit : function(component, event){
+    onInit : function(component, event){
         let productsUrl = decodeURIComponent(window.location.search.substring(1));
         let variables = productsUrl.split('&');
         let searchQuery;

@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 25.03.2020.
  */
 ({
-    doIncrementCounter : function(component, event){
+    incrementCounter : function(component, event){
         let idOfProduct = component.get("v.cell").product.productId;
         let incrementAction = component.get("c.increaseProductCounter");
         incrementAction.setParams({
@@ -18,7 +18,7 @@
         });
         $A.enqueueAction(incrementAction);
     },
-    doDecrementCounter : function(component, event){
+    decrementCounter : function(component, event){
         let idOfProduct = component.get("v.cell").product.productId;
         let incrementAction = component.get("c.decreaseProductCounter");
         incrementAction.setParams({
@@ -36,7 +36,7 @@
         });
         $A.enqueueAction(incrementAction);
     },
-    doRemoveProduct : function(component, event){
+    removeProduct : function(component, event){
         let idOfProduct = component.get("v.cell").product.productId;
         let removeAction = component.get("c.removeProductFromBasket");
         removeAction.setParams({
@@ -53,7 +53,7 @@
         });
         $A.enqueueAction(removeAction);
     },
-    doChangeProductCounter : function(component,event){
+    changeProductCounter : function(component,event){
         let changeCounterAction = component.get("c.changeCounter");
         changeCounterAction.setParams({
             "id" : component.get("v.cell").product.productId,

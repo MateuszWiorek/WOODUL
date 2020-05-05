@@ -3,7 +3,7 @@
  */
 ({
     showDiscountDetails : function(component, event, helper){
-        helper.doShowDiscountDetails(component, event);
+        helper.showDiscountDetails(component, event);
     },
     onInit : function(component, event){
         let disc = component.get("v.discount");

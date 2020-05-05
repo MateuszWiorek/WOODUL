@@ -3,16 +3,16 @@
  */
 ({
         doInit : function(component, event, helper){
-          helper.doOnInit(component, event);
+          helper.onInit(component, event);
       },
       refreshTable : function(component, event, helper){
-          helper.doRefreshTable(component, event);
+          helper.refreshTable(component, event);
       },
       goToOrder : function(component, event, helper){
-          helper.doGoToOrder(component, event);
+          helper.goToOrder(component, event);
       },
       orderWithDefaultAddress : function(component, event, helper){
-          helper.doOrderWithDefaultAddress(component,event);
+          helper.orderWithDefaultAddress(component,event);
       },
       goToObserved : function(component, event){
         let orderAddress = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/wishlist';

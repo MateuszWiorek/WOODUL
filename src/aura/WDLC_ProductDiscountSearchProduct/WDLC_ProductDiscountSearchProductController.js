@@ -3,6 +3,6 @@
  */
 ({
     searchProducts : function(component, event, helper){
-        helper.doSearchProducts(component, event);
+        helper.searchProducts(component, event);
     }
 })
