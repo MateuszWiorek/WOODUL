@@ -20,7 +20,7 @@
         let productId = component.get("v.cell").product.productId;
         let productToSend = component.get("v.cell").product;
         let productNameToUrl = productToSend.productName.toLowerCase().replace(' ','-');
-        let urlToProduct = 'https://woodul-developer-edition.eu32.force.com/furnitureservice/s/product/'
+        let urlToProduct = $A.get("{!$Label.c.WDLC_UrlToProduct}")
         + productNameToUrl +'/'+productId;
         window.open(urlToProduct, '_top');
     }
