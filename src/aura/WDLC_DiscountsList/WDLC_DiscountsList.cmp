@@ -29,7 +29,7 @@
         </lightning:progressIndicator>
 
     <aura:if isTrue="{!and(v.showPricebooks, v.currentStep == 'step-2')}">
-        <lightning:card title="Select discount" iconName="standard:pricebook" class="slds-p-around_medium">
+        <lightning:card title="{!$Label.c.WDLC_Select_discount}" iconName="standard:pricebook" class="slds-p-around_medium">
             <aura:set attribute="actions">
                 <div style="display: flex; justify-content : space-evenly;  align-items: flex-end">
                     <lightning:input type="text" placeholder="{!$Label.c.WDLC_SearchList}" label=""
