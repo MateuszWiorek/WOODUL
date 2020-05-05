@@ -25,5 +25,8 @@
     },
     decrementCounter : function(component, event, helper){
         component.set("v.counter", component.get("v.counter")-1);
+    },
+    openComparingModal : function(component){
+        component.set("v.showCompareModal", true);
     }
 })

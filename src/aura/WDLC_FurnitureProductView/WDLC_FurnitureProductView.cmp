@@ -9,6 +9,7 @@
     <aura:attribute type="String" name="livePhoto" access="global"/>
     <aura:attribute type="Object" name="product" access="global"/>
     <aura:attribute type="String[]" name="productPhotos" access="global"/>
+    <aura:attribute type="Boolean" name="showCompareModal" access="global" default="false"/>
 
     <aura:registerEvent type="c:WDLC_RefreshBasketComponent" name="refreshBasket"/>
 
@@ -72,6 +73,11 @@
                     </aura:if>
                             </div>
                     </span>
+                    <div style="display:flex; justify-content: center;">
+                    <lightning:button class="slds-button slds-button_outline-brand buttonCompare"
+                                      onclick="{!c.openComparingModal}">{!$Label.c.WDLC_CompareWithAnotherProduct}
+                    </lightning:button>
+                        </div>
                 </div>
             </div>
             <lightning:tabset class="tabset_border">
@@ -96,4 +102,5 @@
     </aura:if>
     <c:WDLC_ErrorComponent aura:id="errorToast"/>
     <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ProductCompareModal mainRecordId="{!v.productId}" canShowModal="{!v.showCompareModal}"/>
 </aura:component>

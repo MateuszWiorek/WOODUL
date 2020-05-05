@@ -71,3 +71,6 @@
 .THIS .tabset_border{
     border-bottom: 1px solid lightgray;
 }
+.THIS .buttonCompare{
+    font-size:.5rem;
+}
