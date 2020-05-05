@@ -30,7 +30,7 @@
                     }else{
                         toast.openInformationToast(response.getError()[0].message, $A.get("$Label.c.WDL_Error"),
                          $A.get("$Label.c.WDL_Error"));
-                    }                   }
+                    }
                });
                $A.enqueueAction(getUserInfoAction);
                $A.enqueueAction(getListAction);
@@ -68,6 +68,14 @@
         $A.enqueueAction(orderAction);
     },
     incrementCounter : function(component, event){
+        let indexOfItem = event.currentTarget.dataset.record;
+        let items = component.get("v.productsToOrder")[indexOfItem];
+        let incrementAction = component.get("c.increaseProductCounter");
+        incrementAction.setParams({
+            "productId" : idOfProduct
+        });
+    },
+    decrementCounter : function(component, event){
         let indexOfItem = event.currentTarget.dataset.record;
         let items = component.get("v.productsToOrder")[indexOfItem];
         let incrementAction = component.get("c.increaseProductCounter");
