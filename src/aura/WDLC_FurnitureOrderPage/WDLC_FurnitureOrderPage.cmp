@@ -60,7 +60,7 @@
                     <div class="summary_boldFont">
                         <h2>{!$Label.c.WDLC_TotalPrice}:
                             <lightning:formattedNumber value="{!v.totalPrice}" style="currency"
-                                                       currencyCode="EUR" currencyDisplayAs="symbol"/>
+                                                       currencyCode="{!$Locale.currencyCode}" currencyDisplayAs="symbol"/>
                         </h2>
                     </div>
                 </lightning:card>

@@ -27,7 +27,10 @@
                        component.set("v.billingState", userI.State);
                        component.set("v.billingPostalCode", userI.PostalCode);
                        component.set("v.billingStreet", userI.Street);
-                   }
+                    }else{
+                        toast.openInformationToast(response.getError()[0].message, $A.get("$Label.c.WDL_Error"),
+                         $A.get("$Label.c.WDL_Error"));
+                    }                   }
                });
                $A.enqueueAction(getUserInfoAction);
                $A.enqueueAction(getListAction);
@@ -83,6 +86,9 @@
                     total += i.totalCost;
                  }
                  component.set("v.totalPrice", total);
+            }else{
+                toast.openInformationToast(response.getError()[0].message, $A.get("$Label.c.WDL_Error"),
+                 $A.get("$Label.c.WDL_Error"));
             }
         });
         $A.enqueueAction(getItemsAction);
