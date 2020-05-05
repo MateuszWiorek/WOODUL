@@ -58,7 +58,6 @@ public with sharing class WDLC_DiscountManagerController {
     @AuraEnabled
     public static List<Pricebook2> findPricebooks(String name) {
         String queryName = '%' + name + '%';
-        System.debug(queryName);
         return [SELECT Name, StartDate__c, EndDate__c FROM Pricebook2 WHERE Name LIKE :queryName];
     }
     @AuraEnabled
