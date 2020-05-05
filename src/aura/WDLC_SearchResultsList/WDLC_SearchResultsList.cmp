@@ -22,11 +22,11 @@
         <aura:if isTrue="{!not(empty(v.searchResult))}">
             <div style="display: flex; justify-content: space-between; padding: 1rem; align-items:flex-end;">
                 <div>
-                    <h2 style="font-size:2.5rem;">Results for: {!v.searchResult}</h2>
+                    <h2 style="font-size:2.5rem;">{!$Label.c.WDLC_Results + v.searchResult}</h2>
                 </div>
                 <div style="max-width: 10vw;">
                     <div style="display:inline-block; max-width:5vw; padding:.25vw;">
-                        <lightning:select label="Items on page" aura:id="selectProductsCounter"
+                        <lightning:select label="{!$Label.c.WDLC_Items}" aura:id="selectProductsCounter"
                                           onchange="{!c.changeShowItemsValue}">
                             <aura:iteration items="{!v.values}" var="value">
                                 <option value="{!value}" label="{!value}"/>
@@ -34,7 +34,7 @@
                         </lightning:select>
                     </div>
                     <div style="display:inline-block; max-width:5vw; padding:.25vw;">
-                        <lightning:select label="Sort by" aura:id="selectSortType" onchange="{!c.sortByPrice}">
+                        <lightning:select label="{!$Label.c.WDLC_SortBy}" aura:id="selectSortType" onchange="{!c.sortByPrice}">
                             <aura:iteration items="{!v.sortValues}" var="value">
                                 <option value="{!value}" label="{!value}"/>
                             </aura:iteration>
@@ -51,9 +51,9 @@
                 </aura:iteration>
             </div>
             <div style="padding: 1rem;" class="sldsButtonIcons">
-                <lightning:buttonIcon iconName="utility:left" variant="bare" alternativeText="Previous" onclick="{!c.goPreviousPage}"
+                <lightning:buttonIcon iconName="utility:left" variant="bare" alternativeText="{!$Label.c.WDLC_Previous}" onclick="{!c.goPreviousPage}"
                                       disabled="{!if(v.productsToShowStart == 0, true, false)}"/>
-                <lightning:buttonIcon iconName="utility:right" variant="bare" alternativeText="Next" onclick="{!c.goNextPage}"
+                <lightning:buttonIcon iconName="utility:right" variant="bare" alternativeText="{!$Label.c.WDLC_Next}" onclick="{!c.goNextPage}"
                                       disabled="{!if(v.productsToShowEnd > v.sizeOfResults, true, false)}"/>
             </div>
         </aura:if>
