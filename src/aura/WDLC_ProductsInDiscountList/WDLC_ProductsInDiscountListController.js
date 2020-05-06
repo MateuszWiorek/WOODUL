@@ -48,7 +48,7 @@
         component.set('v.sortedBy', sortedBy);
     },
     updateSelectedText : function(component, event, helper){
-        helper.UpdateSelectedText(component,event);
+        helper.updateSelectedText(component,event);
     },
     setDetails : function(component, event,helper){
         helper.setDetails(component, event);
@@ -58,7 +58,7 @@
         component.set("v.isMassSelectActive", !component.get("v.isMassSelectActive"));
     },
     handleAction : function(component, event, helper){
-        helper.handleAction(component, event);
+        helper.handleAction(component, event, helper);
     },
     refreshResults : function(component, event, helper){
           helper.refreshResults(component, event);

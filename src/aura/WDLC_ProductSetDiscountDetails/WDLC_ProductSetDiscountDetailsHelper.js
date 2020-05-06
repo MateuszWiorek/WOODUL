@@ -225,7 +225,9 @@
          component.set("v.productsToRemove", productsToRemove);
     },
     refreshResults : function(component, event){
+        console.log('in helper');
          let removedItems = event.getParam("products");
+         console.log(removedItems);
          let res = component.get("v.results");
          let resString = [];
          for(let i = 0; i< res.length; i++){
@@ -234,10 +236,26 @@
          for (let i = 0; i < removedItems.length; i++){
             let ind = resString.indexOf(removedItems[i]);
             if(ind>=0){
+                console.log(ind);
                 res.splice(ind,ind+1);
             }
          }
          component.set("v.results", res);
+    },
+    refreshIt : function(component, event){
+                 let removedItems = event.getParam("products");
+                 let res = component.get("v.results");
+                 let resString = [];
+                 for(let i = 0; i< res.length; i++){
+                     resString.push(res[i].productId);
+                 }
+                 for (let i = 0; i < removedItems.length; i++){
+                    let ind = resString.indexOf(removedItems[i]);
+                    if(ind>=0){
+                        res.splice(ind,ind+1);
+                    }
+                 }
+                 component.set("v.results", res);
     },
     searchProducts : function(component, event){
          let resultsBeforeFilter = component.get("v.hiddenResults");

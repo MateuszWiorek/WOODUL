@@ -34,9 +34,14 @@
         component.set("v.value", event.getParam("value"));
     },
     refreshResults : function(component, event, helper){
+        console.log('in controller');
         helper.refreshResults(component, event);
     },
     searchProducts : function(component, event, helper){
         helper.searchProducts(component, event);
+    },
+    refreshIt : function(component, event,helper){
+        console.log('ddd');
+        helper.refreshIt(component, event);
     }
 })
