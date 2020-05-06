@@ -2,7 +2,7 @@
  * Created by Mateusz Wiorek on 08.04.2020.
  */
 ({
-    onInit : function(component, event, helper){
+    onInit : function(component, event){
         component.set("v.discountName", event.getParam("pricebookId"));
         let getItemsInDiscount = component.get("c.getDiscountId");
         getItemsInDiscount.setParams({
@@ -86,24 +86,25 @@
          }
         let selectedSet = new Set(selectedList);
         component.set("v.selectedProducts", Array.from(selectedSet));
-//        helper.doSearchProducts(component, event);
+        helper.searchProducts(component, event);
     },
-    handleAction : function(component, event){
+    handleAction : function(component, event, helper){
         let action = event.getParam('action');
         let row = event.getParam('row');
+        console.log(row.productId);
         switch (action.name){
             case 'add_item' :
                  let selectedList = component.get("v.selectedProducts");
                  let selectedSet = new Set(selectedList);
                  selectedSet.add(row.productId);
-                 component.set("v.selectedProducts", (selectedSet));
+                 component.set("v.selectedProducts", selectedSet);
                  let setDetailsEvent = $A.get("e.c:WDLC_SendProductsList");
                  setDetailsEvent.setParams({
                       "products" : Array.from(component.get("v.selectedProducts")),
                       "discount" : component.get("v.discountName")
                  });
                  setDetailsEvent.fire();
-                 helper.doSearchProducts(component, event);
+                 helper.searchProducts(component, event);
             break;
         }
     },

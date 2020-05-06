@@ -17,24 +17,6 @@
     <aura:handler event="c:WDLC_RefreshDiscounts" action="{!c.getDisc}"/>
     <aura:handler event="c:WDLC_SendValuesToSearchDiscount" action="{!c.getItems}"/>
 
-<!--    <table class="slds-table slds-table_cell-buffer slds-table_bordered">-->
-<!--        <thead>-->
-<!--        <tr class="slds-line-height_reset">-->
-<!--            <th>{!$Label.c.WDLC_Select}</th>-->
-<!--            <th>{!$Label.c.WDLC_Image}</th>-->
-<!--            <th>{!$Label.c.WDLC_ProductName}</th>-->
-<!--            <th>{!$Label.c.WDLC_Description}</th>-->
-<!--            <th>{!$Label.c.WDLC_StandardPrice}</th>-->
-<!--            <th>{!$Label.c.WDLC_ActualPrice}</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <aura:iteration items="{!v.results}" var="item" indexVar="index" end="13">-->
-<!--            <c:WDLC_ProductDiscountSearchResultsItem aura:id="element" product="{!item}" changePrice="{!c.refreshPrice}"-->
-<!--                                                     markAsSelected="{!c.refreshMap}"/>-->
-<!--        </aura:iteration>-->
-<!--        </tbody>-->
-<!--    </table>-->
     <div>
         <lightning:datatable
                 columns="{! v.columns }"
@@ -67,13 +49,6 @@
             </div>
         </div>
     </aura:if>
-<!--    <div style="height: 300px">-->
-<!--        <lightning:datatable-->
-<!--                columns="{! v.columns }"-->
-<!--                data="{! v.results }"-->
-<!--                keyField="id"-->
-<!--        />-->
-<!--    </div>-->
     <c:WDL_ShowErrorComponent aura:id="informationToast"/>
     <c:WDLC_ErrorToast aura:id="errorToast"/>
 </aura:component>
