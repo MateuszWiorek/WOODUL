@@ -8,7 +8,6 @@ onInit : function(component,event,helper){
             "productId" : component.get("v.recordId")
         });
         getPhotosAction.setCallback(this, function(response){
-            console.log(response.getState());
             if(response.getState() === "SUCCESS"){
                 component.set("v.photos", response.getReturnValue());
                         let getMainAction = component.get("c.getMainPhoto");
@@ -20,7 +19,7 @@ onInit : function(component,event,helper){
                         });
                         $A.enqueueAction(getMainAction);
             }else{
-                console.log(response.getError()[0]);
+                component.find("errorToast").showError(response);
             }
         });
     $A.enqueueAction(getPhotosAction);
@@ -37,7 +36,11 @@ onInit : function(component,event,helper){
             "productId" : component.get("v.recordId")
         });
         getMainAction.setCallback(this, function(response){
-            component.set("v.mainPhoto", response.getReturnValue());
+if(response.getState() === "SUCCESS"){
+                component.set("v.mainPhoto", response.getReturnValue());
+            }else{
+                component.find("errorToast").showError(response);
+            }
         });
         $A.enqueueAction(getMainAction);
     }
