@@ -6,6 +6,7 @@ public with sharing class WDLC_WishlistHelper {
 
     public static Boolean addProductToWishlist(String productId) {
         WDLC_Wishlist__c wishlistedProduct = new WDLC_Wishlist__c(ProductId__c = productId);
+
         try{
             insert(wishlistedProduct);
             return true;

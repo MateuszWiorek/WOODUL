@@ -54,6 +54,15 @@ public with sharing class WDLC_ProductHelper {
                 FROM Product2
                 WHERE Id IN :productIds
         ];
+        List<Pricebook2> pricebooks = [
+                SELECT IsActive, Id
+                FROM Pricebook2
+                WHERE StartDate__c<= :System.today() AND EndDate__c >= :System.today()
+        ];
+        Set<Id> pricebookIds = new Set<Id>();
+        for (Pricebook2 pr : pricebooks) {
+            pricebookIds.add(pr.Id);
+        }
         List<AggregateResult> pricebookEntries = [
                 SELECT Pricebook2Id, Product2Id, MIN(UnitPrice) minimalPrice, MAX(UnitPrice) maximalPrice
                 FROM PricebookEntry
@@ -109,7 +118,7 @@ public with sharing class WDLC_ProductHelper {
                             String.valueOf(pricebookEntries
                                     .get(entry)
                                     .get(pricebookEntries.get(entry).size() - 1)));
-                    String.valueOf(pricebookEntries.get(entry).get(0));
+                            String.valueOf(pricebookEntries.get(entry).get(0));
                     wrap.isWishlisted = (wishlistedIds.contains(wrap.productId)) ? true : false;
                     wrap.productPriceAfterDiscount = String.valueOf(pricebookEntries.get(entry).get(0));
                     wrappedProducts.add(wrap);

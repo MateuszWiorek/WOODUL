@@ -25,7 +25,7 @@
                     component.set("v.searchResult", searchQuery);
                     component.set("v.sizeOfResults", response.getReturnValue().length);
                 }else{
-                    component.find("toastComponent").showError(response);
+                    component.find("toastComponent").openErrorToast(response);
                 }
             });
             $A.enqueueAction(findAction);

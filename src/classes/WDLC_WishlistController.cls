@@ -9,6 +9,7 @@ public with sharing class WDLC_WishlistController {
         return WDLC_WishlistHelper.addProductToWishlist(productId);
     }
     @AuraEnabled
+
     public static List<WDLC_ProductWrapper> getWishlistedProducts(){
         return WDLC_ProductHelper.getWishlistedProducts();
     }
