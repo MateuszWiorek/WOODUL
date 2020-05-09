@@ -2,22 +2,88 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>Util</members>
+        <members>AAA</members>
         <members>Utilities</members>
-        <members>Utilities_Test</members>
         <members>WDLC_ProductWrapper</members>
         <members>WDLC_SearchProductsController</members>
         <members>WDLC_SearchProductsHelper</members>
-        <members>WDLC_WishListTest</members>
         <members>WDLC_WishlistController</members>
         <members>WDLC_WishlistHelper</members>
         <members>WDL_DetailsInfoController</members>
         <members>WDL_SearchFormController</members>
         <members>WDL_Utils</members>
+        <members>WDLC_CustomException</members>
+        <members>WDLC_SimilarProductsHelper</members>
+        <members>WDLC_SimilarProductsController</members>
+        <members>WDLC_ProductToOrderWrapper</members>
+        <members>WDLC_FurnitureProductCommentsHelper</members>
+        <members>WDLC_FurnitureProductCommentsController</members>
+        <members>WDLC_FurnitureOrderHelper</members>
+        <members>WDLC_FurnitureOrderController</members>
+        <members>WDLC_BasketController</members>
+        <members>WDLC_BasketHelper</members>
+        <members>WDLC_FurnitureProductComments</members>
+        <members>WDLC_ModalController</members>
+        <members>WDLC_OrderAddressWrapper</members>
+        <members>WDLC_ProductHelper</members>
+        <members>WDLC_ProductTileController</members>
+        <members>WDLC_ProductWithPriceWrapper</members>
+        <members>WDLC_FurnitureProductComments</members>
+        <members>WDLC_ModalController</members>
+        <members>WDLC_OrderAddressWrapper</members>
+        <members>WDLC_ProductHelper</members>
+        <members>WDLC_ProductTileController</members>
+        <members>WDLC_ProductWithPriceWrapper</members>
+        <members>CommunitiesLandingController</members>
+        <members>CommunitiesLandingControllerTest</members>
+        <members>CommunitiesLoginController</members>
+        <members>CommunitiesLoginControllerTest</members>
+        <members>CommunitiesSelfRegConfirmController</members>
+        <members>CommunitiesSelfRegConfirmControllerTest</members>
+        <members>CommunitiesSelfRegController</members>
+        <members>CommunitiesSelfRegControllerTest</members>
+        <members>CSUtils</members>
+        <members>CSUtilsTest</members>
+        <members>GSurveysController</members>
+        <members>GSurveysController_Test</members>
+        <members>GettingStartedController</members>
+        <members>GettingStartedController_Test</members>
+        <members>SFDCAccessControlException</members>
+        <members>SFDCAccessController</members>
+        <members>SFDCAccessControllerTest</members>
+        <members>SFQuestion</members>
+        <members>SFQuestion_Test</members>
+        <members>SiteLoginController</members>
+        <members>SiteLoginControllerTest</members>
+        <members>SiteRegisterController</members>
+        <members>SiteRegisterControllerTest</members>
+        <members>SurveyManagerController</members>
+        <members>SurveyManagerController_Test</members>
+        <members>SurveySitesUtil</members>
+        <members>SurveyTestingUtil</members>
+        <members>Utilities_Test</members>
+        <members>ViewSurveyController</members>
+        <members>ViewSurveyController_Test</members>
+        <members>viewShareSurveyComponentController</members>
+        <members>viewShareSurveyComponentController_Test</members>
+        <members>viewSurveyResultsComponentController</members>
+        <members>Message</members>
+        <members>Message_Test</members>
+        <members>ChangePasswordController</members>
+        <members>ChangePasswordControllerTest</members>
+        <members>ForgotPasswordController</members>
+        <members>ForgotPasswordControllerTest</members>
+        <members>LexInputFieldCompCtrl</members>
+        <members>LexInputFieldCompCtrl_Test</members>
+        <members>SurveyAndQuestionController</members>
+        <members>SurveyAndQuestionController_Test</members>
+        <members>WDLC_FurnitureComplaintsController</members>
+        <members>WDLC_FurnitureComplaintsHelper</members>
+        <members>ReportFinderUtil</members>
+        <members>WDLC_ProductManagementController</members>
+        <members>OpportunityAlertController</members>
+        <members>OpportunityAlertControllerTest</members>
         <name>ApexClass</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexComponent</name>
     </types>
     <types>
         <members>AnswersHome</members>
@@ -34,27 +100,28 @@
         <members>SurveyPage</members>
         <members>TakeSurvey</members>
         <members>WebLeadOrSurvey</members>
+        <members>FileNotFound</members>
+        <members>ForgotPassword</members>
+        <members>ForgotPasswordConfirm</members>
+        <members>SiteLogin</members>
+        <members>SiteRegister</members>
+        <members>SiteRegisterConfirm</members>
+        <members>SiteTemplate</members>
+        <members>StdExceptionTemplate</members>
+        <members>Unauthorized</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>SurveyTaken</members>
         <members>WDL_CaseTrigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>*</members>
-        <name>AssignmentRule</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>Case</members>
         <name>AssignmentRules</name>
     </types>
     <types>
-        <members>ContactsToday</members>
-        <members>Map</members>
         <members>OpportunityAlert</members>
         <members>WDLC_ProductInfo</members>
-        <members>WDLC_ProductTile</members>
         <members>WDLC_ProductView</members>
         <members>WDLC_SearchBar</members>
         <members>WDLC_SearchResultsList</members>
@@ -64,57 +131,48 @@
         <members>WDL_DetailsInfoValues</members>
         <members>WDL_HeaderSearchForm</members>
         <members>WDL_Map</members>
-        <members>WDL_ProductTile</members>
         <members>WDL_RefreshAfterDeleteRecord</members>
         <members>WDL_Results</members>
         <members>WDL_SearchAccountsDivisions</members>
         <members>WDL_SearchForm</members>
         <members>WDL_SendAccountListToMap</members>
         <members>WDL_SendValues</members>
+        <members>WDL_DivisionSearchForm</members>
+        <members>WDL_DivisionSearchResults</members>
         <members>WDL_ShowErrorComponent</members>
+        <members>WDLC_ProductTile</members>
+        <members>WDLC_ErrorToast</members>
+        <members>WDL_ProductTile</members>
+        <members>WDLC_RefreshBasketComponent</members>
+        <members>WDLC_ProductChangePhoto</members>
+        <members>WDLC_ProductPhotoComponent</members>
+        <members>WDLC_ChangeMainPhoto</members>
+        <members>WDLC_ProductPhotoElement</members>
+        <members>WDLC_ChangeLivePhoto</members>
         <members>svg</members>
         <members>ticker</members>
         <members>toast</members>
         <members>WDLC_SendFurnitureId</members>
+        <members>WDLC_SearchFurnitureProductsBar</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>*</members>
-        <name>AutoResponseRules</name>
-    </types>
-    <types>
-        <members>Opportunity.Furniture Sales</members>
-        <name>BusinessProcess</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Community</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CommunityTemplateDefinition</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CommunityThemeDefinition</name>
-    </types>
-    <types>
         <members>WOOD_U_L</members>
+        <members>SurveyForce</members>
+        <members>Survey_Force</members>
+        <members>Survey_Force_Lightning</members>
         <name>CustomApplication</name>
     </types>
     <types>
         <members>Account</members>
-        <members>Activity</members>
         <members>AgentWork</members>
         <members>AssistantProgress</members>
         <members>Campaign</members>
-        <members>CampaignMember</members>
         <members>Case</members>
         <members>CaseComment</members>
         <members>CaseContactRole</members>
         <members>CaseMilestone</members>
         <members>Lead</members>
-        <members>Opportunity</members>
         <members>Order</members>
         <members>OrderItem</members>
         <members>Pricebook2</members>
@@ -122,6 +180,41 @@
         <members>Product2</members>
         <members>User</members>
         <members>WDLC_Wishlist__c</members>
+        <members>WDLC_Comment__c</members>
+        <members>Order__c</members>
+        <members>Knowledge__kav</members>
+        <members>SurveyQuestionResponse__c</members>
+        <members>SurveyTaker__c</members>
+        <members>Survey_Question__c</members>
+        <members>Survey__c</members>
+        <members>WDLC_CaseSettings__c</members>
+        <members>WDLC_NewCaseComment__e</members>
+        <members>WDLC_Photo__c</members>
+        <members>AccountCleanInfo</members>
+        <members>AccountContactRole</members>
+        <members>Asset</members>
+        <members>AssetRelationship</members>
+        <members>ContentVersion</members>
+        <members>Contract</members>
+        <members>ContractContactRole</members>
+        <members>DuplicateRecordItem</members>
+        <members>DuplicateRecordSet</members>
+        <members>EmailMessage</members>
+        <members>Entitlement</members>
+        <members>EntitlementContact</members>
+        <members>Event</members>
+        <members>ExternalEventMapping</members>
+        <members>FeedItem</members>
+        <members>Idea</members>
+        <members>LeadCleanInfo</members>
+        <members>Macro</members>
+        <members>MacroAction</members>
+        <members>MacroInstruction</members>
+        <members>MacroUsage</members>
+        <members>Site</members>
+        <members>StreamActivityAccess</members>
+        <members>Topic</members>
+        <members>TopicAssignment</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -157,14 +250,6 @@
     </types>
     <types>
         <members>*</members>
-        <name>Flow</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>FlowDefinition</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>Group</name>
     </types>
     <types>
@@ -173,23 +258,24 @@
     </types>
     <types>
         <members>*</members>
-        <name>PathAssistant</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>PermissionSet</name>
     </types>
     <types>
-        <members>Furniture Service Profile</members>
-        <members>LeadConversion Profile</members>
-        <members>WooDUL%3A Support Profile</members>
-        <members>WoodUL Store Profile</members>
-        <members>WoodUL%3A SalesProfile</members>
-        <name>Profile</name>
+        <members>*</members>
+        <name>CustomLabels</name>
     </types>
     <types>
         <members>*</members>
         <name>Queue</name>
+    </types>
+    <types>
+        <members>Case.LogACall</members>
+        <members>Case.NewChildCase</members>
+        <members>Case.SendEmail</members>
+        <members>LogACall</members>
+        <members>NewAccount</members>
+        <members>NewCase</members>
+        <name>QuickAction</name>
     </types>
     <types>
         <members>Account.Division</members>
@@ -203,10 +289,86 @@
     </types>
     <types>
         <members>*</members>
+        <name>EntitlementTemplate</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>EscalationRule</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>EscalationRules</name>
+    </types>
+    <types>
+        <members>Account_Record_Page</members>
+        <members>Case_Record_Page</members>
+        <members>Case_Record_Page1</members>
+        <members>Divisions</members>
+        <members>Knowledge_Record_Page</members>
+        <members>LightningSalesConsole_UtilityBar</members>
+        <members>LightningService_UtilityBar</members>
+        <members>Service_Contract_Record_Page</members>
+        <members>WOOD_U_L</members>
+        <members>WOOD_U_UtilityBar</members>
+        <members>Product_Record_Page</members>
+        <members>WOOD_U_L_UtilityBar</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Admins</members>
+        <name>Group</name>
+    </types>
+    <types>
+        <members>Furniture_Sale</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>WooDUL%3A Support Profile</members>
+        <members>WoodUL%3A SalesProfile</members>
+        <members>WOOD U L Community Plus</members>
+        <members>WOODUL Community Plus Login User</members>
+        <members>WooDUL%3A Community Login User</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>Complaints</members>
+        <members>Multiskill</members>
+        <members>Tech_support</members>
+        <name>Queue</name>
+    </types>
+    <types>
+        <members>Account.Division</members>
+        <members>Account.Master</members>
+        <members>Product2.Furniture</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <types>
+        <members>TMDB_Slick</members>
+        <members>SurveyForce_UserGuide</members>
+        <members>SurveyForce_svg4everybody</members>
+        <members>SurveyForce_SLDS</members>
+        <members>SurveyForce_jquery_ui</members>
+        <members>SurveyForce_jquery</members>
+        <members>SurveyForce</members>
+        <members>Slick</members>
+        <members>slds</members>
+        <members>SiteSamples</members>
+        <members>jqueryui</members>
+        <members>jquerypackage</members>
+        <members>jQuery341</members>
         <name>StaticResource</name>
     </types>
     <types>
-        <members>Lead</members>
+        <members>Account.Billing</members>
+        <members>Campaign.ViewCampaignInfluenceReport</members>
+        <members>Case.UpsellCrosssellOpportunity</members>
+        <name>WebLink</name>
+    </types>
+    <types>        <members>Lead</members>
         <name>Workflow</name>
     </types>
     <types>
@@ -214,5 +376,64 @@
         <members>Lead.SurveyLinkEmail</members>
         <name>WorkflowAlert</name>
     </types>
-    <version>47.0</version>
+    <types>
+        <members>*</members>
+        <name>Settings</name>
+    </types>
+    <types>
+        <members>LexInputField</members>
+        <members>SiteFooter</members>
+        <members>SiteHeader</members>
+        <members>SiteLogin</members>
+        <members>SitePoweredBy</members>
+        <members>uiMessage</members>
+        <members>viewShareSurveyComponent</members>
+        <members>viewSurveyResultsComponent</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>Internal Zone</members>
+        <name>Community</name>
+    </types>
+    <types>
+        <members>Divisions</members>
+        <members>SurveyTaker__c</members>
+        <members>Survey_Question__c</members>
+        <members>Survey__c</members>
+        <members>Getting_Started_With_Survey_Force</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Default_Navigation</members>
+        <name>NavigationMenu</name>
+    </types>
+    <types>
+        <members>WOODUL_Community_Plus_Login_User_profileSessionSetting1584998964558</members>
+        <members>WOOD_U_L_Community_Plus_profileSessionSetting1584998074060</members>
+        <members>WooDUL_Community_Login_User_profileSessionSetting1584997944858</members>
+        <name>ProfileSessionSetting</name>
+    </types>
+    <types>
+        <name>Layout</name>
+    </types>
+    <types>
+        <name>TopicsForObjects</name>
+    </types>
+    <types>
+        <members>unfiled$public/SendEmailWithSurveyLink</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>download_22</members>
+        <name>ContentAsset</name>
+    </types>
+    <types>
+        <members>EntitlementType</members>
+        <name>StandardValueSet</name>
+    </types>
+    <types>
+        <members>TMDBUser</members>
+        <name>PlatformCachePartition</name>
+    </types>
+    <version>48.0</version>
 </Package>

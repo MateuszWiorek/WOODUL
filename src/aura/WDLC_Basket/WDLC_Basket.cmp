@@ -1,0 +1,26 @@
+<!--
+ - Created by Mateusz Wiorek on 24.03.2020.
+ -->
+
+<aura:component description="WDLC_Basket" controller="WDLC_BasketController"
+    implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
+
+    <aura:attribute name="results" type="Object[]" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!not(empty(v.results))}">
+        <lightning:card>
+            <center>
+                <h2>Products in basket.</h2>
+            </center>
+            <div class="slds-grid" style="display: flex; flex-wrap: wrap; padding: 10px 20px;">
+                <aura:iteration items="{!v.results}" var="result">
+                    <div class="slds-col">
+                        <c:WDLC_ProductTile product = "{!result}"/>
+                    </div>
+                </aura:iteration>
+            </div>
+        </lightning:card>
+    </aura:if>
+</aura:component>
