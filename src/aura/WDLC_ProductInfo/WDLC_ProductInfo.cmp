@@ -1,0 +1,25 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_ProductInfo" implements="forceCommunity:availableForAllPageTypes">
+    <lightning:card>
+        <div class="slds-grid">
+            <div class="slds-col slds-size--1-of-2">
+
+            </div>
+            <div class="slds-col slds-size--1-of-2">
+            </div>
+            <div class="slds-col slds-size--1-of-1">
+                <div class="rating">
+                </div>
+                <div class="commnets">
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid" style="display: flex; flex-wrap: wrap;">
+            <div class="slds-col similarProduct">
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

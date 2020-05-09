@@ -1,0 +1,18 @@
+<!--
+ - Created by Mateusz Wiorek on 31.03.2020.
+ -->
+
+<aura:component description="WDLC_ProductPhotoComponent" controller="WDLC_ProductManagementController"
+                implements="flexiPage:availableForAllPageTypes" extensible="true">
+    <aura:attribute name="productId" type="String" access="global"/>
+    <aura:attribute name="photoUrl" type="String" access="global"/>
+
+    <aura:registerEvent name="changeEvent" type="c:WDLC_ChangeMainPhoto"/>
+    
+    <aura:if isTrue="{!not(empty(v.productId))}">
+        <div onclick="{!c.setAsMain}" style="overflow:hidden; max-height:200px; margin: 1px;">
+            <img src="{!v.photoUrl}"/>
+        </div>
+    </aura:if>
+    <c:WDL_ShowErrorComponent aura:id="infoToast"/>
+</aura:component>

@@ -1,0 +1,23 @@
+.THIS .heart {
+      position: absolute;
+      width: 50px;
+      height: 45px;
+    }
+.THIS .heart:before,
+.THIS .heart:after {
+      position: absolute;
+      content: "";
+      left: 25px;
+      top: 0;
+      width: 25px;
+      height: 40px;
+      background: #02A7D7;
+      border-radius: 25px 25px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+.THIS .heart:after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+}

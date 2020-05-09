@@ -1,0 +1,16 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_SearchFurnitureProductsBar"
+                    implements="forceCommunity:searchInterface" >
+        <aura:attribute name="itemSearch" type="String" access="global"/>
+
+        <aura:registerEvent name="WDLC_SednItemToSearch" type="c:WDLC_SednItemToSearch"/>
+
+                <div class="slds-form-element__control" style="height: 48px;">
+                    <ui:inputText class="dataInput" placeholder="{!$Label.c.WDLC_Name}"
+                                     value="{! v.itemSearch}" updateOn="keyup" keyup="{!c.keyCheck}" required="true"/>
+                </div>
+        <c:WDL_ShowErrorComponent aura:id="errorChildComponent"/>
+    </aura:component>

@@ -5,6 +5,7 @@
 public without sharing class WDLC_FurnitureComplaintsHelper {
 
     public static Boolean makeComplaint(String productId, String subject, String description, String orderId) {
+
         AssignmentRule assignmentRule = new AssignmentRule();
         assignmentRule = [SELECT Id FROM AssignmentRule WHERE SobjectType = 'Case' AND Active = true LIMIT 1];
         Database.DMLOptions dmlOpts = new Database.DMLOptions();

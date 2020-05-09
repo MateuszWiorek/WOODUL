@@ -1,0 +1,38 @@
+<!--
+ - Created by Mateusz Wiorek on 27.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureHomePage" implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="productName" type="String" access="global"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <ltng:require
+            styles="{!join(',', $Resource.Slick + '/slick/slick.css', $Resource.Slick + '/slick/slick-theme.css')}"
+            scripts="{!join(',', $Resource.Slick + '/slick/jquery-3.3.1.js', $Resource.Slick + '/slick/slick.js')}"
+            afterScriptsLoaded="{!c.makeCarousel}"
+    />
+    <div class="mainDiv">
+        <div class="carousel" aura:id="divElement">
+            <div class="table" style="{!'background-image:url(' + $Resource.WDLC_Table +')'}">
+                <div class="table-div">
+                        <p class="main-span_title">{!$Label.c.WDLC_CosyDesign}</p>
+                    <span class="main-span_subtitle">{!$Label.c.WDLC_CheckNewCollection}</span>
+
+                    <center>
+                        <lightning:button onclick="{!c.goToSearch}" class="goCozyButton">{!$Label.c.WDLC_ShopNow}
+                        </lightning:button>
+                    </center>
+                </div>
+            </div>
+            <div class="apartment" style="{!'background-image:url(' + $Resource.WDLC_Apartment +')'}">
+                <div class="apartment-div">
+                <p class="apartment-span_title">{!$Label.c.WDLC_RawDesign}</p>
+                <span class="apartment-span_subtitle">{!$Label.c.WDLC_CheckNewCollection}</span>
+                <center>
+                    <lightning:button onclick="{!c.goToSearchRaw}" class="goRawButton">{!$Label.c.WDLC_ShopNow}
+                    </lightning:button>
+                </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>
