@@ -1,0 +1,188 @@
+<project name="Salesforce Ant tasks for TEB Edukacja deployments" default="test" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <property environment="env"/>
+    <property file="build.properties"/>
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="ant-salesforce.jar"/>
+        </classpath>
+    </taskdef>
+
+    <!-- DEVELOPER SANDBOX -->
+    <target name="test-pre-destructive-changes-dev" description="Test pre-destructive changes to Developer Sandbox">
+        <sf:deploy
+            username="${dev_username}"
+            password="${dev_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="PreDestructiveChanges"
+            ignoreWarnings="true"
+            checkOnly="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+	<target name="test-deploy-dev" description="Test deployment to Developer Sandbox (without destructive changes)">
+        <sf:deploy
+            username="${dev_username}"
+            password="${dev_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="../src"
+            testLevel="NoTestRun"
+            checkOnly="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+	<target name="test-post-destructive-changes-dev" description="Test post-destructive changes to Developer Sandbox">
+        <sf:deploy
+            username="${dev_username}"
+            password="${dev_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="PostDestructiveChanges"
+            ignoreWarnings="true"
+            checkOnly="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    <target name="pre-destructive-changes-dev" description="Pre-destructive changes to Developer Sandbox">
+        <sf:deploy
+            username="${dev_username}"
+            password="${dev_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="PreDestructiveChanges"
+            ignoreWarnings="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    <target name="deploy-dev" description="Deployment to Developer Sandbox (without destructive changes)">
+        <sf:deploy
+            username="${dev_username}"
+            password="${dev_password}"
+            serverurl="https://login.salesforce.com"
+            deployRoot="/src"
+            testLevel="NoTestRun"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    <target name="post-destructive-changes-dev" description="Post-destructive changes to Developer Sandbox">
+        <sf:deploy
+            username="${dev_username}"
+            password="${dev_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="PostDestructiveChanges"
+            ignoreWarnings="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    <target name="retrieve-dev" >
+        <sf:retrieve username="${dev_username}"
+                     password="${dev_password}"
+                     serverurl="https://woodu-dev-ed.my.salesforce.com"
+                     retrieveTarget="../src"
+                     unpackaged="../src/package.xml"/>
+    </target>
+
+    <!-- INTEGRATION SANDBOX -->
+    <target name="test-deploy-int" description="Test deployment to Integration Sandbox (with destructive changes)">
+		<copy file="PreDestructiveChanges/destructiveChangesPre.xml" todir="../src" overwrite="true" failonerror="true"/>
+		<copy file="PostDestructiveChanges/destructiveChangesPost.xml" todir="../src" overwrite="true" failonerror="true"/>
+        <sf:deploy
+            username="${env.int_username}"
+            password="${env.int_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="../src"
+            testLevel="RunLocalTests"
+            checkOnly="true"
+			ignoreWarnings="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+
+    <!-- UAT -->
+    <target name="deploy-uat" description="Deployment to UAT (with destructive changes)">
+		<copy file="PreDestructiveChanges/destructiveChangesPre.xml" todir="../src" overwrite="true" failonerror="true"/>
+		<copy file="PostDestructiveChanges/destructiveChangesPost.xml" todir="../src" overwrite="true" failonerror="true"/>
+        <sf:deploy
+            username="${env.uat_username}"
+            password="${env.uat_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="../src"
+            testLevel="RunLocalTests"
+			ignoreWarnings="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+
+    <!-- STAGING SANDBOX -->
+    <target name="deploy-staging" description="Deployment to Staging Sandbox (with destructive changes)">
+		<copy file="PreDestructiveChanges/destructiveChangesPre.xml" todir="../src" overwrite="true" failonerror="true"/>
+		<copy file="PostDestructiveChanges/destructiveChangesPost.xml" todir="../src" overwrite="true" failonerror="true"/>
+        <sf:deploy
+            username="${env.staging_username}"
+            password="${env.staging_password}"
+            serverurl="https://test.salesforce.com"
+            deployRoot="../src"
+            testLevel="RunLocalTests"
+			ignoreWarnings="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    
+    <!-- PRODUCTION -->
+	<target name="test-deploy-prod" description="Deployment to Production (with destructive changes)">
+		<copy file="PreDestructiveChanges/destructiveChangesPre.xml" todir="../src" overwrite="true" failonerror="true"/>
+		<copy file="PostDestructiveChanges/destructiveChangesPost.xml" todir="../src" overwrite="true" failonerror="true"/>
+        <sf:deploy
+            username="${env.prod_username}"
+            password="${env.prod_password}"
+            serverurl="https://login.salesforce.com"
+            deployRoot="../src"
+            testLevel="RunLocalTests"
+            checkOnly="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    <target name="pre-destructive-changes-prod" description="Pre-destructive changes to Production">
+        <sf:deploy
+            username="${env.prod_username}"
+            password="${env.prod_password}"
+            serverurl="https://login.salesforce.com"
+            deployRoot="PreDestructiveChanges"
+            ignoreWarnings="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    <target name="deploy-prod" description="Deployment to Production (without destructive changes)">
+        <sf:deploy
+            username="${env.prod_username}"
+            password="${env.prod_password}"
+            serverurl="https://login.salesforce.com"
+            deployRoot="../src"
+            testLevel="RunLocalTests"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+    <target name="post-destructive-changes-prod" description="Post-destructive changes to Production">
+        <sf:deploy
+            username="${env.prod_username}"
+            password="${env.prod_password}"
+            serverurl="https://login.salesforce.com"
+            deployRoot="PostDestructiveChanges"
+            ignoreWarnings="true"
+            pollwaitmillis="10000"
+            maxpoll="1000"
+        />
+    </target>
+
+</project>

@@ -36,7 +36,7 @@ onInit : function(component,event,helper){
             "productId" : component.get("v.recordId")
         });
         getMainAction.setCallback(this, function(response){
-            if(response.getState() === "SUCCESS"){
+if(response.getState() === "SUCCESS"){
                 component.set("v.mainPhoto", response.getReturnValue());
             }else{
                 component.find("errorToast").showError(response);

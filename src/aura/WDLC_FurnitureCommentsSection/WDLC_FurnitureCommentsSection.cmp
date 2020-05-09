@@ -1,0 +1,39 @@
+<!--
+ - Created by Mateusz Wiorek on 20.03.2020.
+ -->
+
+<aura:component description="WDLC_FurnitureCommentsSection" controller="WDLC_FurnitureProductCommentsController"
+                implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute type="Object[]" name="comments" access="global"/>
+    <aura:attribute type="String" name="richComment" access="global"/>
+    <aura:attribute type="Object" name="product" access="global"/>
+    <aura:attribute type="Integer" name="ratingGrade" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <lightning:card>
+        <div class="slds-feed">
+            <div class="slds-form-element" style="padding-left:10px; padding-right: 10px">
+                <div class="slds-form-element__control">
+                    <div style="max-width: 10rem;">
+                        <c:Rating changeEvent="{!c.rate}"/>
+                    </div>
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <ui:inputTextArea value="{!v.richComment}" placeholder="{!$Label.c.WDLC_LeaveComment}"/>
+                            <div style="slds-float--right">
+                                <lightning:buttonIcon iconName="utility:engage" alternativeText="{!$Label.c.WDLC_Share}"
+                                                      size="large" onclick="{!c.comment}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aura:if isTrue="{!not(empty(v.comments))}">
+                <c:WDLC_FurnitureCommentsList comments="{!v.comments}"/>
+            </aura:if>
+        </div>
+    </lightning:card>
+    <c:WDL_ShowErrorComponent aura:id="toastComponent"/>
+    <c:WDLC_ErrorToast aura:id="errorComponent"/>
+</aura:component>
